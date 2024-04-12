@@ -351,6 +351,33 @@ plt.ylabel('Y Coordinate')
 plt.title('Shipra Jana 014 \n K-Means Clustering(k='+str(k)+')')
 plt.show()
 
+
+
+# another code
+    
+    #Import all the libraries
+import numpy as np
+
+#Sample data representing flower Location
+data = np.array([[1,2],[1.5,1.8],[5,8],[8,8],[1,0.5],[7,9],[9,10],[5.5,8.5]])
+
+#number of clusters i.e k
+k = 3
+
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=k)
+kmeans.fit(data)
+
+clusters_labels = kmeans.predict(data)
+
+import matplotlib.pyplot as plt
+
+plt.scatter(data[:,0],data[:,1],c=clusters_labels)
+plt.xlabel('X Coordinate')
+plt.ylabel('Y Coordinate')
+plt.title('kmean clusterint(k='+str(k)+')')
+plt.show()
+
 `;
 
 var text7 = `# 7 Decision Tree
