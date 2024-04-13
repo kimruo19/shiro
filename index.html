@@ -11,7 +11,7 @@
         }
 
         body {
-            background-color: grey;
+            background-color: #f0f0f0;
             /* Light gray background */
             font-family: Arial, sans-serif;
             text-align: center;
@@ -21,7 +21,7 @@
             margin: 10px;
             padding: 10px;
             font-size: 16px;
-            background-color: grey;
+            background-color: #ddd;
             /* Light gray button background */
             border: 1px solid #aaa;
             /* Dark gray border */
@@ -37,439 +37,510 @@
 
 <body>
 
-    <button onclick="copyText(text1)">1A Supervised (KNN)</button>
-    <button onclick=" copyText(text2)">1B Unsupervised (KMeans)</button>
-    <button onclick="copyText(text3)">2 Naive Bayes (Binary Classification)</button>
-    <button onclick="copyText(text4)">3 Overfitting (Polynomial Regression Model)</button>
-    <button onclick="copyText(text5)">4 Linear Regression (Salary Prediction)</button>
-    <button onclick="copyText(text6)">5 MultiClass Classification</button>
-    <button onclick="copyText(text7)">6 K-Means Clustering</button>
-    <button onclick="copyText(text8)">7 Decision Tree</button>
-    <button onclick="copyText(text9)">8 Hierarchical Clustering</button>
+    <button onclick="copyText(text1)">1A Linear Regression</button>
+    <button onclick=" copyText(text2)">1B Logistic Regression</button>
+    <button onclick="copyText(text3)">2A R CODE</button>
+    <button onclick="copyText(text4)">2B K-Nearest Neighbor</button>
+    <button onclick="copyText(text5)">3 Naive Bayes(Salary Prediction)</button>
+    <button onclick="copyText(text6)">4 K-Means Clustering</button>
+    <button onclick="copyText(text7)">5 Data Visualization Python</button>
+    <button onclick="copyText(text8)">6 Bar Pie Charts</button>
+    <button onclick="copyText(text9)">7 ETL Process</button>
+    <button onclick="copyText(text10)">8 Data Visualization Matplotlib, Seaborn, Plotly</button>
+    <button onclick="copyText(text11)">9 Decision Tree</button>
     
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `#Pract 1 :1A Supervised (KNN)
+        var text1 = `# 1A Linear Regression
 
-# 1A Supervised learning (KNN)
+# Libraries Required
+import random
+from sklearn.linear_model import LinearRegression
 
-# Import necessary Libraries
-import numpy as np
-import pandas as pd
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, classification_report, precision_score
+print("Name : Shipra Jana")
+print("Roll : KFMSCIT014")
 
-# Load the Iris Dataset
-iris = load_iris()
+# Declarartion Code
+feature_set = []
+target_set = []
+rows = 200
+limit = 2000
 
-# Split the dataset into features and target
-X,Y = iris.data,iris.target
+# To ready Training Data
+for i in range(0,rows):
+ x = random.randint(0,limit)
+ y = random.randint(0,limit)
+ z = random.randint(0,limit)
+ g = 10*x + 2*y + 3*z
 
-# Split the dataset into training and testing set
-X_Train,X_Test,Y_Train,Y_Test = train_test_split(X,Y,test_size= 0.2,random_state=42)
+ print("x=",x,"\ty=",y,"\tz=",z,"\tg=",g);
+ print("=========================================")
+ feature_set.append([x,y,z])
+ target_set.append(g)
 
-# Initialize a KNearest Classifier
-knn_cls = KNeighborsClassifier(n_neighbors = 3)
+# Train The Model
+model = LinearRegression()
+model.fit(feature_set,target_set)
+print("Training is completed")
 
-# Train the model on the training data
-knn_cls.fit(X_Train,Y_Train)
+Test_Data = [[1,2,1]]
+prediction = model.predict(Test_Data)
+print('Prediction:'+str(prediction)+'\t'+ 'Coefficient:'+str(model.coef_))
+print("Name : Shipra Jana 014")
 
-# Make prediction on test data
-pred = knn_cls.predict(X_Test)
-
-# Evaluate the model accuracy and classification report
-acc = accuracy_score(Y_Test,pred)
-cl_report = classification_report(Y_Test,pred)
-print("\n*****************")
-print("Accuracy :",acc)
-print("*****************")
-print("Classification Report :",cl_report)
-print("*****************")
-print("Shipra Jana")
-print("KFMSCIT014")
-print("****************")
     `;
     
-        var text2 = `#Practical 1b - 1B Unsupervised (KMeans)
+        var text2 = `# 1B Logistic Regression
 
-        # 1B Unsupervised Learning (Kmeans)
-
-#Import necessary libraries
-import numpy as np
-from sklearn.datasets import load_iris
+# Libraries Required
+import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.cluster import KMeans
-from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, accuracy_score
+
+print("Name : Shipra Jana")
+print("Roll : KFMSCIT014")
+
+dataset = pd.read_csv("diabetes.csv")
+print(dataset.head())
+
+x = dataset.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7]].values
+y = dataset.iloc[:, [-1]].values
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=100)
+
+sc = StandardScaler()
+x_train = sc.fit_transform(x_train)
+x_test = sc.transform(x_test)
+
+model = LogisticRegression()
+
+model.fit(x_train, y_train)
+
+y_pred = model.predict(x_test)
+
+cm = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix :\n ", cm)
+print("Accuracy :", accuracy_score(y_test, y_pred) * 100)
+print("Name : Shipra Jana 014")
+
+`;
+
+        var text3 = ` # 2A R 
+
+       # Print Name
+print("Shipra")
+print("KFMSCIT014")
+print("Practical-2")
+
+# Single-variable:
+  Name <- "Shipra Jana"
+Class <- "MSC.IT"
+Name
+Class
+
+# Multiple-variables:
+# Assign the same value to multiple variables in one line
+  var1 <- var2 <- var3 <- "Strawberry"
+var1
+var2
+var3
+
+# Plot Single-Point:
+  plot(2,5)
+title(main = "Single-Point")
+
+# Plot Multiple-Points:
+  plot(c(1,8), c(3,10))
+title(main = "Multiple-Points")
+
+# R Line:
+#plot() function and add the type parameter with a value of "l":
+  plot(1:10, type="l")
+  title(main = "R-Line")
+  
+# Line Color:
+  plot(1:10, type="l", col="blue")
+  title(main = "Line Color")
+  
+# Line Width:
+    plot(1:10, type="l", col="violet", lwd=6)
+  title(main = "Line Width")
+  
+# Multiple Lines:
+    line1 <- c(1,2,3,4,5,10)
+  line2 <- c(2,5,7,8,9,10)
+  plot(line1, type = "l", col = "blue", lwd=4)
+  lines(line2, type="l", col = "red", lwd=2)
+  title(main = "Multiple-Lines")
+  
+# Scatter Plots:
+    x <- c(5,7,8,7,2,2,9,4,11,12,9,6)
+  y <- c(99,86,87,88,111,103,87,94,78,77,85,86)
+  plot(x, y, col="red", lwd=2)
+  title(main = "Scatter Plots")
+  
+# Example above should show the result of 12 cars passing by.
+  # let's add a header and different labels to describe the scatter plot better.
+    x <- c(5,7,8,7,2,2,9,4,11,12,9,6)
+  y <- c(99,86,87,88,111,103,87,94,78,77,85,86)
+  plot(x, y, col="violet", lwd=2, main="Shipra", xlab="Car age", ylab="Car speed")
+  
+  
+# Bar Charts:
+    # x-axis values
+    x <- c("A", "B", "C", "D")
+  # y-axis values
+  y <- c(2, 4, 6, 8)
+  barplot(y, col="violet", names.arg = x)
+  title(main = "Bar Charts")
+  
+
+`;
+
+        var text4 = ` # 2B K-Nearest Neighbor
+
+# Libraries Required
 import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
 
-#Load the Iris dataset
-iris = load_iris()
+# Data Set
+x = [4, 5, 10, 4, 3, 11, 14 , 8, 10, 12]
+y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
+classes = [0, 0, 1, 0, 0, 1, 1, 0, 1, 1]
 
-#Split the dataset into features and target
-X,Y = iris.data,iris.target
-
-#Initialize the KMeans model with 3 clusters and a random seed
-Km = KMeans(n_clusters = 3,random_state=40)
-
-#Fit the KMeans model to the data
-Km.fit(X)
-
-#Get the cluster labels assigned by the KMeans algorithm
-cluster_label = Km.labels_
-
-# Plot the clustered data points
-plt.scatter(X[:,0],X[:,1],c=cluster_label,cmap='viridis')
-plt.title(" Shipra Jana 014 \n Unsupervised - KMeans")
+# To plot data set
+plt.scatter(x, y, c=classes)
+plt.title("Shipra Jana 014")
 plt.show()
 
-`;
+# To merge x and y into single list
+data = list(zip(x, y))
+print(data)
 
-        var text3 = ` #Pract 2 - 2 Naive Bayes (Binary Classification)
+# model creation
+model = KNeighborsClassifier(n_neighbors=1)
 
-        # 2 Naive Bayes (Binary Classification)
+# Model is trained
+model.fit(data, classes)
+new_x = 8
+new_y = 21
 
-#Import necessary Libraries
-import numpy as np
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score, classification_report
-from sklearn import metrics
-#Load the Iris dataset
-iris = load_iris()
+new_point = [(new_x, new_y)]
+prediction = model.predict(new_point)
 
-#Split the dataset into features and target
-X = iris.data
-Y = iris.target
+plt.title("Shipra Jana 014")
+plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
+plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
+plt.show()
 
-#Split the dataset into training and testing set
-X_Train,X_Test,Y_Train,Y_Test = train_test_split(X,Y,test_size= 0.2,random_state=42)
+model = KNeighborsClassifier(n_neighbors=5)
+model.fit(data, classes)
 
-#Training the model on training set
-gnb = GaussianNB()
-gnb.fit(X_Train, Y_Train)
+prediction = model.predict(new_point)
+print(prediction)
 
-# making predictions on the testing set
-y_pred = gnb.predict(X_Test)
-
-# comparing actual response values (y_test) with predicted response values (y_pred)
-acc = metrics.accuracy_score(Y_Test, y_pred) * 100
-clr_report = metrics.classification_report(Y_Test, y_pred)
-print("\n**********************************************")
-print("Gaussian Naive Bayes Model Accuracy :", acc)
-print("***********************************************")
-print("Classification Report :", clr_report)
-print("***********************************************")
-print("Shipra Jana")
-print("KFMSCIT014")
-print("***********************************************")
-
-`;
-
-        var text4 = ` # 3 Overfitting (Polynomial Regression Model)
-
-        # 3 Overfitting in Polynomial Regression Model
-
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
-
-# Generate synthetic data
-np.random.seed(0)
-X = np.linspace(0, 5, 100).reshape(-1, 1)
-Y = 2 * np.sin(X) + np.random.normal(0, 0.5, size=X.shape)
-
-# Split data into training and testing sets
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
-
-# Define a function to fit polynomial regression models of varying degrees
-def fit_polynomial(X_train, Y_train, X_test, Y_test, degree):
- poly = PolynomialFeatures(degree=degree)
- X_train_poly = poly.fit_transform(X_train)
- X_test_poly = poly.transform(X_test)
- model = LinearRegression()
- model.fit(X_train_poly, Y_train)
- train_rmse = np.sqrt(mean_squared_error(Y_train, model.predict(X_train_poly)))
- test_rmse = np.sqrt(mean_squared_error(Y_test, model.predict(X_test_poly)))
- return model, train_rmse, test_rmse
-
-# Fit polynomial regression models of varying degrees
-degrees = [1, 3, 10]
-models = []
-train_rmse_values = []
-test_rmse_values = []
-for degree in degrees:
- model, train_rmse, test_rmse = fit_polynomial(X_train, Y_train, X_test, Y_test, degree)
- models.append(model)
- train_rmse_values.append(train_rmse)
- test_rmse_values.append(test_rmse)
-
- # Plot the results
- plt.figure(figsize=(10, 6))
- plt.scatter(X_train, Y_train, color='blue', label='Training Data')
- plt.scatter(X_test, Y_test, color='green', label='Testing Data')
- x_values = np.linspace(0, 5, 100).reshape(-1, 1)
- for i, model in enumerate(models):
-     y_values = model.predict(PolynomialFeatures(degree=degrees[i]).fit_transform(x_values))
-     plt.plot(x_values, y_values, label=f'Degree {degrees[i]}')
- plt.title('Shipra Jana 014 \n Polynomial Regression with Different Degrees')
- plt.xlabel('X')
- plt.ylabel('Y')
- plt.legend()
- plt.show()
+plt.title("Shipra Jana 014")
+plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
+plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
+plt.show()
  
 `;
 
-        var text5 = `# 4 Linear Regression (Salary Prediction)
+        var text5 = `# 3 Naive bayes
 
-# Linear Regresssion Analysis for Salary Prediction
-
-#Import necessary Libraries
-import numpy as np
+# !pip install pgmpy
+# libraries required4
 import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error,r2_score
+from pgmpy.estimators import MaximumLikelihoodEstimator
+from pgmpy.models import BayesianNetwork
+from pgmpy.inference import VariableElimination
 
-#Load the IrisDataset
-df = pd.read_csv("Salary_Data.csv")
-df.head()
+# import data
+data = pd.read_csv('heartdisease.csv')
+heart_disease = pd.DataFrame(data)
+print(heart_disease)
 
-#extract
-x=df['YearsExperience'].values.reshape(-1,1)
-y=df['Salary'].values
+model = BayesianNetwork([
+ ('Age', 'Lifestyle'),
+ ('Gender', 'Lifestyle'),
+ ('Family', 'HeartDisease'),
+ ('Diet', 'Cholestrol'),
+ ('Lifestyle', 'Diet'),
+ ('Cholestrol', 'HeartDisease'),
+ ('Diet', 'Cholestrol')
+])
 
-#Split the data
-X_train,X_test , Y_train , Y_test = train_test_split(x,y,test_size=0.2,random_state=42)
-r1 = LinearRegression()
-r1.fit(X_train,Y_train)
-y_pred = r1.predict(X_test)
-print(y_pred)
-MSE = mean_squared_error(Y_test,y_pred)
-r2 = r2_score(Y_test,y_pred)
-print("\n***************************")
-print('MSE',MSE)
-print("\n***************************")
-print('r2' , r2)
-print("\n***************************")
-print("Shipra Jana")
-print("KFMSCIT014")
-print("****************************")
+model.fit(heart_disease, estimator=MaximumLikelihoodEstimator)
+HeartDisease_infer = VariableElimination(model)
+print('For Age enter SuperSeniorCitizen:0, SeniorCitizen:1, MiddleAged:2, Youth:3, Teen:4')
+print('For Gender enter Male:0, Female:1')
+print('For Family History enter Yes:1, No:0')
+print('For Diet enter High:0, Medium:1')
+print('for LifeStyle enter Athlete:0, Active:1, Moderate:2, Sedentary:3')
+print('for Cholesterol enter High:0, BorderLine:1, Normal:2')
+q = HeartDisease_infer.query(variables=['HeartDisease'],
+ evidence={
+ 'Age': int(input('Enter Age: ')),
+ 'Gender': int(input('Enter Gender: ')),
+ 'Family': int(input('Enter Family History: ')),
+ 'Diet': int(input('Enter Diet: ')),
+ 'Lifestyle': int(input('Enter Lifestyle: ')),
+ 'Cholestrol': int(input('Enter Cholestrol: '))
+})
+print(q)
+print("Shipra Jana 014")
         
   `;
   
-        var text6 = ` # 5 MultiClass Classification
-        # 5 Evaluation of Multiclass Classification Model Performance
+        var text6 = ` # 4 K-Means Clustering
 
-#Import necessary Libraries
-import pandas as pd
-from sklearn.svm import SVC
-from sklearn import metrics
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
-#Load the iris dataset
-data = pd.read_csv('iris.csv')
-
-#Split the dataset
-X = data.iloc[:, :-1].values
-Y = data.iloc[:, -1].values
-#print(X)
-#print(Y)
-
-#Split the dataset into training and testing set
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y,test_size = 0.2, random_state = 42)
-
-#Model
-model = SVC()
-
-#Train the model on the training data
-model.fit(X_train, Y_train)
-
-#Make prediction on test data
-Y_pred = model.predict(X_test)
-
-#Evaluate the model accuracy precision recall and f1 score
-accuracy = metrics.accuracy_score(Y_test, Y_pred) * 100
-precision = metrics.precision_score(Y_test,Y_pred,average='macro') * 100
-re = metrics.recall_score(Y_test, Y_pred, average='macro') * 100
-fe = metrics.f1_score(Y_test, Y_pred, average='macro') * 100
-clr_report = metrics.classification_report(Y_test, Y_pred)
-print("\n*******************************")
-print("Accuracy :", accuracy)
-print("*******************************")
-print("Precision :", precision)
-print("*******************************")
-print("Recall :", re)
-print("*******************************")
-print("F1 Score :", fe)
-print("*********************************************************************************")
-print("Classification Report :", clr_report)
-print("*****************")
-print("Shipra Jana")
-print("KFMSCIT014")
-print("*****************")
-
-`;
-
-        var text7 = `# 6 K-Means Clustering
-
-        # 6 K – Means Clustering
-
-#Import necessary libraries
-import numpy as np
-import pandas as pd
+# Libraries Required
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 
-#Sample data representing Flower Location
-data = pd.DataFrame({'Income':[25000,50000,75000,100000,125000,150000,175000,200000],
- 'Spending': [15000,25000,35000,45000,55000,65000,75000,85000]})
+# Data Set
+x = [4, 5, 10, 4, 3, 11, 14 , 6, 10, 12]
+y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
 
-#No. of Clusters i.e. k
-k = 3
-
-#Initialize the KMeans model with k clusters
-kmeans = KMeans(n_clusters=k)
-
-#Fit(Train) the KMeans model to the data
-kmeans.fit(data)
-
-#Predict the cluster labels for each data point
-clusters_labels = kmeans.predict(data)
-
-#Plot the clustered data points
-plt.scatter(data['Income'],data['Spending'],c=clusters_labels)
-plt.xlabel('X Coordinate')
-plt.ylabel('Y Coordinate')
-plt.title('Shipra Jana 014 \n K-Means Clustering(k='+str(k)+')')
+# Plotting the data points
+plt.scatter(x, y)
+plt.title("Shipra Jana 014 \n Plotting Data Points")
 plt.show()
 
+# Combining the x and y coordinates into a list of tuples
+data = list(zip(x, y))
 
-
-    # another code
-    
-    #Import all the libraries
-import numpy as np
-
-#Sample data representing flower Location
-data = np.array([[1,2],[1.5,1.8],[5,8],[8,8],[1,0.5],[7,9],[9,10],[5.5,8.5]])
-
-#number of clusters i.e k
-k = 3
-
-from sklearn.cluster import KMeans
-kmeans = KMeans(n_clusters=k)
+# Initializing and fitting the KMeans model with 2 clusters
+kmeans = KMeans(n_clusters=2)
 kmeans.fit(data)
 
-clusters_labels = kmeans.predict(data)
-
-import matplotlib.pyplot as plt
-
-plt.scatter(data[:,0],data[:,1],c=clusters_labels)
-plt.xlabel('X Coordinate')
-plt.ylabel('Y Coordinate')
-plt.title('kmean clusterint(k='+str(k)+')')
+# Plotting the clustered data points
+plt.scatter(x, y, c=kmeans.labels_)
+plt.title("Shipra Jana 014 \n Plotting Clustered Data Points")
 plt.show()
 
 `;
 
-var text8 = `# 7 Decision Tree
+        var text7 = `#5 Data Visualization using Python
 
-        # Decision Tree
-
-#Import necessary Libraries
-import numpy as np
+# Libraries Required
 import pandas as pd
+import matplotlib.pyplot as plt
+
+# reading the database
+data = pd.read_csv("tips.csv")
+
+# printing name
+print(" Shipra Jana")
+
+# printing the top 10 rows
+print(data.head(10))
+
+# Scatter plot with day against tip
+plt.scatter(data['day'], data['tip'])
+
+# Adding Title to the Plot
+plt.title("Shipra Jana 014 - Scatter Plot")
+# Setting the X and Y labels
+plt.xlabel('Day')
+plt.ylabel('Tip')
+plt.show()
+
+
+
+# libraries required
+import pandas as pd
+import matplotlib.pyplot as plt
+# reading the database
+data = pd.read_csv("tips.csv")
+# printing name
+print(" Shipra Jana")
+# printing the top 10 rows
+print(data.head(10))
+# Scatter plot with day against tip
+plt.scatter(data['day'], data['tip'], c=data['size'],s=data['total_bill'])
+# Adding Title to the Plot
+plt.title("Shipra Jana 014 - Scatter Plot")
+# Setting the X and Y labels
+plt.xlabel('Day')
+plt.ylabel('Tip')
+plt.colorbar()
+plt.show()
+
+
+`;
+
+var text7 = `# 6 Pie Bar Chart Diagram using Python
+
+
+# BAR CHART
+# libraries required
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+# reading the database
+data = pd.read_csv("tips.csv")
+# Bar chart with day against tip
+plt.bar(data['day'], data['tip'], color="violet")
+plt.title("Shipra Jana 014 - Bar Chart")
+# Setting the X and Y labels
+plt.xlabel('Day')
+plt.ylabel('Tip')
+# Adding the legends
+plt.show()
+
+
+# Pie Chart-1 [Normal Pie Chart]
+import numpy as np
+import matplotlib.pyplot as plt
+plt.title("Shipra Jana 014 - Normal PieChart")
+y1 = np.array([35,25,25,15])
+plt.pie(y1)
+plt.show()
+
+
+# Pie Chart-2 [Pie Chart with Labels]
+plt.title("Shipra Jana 014 - PieChart with Labels")
+y2 = np.array([35,25,25,15])
+mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
+plt.pie(y2, labels=mylabels)
+plt.show()
+
+
+# Pie Chart-3 [Pie Chart with Labels and Colors]
+plt.title("Shipra Jana 014 -- PieChart with Labels and Colors")
+y3 = np.array([35,25,25,15])
+mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
+mycolors = ["black","hotpink","b","#4CAF50"]
+plt.pie(y3, labels=mylabels, colors=mycolors)
+plt.show()
+
+`;
+
+var text9 = `# 7 ETL Process in Python for Web Scrapping
+
+import requests
+from bs4 import BeautifulSoup
+
+# create a function
+def check_word_in_webpage(url, word):
+    response = requests.get(url)
+    if response.status_code == 200:
+        # transform the content
+        soup = BeautifulSoup(response.content, 'html.parser')
+        # convert the content
+        text_content = soup.get_text()
+        # assertion
+        if word.lower() in text_content.lower():
+            print(f"The word '{word}' is present in the webpage.")
+        else:
+            print(f"The word '{word}' is not present in the webpage.")
+    else:
+        print("Failed to retrieve webpage.")
+
+print("KFMSCIT014 Shipra Jana")
+
+url = input("Enter the url you want to Scrap : ")
+word_to_check = input("Enter the text you want to know which is present or not : ")
+check_word_in_webpage(url, word_to_check)
+
+
+`;
+
+
+var text10 = `# 8 Data visualization using python libraries
+
+# Matplotlib
+# libraries required
+import pandas as pd
+import matplotlib. pyplot as plt
+#Uploading Dataset
+data = pd.read_csv("Nifty.csv")
+print("KFMSCIT014 Shipra Jana")
+print(data)
+print(" ")
+#Plotting of x-axis & y-axis plot
+plt. plot(data['Open'],marker = "o",markeredgecolor="white", markerfacecolor="blue")
+plt. plot(data['Close'],marker = "o",markeredgecolor="white", markerfacecolor="orange")
+plt.grid()
+plt. title("KFMSCIT014 Shipra Jana - Line Plot using Matplotlib")
+plt. xlabel('Open ')
+plt. ylabel('Close ')
+plt.legend(['Open', 'Close'])
+plt. show()
+
+
+# Seaborn
+# libraries required
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+# Load dataset
+data = pd.read_csv("Nifty.csv")
+print("KFMSCIT014 Shipra Jana")
+print(data)
+# Plotting
+plt.figure(figsize=(10, 6))
+sns.lineplot(data=data[['Open', 'Close']], markers=True, marker='o', markeredgecolor="white",
+palette=['green', 'red'])
+plt.title("KFMSCIT014 Shipra Jana - Line Plot using Seaborn")
+plt.xlabel('Index')
+plt.ylabel('Price')
+plt.grid(True)
+plt.show()
+
+
+#Plotly
+# libraries required
+import pandas as pd
+import plotly.express as px
+# Load dataset
+data = pd.read_csv("Nifty.csv")
+print(" KFMSCIT014 Shipra Jana")
+print(data)
+print(" ")
+# Plotting
+fig = px.line(data, x=data.index, y=['Open', 'Close'], markers=True,
+ title="KFMSCIT014 Shipra Jana - Line Plot using Plotly", labels={'index':
+'Index', 'value': 'Price'},
+ color_discrete_sequence=['green', 'red'])
+fig.update_layout(legend_title='Price', legend=dict(x=0, y=1, traceorder='normal'),
+ plot_bgcolor='rgba(0,0,0,0)')
+fig.show()
+
+
+`;
+
+
+var text11 = `# 9 Decision Tree
+
+# libraries required
+import numpy as np
+import pandas as pd # Import Pandas for data loading
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-
-#Reading the database
+# reading the database
 data = pd.read_csv('iris.csv')
-print("****************************************************************")
-print(" IRIS DATASET ")
-print("****************************************************************")
 print(data.head())
-print("****************************************************************")
-#Assuming the target variable is in a column named 'target'
+# Assuming the target variable is in a column named 'target'
 X = data.drop('species', axis=1)
 y = data['species']
-
-#Split the dataset into training and testing set
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-#Initialize the Decision Tree model
 model = DecisionTreeClassifier()
-
-#Fit the model on the training data
 model.fit(X_train, y_train)
-
-#Make predictions on the testing data
 y_pred = model.predict(X_test)
-
-#Evaluate the accuracy of the model
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.2f}")
-print("\n*****************")
-print("Shipra Jana")
-print("KFMSCIT014")
-print("*****************")
 # Visualize and interpret the generated decision tree
 plt.figure(figsize=(12, 8))
 plot_tree(model, filled=True, feature_names=X.columns, class_names=y.unique().astype(str))
-plt.title("Shipra Jana 014 \n\n Decision Tree Visualization")
+plt.title("KFMSCIT014 Shipra Jana \n Decision Tree Visualization \n")
 plt.show()
-
-`;
-
-var text9 = `# 8 Hierarchical Clustering
-
-        # Evaluation of Hierarchical Clustering Performance
-
-#Import necessary Libraries
-import numpy as np
-from sklearn.cluster import AgglomerativeClustering
-from sklearn.metrics import silhouette_score,completeness_score
-
-#Sample data points
-data=np.array([[1,1],[5,5],[8,8],[1,0],[5,4],[8,1]])
-
-#Define linkage criterion for merging clusters
-linkage='ward'
-
-#Initialize and fit the Agglomerative Clustering model
-model=AgglomerativeClustering(n_clusters=3,linkage=linkage)
-
-#Fit the Agglomerative Clustering model to the data
-model.fit(data)
-
-#Predicted cluster labels
-cluster_labels=model.labels_
-
-#Calculate silhouette score to evaluate clustering performance
-s=silhouette_score(data,cluster_labels)
-print("**********************")
-print(s)
-
-#Calculate completeness score if applicable (based on linkage criterion)
-g=None
-if( linkage=='ward' and g is not None):
- c=completeness_score(g,cluster_labels)
- print(c)
-else:
- print("not applicable")
-print("**********************")
-print("Shipra Jana")
-print("KFMSCIT014")
-print("**********************")
 
 `;
 
