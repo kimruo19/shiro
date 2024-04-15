@@ -55,93 +55,119 @@
     <script>
         var text1 = `# 1 - Building ASP.NET Core MVC Application
 
-        # 1) Install .Net Core Sdk
-# (Link:https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install)
+        /* 1) Install .Net Core Sdk
+(Link:https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install)
 
-# 2) Create folder MyMVC folder in D: drive
-# folder -- MyMVC
-# 3) Open command prompt and perform following operations Command: to create mvc project
-# dotnet new mvc --auth none 
+2) Create folder MyMVC folder in D: drive
+folder -- MyMVC
+3) Open command prompt and perform following operations Command: to create mvc project
+dotnet new mvc --auth none 
+*/
 
-# 4) Go to controllers folder and modify HomeController.cs file to match following:
-# CODE:
-# using System;
-# using System.Collections.Generic;
-# using System.Diagnostics;
-# using System.Linq;
-# using System.Threading.Tasks;
-# using Microsoft.AspNetCore.Mvc;
-# using Microsoft.Extensions.Logging;
-# using MyMVC.Models;
-# namespace MyMVC.Controllers
-# { public class HomeController : Controller
-# {
-# public String Index()
-# { return "Hello World, Heyy Shipra!"; }
-# }
-# }
+/*
+4) Go to controllers folder and modify HomeController.cs file to match following:
+# CODE:*/
+/*
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using MyMVC.Models;
 
-# 5) Run the project on CMD
-# D:\MyMVC>dotnet run
+namespace MyMVC.Controllers
+{
+    public class HomeController : Controller
+    {
+        public string Index()
+        {
+            return "Hello World, Heyy Shipra!";
+        }
+    }
+}
+*/
 
-# 6) Now open browser and type URL: localhost:5167  ( 5167 - your host no dotnet run)
+/* 
+5) Run the project on CMD
+D:MyMVC>dotnet run
 
-# 7) Now go back to command prompt and stop running project using CTRL+C
+6) Now open browser and type URL: localhost:5167  ( 5167 - your host no dotnet run)
 
-# 8) Go to models folder and add new file StockQuote.cs to it with following content
-# CODE:
-# using System;
-# namespace MyMVC.Models
-# {
-# public class StockQuote
-# { public string Symbol {get;set;}
-# public int Price{get;set;}
-# }
-# }
+7) Now go back to command prompt and stop running project using CTRL+C
+*/
 
-# 9) Now Add View to folder then home folder in it and modify index.cshtml file to match following
-# CODE:
-# @{
-# ViewData["Title"] = "Home Page";
-# }
-# <div>
-# Symbol: @Model.Symbol <br/>
-# Price: $@Model.Price <br/>
-# </div>
+/*
+8) Go to models folder and add new file StockQuote.cs to it with following content
+CODE:*/
+/*
+using System;
 
-# 10) Now modify HomeController.cs file to match following:
-# using System;
-# using System.Collections.Generic;
-# using System.Diagnostics;
-# using System.Linq;
-# using System.Threading.Tasks;
-# using Microsoft.AspNetCore.Mvc;
-# using Microsoft.Extensions.Logging;
-# using MyMVC.Models;
-# namespace MyMVC.Controllers
-# {
-# public class HomeController : Controller
-# { public async Task <IActionResult> Index()
-# {
-# var model= new StockQuote{ Name='Shipra', RollNo=014};
-# return View(model);
-# }
-# }
-# }
+namespace MyMVC.Models
+{
+    public class StockQuote
+    {
+        public string Symbol { get; set; }
+        public int Price { get; set; }
+    }
+}
 
-# 11) Now run the project iin cmd using
-# dotnet run
+*/
 
-# 12) Now go back to browser and refresh to get modified view response
+/*
+9) Now Add View to folder then home folder in it and modify index.cshtml file to match following
+CODE:
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    Symbol: @Model.Symbol <br/>
+    Price: $@Model.Price <br/>
+</div>
+
+*/
+
+/*
+10) Now modify HomeController.cs file to match following:
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using MyMVC.Models;
+
+namespace MyMVC.Controllers
+{
+    public class HomeController : Controller
+    {
+        public async Task<IActionResult> Index()
+        {
+            var model = new StockQuote { Name = "Shipra", RollNo = 14 };
+            return View(model);
+        }
+    }
+}
+
+*/
+
+/*
+11) Now run the project iin cmd using
+dotnet run
+
+12) Now go back to browser and refresh to get modified view response
+
+*/
+
 
 
     `;
         var text2 = `# 2 - Building ASP. NET Core REST API
 
         /*
-# 2 - Building ASP. NET Core REST API
-
-
 # Software requirement:
 # 1) Download and install
 # https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install
@@ -173,109 +199,129 @@
 # 1) D:\Glossary\GlossaryItem.cs (type it in notepad and save as all files)
 
 # //GlossaryItem.cs
-# namespace Glossary
-# {
-# public class GlossaryItem
-# {
-# public string Term { get; set; }
-# public string Definition { get; set; }
-# }
-# }
+namespace Glossary
+{
+    public class GlossaryItem
+    {
+        public string Term { get; set; }
+        public string Definition { get; set; }
+    }
+}
 
 
-# 2) D:\Glossary\Controllers\ GlossaryController.cs (type it in notepad and save as all files)
+
+# 2) D:\Glossary\Controllers\GlossaryController.cs (type it in notepad and save as all files)
 
 # //Controllers/GlossaryController.cs*/
-/*using System;
+/*
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+
 namespace Glossary.Controllers
 {
-[ApiController]
-[Route("api/[controller]")]
-public class GlossaryController: ControllerBase
-{
-private static List<GlossaryItem> Glossary = new List<GlossaryItem> {
-new GlossaryItem
-{
-Term= "HTML",
-Definition = "Hypertext Markup Language"
-},
-new GlossaryItem
-{
-Term= "MVC",
-Definition = "Model View Controller"
-},
-new GlossaryItem
-{
-Term= "OpenID",
-Definition = "An open standard for authentication"
+    [ApiController]
+    [Route("api/[controller]")]
+    public class GlossaryController : ControllerBase
+    {
+        private static List<GlossaryItem> Glossary = new List<GlossaryItem> {
+            new GlossaryItem
+            {
+                Term= "HTML",
+                Definition = "Hypertext Markup Language"
+            },
+            new GlossaryItem
+            {
+                Term= "MVC",
+                Definition = "Model View Controller"
+            },
+            new GlossaryItem
+            {
+                Term= "OpenID",
+                Definition = "An open standard for authentication"
+            }
+        };
+
+        [HttpGet]
+        public ActionResult<List<GlossaryItem>> Get()
+        {
+            return Ok(Glossary);
+        }
+
+        [HttpGet]
+        [Route("{term}")]
+        public ActionResult<GlossaryItem> Get(string term)
+        {
+            var glossaryItem = Glossary.Find(item =>
+                item.Term.Equals(term, StringComparison.InvariantCultureIgnoreCase));
+
+            if (glossaryItem == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(glossaryItem);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Post(GlossaryItem glossaryItem)
+        {
+            var existingGlossaryItem = Glossary.Find(item =>
+                item.Term.Equals(glossaryItem.Term, StringComparison.InvariantCultureIgnoreCase));
+
+            if (existingGlossaryItem != null)
+            {
+                return Conflict("Cannot create the term because it already exists.");
+            }
+            else
+            {
+                Glossary.Add(glossaryItem);
+                var resourceUrl = Path.Combine(Request.Path.ToString(), Uri.EscapeUriString(glossaryItem.Term));
+                return Created(resourceUrl, glossaryItem);
+            }
+        }
+
+        [HttpPut]
+        public ActionResult Put(GlossaryItem glossaryItem)
+        {
+            var existingGlossaryItem = Glossary.Find(item =>
+                item.Term.Equals(glossaryItem.Term, StringComparison.InvariantCultureIgnoreCase));
+
+            if (existingGlossaryItem == null)
+            {
+                return BadRequest("Cannot update a non-existing term.");
+            }
+            else
+            {
+                existingGlossaryItem.Definition = glossaryItem.Definition;
+                return Ok();
+            }
+        }
+
+        [HttpDelete]
+        [Route("{term}")]
+        public ActionResult Delete(string term)
+        {
+            var glossaryItem = Glossary.Find(item =>
+                item.Term.Equals(term, StringComparison.InvariantCultureIgnoreCase));
+
+            if (glossaryItem == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                Glossary.Remove(glossaryItem);
+                return NoContent();
+            }
+        }
+    }
 }
-};
-[HttpGet]
-public ActionResult<List<GlossaryItem>> Get()
-{ return Ok(Glossary);
-}
-[HttpGet]
-[Route("{term}")]
-public ActionResult<GlossaryItem> Get(string term)
-{
-var glossaryItem = Glossary.Find(item =>
-item.Term.Equals(term, StringComparison.InvariantCultureIgnoreCase));
-if (glossaryItem == null)
-{ return NotFound();
-} else
-{
-return Ok(glossaryItem);
-}
-}
-[HttpPost]
-public ActionResult Post(GlossaryItem glossaryItem)
-{
-    var existingGlossaryItem = Glossary.Find(item =>
-item.Term.Equals(glossaryItem.Term, StringComparison.InvariantCultureIgnoreCase));
-if (existingGlossaryItem != null)
-{
-return Conflict("Cannot create the term because it already exists.");
-}
-else
-{
-Glossary.Add(glossaryItem);
-var resourceUrl = Path.Combine(Request.Path.ToString(), Uri.EscapeUriString(glossaryItem.Term));
-return Created(resourceUrl, glossaryItem);
-}
-}
-[HttpPut]
-public ActionResult Put(GlossaryItem glossaryItem)
-{
-var existingGlossaryItem = Glossary.Find(item =>
-item.Term.Equals(glossaryItem.Term, StringComparison.InvariantCultureIgnoreCase));
-if (existingGlossaryItem == null)
-{
-return BadRequest("Cannot update a nont existing term.");
-} else
-{
-existingGlossaryItem.Definition = glossaryItem.Definition;
-return Ok();
-}
-}
-[HttpDelete]
-[Route("{term}")]
-public ActionResult Delete(string term)
-{
-var glossaryItem = Glossary.Find(item =>
-item.Term.Equals(term, StringComparison.InvariantCultureIgnoreCase));
-if (glossaryItem == null)
-{ return NotFound();
-}
-else
-{ Glossary.Remove(glossaryItem);
-return NoContent();
-}
-}
-}
-}*/
+
+*/
 
 // Go to Glossary folder Controllers folder and check GlossaryControllers.cs
 
@@ -303,7 +349,7 @@ curl --insecure http://localhost:5052/api/glossary/MVC
 /*
 3) Creating an item
 Command:
-curl --insecure -X POST -d "{\"term\": \"MFA\", \"definition\":\"An authentication process.\"}" -H
+curl --insecure -X POST -d "{"term": "MFA", "definition":"An authentication process."}" -H
 "Content- Type:application/json"https://localhost:5052/api/glossary
 curl --insecure http://localhost:5052/api/glossary
 */
@@ -311,8 +357,8 @@ curl --insecure http://localhost:5052/api/glossary
 /*
 4)Update Item
 Command:
-curl --insecure -X PUT -d "{\"term\": \"MVC\", \"definition\":\"Modified record of Model View
-Controller.\"}" -H "Content-Type:application/json" http://localhost:5052/api/glossary
+curl --insecure -X PUT -d "{"term": "MVC", "definition":"Modified record of Model View
+Controller."}" -H "Content-Type:application/json" http://localhost:5052/api/glossary
 */
 
 /*
@@ -320,7 +366,6 @@ Controller.\"}" -H "Content-Type:application/json" http://localhost:5052/api/glo
 Command:
 curl --insecure --request DELETE --url https://localhost:5052/api/glossary/openid
 */
-
 
 `;
 
@@ -340,7 +385,7 @@ Click on start
 Method1:
 To pull and push images using docker
 Command: to check docker version
-docker –version
+docker --version
 */
 
 /*
@@ -370,6 +415,7 @@ note: shipra1911 is my docker ID. You will use your docker ID here. And enter yo
 
 /*
 Command: to tag image
+docker images
 docker tag 6c3136533a9d shipra11/repos1:shipra
 note: here 6c3136533a9d this is image id which you can get from docker images command.
 */
@@ -423,6 +469,8 @@ docker push shipra1911/repo2:Naruto
 6) Click on tags and check
 */
         
+
+        
 `;
 
         var text4 = ` # 4 - Installing s/w packages on Docker
@@ -439,6 +487,7 @@ Step 3 - Run the ubuntu container after you get the shell access, update the con
 docker run -it ubuntu
 
 Step 4 - Install Firefox using APT
+root:/#  apt-get -y update
 root:/#  apt-get -y install firefox
 
 Step 5 - Install the vim using apt-get.
@@ -495,6 +544,8 @@ docker network inspect shipranetwork
 Step 5 - Delete unused network
 docker network prune
 
+
+
 */
 
 
@@ -509,7 +560,7 @@ Prerequisites:
 2. Click on Advance security
 3. Click on Inbound Rules
 4. Create a New Rule
-a. Which type of rule would you like to create  port
+a. Which type of rule would you like to create - port
 b. Does this rule apply the local ports or specific local
 c. Select Specific local ports – 80
 d. What action should be taken when a connection matches the specified conditions?
@@ -666,6 +717,7 @@ Commit Changes
 Output: Success one_and_two[click on one_and_two to see boxes]
 
 */
+
 `;
 
         var text7 = ` # 7 - Creating Backing service with ASP.NET 2.0 core
@@ -747,6 +799,7 @@ kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.
 
 Step 6 - Configure your kubectl
 kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kuberouter.yaml
+kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kuberouter.yaml
 kubectl get nodes
 
 
@@ -767,6 +820,7 @@ Step 10 - Check the docker version.
 docker -v
 
 */
+
 
 `;
 
