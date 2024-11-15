@@ -152,9 +152,66 @@ else:
 
 `;
 
-        var text3 = `#Pract 2 - 2 clustering technique(KMeans 
+        var text3 = `#Pract 3 - Normal Distribution 
 
-        
+        # Practical No - 3 --> Hypothesis Testing and Visualizing - Normal Distribution
+"""On an examination given to student at large number of different college,
+the mean grade was 74.5 and the standard deviation was 8.0. At one particular college where 200 students took the examination,
+the mean grade was 75.90. Discuss the significance of this result at that level 0.05 from the viewpoint of one-tail and
+two-tail and display the normal distribution curve with the z-score
+"""
+
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+import numpy as np
+
+print("********************")
+print("Shipra Jana 014")
+print("********************")
+
+# Given Data
+overall_mean = 74.5
+overall_std = 8.0
+sample_mean = 75.9
+sample_size = 200
+alpha = 0.05
+
+# Calculate hypothesis (null, alternative)
+null_hypothesis = overall_mean >= sample_mean #Assuming higher mean at the college(One-Tail)
+alternative_hypothesis = not null_hypothesis
+
+# Calculate z-score
+z_score = (sample_mean - overall_mean)/(overall_std/np.sqrt(sample_size))
+
+# Calculate p-value
+print("A: 1 tail hypothesis testing")
+p_value = 1-norm.cdf(z_score)
+print("P-Value:", p_value)
+
+if p_value<alpha:
+  print("We can support higher mean at the college")
+else:
+  print("We cannot support higher mean at the college")
+
+#Two-Tail
+print("B: 2 tail hypothesis testing")
+p_value2 = 2*(1-norm.cdf(abs(z_score)))
+print("P-Value(Two-Tail):", p_value2)
+
+if p_value2<alpha:
+  print("Significance Difference found")
+else:
+  print("Significance Difference not found")
+
+# Data Visualisation
+x = np.linspace(overall_mean-3*overall_std, overall_mean+3*overall_std, 100)
+plt.plot(x, norm.pdf(x, overall_mean, overall_std), label='Normal Distribution')
+plt.axvline(x=sample_mean, color='r', linestyle='dashed', label='Sample Mean')
+plt.xlabel('Exam Grades')
+plt.ylabel('Probability Density')
+plt.title('Shipra Jana - 014 \n Normal Distribution Visualisation')
+plt.legend()
+plt.show()
 `;
 
         var text4 = ` # 2b using hierarchical clustering
