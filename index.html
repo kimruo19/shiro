@@ -39,9 +39,9 @@
 
     <button onclick="copyText(text1)">1-Measure of central tendency</button>
     <button onclick=" copyText(text2)">2-Hypothesis Testing Using Z-Score</button>
-    <button onclick="copyText(text3)">2a clustering technique KMeans </button>
-    <button onclick="copyText(text4)">2b  using hierarchical clustering</button>
-    <button onclick="copyText(text5)">3 Perform linear regression</button>
+    <button onclick="copyText(text3)">3-Normal Distribution</button>
+    <button onclick="copyText(text4)">4-ANOVA Test</button>
+    <button onclick="copyText(text5)">5-Linear Regression Analysis</button>
     <button onclick="copyText(text6)">4 Perform logistic regression</button>
     <button onclick="copyText(text7)">5 Perform data analysis</button>
     
@@ -214,14 +214,128 @@ plt.legend()
 plt.show()
 `;
 
-        var text4 = ` # 2b using hierarchical clustering
+        var text4 = ` # Practical No - 4  -->  ANOVA
 
-        
+#**To perform One-Way and Two-Way ANOVA to analyze the differences among group means and understand the effects of one or more factors on a dependent variable.**
+# Practical 4A
+# ANOVA one way
+
+# One-Way ANOVA
+import pandas as pd
+from scipy.stats import f_oneway
+print("********************")
+print("Shipra Jana 014")
+print("********************")
+
+print("A : One-Way ANOVA test")
+Data = {"Subject-1":[85,95,98,90,84,88,87],
+       "Subject-2":[88,93,94,93,80,89,86],
+       "Subject-3":[83,90,93,94,88,92,84]}
+df = pd.DataFrame(Data)
+df.head()
+
+f,p = f_oneway(df["Subject-1"],df["Subject-2"],df["Subject-3"])
+print("F:",f)
+print("P-Value:",p)
+alpha=0.05
+
+if(p<alpha):
+  print("Reject Null Hypothesis")
+else:
+  print("Accept Null Hypothesis")
+
+# Practical 4B
+# ANOVA Two way
+
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+print("B : Two-Way ANOVA test")
+data = {"blend":["x","x","x","x","y","y","y","y","z","z","z","z"],
+        "crops":["wheat","corn","soya","rice","wheat","corn","soya","rice","wheat","corn","soya","rice"],
+        "values":[123,138,110,151,145,165,140,167,156,176,185,175]
+       }
+df2=pd.DataFrame(data)
+df2.head()
+
+model = ols('values ~ C(blend) + C(crops) + C(blend):C(crops)',data=df2).fit()
+print(model.summary())
+anova_table = sm.stats.anova_lm(model, typ=1)
+print("\nAnnova Table \n------------------------\n",anova_table)
+
 `;
 
-        var text5 = `#3 Perform linear regression
+        var text5 = `#Pract 5 - Linear Regression Analysis
 
+# Libraries Required
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
 
+# Generate synthetic dataset
+np.random.seed(42)
+sizes = np.random.normal(2000, 500, 1000).astype(int)
+bedrooms = np.random.choice([1, 2, 3, 4, 5], 1000)
+bathrooms = np.random.choice([1, 2, 3], 1000)
+ages = np.random.normal(15, 10, 1000).astype(int)
+locations = np.random.choice(['Urban', 'Suburban'], 1000)
+
+def calculate_price(size, bedrooms, bathrooms, age, location):
+    base_price = 50000
+    price = base_price + size * 150 + bedrooms * 25000 + bathrooms * 12000 - age * 2000
+    return price * (1.2 if location == 'Urban' else 1.0)
+
+prices = [calculate_price(sizes[i], bedrooms[i], bathrooms[i], ages[i], locations[i]) for i in range(1000)]
+
+# Create DataFrame
+house_data = pd.DataFrame({
+    'Size': sizes,
+    'Bedrooms': bedrooms,
+    'Bathrooms': bathrooms,
+    'Age': ages,
+    'Location': locations,
+    'Price': prices
+})
+
+# Linear Regression
+house_data = pd.get_dummies(house_data, columns=['Location'], drop_first=True)
+X = house_data.drop('Price', axis=1)
+y = house_data['Price']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+# Evaluation
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print("KSMSCIT014 - Shipra Jana")
+print("**************************************")
+print("\nModel Coefficients:")
+for i, col in enumerate(X.columns):
+    print(f"{col}: {model.coef_[i]}")
+
+print("\nMean Squared Error:", mse)
+print("R² Score:", r2)
+print("**************************************")
+
+# Visualization
+plt.figure(figsize=(10, 6))
+plt.scatter(np.arange(len(y_test)), y_test, color='blue', label='Actual Prices', alpha=0.6)
+plt.scatter(np.arange(len(y_pred)), y_pred, color='orange', label='Predicted Prices', alpha=0.6)
+plt.xlabel("Sample Index")
+plt.ylabel("House Prices")
+plt.title("\n\n KSMSCIT014 - Shipra Jana\n\nActual Prices vs Predicted Prices", fontsize=14)
+plt.axhline(0, color='black', linewidth=0.5, ls='--')
+plt.legend()
+plt.grid()
+plt.show()
         
   `;
   
