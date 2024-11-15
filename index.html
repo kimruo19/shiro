@@ -42,8 +42,12 @@
     <button onclick="copyText(text3)">3-Normal Distribution</button>
     <button onclick="copyText(text4)">4-ANOVA Test</button>
     <button onclick="copyText(text5)">5-Linear Regression Analysis</button>
-    <button onclick="copyText(text6)">4 Perform logistic regression</button>
-    <button onclick="copyText(text7)">5 Perform data analysis</button>
+    <button onclick="copyText(text6)">6-Pearson correlation and Spearman rank correlation</button>
+    <button onclick="copyText(text7)">7-Latin Square design</button>
+    <button onclick="copyText(text8)">5 Perform data analysis</button>
+    <button onclick="copyText(text9)">5 Perform data analysis</button>
+    <button onclick="copyText(text10)">5 Perform data analysis</button>
+    <button onclick="copyText(text11)">5 Perform data analysis</button>
     
     
     <p id="copiedMsg"></p>
@@ -339,11 +343,126 @@ plt.show()
         
   `;
   
-        var text6 = ` #4 : Perform logistic regression
-        
+        var text6 = ` # Pract 6 - Pearson correlation and Spearman rank correlation
+
+# Libraries Required
+import numpy as np
+from scipy.stats import pearsonr, spearmanr
+
+# Sample data for two variables X and Y
+X = np.array([43, 21, 25, 42, 57, 59, 63, 55, 47, 58])
+Y = np.array([99, 65, 79, 75, 87, 81, 109, 92, 80, 103])
+
+# 1. Calculate Pearson correlation coefficient
+pearson_corr, pearson_p_value = pearsonr(X, Y)
+
+# 2. Calculate Spearman rank correlation coefficient
+spearman_corr, spearman_p_value = spearmanr(X, Y)
+
+# Print results
+print("Pearson Correlation Coefficient:")
+print("**************************************")
+print(f"Coefficient: {pearson_corr:.3f}, P-value: {pearson_p_value:.3f}")
+
+print("\nSpearman Rank Correlation Coefficient:")
+print("**************************************")
+print(f"Coefficient: {spearman_corr:.3f}, P-value: {spearman_p_value:.3f}")
+
+# Interpretation
+if pearson_p_value < 0.05:
+    print("\nPearson correlation is statistically significant.")
+else:
+    print("\nPearson correlation is not statistically significant.")
+
+if spearman_p_value < 0.05:
+    print("Spearman correlation is statistically significant.")
+else:
+    print("Spearman correlation is not statistically significant.")
+
+print("\n\n**************************************")
+print("KSMSCIT014 - Shipra Jana")
+print("**************************************")
 `;
 
-        var text7 = `#5 Perform data analysis
+        var text7 = `# Pract 7 - Latin Square design
+
+# Libraries Required
+import numpy as np
+import pandas as pd
+
+# Define the treatments, subjects, and seasons
+treatments = ['Drip Irrigation', 'Sprinkler Irrigation', 'Surface Irrigation']
+crops = ['Crop 1', 'Crop 2', 'Crop 3']
+seasons = ['Spring', 'Summer', 'Fall']
+
+# Create a 3x3 Latin Square matrix
+latin_square = np.array([
+    [treatments[0], treatments[1], treatments[2]],  # Spring
+    [treatments[1], treatments[2], treatments[0]],  # Summer
+    [treatments[2], treatments[0], treatments[1]],  # Fall
+])
+
+# Create a DataFrame for the Latin Square Design
+experiment_design = pd.DataFrame(latin_square, columns=crops, index=seasons)
+
+print("KSMSCIT014 - Shipra Jana")
+print("**************************************")
+# Display the experiment design
+print("Latin Square Design:")
+print(experiment_design)
+
+# Data collection: heights of crops after one month (in cm)
+data = {
+    'Crop 1': [25, 30, 28],  # Growth corresponding to the design
+    'Crop 2': [35, 32, 30],
+    'Crop 3': [29, 33, 31]
+}
+
+# Create a DataFrame for the collected data
+growth_data = pd.DataFrame(data, index=seasons)
+print("\nCollected Crop Growth Data (cm):")
+print(growth_data)
+
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+# Reshape the data for ANOVA
+growth_data_melted = growth_data.reset_index().melt(id_vars='index', var_name='Crop', value_name='Growth')
+growth_data_melted.columns = ['Season', 'Crop', 'Growth']
+
+# Fit the ANOVA model
+model = ols('Growth ~ C(Crop) + C(Season)', data=growth_data_melted).fit()
+anova_table = sm.stats.anova_lm(model, typ=2)
+
+# Display the ANOVA results
+print("\nANOVA Results:")
+print(anova_table)
+
+print("\n\n**************************************")
+print("KSMSCIT014 - Shipra Jana")
+print("**************************************")
+
+`;
+
+        var text8 = `#5 Perform data analysis
+
+        
+
+`;
+
+        var text9 = `#5 Perform data analysis
+
+        
+
+`;
+
+        var text10 = `#5 Perform data analysis
+
+        
+
+`;
+
+        var text11 = `#5 Perform data analysis
 
         
 
