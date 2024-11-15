@@ -11,7 +11,7 @@
         }
 
         body {
-            background-color: #f0f0f0;
+            background-color: black;
             /* Light gray background */
             font-family: Arial, sans-serif;
             text-align: center;
@@ -21,9 +21,9 @@
             margin: 10px;
             padding: 10px;
             font-size: 16px;
-            background-color: #ddd;
+            background-color: DimGray;
             /* Light gray button background */
-            border: 1px solid #aaa;
+            border: 1px solid #560b0b;
             /* Dark gray border */
             cursor: pointer;
         }
@@ -38,7 +38,7 @@
 <body>
 
     <button onclick="copyText(text1)">1-Measure of central tendency</button>
-    <button onclick=" copyText(text2)">1b using the SVM classifier</button>
+    <button onclick=" copyText(text2)">2-Hypothesis Testing Using Z-Score</button>
     <button onclick="copyText(text3)">2a clustering technique KMeans </button>
     <button onclick="copyText(text4)">2b  using hierarchical clustering</button>
     <button onclick="copyText(text5)">3 Perform linear regression</button>
@@ -49,7 +49,7 @@
     <p id="copiedMsg"></p>
     <script>
         var text1 = `#Pract 1 :Measure of central tendency
-        (mean, median, mode, std and mad)
+        #(mean, median, mode, std and mad)
 
         # Pract 1 - mean, median, mode and standard deviation.
 '''
@@ -113,9 +113,42 @@ print("Dataset 1: Mean =", mean1, ", Median =", median1, ", Mode =", mode1, ", S
 print("Dataset 2: Mean =", mean2, ", Median =", median2, ", Mode =", mode2, ", Std Dev =", std_dev2, ", MAD =", mad2)
 
     `;
-        var text2 = `#Practical 1b - 1busing the SVM classifier
+        var text2 = ` #Pract - 2 Hypothesis Testing Using Z-Score
 
-        
+#Determine p-value using the Standard Normal Distribution-score - check its correspondence is either less or more.
+
+# Practical No - 2  -->  Probability Distribution
+"""Determine p-value using the Standard Normal Distribution,z-score - check it's correspondence is either less or
+more"""
+
+from scipy import stats
+
+# Given Data
+Total_Population_Mean = 100
+Population_Standard_Deviation = 15
+
+Sample_Mean = 140
+Sample_Size = 30
+
+# Calculate Z-Score
+Z_Score = (Sample_Mean-Total_Population_Mean)/(Population_Standard_Deviation/Sample_Size**0.5)
+
+print("********************")
+print("Shipra Jana 014")
+print("********************")
+
+print("Z-Score:", Z_Score)
+
+# Calculate P-Value
+
+P_Value = 2*(1-stats.norm.cdf(abs(Z_Score)))
+print("P-Value(Two-Tailed Test):", P_Value)
+
+Significance_Value = 0.05
+if P_Value < Significance_Value:
+  print("Reject Null Hypothesis")
+else:
+  print("Fail to Reject Null Hypothesis")
 
 `;
 
