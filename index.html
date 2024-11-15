@@ -1,4 +1,57 @@
-# Pract 1 - mean, median, mode and standard deviation.
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Text Buttons</title>
+    <style>
+        button {
+            margin: 5px;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            /* Light gray background */
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #ddd;
+            /* Light gray button background */
+            border: 1px solid #aaa;
+            /* Dark gray border */
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ccc;
+            /* Slightly darker background on hover */
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="copyText(text1)">1-Measure of central tendency</button>
+    <button onclick=" copyText(text2)">1b using the SVM classifier</button>
+    <button onclick="copyText(text3)">2a clustering technique KMeans </button>
+    <button onclick="copyText(text4)">2b  using hierarchical clustering</button>
+    <button onclick="copyText(text5)">3 Perform linear regression</button>
+    <button onclick="copyText(text6)">4 Perform logistic regression</button>
+    <button onclick="copyText(text7)">5 Perform data analysis</button>
+    
+    
+    <p id="copiedMsg"></p>
+    <script>
+        var text1 = `#Pract 1 :Measure of central tendency
+        (mean, median, mode, std and mad)
+
+        # Pract 1 - mean, median, mode and standard deviation.
 '''
 import numpy as np
 from scipy import stats
@@ -59,5 +112,49 @@ mean2, median2, mode2, std_dev2, mad2 = central_tendency_and_dispersion(dataset2
 print("Dataset 1: Mean =", mean1, ", Median =", median1, ", Mode =", mode1, ", Std Dev =", std_dev1, ", MAD =", mad1)
 print("Dataset 2: Mean =", mean2, ", Median =", median2, ", Mode =", mode2, ", Std Dev =", std_dev2, ", MAD =", mad2)
 
+    `;
+        var text2 = `#Practical 1b - 1busing the SVM classifier
+
+        
+
+`;
+
+        var text3 = `#Pract 2 - 2 clustering technique(KMeans 
+
+        
+`;
+
+        var text4 = ` # 2b using hierarchical clustering
+
+        
+`;
+
+        var text5 = `#3 Perform linear regression
 
 
+        
+  `;
+  
+        var text6 = ` #4 : Perform logistic regression
+        
+`;
+
+        var text7 = `#5 Perform data analysis
+
+        
+
+`;
+
+
+function copyText(text) {
+    navigator.clipboard.writeText(text).then(function () {
+        document.getElementById('copiedMsg').innerHTML = "Text Copied"
+    }).catch(function (err) {
+        console.error('Unable to copy text', err);
+    });
+}
+</script>
+
+</body>
+
+</html>
