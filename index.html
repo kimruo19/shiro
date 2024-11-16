@@ -111,333 +111,280 @@ Write : / 'Progrm By: Shipra Jana - 014'.
 
 `;
 
-        var text3 = `#Pract 3 - Normal Distribution 
+        var text3 = `#Pract 3 - Database
+ 
 
-        # Practical No - 3 --> Hypothesis Testing and Visualizing - Normal Distribution
-"""On an examination given to student at large number of different college,
-the mean grade was 74.5 and the standard deviation was 8.0. At one particular college where 200 students took the examination,
-the mean grade was 75.90. Discuss the significance of this result at that level 0.05 from the viewpoint of one-tail and
-two-tail and display the normal distribution curve with the z-score
-"""
+       * Define a database table in the ABAP Dictionary with fields for ID, NAME, and AGE. Include data elements and domains for these fields.
 
-from scipy.stats import norm
-import matplotlib.pyplot as plt
-import numpy as np
-
-print("********************")
-print("Shipra Jana 014")
-print("********************")
-
-# Given Data
-overall_mean = 74.5
-overall_std = 8.0
-sample_mean = 75.9
-sample_size = 200
-alpha = 0.05
-
-# Calculate hypothesis (null, alternative)
-null_hypothesis = overall_mean >= sample_mean #Assuming higher mean at the college(One-Tail)
-alternative_hypothesis = not null_hypothesis
-
-# Calculate z-score
-z_score = (sample_mean - overall_mean)/(overall_std/np.sqrt(sample_size))
-
-# Calculate p-value
-print("A: 1 tail hypothesis testing")
-p_value = 1-norm.cdf(z_score)
-print("P-Value:", p_value)
-
-if p_value<alpha:
-  print("We can support higher mean at the college")
-else:
-  print("We cannot support higher mean at the college")
-
-#Two-Tail
-print("B: 2 tail hypothesis testing")
-p_value2 = 2*(1-norm.cdf(abs(z_score)))
-print("P-Value(Two-Tail):", p_value2)
-
-if p_value2<alpha:
-  print("Significance Difference found")
-else:
-  print("Significance Difference not found")
-
-# Data Visualisation
-x = np.linspace(overall_mean-3*overall_std, overall_mean+3*overall_std, 100)
-plt.plot(x, norm.pdf(x, overall_mean, overall_std), label='Normal Distribution')
-plt.axvline(x=sample_mean, color='r', linestyle='dashed', label='Sample Mean')
-plt.xlabel('Exam Grades')
-plt.ylabel('Probability Density')
-plt.title('Shipra Jana - 014 \n Normal Distribution Visualisation')
-plt.legend()
-plt.show()
+        * Table name - ZPRACT3_DATA
+        * Table name - ZEXAM_DATABASE
 `;
 
-        var text4 = ` # Practical No - 4  -->  ANOVA
+        var text4 = ` # Practical No 4 - Subroutine
 
-#**To perform One-Way and Two-Way ANOVA to analyze the differences among group means and understand the effects of one or more factors on a dependent variable.**
-# Practical 4A
-# ANOVA one way
+* Create an ABAP program that includes a subroutine to calculate the factorial of a given number. Call this subroutine from the main program.
 
-# One-Way ANOVA
-import pandas as pd
-from scipy.stats import f_oneway
-print("********************")
-print("Shipra Jana 014")
-print("********************")
+REPORT ZPRACT4_FACTORIAL.        " Program name
 
-print("A : One-Way ANOVA test")
-Data = {"Subject-1":[85,95,98,90,84,88,87],
-       "Subject-2":[88,93,94,93,80,89,86],
-       "Subject-3":[83,90,93,94,88,92,84]}
-df = pd.DataFrame(Data)
-df.head()
 
-f,p = f_oneway(df["Subject-1"],df["Subject-2"],df["Subject-3"])
-print("F:",f)
-print("P-Value:",p)
-alpha=0.05
+* Step 1: Define an input parameter for the number
+PARAMETERS: p_number TYPE i.      " User input for factorial calculation
 
-if(p<alpha):
-  print("Reject Null Hypothesis")
-else:
-  print("Accept Null Hypothesis")
+* Step 2: Define a variable to hold the factorial result
+DATA: result TYPE i.
 
-# Practical 4B
-# ANOVA Two way
+* Step 3: Call the subroutine to calculate the factorial
+PERFORM calculate_factorial USING p_number CHANGING result.
 
-import pandas as pd
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
-print("B : Two-Way ANOVA test")
-data = {"blend":["x","x","x","x","y","y","y","y","z","z","z","z"],
-        "crops":["wheat","corn","soya","rice","wheat","corn","soya","rice","wheat","corn","soya","rice"],
-        "values":[123,138,110,151,145,165,140,167,156,176,185,175]
-       }
-df2=pd.DataFrame(data)
-df2.head()
+* Step 4: Display the result
+WRITE: / 'The factorial of', p_number, 'is', result.
+Write : / 'Progrm By: Shipra Jana - 014'.
 
-model = ols('values ~ C(blend) + C(crops) + C(blend):C(crops)',data=df2).fit()
-print(model.summary())
-anova_table = sm.stats.anova_lm(model, typ=1)
-print("\nAnnova Table \n------------------------\n",anova_table)
+* Subroutine to calculate factorial
+FORM calculate_factorial USING value(num) TYPE i
+                         CHANGING fact TYPE i.
+  fact = 1.                        " Initialize factorial to 1
+
+  DO num TIMES.
+    fact = fact * sy-index.        " Multiply by loop counter
+  ENDDO.
+ENDFORM.
 
 `;
 
-        var text5 = `#Pract 5 - Linear Regression Analysis
+        var text5 = `#Pract 5 - ALV Report
 
-# Libraries Required
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
+* Create an ALV (ABAP List Viewer) report that displays employee data from a custom table. Use ALV to provide sorting and filtering capabilities.
 
-# Generate synthetic dataset
-np.random.seed(42)
-sizes = np.random.normal(2000, 500, 1000).astype(int)
-bedrooms = np.random.choice([1, 2, 3, 4, 5], 1000)
-bathrooms = np.random.choice([1, 2, 3], 1000)
-ages = np.random.normal(15, 10, 1000).astype(int)
-locations = np.random.choice(['Urban', 'Suburban'], 1000)
+REPORT ZPRACT5_ALV_REPORT.
 
-def calculate_price(size, bedrooms, bathrooms, age, location):
-    base_price = 50000
-    price = base_price + size * 150 + bedrooms * 25000 + bathrooms * 12000 - age * 2000
-    return price * (1.2 if location == 'Urban' else 1.0)
 
-prices = [calculate_price(sizes[i], bedrooms[i], bathrooms[i], ages[i], locations[i]) for i in range(1000)]
+* Define an internal table to hold employee data
+DATA: lt_employee_data TYPE TABLE OF ZEMPLOYEE_INFO.
 
-# Create DataFrame
-house_data = pd.DataFrame({
-    'Size': sizes,
-    'Bedrooms': bedrooms,
-    'Bathrooms': bathrooms,
-    'Age': ages,
-    'Location': locations,
-    'Price': prices
-})
+* Fetch data from the custom table
+SELECT * FROM ZEMPLOYEE_INFO INTO TABLE lt_employee_data.
 
-# Linear Regression
-house_data = pd.get_dummies(house_data, columns=['Location'], drop_first=True)
-X = house_data.drop('Price', axis=1)
-y = house_data['Price']
+* Display data in ALV grid
+CALL FUNCTION 'REUSE_ALV_GRID_DISPLAY'
+  EXPORTING
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-model = LinearRegression()
-model.fit(X_train, y_train)
+    I_STRUCTURE_NAME = 'ZEMPLOYEE_INFO'  " Use table structure for automatic  columns
 
-y_pred = model.predict(X_test)
+    I_GRID_TITLE = 'GRID VIEW - SHIPRA JANA - 014'   " Add title to Grid view
 
-# Evaluation
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
+  TABLES
+    t_outtab = lt_employee_data.  " Data to display in ALV
 
-print("KSMSCIT014 - Shipra Jana")
-print("**************************************")
-print("\nModel Coefficients:")
-for i, col in enumerate(X.columns):
-    print(f"{col}: {model.coef_[i]}")
-
-print("\nMean Squared Error:", mse)
-print("R² Score:", r2)
-print("**************************************")
-
-# Visualization
-plt.figure(figsize=(10, 6))
-plt.scatter(np.arange(len(y_test)), y_test, color='blue', label='Actual Prices', alpha=0.6)
-plt.scatter(np.arange(len(y_pred)), y_pred, color='orange', label='Predicted Prices', alpha=0.6)
-plt.xlabel("Sample Index")
-plt.ylabel("House Prices")
-plt.title("\n\n KSMSCIT014 - Shipra Jana\n\nActual Prices vs Predicted Prices", fontsize=14)
-plt.axhline(0, color='black', linewidth=0.5, ls='--')
-plt.legend()
-plt.grid()
-plt.show()
+IF sy-subrc <> 0.
+* Implement suitable error handling here
+ENDIF.
         
   `;
   
-        var text6 = ` # Pract 6 - Pearson correlation and Spearman rank correlation
+        var text6 = ` # Pract 6 - OOPS set-get
 
-# Libraries Required
-import numpy as np
-from scipy.stats import pearsonr, spearmanr
+* Define a simple ABAP class with attributes for Name and Age. Include methods to set and get these attributes. Instantiate the class and demonstrate its usage.
 
-# Sample data for two variables X and Y
-X = np.array([43, 21, 25, 42, 57, 59, 63, 55, 47, 58])
-Y = np.array([99, 65, 79, 75, 87, 81, 109, 92, 80, 103])
+REPORT ZPRACT6_OOPS_CLASS.
 
-# 1. Calculate Pearson correlation coefficient
-pearson_corr, pearson_p_value = pearsonr(X, Y)
+CLASS ZCL_PERSON DEFINITION. " Define the Class
+  PUBLIC SECTION.
+    " Attributes (Properties) of the class
+    DATA: name TYPE STRING,
+          age  TYPE I.
 
-# 2. Calculate Spearman rank correlation coefficient
-spearman_corr, spearman_p_value = spearmanr(X, Y)
+    " Method to set the name and age
+    METHODS: set_name_age IMPORTING i_name TYPE STRING
+                                    i_age TYPE I.
 
-# Print results
-print("Pearson Correlation Coefficient:")
-print("**************************************")
-print(f"Coefficient: {pearson_corr:.3f}, P-value: {pearson_p_value:.3f}")
+    " Method to get the name
+    METHODS: get_name RETURNING VALUE(r_name) TYPE STRING.
 
-print("\nSpearman Rank Correlation Coefficient:")
-print("**************************************")
-print(f"Coefficient: {spearman_corr:.3f}, P-value: {spearman_p_value:.3f}")
+    " Method to get the age
+    METHODS: get_age RETURNING VALUE(r_age) TYPE I.
+ENDCLASS.
 
-# Interpretation
-if pearson_p_value < 0.05:
-    print("\nPearson correlation is statistically significant.")
-else:
-    print("\nPearson correlation is not statistically significant.")
+*********************************************
 
-if spearman_p_value < 0.05:
-    print("Spearman correlation is statistically significant.")
-else:
-    print("Spearman correlation is not statistically significant.")
+CLASS ZCL_PERSON IMPLEMENTATION.
 
-print("\n\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("**************************************")
-`;
+  " Method to set Name and Age
+  METHOD set_name_age.
+    name = i_name.
+    age  = i_age.
+  ENDMETHOD.
 
-        var text7 = `# Pract 7 - Latin Square design
+  " Method to get Name
+  METHOD get_name.
+    r_name = name.
+  ENDMETHOD.
 
-# Libraries Required
-import numpy as np
-import pandas as pd
+  " Method to get Age
+  METHOD get_age.
+    r_age = age.
+  ENDMETHOD.
 
-# Define the treatments, subjects, and seasons
-treatments = ['Drip Irrigation', 'Sprinkler Irrigation', 'Surface Irrigation']
-crops = ['Crop 1', 'Crop 2', 'Crop 3']
-seasons = ['Spring', 'Summer', 'Fall']
+ENDCLASS.
 
-# Create a 3x3 Latin Square matrix
-latin_square = np.array([
-    [treatments[0], treatments[1], treatments[2]],  # Spring
-    [treatments[1], treatments[2], treatments[0]],  # Summer
-    [treatments[2], treatments[0], treatments[1]],  # Fall
-])
+*********************************************
 
-# Create a DataFrame for the Latin Square Design
-experiment_design = pd.DataFrame(latin_square, columns=crops, index=seasons)
+START-OF-SELECTION.
 
-print("KSMSCIT014 - Shipra Jana")
-print("**************************************")
-# Display the experiment design
-print("Latin Square Design:")
-print(experiment_design)
+" Declare an object reference for the class
+DATA: person_obj TYPE REF TO ZCL_PERSON,
+      lv_name    TYPE STRING,
+      lv_age     TYPE I.
 
-# Data collection: heights of crops after one month (in cm)
-data = {
-    'Crop 1': [25, 30, 28],  # Growth corresponding to the design
-    'Crop 2': [35, 32, 30],
-    'Crop 3': [29, 33, 31]
-}
+" Create an instance (object) of the class
+CREATE OBJECT person_obj.
 
-# Create a DataFrame for the collected data
-growth_data = pd.DataFrame(data, index=seasons)
-print("\nCollected Crop Growth Data (cm):")
-print(growth_data)
+" Set values using the set_name_age method
+CALL METHOD person_obj->set_name_age
+  EXPORTING
+    i_name = 'SHIPRA JANA - 014'
+    i_age  = 22.
 
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
+" Get values using get_name and get_age methods
+lv_name = person_obj->get_name( ).
+lv_age  = person_obj->get_age( ).
 
-# Reshape the data for ANOVA
-growth_data_melted = growth_data.reset_index().melt(id_vars='index', var_name='Crop', value_name='Growth')
-growth_data_melted.columns = ['Season', 'Crop', 'Growth']
-
-# Fit the ANOVA model
-model = ols('Growth ~ C(Crop) + C(Season)', data=growth_data_melted).fit()
-anova_table = sm.stats.anova_lm(model, typ=2)
-
-# Display the ANOVA results
-print("\nANOVA Results:")
-print(anova_table)
-
-print("\n\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("**************************************")
+" Display the values
+WRITE: / 'Name:', lv_name,
+       / 'Age:', lv_age.
 
 `;
 
-        var text8 = `# Pract 8 - Time Series Analysis
+        var text7 = `# Pract 7 - JOINS
 
-        
+* Develop an ABAP program that performs a join between two tables and displays the results. Ensure that the join is based on a common key.
+
+* SE38 - ZSJOINS
+
+REPORT ZSJOINS.
+
+" Define the structure for the result
+TYPES: BEGIN OF ty_result,
+         ID TYPE INT2,
+         NAME TYPE STRING,
+         AGE TYPE INT2,
+       END OF ty_result.
+
+" Declare internal table to store the result
+DATA: lt_result TYPE TABLE OF ty_result,
+      wa_result TYPE ty_result.
+
+" Perform the inner join using SELECT statement
+SELECT a~ID, a~NAME, b~AGE
+  INTO TABLE @lt_result
+  FROM zstable1 AS a
+  INNER JOIN zstable2 AS b
+  ON a~ID = b~ID.
+
+" Check if records are fetched
+IF lt_result IS NOT INITIAL.
+  " Display the result
+  WRITE: / 'ID', 10 'Name', 20 'Age'.
+  "WRITE: / 'ID', 'Name',  'Age'.
+  ULINE.
+
+  LOOP AT lt_result INTO wa_result.
+    WRITE: / wa_result-id, 10 wa_result-name, 20 wa_result-age.
+    "WRITE: / wa_result-id,  wa_result-name,  wa_result-age.
+  ENDLOOP.
+ELSE.
+  WRITE: / 'No matching records found'.
+ENDIF.
 
 `;
 
-        var text9 = `# Pract 8A - Trend Analysis
+        var text8 = `# Pract 8 -  Debugger
 
-#Trend analysis
-#Definition:
-#A trend is overall direction of data whether increasing or decreasing
-#Code:
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-#Generate data with the clear upward trend
-data=np.random.seed(0)
-time=np.arange(100)
-trend=0.5*time
-noise=np.random.normal(0,5,size=100)
-data=trend+noise
-#Create a dataframe
-df_trend=pd.DataFrame({'time':time,'data':data})
-df_trend.head()
-print("\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("\n\nTrend analysis")
-print("**************************************\n\n")
-plt.figure(figsize=(10,6))
-plt.plot(df_trend['time'],df_trend['data'],label='Data with Trend',color='blue')
-plt.plot(df_trend['time'],trend,label='Linear',linestyle='-',color='red')
-plt.title('\n\n KSMSCIT014 - Shipra Jana\n\nTrend Example with Upward Trend')
-plt.xlabel('Time')
-plt.ylabel('Data')
-plt.legend()
-plt.show()
+* Describe and execute a debugging session for an ABAP program that is not producing the expected output. Use breakpoints and watchpoints to identify the issue.
+
+* USE JOINS TABLE - SE38 - ZSJOINS
+
+" Define the structure for the result
+TYPES: BEGIN OF ty_result,
+         ID TYPE INT2,
+         NAME TYPE STRING,
+         AGE TYPE INT2,
+       END OF ty_result.
+
+" Declare internal table to store the result
+DATA: lt_result TYPE TABLE OF ty_result,
+      wa_result TYPE ty_result.
+
+" Perform the inner join using SELECT statement
+SELECT a~ID, a~NAME, b~AGE
+  INTO TABLE @lt_result
+  FROM zstable1 AS a
+  INNER JOIN zstable2 AS b
+  ON a~ID = b~ID.
+
+" Check if records are fetched
+IF lt_result IS NOT INITIAL.
+  " Display the result
+  WRITE: / 'ID', 10 'Name', 20 'Age'.
+  "WRITE: / 'ID', 'Name',  'Age'.
+  ULINE.
+
+  LOOP AT lt_result INTO wa_result.
+    WRITE: / wa_result-id, 10 wa_result-name, 20 wa_result-age.
+    "WRITE: / wa_result-id,  wa_result-name,  wa_result-age.
+  ENDLOOP.
+ELSE.
+  WRITE: / 'No matching records found'.
+ENDIF.
 
 `;
    
+        var text9 = `# Pract 9 - SAP ECC and S/4HANA
+
+* Explain the key differences between SAP ECC and S/4HANA in terms of data model and performance. Include examples of how ABAP programming might need to adapt.
+
+<!-- 
+### Key Differences Between SAP ECC and S/4HANA
+
+1. Data Model  
+- SAP ECC: Relies on complex tables with redundancy. For example, it uses separate tables for totals (BSEG for line items and BKPF for headers).  
+- S/4HANA: Simplified data model using in-memory HANA technology. For example, tables like ACDOCA (Universal Journal) combine financial and controlling data in one place.
+
+Impact on ABAP:  
+- In ECC, ABAP developers often need to join multiple tables.  
+- In S/4HANA, fewer joins are required, as data is consolidated in simplified structures.
+
+2. Performance  
+- SAP ECC: Uses traditional disk-based databases, leading to slower data retrieval and reporting.  
+- S/4HANA: In-memory database enables faster processing and real-time analytics.
+
+Impact on ABAP:  
+- In S/4HANA, avoid SELECT * statements; leverage CDS Views (Core Data Services) and HANA-optimized queries for better performance.
+
+3. Database Dependency  
+- SAP ECC: Works with various databases (Oracle, SQL Server, etc.).  
+- S/4HANA: Works exclusively with the SAP HANA database.
+
+Impact on ABAP:  
+- Use HANA-specific features like AMDP (ABAP Managed Database Procedures) for optimized processing.
+
+Examples of ABAP Adaptation:
+1. Old ECC Style:
+   SELECT * FROM BKPF WHERE bukrs = '1000'.
+   SELECT * FROM BSEG WHERE bukrs = '1000'.
+   (Multiple queries with joins across tables)
+
+2. S/4HANA Style:
+   SELECT * FROM ACDOCA WHERE bukrs = '1000'.
+   (Single query using the Universal Journal table)
+
+In short: S/4HANA simplifies the data model, improves performance with in-memory technology, and requires ABAP programming to adapt by using HANA-optimized techniques like CDS Views and fewer table joins.
+-->
+
+
+
+`;
+
 
 
 function copyText(text) {
