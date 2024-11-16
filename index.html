@@ -37,128 +37,77 @@
 
 <body>
 
-    <button onclick="copyText(text1)">1-Measure of central tendency</button>
-    <button onclick=" copyText(text2)">2-Hypothesis Testing Using Z-Score</button>
-    <button onclick="copyText(text3)">3-Normal Distribution</button>
-    <button onclick="copyText(text4)">4-ANOVA Test</button>
-    <button onclick="copyText(text5)">5-Linear Regression Analysis</button>
-    <button onclick="copyText(text6)">6-Pearson correlation and Spearman rank correlation</button>
-    <button onclick="copyText(text7)">7-Latin Square design</button>
-    <button onclick="copyText(text8)">8-Time Series Analysis</button>
-    <button onclick="copyText(text9)">8A-Trend Analysis</button>
-    <button onclick="copyText(text10)">8B-Seasonal Variation</button>
-    <button onclick="copyText(text11)">8C-Cyclic Variation</button>
-    <button onclick="copyText(text12)">8D-Irregular Variation</button>
-    <button onclick="copyText(text13)">8E-Decomposition of Time Series</button>
-    <button onclick="copyText(text14)">9A-Stock Price Analysis</button>
-    <button onclick="copyText(text15)">9B-Rain Forecasting Using Trend and Seasonal Analysis</button>
-    <button onclick="copyText(text16)">10-Sales Forecasting Using SARIMAX</button>
-    <button onclick="copyText(text17)">11-Least Square Method</button>
+    <button onclick="copyText(text1)">1-Sum of 2 Numbers</button>
+    <button onclick=" copyText(text2)">2-If-Else-Conditional</button>
+    <button onclick="copyText(text3)">3-Database</button>
+    <button onclick="copyText(text4)">4-Subroutine</button>
+    <button onclick="copyText(text5)">5-ALV Report</button>
+    <button onclick="copyText(text6)">6-OOPS set-get</button>
+    <button onclick="copyText(text7)">7-JOINS</button>
+    <button onclick="copyText(text8)">8-Debugger</button>
+    <button onclick="copyText(text9)">9-SAP ECC and S/4HANA</button>
     
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `#Pract 1 :Measure of central tendency
-        #(mean, median, mode, std and mad)
+        var text1 = `#Pract 1-Sum of 2 Numbers
 
-        # Pract 1 - mean, median, mode and standard deviation.
-'''
-import numpy as np
-from scipy import stats
+        * Create an ABAP program that declares 2 variables and display the sum of 2 variables in output using write statement.
 
-# Sample Dataset
-Student_Scores = [90, 96, 80, 92, 95, 85, 95, 89, 90, 84]
+        REPORT ZPRACT1_SUM.            " Program Name
 
-print("********************")
-print("Shipra Jana 014")
-print("********************")
 
-# Calculate Mean
-Student_Scores_Mean = np.mean(Student_Scores)
-print("Mean:", Student_Scores_Mean)
+* Declare variables
+DATA: num1 TYPE I VALUE 20,  " First number with an initial value of 10
+      num2 TYPE I VALUE 10,    " Second number with an initial value of 20
+      sum  TYPE I,
+      sub TYPE I,
+      mul TYPE I,
+      div TYPE I.
 
-# Calculate Median
-Student_Scores_Median = np.median(Student_Scores)
-print("Median:", Student_Scores_Median)
+* Calculate the sum
+sum = num1 + num2.          " Add num1 and num2, store result in sum
+sub = num1 - num2.
+mul = num1 * num2.
+div = num1 / num2.
 
-# Calculate Mode
-Student_Scores_Mode = stats.mode(Student_Scores) #.mode[0]
-print("Mode:", Student_Scores_Mode[0])
-
-# Calculate Standard Deviation
-Student_Scores_Standard_Deviation = np.std(Student_Scores)
-print("Standard Deviation:", Student_Scores_Standard_Deviation)
-
-# Calculate Mean Absolute Deviation
-Student_Scores_Mean_Absolute_Deviation = np.mean(abs(Student_Scores-Student_Scores_Mean))
-print("Mean Absolute Deviation:", Student_Scores_Mean_Absolute_Deviation)
-
-'''
-
-# p2 -  2 dataset
-
-import numpy as np
-from scipy import stats
-
-# Define two datasets
-dataset1 = [10, 20, 20, 30, 40, 50]
-dataset2 = [15, 25, 25, 35, 45, 55]
-
-# Function to calculate measures of central tendency and dispersion
-def central_tendency_and_dispersion(data):
-    mean = np.mean(data)
-    median = np.median(data)
-    # Use .item() to safely extract mode value
-    mode = stats.mode(data, keepdims=True).mode.item()
-    std_dev = np.std(data)  # Standard deviation
-    mad = np.mean(np.abs(data - mean))  # Mean absolute deviation
-    return mean, median, mode, std_dev, mad
-
-# Calculate for both datasets
-mean1, median1, mode1, std_dev1, mad1 = central_tendency_and_dispersion(dataset1)
-mean2, median2, mode2, std_dev2, mad2 = central_tendency_and_dispersion(dataset2)
-
-# Print results
-print("Dataset 1: Mean =", mean1, ", Median =", median1, ", Mode =", mode1, ", Std Dev =", std_dev1, ", MAD =", mad1)
-print("Dataset 2: Mean =", mean2, ", Median =", median2, ", Mode =", mode2, ", Std Dev =", std_dev2, ", MAD =", mad2)
-
+*To Display the Output.
+WRITE : / 'Program by: Shipra Jana',
+ /'Number 1 -', num1,
+ / 'Number 2 -', num2,
+/ 'Sum of 2 Number is -', sum,
+/ 'Sub of 2 Number is -', sub,
+/ 'Multiply 2 Number is -', mul,
+/ 'Division 2 Number is -', div.
     `;
-        var text2 = ` #Pract - 2 Hypothesis Testing Using Z-Score
 
-#Determine p-value using the Standard Normal Distribution-score - check its correspondence is either less or more.
+        var text2 = ` #Pract 2-If-Else-Conditional Statements
 
-# Practical No - 2  -->  Probability Distribution
-"""Determine p-value using the Standard Normal Distribution,z-score - check it's correspondence is either less or
-more"""
+        * Write an ABAP program that uses an IF statement to check if a number is positive, negative, or zero, and displays the result
 
-from scipy import stats
+REPORT ZPRACT2_IF_STATEMENT.  " Program name
 
-# Given Data
-Total_Population_Mean = 100
-Population_Standard_Deviation = 15
 
-Sample_Mean = 140
-Sample_Size = 30
+* Declare variables
+DATA: user_input TYPE c LENGTH 10,   " Variable to store user input of type numc
+      number TYPE I.                    " Integer variable to store the converted number
 
-# Calculate Z-Score
-Z_Score = (Sample_Mean-Total_Population_Mean)/(Population_Standard_Deviation/Sample_Size**0.5)
+* Get input from user
+PARAMETERS: p_input TYPE c LENGTH 10.   " Accept user input
 
-print("********************")
-print("Shipra Jana 014")
-print("********************")
+* Convert input to integer
+number = p_input.
 
-print("Z-Score:", Z_Score)
+* Check if the number is positive, negative, or zero
+IF number > 0.
+  WRITE: / 'The number is positive.'.
+ELSEIF number < 0.
+  WRITE: / 'The number is negative.'.
+ELSE.
+  WRITE: / 'The number is zero.'.
+ENDIF.
 
-# Calculate P-Value
-
-P_Value = 2*(1-stats.norm.cdf(abs(Z_Score)))
-print("P-Value(Two-Tailed Test):", P_Value)
-
-Significance_Value = 0.05
-if P_Value < Significance_Value:
-  print("Reject Null Hypothesis")
-else:
-  print("Fail to Reject Null Hypothesis")
+Write : / 'Progrm By: Shipra Jana - 014'.
 
 `;
 
@@ -488,387 +437,7 @@ plt.legend()
 plt.show()
 
 `;
-
-        var text10 = `# Pract 8B - Seasonal Variation
-
-#Seasonal Variation
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-np.random.seed(0)
-time=np.arange(0,100)
-seasonality=10*np.sin(2*np.pi*time/12)
-noise=np.random.normal(0.2,size=100)
-data=50+seasonality+noise
-df_seasonality=pd.DataFrame({'time':time,'data':data})
-df_seasonality.head()
-print("\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("\n\nSeasonal Variation")
-print("**************************************\n\n")
-plt.figure(figsize=(10,6))
-plt.plot(df_seasonality['time'],df_seasonality['data'],label='Data with Seasonality',color='green')
-plt.plot(df_seasonality['time'],seasonality,label='Seasonality',linestyle='-',color='red')
-plt.title('\n\n KSMSCIT014 - Shipra Jana\n\nSeasonal Variation Example')
-plt.xlabel('Time')
-plt.ylabel('Data')
-plt.legend()
-plt.show()
-
-`;
-
-        var text11 = `# Pract 8C - Cyclic Variation
-
-#Cyclical Variation
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-np.random.seed(0)
-time=np.arange(0,100)
-cycle=20*np.sin(2*np.pi*time/50)
-noise=np.random.normal(0.2,size=100)
-data=50+cycle+noise
-df_cycle=pd.DataFrame({'time':time,'data':data})
-df_cycle.head()
-print("\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("\n\nCyclical Variation")
-print("**************************************\n\n")
-plt.figure(figsize=(10,6))
-plt.plot(df_cycle['time'],df_cycle['data'],label='Data with Cyclical',color='green')
-plt.title('\n\n KSMSCIT014 - Shipra Jana\n\nCyclical Variation Example')
-plt.xlabel('Time')
-plt.ylabel('Data')
-plt.legend()
-plt.show()
-
-`;
-
-        var text12 = `# Pract 8D - Irregular Variation
-
-#Irregular Fluctuation (Random Cmonent)
-#(Definition: Which is Unpredictable)
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-np.random.seed(0)
-time=np.arange(0,100)
-noise=np.random.normal(0,10,size=100)
-df_irregular=pd.DataFrame({'time':time,'data':noise})
-df_irregular.head()
-print("\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("\n\nIrregular Fluctuation")
-print("**************************************\n\n")
-plt.figure(figsize=(10,6))
-plt.plot(df_irregular['time'],df_irregular['data'],label='Irregular Data',color='orange')
-plt.title('\n\n KSMSCIT014 - Shipra Jana\n\nIrregular Fluctuation Example')
-plt.xlabel('Time')
-plt.ylabel('Data')
-plt.legend()
-plt.show()
-
-`;
-
-        var text13 = `# Pract 8E - Decomposition of Time Series
-
-#Decomposing a time series using Airline dataset
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from statsmodels.tsa.seasonal import seasonal_decompose
-data=pd.read_csv('airline-passengers.csv', index_col='Month',parse_dates=True)
-#Decompose the time series into trend, seasonal, and resudial componenet
-result=seasonal_decompose(data['Passengers'],model='mutiplictive')
-#Plot the decomposed components
-print("\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("\n\nDecomposition of Time Series")
-print("**************************************\n\n")
-result.plot()
-plt.suptitle('Decomposition of Airline Passengers Data',fontsize=7.5)
-plt.show()
-
-`;
-
-        var text14 = `# Pract 9A - Stock Price Analysis
-
-#Stock Price Analysis
-# !pip install yfinance
-
-# Libraries Required
-import yfinance as yf
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from statsmodels.tsa.seasonal import seasonal_decompose
-stock_symbol='SUZLON.NS'
-stock_data=yf.download(stock_symbol,start='2019-01-01',end='2024-09-28')
-print("\n\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("\n\nStock Price Analysis")
-print("**************************************")
-print(stock_data.head())
-print(stock_data.tail())
-print("\n\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("**************************************")
-plt.figure(figsize=(10,6))
-plt.plot(stock_data['Adj Close'],label='Closing Price',color='blue')
-plt.title(f'\n\n KSMSCIT014 - Shipra Jana\n\nStock Price Analysis for {stock_symbol}')
-plt.xlabel('Date')
-plt.ylabel('Stock Price')
-plt.legend()
-plt.show()
-stock_data_monthly=stock_data['Adj Close'].resample('m').mean()
-decompose_result=seasonal_decompose(stock_data_monthly,model='multiplicative')
-print("\n\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("**************************************")
-decompose_result.plot()
-plt.suptitle('Decomposition of Stock Price Data',fontsize=8)
-plt.show()
-#Calculate simple moving average of 50 days and 200 days
-stock_data['SMA50']=stock_data['Adj Close'].rolling(window=50).mean()
-stock_data['SMA200']=stock_data['Adj Close'].rolling(window=200).mean()
-print("\n\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("**************************************")
-plt.figure(figsize=(10,6))
-plt.plot(stock_data['Adj Close'],label='Closing Price',color='blue')
-plt.plot(stock_data['SMA50'],label='50-Day SMA',color='green')
-plt.plot(stock_data['SMA200'],label='200-Day SMA',color='red')
-plt.title(f'\n\n KSMSCIT014 - Shipra Jana\n\nStock Price Analysis for {stock_symbol}')
-plt.xlabel('Date')
-plt.ylabel('Stock Price')
-plt.legend()
-plt.show()
-`;
-
-        var text15 = `# Pract 9B - Rain Forecasting Using Trend and Seasonal Analysis
-
-# Libraries Required
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from statsmodels.tsa.seasonal import seasonal_decompose
-from statsmodels.tsa.arima.model import ARIMA
-
-# Load the dataset
-data = {
-    'Date': [
-        '1981-01-01', '1981-01-02', '1981-01-03', '1981-01-04', '1981-01-05',
-        '1981-01-06', '1981-01-07', '1981-01-08', '1981-01-09', '1981-01-10'
-    ],
-    'Temp': [
-        20.7, 17.9, 18.8, 14.6, 15.8,
-        19.2, 22.1, 23.5, 21.0, 18.4
-    ]
-}
-
-# Create a DataFrame
-df = pd.DataFrame(data)
-
-# Data Preprocessing
-df['Date'] = pd.to_datetime(df['Date'])
-df.set_index('Date', inplace=True)
-
-# Display the first few rows of the dataset
-print("\n\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("\n\nRain Forecasting Using Trend and Seasonal Analysis")
-print("**************************************")
-print(df.head())
-print(df.tail())
-
-print("\n\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("**************************************")
-
-# Trend Analysis
-plt.figure(figsize=(12, 6))
-plt.plot(df['Temp'], label='Daily Minimum Temperature', color='blue')
-plt.title('\n\n KSMSCIT014 - Shipra Jana\n\nDaily Minimum Temperature Over Time', fontsize=14)
-plt.xlabel('Date')
-plt.ylabel('Temperature (°C)')
-plt.legend()
-plt.show()
-
-# Seasonal Decomposition with period of 5
-decomposition = seasonal_decompose(df['Temp'], model='additive', period=5)  # Adjusted period
-trend = decomposition.trend
-seasonal = decomposition.seasonal
-residual = decomposition.resid
-
-# Plot the decomposition
-plt.figure(figsize=(12, 12))
-plt.subplot(4, 1, 1)
-plt.plot(df['Temp'], label='Original', color='blue')
-plt.legend(loc='upper left')
-
-plt.subplot(4, 1, 2)
-plt.plot(trend, label='Trend', color='orange')
-plt.legend(loc='upper left')
-
-plt.subplot(4, 1, 3)
-plt.plot(seasonal, label='Seasonal', color='green')
-plt.legend(loc='upper left')
-
-plt.subplot(4, 1, 4)
-plt.plot(residual, label='Residual', color='red')
-plt.legend(loc='upper left')
-
-plt.tight_layout()
-plt.suptitle('KSMSCIT014 - Shipra Jana\nDecomposition of Daily Minimum Temperature', fontsize=14)
-plt.show()
-
-# Forecasting with ARIMA
-model = ARIMA(df['Temp'].dropna(), order=(1, 1, 0))  # Adjust parameters as needed
-model_fit = model.fit()
-
-# Generate forecast for the next 30 days
-forecast = model_fit.forecast(steps=30)
-
-# Prepare forecast dates
-forecast_dates = pd.date_range(start=df.index[-1] + pd.Timedelta(days=1), periods=30)
-
-# Visualization of forecast results
-plt.figure(figsize=(12, 6))
-plt.plot(df['Temp'], label='Historical Temperature', color='blue')
-plt.plot(forecast_dates, forecast, label='Forecasted Temperature', color='orange')
-plt.title('\n\n KSMSCIT014 - Shipra Jana\n\nTemperature Forecast', fontsize=14)
-plt.xlabel('Date')
-plt.ylabel('Temperature (°C)')
-plt.legend()
-plt.show()
-
-`;
-
-        var text16 = `# Pract 10 - Sales Forecasting Using SARIMAX
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from statsmodels.tsa.seasonal import seasonal_decompose
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from sklearn.metrics import mean_squared_error
-
-# Define dataset
-data_dict = {
-    'Date': pd.date_range(start='2021-01-01', periods=24, freq='M'),
-    'Sales': [
-        230, 220, 250, 260, 290, 350, 310, 320, 315, 380, 210, 350,  # Year 1
-        245, 235, 270, 280, 310, 320, 330, 335, 325, 290, 280, 370   # Year 2
-    ]
-}
-data = pd.DataFrame(data_dict)
-data.set_index('Date', inplace=True)
-
-print("\n\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("\n\nSales Forecasting Using SARIMAX")
-print("**************************************")
-
-# Plot sales data
-plt.figure(figsize=(12, 6))
-plt.plot(data['Sales'], label='Monthly Sales')
-plt.title('\n\n KSMSCIT014 - Shipra Jana\n\nMonthly Sales', fontsize=14)
-plt.xlabel('Date')
-plt.ylabel('Sales')
-plt.legend()
-plt.show()
-
-# Decomposition
-decomposition = seasonal_decompose(data['Sales'], model='additive', period=12)
-decomposition.plot()
-plt.suptitle('\n\n KSMSCIT014 - Shipra Jana\n\nSales Decomposition', fontsize=14)
-plt.show()
-
-# Train-test split (80-20 split)
-train_size = int(len(data) * 0.8)
-train, test = data.iloc[:train_size], data.iloc[train_size:]
-print('Train size:', len(train), 'Test size:', len(test))
-
-# Fit SARIMAX model
-model = SARIMAX(train['Sales'], order=(1, 1, 1), seasonal_order=(1, 1, 1, 12),
-                enforce_stationarity=False, enforce_invertibility=False)
-model_fit = model.fit(disp=False)
-print(model_fit.summary())
-
-# Forecast
-forecast = model_fit.get_forecast(steps=len(test))
-forecast_series = forecast.predicted_mean
-conf_int = forecast.conf_int()
-
-# Plot forecast against actual values
-plt.figure(figsize=(12, 6))
-plt.plot(test.index, test['Sales'], label='Actual Sales', marker='o')
-plt.plot(test.index, forecast_series, label='Forecasted Sales', color='red', marker='o')
-plt.fill_between(forecast_series.index, conf_int.iloc[:, 0], conf_int.iloc[:, 1], color='pink', alpha=0.3)
-plt.title('\n\n KSMSCIT014 - Shipra Jana\n\nMonthly Sales Forecast', fontsize=14)
-plt.xlabel('Date')
-plt.ylabel('Sales')
-plt.legend()
-plt.show()
-
-# Evaluate model
-mse = mean_squared_error(test['Sales'], forecast_series)
-print('Mean Squared Error (MSE):', mse)
-
-# Final Model Fitting for future prediction
-final_model = SARIMAX(data['Sales'], order=(1, 1, 1), seasonal_order=(1, 1, 1, 12),
-                      enforce_stationarity=False, enforce_invertibility=False)
-final_model_fit = final_model.fit()
-
-# Future forecast (12 months ahead)
-future_forecast = final_model_fit.get_forecast(steps=12)
-future_index = pd.date_range(start=data.index[-1] + pd.Timedelta(days=1), periods=12, freq='M')
-future_forecast_series = pd.Series(future_forecast.predicted_mean, index=future_index)
-future_conf_int = future_forecast.conf_int()
-
-# Plot future forecast
-plt.figure(figsize=(12, 6))
-plt.plot(data.index, data['Sales'], label='Historical Sales')
-plt.plot(future_forecast_series.index, future_forecast_series, label='Future Forecasted Sales', color='green', marker='o')
-plt.fill_between(future_forecast_series.index, future_conf_int.iloc[:, 0], future_conf_int.iloc[:, 1], color='lightgreen', alpha=0.3)
-plt.title('\n\n KSMSCIT014 - Shipra Jana\n\nFuture Sales Forecast', fontsize=14)
-plt.xlabel('Date')
-plt.ylabel('Sales')
-plt.legend()
-plt.show()
-
-`;
-
-        var text17 = `# Pract 11 - Least Square Method
-
-# Libraries Required
-import scipy.stats as stats
-import numpy as np
-
-print("\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("\n\nLeast Square Method for Linear Regression")
-print("***************************************\n")
-# Sample data (x and y values)
-x = np.array([59, 65, 45, 52, 60, 62, 70, 55, 45, 49])
-y = np.array([76, 70, 55, 65, 60, 64, 80, 65, 54, 61])
-
-slope_yx, intercept_yx, r_value_yx, p_value_yx, std_err_yx = stats.linregress(y, x)
-slope_xy, intercept_xy, r_value_xy, p_value_xy, std_err_xy = stats.linregress(x, y)
-
-estimate_yx = slope_yx * 61 + intercept_yx
-
-# Output results
-print("slope_yx:", slope_yx)
-print("intercept_yx:", intercept_yx)
-print("slope_xy:", slope_xy)
-print("intercept_xy:", intercept_xy)
-print("estimate_yx:", estimate_yx)
-print("\n**************************************")
-print("KSMSCIT014 - Shipra Jana")
-print("**************************************\n\n")
-
-`;
+   
 
 
 function copyText(text) {
