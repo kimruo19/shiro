@@ -37,350 +37,484 @@
 
 <body>
 
-    <button onclick="copyText(text1)">1-Sum of 2 Numbers</button>
-    <button onclick=" copyText(text2)">2-If-Else-Conditional</button>
-    <button onclick="copyText(text3)">3-Database</button>
-    <button onclick="copyText(text4)">4-Subroutine</button>
-    <button onclick="copyText(text5)">5-ALV Report</button>
-    <button onclick="copyText(text6)">6-OOPS set-get</button>
-    <button onclick="copyText(text7)">7-JOINS</button>
-    <button onclick="copyText(text8)">8-Debugger</button>
-    <button onclick="copyText(text9)">9-SAP ECC and S/4HANA</button>
+    <button onclick="copyText(text1)">1-Spam Classifier</button>
+    <button onclick=" copyText(text2)">2-Association-Apriori Algorithm</button>
+    <button onclick="copyText(text3)">3-Crawler web search user defined</button>
+    <button onclick="copyText(text4)">4-Sentiment Analysis </button>
+    <button onclick="copyText(text5)">5-Link Analysis & PageRank</button>
+    <button onclick="copyText(text6)">6-Scrape Online Social Media </button>
+    <button onclick="copyText(text7)">7-Web Crawling & Indexing</button>
+    <button onclick="copyText(text8)">8-Focused crawler-Reddit</button>
     
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `#Pract 1-Sum of 2 Numbers
+        var text1 = `#Pract 1-Spam Classifier
 
-        * Create an ABAP program that declares 2 variables and display the sum of 2 variables in output using write statement.
+        # Pract 1 - Perform Spam Classifier
 
-        REPORT ZPRACT1_SUM.            " Program Name
+# Spam Classifier
+
+import tensorflow as tf
+import numpy as np
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+dataset = (
+    "Hey, You got a lottery worth of $1000000!",
+    "Can we have a lunch today?",
+    "Congratulations, you won a prize in RummyCircle!",
+    "An amount of $10000 has been credited to your Poker Account",
+    "Your meeting will start at 5:00PM Today",
+    "it's an important call for you"
+)
+
+label = (1, 0, 1, 1, 0, 0)
+
+max_words, word_len = 1000, 50
+
+tokenizer = Tokenizer(num_words=max_words, oov_token="<OOV>")
+tokenizer.fit_on_texts(dataset)
+sequences = tokenizer.texts_to_sequences(dataset)
+padded_sequences = pad_sequences(sequences, maxlen=word_len, padding='post', truncating='post')
 
 
-* Declare variables
-DATA: num1 TYPE I VALUE 20,  " First number with an initial value of 10
-      num2 TYPE I VALUE 10,    " Second number with an initial value of 20
-      sum  TYPE I,
-      sub TYPE I,
-      mul TYPE I,
-      div TYPE I.
+# Constructing a Neural Network
 
-* Calculate the sum
-sum = num1 + num2.          " Add num1 and num2, store result in sum
-sub = num1 - num2.
-mul = num1 * num2.
-div = num1 / num2.
+model = tf.keras.Sequential([
+    tf.keras.layers.Embedding(input_dim=max_words, output_dim=16, input_length=word_len),
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(16, activation='relu'), # adding hidden layer with 16 nodes (depend on output dimension)
+    tf.keras.layers.Dense(1, activation='sigmoid')
+])
 
-*To Display the Output.
-WRITE : / 'Program by: Shipra Jana',
- /'Number 1 -', num1,
- / 'Number 2 -', num2,
-/ 'Sum of 2 Number is -', sum,
-/ 'Sub of 2 Number is -', sub,
-/ 'Multiply 2 Number is -', mul,
-/ 'Division 2 Number is -', div.
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+training_sequence = np.array(padded_sequences)
+training_label = np.array(label)
+
+model.fit(training_sequence, training_label, epochs=10)
+
+def check_is_spam(email, threshold=0.5):
+    sequence = tokenizer.texts_to_sequences([email])
+    padded_sequence = pad_sequences(sequence, maxlen=word_len, padding='post', truncating='post')
+    prediction = model.predict(padded_sequence)[0][0]
+
+    if prediction > threshold:
+        print(f"Probably Spam mail, Score: {prediction:.2f}")
+    else:
+        print(f"Probably Not a Spam mail, Score: {prediction:.2f}")
+
+#check_is_spam("hey, congratulations you won a lottery of $200")
+check_is_spam("You have meeting today at 3:00 PM")
+
+print("\nCoded By: Shipra Jana, Roll no. 014")
+
     `;
 
-        var text2 = ` #Pract 2-If-Else-Conditional Statements
+        var text2 = ` #Pract 2-Association-Apriori Algorithm
 
-        * Write an ABAP program that uses an IF statement to check if a number is positive, negative, or zero, and displays the result
+        # Pract 2 - Association Mining using Apriori Algorithm
 
-REPORT ZPRACT2_IF_STATEMENT.  " Program name
-
-
-* Declare variables
-DATA: user_input TYPE c LENGTH 10,   " Variable to store user input of type numc
-      number TYPE I.                    " Integer variable to store the converted number
-
-* Get input from user
-PARAMETERS: p_input TYPE c LENGTH 10.   " Accept user input
-
-* Convert input to integer
-number = p_input.
-
-* Check if the number is positive, negative, or zero
-IF number > 0.
-  WRITE: / 'The number is positive.'.
-ELSEIF number < 0.
-  WRITE: / 'The number is negative.'.
-ELSE.
-  WRITE: / 'The number is zero.'.
-ENDIF.
-
-Write : / 'Progrm By: Shipra Jana - 014'.
-
-`;
-
-        var text3 = `#Pract 3 - Database
- 
-
-       * Define a database table in the ABAP Dictionary with fields for ID, NAME, and AGE. Include data elements and domains for these fields.
-
-        * Table name - ZPRACT3_DATA
-        * Table name - ZEXAM_DATABASE
-`;
-
-        var text4 = ` # Practical No 4 - Subroutine
-
-* Create an ABAP program that includes a subroutine to calculate the factorial of a given number. Call this subroutine from the main program.
-
-REPORT ZPRACT4_FACTORIAL.        " Program name
+        # Remove --> , num_itemsets='support' - this in Pycharm
 
 
-* Step 1: Define an input parameter for the number
-PARAMETERS: p_number TYPE i.      " User input for factorial calculation
+# Import required libraries for association Mining using Apriori Algorithm
+from mlxtend.frequent_patterns import apriori
+from mlxtend.frequent_patterns import association_rules
+import pandas as pd
+print("***********************")
+print("Shipra Jana 014")
+print("***********************")
 
-* Step 2: Define a variable to hold the factorial result
-DATA: result TYPE i.
+# Sample Transaction Dataset
+dataset = [
+           ['milk', 'bread', 'nuts'],
+           ['milk', 'bread'],
+           ['milk', 'eggs', 'nuts'],
+           ['milk', 'bread', 'eggs'],
+           ['bread', 'nuts'],
+          ]
+'''print("Sample Transaction Dataset")
+print(dataset)'''
 
-* Step 3: Call the subroutine to calculate the factorial
-PERFORM calculate_factorial USING p_number CHANGING result.
+print("Sample Transaction Dataset:")
+# Print each transaction on a new line
+for transaction in dataset:
+    print(transaction)
 
-* Step 4: Display the result
-WRITE: / 'The factorial of', p_number, 'is', result.
-Write : / 'Progrm By: Shipra Jana - 014'.
+# Convert the dataset to a pandas dataframe
+df = pd.DataFrame(dataset)
+print("Transaction database: ")
+print(df)
 
-* Subroutine to calculate factorial
-FORM calculate_factorial USING value(num) TYPE i
-                         CHANGING fact TYPE i.
-  fact = 1.                        " Initialize factorial to 1
+# Perform one-hot encoding(convert items to column)
+df_encoded = pd.get_dummies(df, prefix='', prefix_sep='')
+print("Transaction encoded: ")
+print(df_encoded)
 
-  DO num TIMES.
-    fact = fact * sy-index.        " Multiply by loop counter
-  ENDDO.
-ENDFORM.
+# Find frequent itemsets using Apriori
+frequewnt_itemsets = apriori(df_encoded, min_support=0.5, use_colnames=True)
+print("Frequent  itemsets: ")
+print(frequewnt_itemsets)
+
+# Generation Association Rules
+rules = association_rules(frequewnt_itemsets, metric="lift", min_threshold=1, num_itemsets='support')
+print("Association Rules: ")
+print(rules)
+print("*********************")
+print("Shipra Jana 014")
+print("*********************")
 
 `;
 
-        var text5 = `#Pract 5 - ALV Report
+        var text3 = ` # Practical No 3 - Crawler web search user defined
 
-* Create an ALV (ABAP List Viewer) report that displays employee data from a custom table. Use ALV to provide sorting and filtering capabilities.
+# https://www.shipra.in - use failed to retrive
+# Develop a basic crawler for the web search for user defined keywords.
 
-REPORT ZPRACT5_ALV_REPORT.
+#Libraries Required
+import requests
+from bs4 import BeautifulSoup
+import re
+
+print("******************")
+print("Shipra Jana - 014")
+print("******************")
 
 
-* Define an internal table to hold employee data
-DATA: lt_employee_data TYPE TABLE OF ZEMPLOYEE_INFO.
+def crawl_and_search(url, keyword):
+    try:
+        # Fetch the content from the URL
+        response = requests.get(url)
+        response.raise_for_status()  # Check if the request was successful
+        page_content = response.text
 
-* Fetch data from the custom table
-SELECT * FROM ZEMPLOYEE_INFO INTO TABLE lt_employee_data.
+        # Parse the content using BeautifulSoup
+        soup = BeautifulSoup(page_content, 'html.parser')
 
-* Display data in ALV grid
-CALL FUNCTION 'REUSE_ALV_GRID_DISPLAY'
-  EXPORTING
+        # Extract the text from the page
+        text = soup.get_text()
 
-    I_STRUCTURE_NAME = 'ZEMPLOYEE_INFO'  " Use table structure for automatic  columns
+        # Search for the keyword in the text
+        if re.search(keyword, text, re.IGNORECASE):
+            print(f"Keyword '{keyword}' found in {url}")
+        else:
+            print(f"Keyword '{keyword}' not found in {url}")
 
-    I_GRID_TITLE = 'GRID VIEW - SHIPRA JANA - 014'   " Add title to Grid view
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to retrieve {url}: {e}")
 
-  TABLES
-    t_outtab = lt_employee_data.  " Data to display in ALV
+# Define the URL and the keyword to search for
+url = input("Enter the URL to crawl: ")
+keyword = input("Enter the keyword to search for: ")
 
-IF sy-subrc <> 0.
-* Implement suitable error handling here
-ENDIF.
+# Start the crawling process
+crawl_and_search(url, keyword)
+
+print("******************")
+print("Shipra Jana - 014")
+print("******************")
         
   `;
   
-        var text6 = ` # Pract 6 - OOPS set-get
+        var text4 = ` # Pract 4 - Sentiment Analysis 
 
-* Define a simple ABAP class with attributes for Name and Age. Include methods to set and get these attributes. Instantiate the class and demonstrate its usage.
 
-REPORT ZPRACT6_OOPS_CLASS.
+# Sentiment analysis for reviews by customers and visualize the same.
 
-CLASS ZCL_PERSON DEFINITION. " Define the Class
-  PUBLIC SECTION.
-    " Attributes (Properties) of the class
-    DATA: name TYPE STRING,
-          age  TYPE I.
 
-    " Method to set the name and age
-    METHODS: set_name_age IMPORTING i_name TYPE STRING
-                                    i_age TYPE I.
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-    " Method to get the name
-    METHODS: get_name RETURNING VALUE(r_name) TYPE STRING.
+print("*******************")
+print("Shipra Jana 014")
+print("*******************")
 
-    " Method to get the age
-    METHODS: get_age RETURNING VALUE(r_age) TYPE I.
-ENDCLASS.
+# Step 1: Download VADER lexicon if not already done
+nltk.download('vader_lexicon')
+# Step 2: Initialize the VADER sentiment intensity analyzer
+sia = SentimentIntensityAnalyzer()
+# Step 3: List of customer reviews
+reviews = [
+    "The product quality is amazing, I'm very satisfied!",
+    "Terrible service, I will never buy from here again.",
+    "Decent product, but shipping was too slow.",
+    "Absolutely love it! Will recommend to everyone.",
+    "Not worth the money, very disappointing.",
+    "Great experience overall, but could improve the packaging.",
+    "Mediocre, not what I expected.",
+    "Excellent value for the price, highly recommended.",
+    "Worst purchase I've made this year.",
+    "It's okay, nothing special."
+]
+# Step 4: Analyze sentiment for each review
+sentiments = []
+for review in reviews:
+    sentiment_score = sia.polarity_scores(review)
+    compound_score = sentiment_score['compound']
+    if compound_score >= 0.05:
+        sentiments.append('Positive')
+    elif compound_score <= -0.05:
+        sentiments.append('Negative')
+    else: sentiments.append('Neutral')
+# Step 5: Count the occurrences of each sentiment
+sentiment_counts = {
+    'Positive': sentiments.count('Positive'),
+     'Negative': sentiments.count('Negative'),
+    'Neutral': sentiments.count('Neutral')
+}
 
-*********************************************
+# Step 6: Visualization
+sns.set(style="whitegrid")
+plt.figure(figsize=(8, 6))
+sns.barplot(x=list(sentiment_counts.keys()), y=list(sentiment_counts.values()),
+            palette="viridis")
+plt.title('\nKSMSCIT014 SHIPRA JANA \n\n Sentiment Analysis of Customer Reviews\n')
+plt.xlabel('\nSentiment \n\n Shipra Jana 014\n')
+plt.ylabel('Number of Reviews')
+plt.show()
 
-CLASS ZCL_PERSON IMPLEMENTATION.
-
-  " Method to set Name and Age
-  METHOD set_name_age.
-    name = i_name.
-    age  = i_age.
-  ENDMETHOD.
-
-  " Method to get Name
-  METHOD get_name.
-    r_name = name.
-  ENDMETHOD.
-
-  " Method to get Age
-  METHOD get_age.
-    r_age = age.
-  ENDMETHOD.
-
-ENDCLASS.
-
-*********************************************
-
-START-OF-SELECTION.
-
-" Declare an object reference for the class
-DATA: person_obj TYPE REF TO ZCL_PERSON,
-      lv_name    TYPE STRING,
-      lv_age     TYPE I.
-
-" Create an instance (object) of the class
-CREATE OBJECT person_obj.
-
-" Set values using the set_name_age method
-CALL METHOD person_obj->set_name_age
-  EXPORTING
-    i_name = 'SHIPRA JANA - 014'
-    i_age  = 22.
-
-" Get values using get_name and get_age methods
-lv_name = person_obj->get_name( ).
-lv_age  = person_obj->get_age( ).
-
-" Display the values
-WRITE: / 'Name:', lv_name,
-       / 'Age:', lv_age.
 
 `;
 
-        var text7 = `# Pract 7 - JOINS
+        var text5 = `# Pract 5 - Link Analysis & PageRank
 
-* Develop an ABAP program that performs a join between two tables and displays the results. Ensure that the join is based on a common key.
 
-* SE38 - ZSJOINS
+# Page Rank Algorithm | Apply the PageRank algorithm to a small web graph and analyze the results.
 
-REPORT ZSJOINS.
+print("*********************")
+print("Shipra Jana 014")
+print("*********************")
 
-" Define the structure for the result
-TYPES: BEGIN OF ty_result,
-         ID TYPE INT2,
-         NAME TYPE STRING,
-         AGE TYPE INT2,
-       END OF ty_result.
+# Import the necessary library
+import networkx as nx
 
-" Declare internal table to store the result
-DATA: lt_result TYPE TABLE OF ty_result,
-      wa_result TYPE ty_result.
+# Create a random directed graph with 'n' nodes, where each node has 'k' outgoing edges.
+# The 'alpha' parameter determines the probability of connecting nodes.
+G = nx.random_k_out_graph(n=8, k=2, alpha=0.75)
 
-" Perform the inner join using SELECT statement
-SELECT a~ID, a~NAME, b~AGE
-  INTO TABLE @lt_result
-  FROM zstable1 AS a
-  INNER JOIN zstable2 AS b
-  ON a~ID = b~ID.
+# Define a function to draw the graph with labels and bold font for clarity
+def draw_graph(G):
+    nx.draw(G, with_labels=True, font_weight='bold', node_size=400)
 
-" Check if records are fetched
-IF lt_result IS NOT INITIAL.
-  " Display the result
-  WRITE: / 'ID', 10 'Name', 20 'Age'.
-  "WRITE: / 'ID', 'Name',  'Age'.
-  ULINE.
+# Draw the generated graph
+draw_graph(G)
 
-  LOOP AT lt_result INTO wa_result.
-    WRITE: / wa_result-id, 10 wa_result-name, 20 wa_result-age.
-    "WRITE: / wa_result-id,  wa_result-name,  wa_result-age.
-  ENDLOOP.
-ELSE.
-  WRITE: / 'No matching records found'.
-ENDIF.
+# Calculate PageRank values for each node in the graph.
+# The 'alpha' parameter (usually set to 0.85) represents the probability of continuing the walk to a random connected node.
+ranks_pr = nx.pagerank(G=G, alpha=0.85)
+
+'''# Print the PageRank values
+print("Page Rank: ")
+print(ranks_pr)'''
+
+# Print the PageRank values line by line
+print("Page Rank: ")
+for node, rank in ranks_pr.items():
+    print(f"Node {node}: {rank}")
+
+print("*********************")
+print("Shipra Jana 014")
+print("*********************")
+
 
 `;
 
-        var text8 = `# Pract 8 -  Debugger
+        var text6 = `# Pract 6 - Scrape Online Social Media 
 
-* Describe and execute a debugging session for an ABAP program that is not producing the expected output. Use breakpoints and watchpoints to identify the issue.
+# Scrape an online Social Media Site for Data. Use Python to scrape information from any website.
 
-* USE JOINS TABLE - SE38 - ZSJOINS
+# Import necessary libraries
+import requests
+from bs4 import BeautifulSoup
 
-" Define the structure for the result
-TYPES: BEGIN OF ty_result,
-         ID TYPE INT2,
-         NAME TYPE STRING,
-         AGE TYPE INT2,
-       END OF ty_result.
+print("*******************")
+print("Shipra Jana 014")
+print("*******************")
 
-" Declare internal table to store the result
-DATA: lt_result TYPE TABLE OF ty_result,
-      wa_result TYPE ty_result.
+# Define a function to scrape data from a website and check for a specific word
+def check_word_in_webpage(url, word):
+    # Send a GET request to the specified URL
+    response = requests.get(url)
 
-" Perform the inner join using SELECT statement
-SELECT a~ID, a~NAME, b~AGE
-  INTO TABLE @lt_result
-  FROM zstable1 AS a
-  INNER JOIN zstable2 AS b
-  ON a~ID = b~ID.
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Parse the webpage content using BeautifulSoup
+        soup = BeautifulSoup(response.content, 'html.parser')
 
-" Check if records are fetched
-IF lt_result IS NOT INITIAL.
-  " Display the result
-  WRITE: / 'ID', 10 'Name', 20 'Age'.
-  "WRITE: / 'ID', 'Name',  'Age'.
-  ULINE.
+        # Extract all text content from the webpage
+        text_content = soup.get_text()
 
-  LOOP AT lt_result INTO wa_result.
-    WRITE: / wa_result-id, 10 wa_result-name, 20 wa_result-age.
-    "WRITE: / wa_result-id,  wa_result-name,  wa_result-age.
-  ENDLOOP.
-ELSE.
-  WRITE: / 'No matching records found'.
-ENDIF.
+        # Check if the specified word is present in the text content (case insensitive)
+        if word.lower() in text_content.lower():
+            print(f"The word '{word}' is present in the webpage.")
+        else:
+            print(f"The word '{word}' is not present in the webpage.")
+    else:
+        # Print an error message if the webpage could not be retrieved
+        print("Failed to retrieve webpage.")
+
+# Prompt the user to enter the URL of the webpage they want to scrape
+url = input("Enter the URL you want to scrape: ")
+
+# Prompt the user to enter the word they want to check for in the webpage
+word_to_check = input("Enter the text you want to check for presence in the webpage: ")
+
+# Call the function to scrape the webpage and check for the specified word
+check_word_in_webpage(url, word_to_check)
+
+print("*******************")
+print("Shipra Jana 014")
+print("*******************")
 
 `;
    
-        var text9 = `# Pract 9 - SAP ECC and S/4HANA
+        var text7 = `# Pract 7 - Web Crawling & Indexing
 
-* Explain the key differences between SAP ECC and S/4HANA in terms of data model and performance. Include examples of how ABAP programming might need to adapt.
 
-<!-- 
-### Key Differences Between SAP ECC and S/4HANA
+# Web Crawling and Indexing
+# a) Develop a web crawler to fetch and index a web page.
+# Handle challenges such as robots.txt, dynamic content and crawling delays.
 
-1. Data Model  
-- SAP ECC: Relies on complex tables with redundancy. For example, it uses separate tables for totals (BSEG for line items and BKPF for headers).  
-- S/4HANA: Simplified data model using in-memory HANA technology. For example, tables like ACDOCA (Universal Journal) combine financial and controlling data in one place.
 
-Impact on ABAP:  
-- In ECC, ABAP developers often need to join multiple tables.  
-- In S/4HANA, fewer joins are required, as data is consolidated in simplified structures.
+# !pip install nltk  -- download
+import nltk
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import re
 
-2. Performance  
-- SAP ECC: Uses traditional disk-based databases, leading to slower data retrieval and reporting.  
-- S/4HANA: In-memory database enables faster processing and real-time analytics.
 
-Impact on ABAP:  
-- In S/4HANA, avoid SELECT * statements; leverage CDS Views (Core Data Services) and HANA-optimized queries for better performance.
+print("*********************")
+print("Shipra Jana 014")
+print("*********************")
 
-3. Database Dependency  
-- SAP ECC: Works with various databases (Oracle, SQL Server, etc.).  
-- S/4HANA: Works exclusively with the SAP HANA database.
+# Ensure that the required NLTK data is downloaded
+nltk.download('stopwords')
+nltk.download('punkt')
+# Download the 'punkt_tab' data package
+nltk.download('punkt_tab')  # This line is added to fix the error
 
-Impact on ABAP:  
-- Use HANA-specific features like AMDP (ABAP Managed Database Procedures) for optimized processing.
+# Stop words (to filter out common words)
+stop_words = set(stopwords.words('english'))
 
-Examples of ABAP Adaptation:
-1. Old ECC Style:
-   SELECT * FROM BKPF WHERE bukrs = '1000'.
-   SELECT * FROM BSEG WHERE bukrs = '1000'.
-   (Multiple queries with joins across tables)
+# Seed URLs (updated with real URLs for testing)
+seed_urls = [
+    'https://www.bbc.com/news',
+    'https://edition.cnn.com',
+    'https://www.theguardian.com',
+    'https://www.yelp.com/search?find_desc=Restaurants&find_loc=New+York%2C+NY',
+    'https://ny.eater.com'
+]
 
-2. S/4HANA Style:
-   SELECT * FROM ACDOCA WHERE bukrs = '1000'.
-   (Single query using the Universal Journal table)
+# Keywords to focus on
+keywords = ['restaurant', 'food', 'local']
 
-In short: S/4HANA simplifies the data model, improves performance with in-memory technology, and requires ABAP programming to adapt by using HANA-optimized techniques like CDS Views and fewer table joins.
--->
+# Visited URLs
+visited = set()
 
+def is_relevant(content, keywords):
+    """
+    Check if the content is relevant based on the keywords.
+    """
+    words = word_tokenize(content.lower())
+    words = [w for w in words if w.isalnum() and w not in stop_words]
+    return any(keyword in words for keyword in keywords)
+
+def crawl(url):
+    """
+    Crawl a single webpage.
+    """
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an HTTPError for bad responses
+        soup = BeautifulSoup(response.content, 'html.parser')
+        text = soup.get_text()
+
+        # Check if the content is relevant
+        if is_relevant(text, keywords):
+            print(f"Relevant content found at: {url}")
+            # Here you could save the content to a file or database
+
+        # Extract links and follow them
+        for link in soup.find_all('a', href=True):
+            new_url = urljoin(url, link['href'])
+            if new_url not in visited and re.match(r'^https?://', new_url):
+                visited.add(new_url)
+                crawl(new_url)
+    except requests.exceptions.RequestException as e:
+        print(f"Error crawling {url}: {e}")
+
+# Start crawling from the seed URLs
+for url in seed_urls:
+    if url not in visited:
+        visited.add(url)
+        crawl(url)
+
+print("*********************")
+print("Shipra Jana 014")
+print("*********************")
+
+
+
+
+`;
+
+var text8 = `# Pract 8 - Focused crawler-Reddit
+
+
+# 1)	Create a REDDIT Account First.
+# 2)	Go to Reddit /Preferences /Apps.  https://www.reddit.com/prefs/apps
+# 3)	Create an application.
+# 4)	Client_id, Client_secret will be generated.
+# Client_id - PchAOkUNcBteGiXsjrGiSg  |  Client_secret - QyzHLj77qxdx1zwNM7flUjRsbj6bdQ
+
+
+# Develop a focused crawler for local search(Use Reddit).
+
+#User defined keyword webcrawling- Reddit Subs
+#Libraries Required
+# pip install praw  - install
+
+import praw
+import pandas as pd
+
+print("******************")
+print("Shipra Jana - 014")
+print("******************")
+
+#https://www.youtube.com/watch?v=NRgfgtzIhBQ
+#Watch start 4 mins to get client_id,client_secret,user_agent
+#after adding above mentioned than only it will work
+
+reddit = praw.Reddit(client_id='PchAOkUNcBteGiXsjrGiSg', #removed trailing space
+                     client_secret='QyzHLj77qxdx1zwNM7flUjRsbj6bdQ', #removed trailing space
+                     user_agent='Shipra_014')
+
+sub_name = input("enter the Keyword - ")
+max_posts = 5
+
+# Enable read-only mode
+reddit.read_only = True
+
+title=[]
+
+for submission in reddit.subreddit(sub_name).new(limit=max_posts):
+ title.append(submission.title)
+
+print(title)
+
+df = pd.DataFrame(title,columns=['Title'])
+print(df)
+
+print("******************")
+print("Shipra Jana - 014")
+print("******************")
 
 
 `;
