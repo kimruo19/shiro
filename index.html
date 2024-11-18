@@ -37,488 +37,1090 @@
 
 <body>
 
-    <button onclick="copyText(text1)">1-Spam Classifier</button>
-    <button onclick=" copyText(text2)">2-Association-Apriori Algorithm</button>
-    <button onclick="copyText(text3)">3-Crawler web search user defined</button>
-    <button onclick="copyText(text4)">4-Sentiment Analysis </button>
-    <button onclick="copyText(text5)">5-Link Analysis & PageRank</button>
-    <button onclick="copyText(text6)">6-Scrape Online Social Media </button>
-    <button onclick="copyText(text7)">7-Web Crawling & Indexing</button>
-    <button onclick="copyText(text8)">8-Focused crawler-Reddit</button>
+    <button onclick="copyText(text1)">1-Color Maps</button>
+    <button onclick=" copyText(text2)">2-Geospatial Visualization with GeoPandas</button>
+    <button onclick="copyText(text3)">3-Geospatial Visualization with Folium</button>
+    <button onclick="copyText(text4)">4-Current Position of the Moon Using Astropy</button>
+    <button onclick="copyText(text5)">5A-Daily COVID-19 Case (line)</button>
+    <button onclick="copyText(text6)">5B-Monthly COVID-19 Case (bar)</button>
+    <button onclick="copyText(text7)">6-Linear Regression (Diabetes Data)</button>
+    <button onclick="copyText(text8)">7-Word Cloud</button>
+    <button onclick="copyText(text9)">8A-Cassandra (Basic Commands)</button>
+    <button onclick="copyText(text10)">8B-KeySpace Creation</button>
+    <button onclick="copyText(text11)">9A-OpenCV (Frames from Video)</button>
+    <button onclick="copyText(text12)">9B-Video from Image Frames</button>
+    <button onclick="copyText(text13)">10A-MongoDB (python)</button>
+    <button onclick="copyText(text14)">10B-MongoDB (R)</button>
+    <button onclick="copyText(text15)">11A-Horus (Audio to CSV File)</button>
+    <button onclick="copyText(text16)">11B-Hours (Image to CSV File)</button>
+    <button onclick="copyText(text17)">12A-Data Analysis (Binning)</button>
+    <button onclick="copyText(text18)">12B-Location Coordinates Average</button>
+    <button onclick="copyText(text19)">12C-Random Coordinates and Plottig Using Basemap</button>
     
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `#Pract 1-Spam Classifier
+        var text1 = `#Pract 1 - Color Maps 
 
-        # Pract 1 - Perform Spam Classifier
+# Exploring Color Maps in Matplotlib: Visualizing Random Data with Different Color Schemes.
 
-# Spam Classifier
-
-import tensorflow as tf
+import matplotlib.pyplot as plt
 import numpy as np
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-dataset = (
-    "Hey, You got a lottery worth of $1000000!",
-    "Can we have a lunch today?",
-    "Congratulations, you won a prize in RummyCircle!",
-    "An amount of $10000 has been credited to your Poker Account",
-    "Your meeting will start at 5:00PM Today",
-    "it's an important call for you"
-)
-
-label = (1, 0, 1, 1, 0, 0)
-
-max_words, word_len = 1000, 50
-
-tokenizer = Tokenizer(num_words=max_words, oov_token="<OOV>")
-tokenizer.fit_on_texts(dataset)
-sequences = tokenizer.texts_to_sequences(dataset)
-padded_sequences = pad_sequences(sequences, maxlen=word_len, padding='post', truncating='post')
-
-
-# Constructing a Neural Network
-
-model = tf.keras.Sequential([
-    tf.keras.layers.Embedding(input_dim=max_words, output_dim=16, input_length=word_len),
-    tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(16, activation='relu'), # adding hidden layer with 16 nodes (depend on output dimension)
-    tf.keras.layers.Dense(1, activation='sigmoid')
-])
-
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-training_sequence = np.array(padded_sequences)
-training_label = np.array(label)
-
-model.fit(training_sequence, training_label, epochs=10)
-
-def check_is_spam(email, threshold=0.5):
-    sequence = tokenizer.texts_to_sequences([email])
-    padded_sequence = pad_sequences(sequence, maxlen=word_len, padding='post', truncating='post')
-    prediction = model.predict(padded_sequence)[0][0]
-
-    if prediction > threshold:
-        print(f"Probably Spam mail, Score: {prediction:.2f}")
-    else:
-        print(f"Probably Not a Spam mail, Score: {prediction:.2f}")
-
-#check_is_spam("hey, congratulations you won a lottery of $200")
-check_is_spam("You have meeting today at 3:00 PM")
-
-print("\nCoded By: Shipra Jana, Roll no. 014")
+for i in plt.colormaps():
+  sTitle='\n Shipra Jana - 014 \n\n Color Map:' + i
+  fig=plt.figure(figsize=(10, 10))
+  plt.title(sTitle)
+  imgplot = plt.imshow(np.random.rand(10,10))
+  if i != "cividis":
+    imgplot.set_cmap(i)
+    plt.show()
+  else:
+    break
+        
 
     `;
 
-        var text2 = ` #Pract 2-Association-Apriori Algorithm
+        var text2 = ` #Pract 2 - Geospatial Visualization with GeoPandas
 
-        # Pract 2 - Association Mining using Apriori Algorithm
-
-        # Remove --> , num_itemsets='support' - this in Pycharm
-
-
-# Import required libraries for association Mining using Apriori Algorithm
-from mlxtend.frequent_patterns import apriori
-from mlxtend.frequent_patterns import association_rules
-import pandas as pd
-print("***********************")
-print("Shipra Jana 014")
-print("***********************")
-
-# Sample Transaction Dataset
-dataset = [
-           ['milk', 'bread', 'nuts'],
-           ['milk', 'bread'],
-           ['milk', 'eggs', 'nuts'],
-           ['milk', 'bread', 'eggs'],
-           ['bread', 'nuts'],
-          ]
-'''print("Sample Transaction Dataset")
-print(dataset)'''
-
-print("Sample Transaction Dataset:")
-# Print each transaction on a new line
-for transaction in dataset:
-    print(transaction)
-
-# Convert the dataset to a pandas dataframe
-df = pd.DataFrame(dataset)
-print("Transaction database: ")
-print(df)
-
-# Perform one-hot encoding(convert items to column)
-df_encoded = pd.get_dummies(df, prefix='', prefix_sep='')
-print("Transaction encoded: ")
-print(df_encoded)
-
-# Find frequent itemsets using Apriori
-frequewnt_itemsets = apriori(df_encoded, min_support=0.5, use_colnames=True)
-print("Frequent  itemsets: ")
-print(frequewnt_itemsets)
-
-# Generation Association Rules
-rules = association_rules(frequewnt_itemsets, metric="lift", min_threshold=1, num_itemsets='support')
-print("Association Rules: ")
-print(rules)
-print("*********************")
-print("Shipra Jana 014")
-print("*********************")
-
-`;
-
-        var text3 = ` # Practical No 3 - Crawler web search user defined
-
-# https://www.shipra.in - use failed to retrive
-# Develop a basic crawler for the web search for user defined keywords.
-
-#Libraries Required
-import requests
-from bs4 import BeautifulSoup
-import re
-
-print("******************")
-print("Shipra Jana - 014")
-print("******************")
+# Geospatial Visualization with GeoPandas
+# Downlaod file paste in the path and add
 
 
-def crawl_and_search(url, keyword):
-    try:
-        # Fetch the content from the URL
-        response = requests.get(url)
-        response.raise_for_status()  # Check if the request was successful
-        page_content = response.text
-
-        # Parse the content using BeautifulSoup
-        soup = BeautifulSoup(page_content, 'html.parser')
-
-        # Extract the text from the page
-        text = soup.get_text()
-
-        # Search for the keyword in the text
-        if re.search(keyword, text, re.IGNORECASE):
-            print(f"Keyword '{keyword}' found in {url}")
-        else:
-            print(f"Keyword '{keyword}' not found in {url}")
-
-    except requests.exceptions.RequestException as e:
-        print(f"Failed to retrieve {url}: {e}")
-
-# Define the URL and the keyword to search for
-url = input("Enter the URL to crawl: ")
-keyword = input("Enter the keyword to search for: ")
-
-# Start the crawling process
-crawl_and_search(url, keyword)
-
-print("******************")
-print("Shipra Jana - 014")
-print("******************")
-        
-  `;
-  
-        var text4 = ` # Pract 4 - Sentiment Analysis 
-
-
-# Sentiment analysis for reviews by customers and visualize the same.
-
-
-import nltk
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
+# !pip install geopandas
+import geopandas as gpd
 import matplotlib.pyplot as plt
-import seaborn as sns
+from shapely.geometry import Point
 
-print("*******************")
-print("Shipra Jana 014")
-print("*******************")
+# Load the shapefile
+india_gdf = gpd.read_file('geoBoundaries-IND-ADM1.geojson') #look at the #rd Cell for variables
 
-# Step 1: Download VADER lexicon if not already done
-nltk.download('vader_lexicon')
-# Step 2: Initialize the VADER sentiment intensity analyzer
-sia = SentimentIntensityAnalyzer()
-# Step 3: List of customer reviews
-reviews = [
-    "The product quality is amazing, I'm very satisfied!",
-    "Terrible service, I will never buy from here again.",
-    "Decent product, but shipping was too slow.",
-    "Absolutely love it! Will recommend to everyone.",
-    "Not worth the money, very disappointing.",
-    "Great experience overall, but could improve the packaging.",
-    "Mediocre, not what I expected.",
-    "Excellent value for the price, highly recommended.",
-    "Worst purchase I've made this year.",
-    "It's okay, nothing special."
-]
-# Step 4: Analyze sentiment for each review
-sentiments = []
-for review in reviews:
-    sentiment_score = sia.polarity_scores(review)
-    compound_score = sentiment_score['compound']
-    if compound_score >= 0.05:
-        sentiments.append('Positive')
-    elif compound_score <= -0.05:
-        sentiments.append('Negative')
-    else: sentiments.append('Neutral')
-# Step 5: Count the occurrences of each sentiment
-sentiment_counts = {
-    'Positive': sentiments.count('Positive'),
-     'Negative': sentiments.count('Negative'),
-    'Neutral': sentiments.count('Neutral')
-}
+# Mumbai City
+mumbai = gpd.GeoDataFrame([{'City': 'Mumbai', 'geometry': Point(72.877, 19.0760)}], crs="EPSG:4326")
 
-# Step 6: Visualization
-sns.set(style="whitegrid")
-plt.figure(figsize=(8, 6))
-sns.barplot(x=list(sentiment_counts.keys()), y=list(sentiment_counts.values()),
-            palette="viridis")
-plt.title('\nKSMSCIT014 SHIPRA JANA \n\n Sentiment Analysis of Customer Reviews\n')
-plt.xlabel('\nSentiment \n\n Shipra Jana 014\n')
-plt.ylabel('Number of Reviews')
+# Plot
+fig, ax = plt.subplots(figsize=(7, 7))
+india_gdf.plot(ax=ax, color='white', edgecolor="black")
+mumbai.plot(ax=ax, color='red')
+
+# Add Mumbai label and title
+ax.text(72.877, 19.0760, 'Mumbai', fontsize=10, fontweight='bold', color='black')
+plt.title("Bharat\n\nKSMSCIT014 - Shipra Jana", fontsize=10, fontweight='bold')
+
+# Remove axis and display
+ax.set_axis_off()
 plt.show()
 
 
 `;
 
-        var text5 = `# Pract 5 - Link Analysis & PageRank
+        var text3 = ` # Practical No 3 - Geospatial Visualization with Folium
+
+# Interactive Geospatial Visualization with Folium: Mapping Major Cities of India
+# geojson = 'https://drive.google.com/file/d/1hzbA2QCGFXFOxW6mdGCybP-tz0ME50Kx/view?usp=drive_link'
+# run - open - india_cities_map.html - open in browser - choose enter
+
+import folium
+import requests
+
+print("***********************")
+print("Shipra Jana - 014")
+print("***********************")
+
+# Create a map centered around India
+m = folium.Map(location=[20.5937, 78.9629], zoom_start=5)
+
+# GeoJSON data for India's borders
+geojson_data = requests.get("https://raw.githubusercontent.com/python-visualization/folium/master/examples/data/world-countries.json").json()
+
+# Highlight India's boundary and add markers
+folium.GeoJson(geojson_data, name="India", highlight_function=lambda x: {'fillColor': 'green'}).add_to(m)
+
+# List of cities with their names, locations, and populations
+cities = [
+    {"name": "New Delhi", "location": [28.6139, 77.2090], "population": "21.75 million"},
+    {"name": "Mumbai", "location": [19.0760, 72.8777], "population": "20.18 million"},
+    {"name": "Bengaluru", "location": [12.9716, 77.5946], "population": "8.42 million"},
+    {"name": "Chennai", "location": [13.0827, 80.2707], "population": "10.97 million"},
+    {"name": "Kolkata", "location": [22.5726, 88.3639], "population": "14.85 million"}
+]
+
+# Add markers for each city
+for city in cities:
+    folium.Marker(city['location'], popup=f"<b>{city['name']}</b><br>Population: {city['population']}", tooltip=city['name']).add_to(m)
+
+# Save and display the map
+m.save("india_cities_map.html")
+m
 
 
-# Page Rank Algorithm | Apply the PageRank algorithm to a small web graph and analyze the results.
+        
+  `;
+  
+        var text4 = ` # Pract 4 - Current Position of the Moon Using Astropy  
 
-print("*********************")
-print("Shipra Jana 014")
-print("*********************")
+# Calculating and Visualizing the Current Position of the Moon Using Astropy
 
-# Import the necessary library
-import networkx as nx
 
-# Create a random directed graph with 'n' nodes, where each node has 'k' outgoing edges.
-# The 'alpha' parameter determines the probability of connecting nodes.
-G = nx.random_k_out_graph(n=8, k=2, alpha=0.75)
+from astropy.coordinates import solar_system_ephemeris, get_body, AltAz, EarthLocation
+import astropy.units as u
+from astropy.time import Time
+import matplotlib.pyplot as plt
 
-# Define a function to draw the graph with labels and bold font for clarity
-def draw_graph(G):
-    nx.draw(G, with_labels=True, font_weight='bold', node_size=400)
+# Set matplotlib backend
+import matplotlib
+matplotlib.use('TkAgg')  # Use the TkAgg backend
 
-# Draw the generated graph
-draw_graph(G)
+# Set solar system ephemeris
+solar_system_ephemeris.set('builtin')
 
-# Calculate PageRank values for each node in the graph.
-# The 'alpha' parameter (usually set to 0.85) represents the probability of continuing the walk to a random connected node.
-ranks_pr = nx.pagerank(G=G, alpha=0.85)
+# Print details
+print("***********************")
+print("Shipra Jana - 014")
+print("***********************")
 
-'''# Print the PageRank values
-print("Page Rank: ")
-print(ranks_pr)'''
+# Get the current UTC time
+time_utc = Time.now()
+print(f"Current UTC Time: {time_utc}")
 
-# Print the PageRank values line by line
-print("Page Rank: ")
-for node, rank in ranks_pr.items():
-    print(f"Node {node}: {rank}")
+# Get Moon's position
+moon = get_body("moon", time_utc)  # Updated function call
+location = EarthLocation.of_site('Kitt Peak')
 
-print("*********************")
-print("Shipra Jana 014")
-print("*********************")
+# Transform Moon's position to AltAz
+moon_altaz = moon.transform_to(AltAz(obstime=time_utc, location=location))
+print(f'Moon coordinates (RA, Dec): {moon.ra}, {moon.dec}')
+print(f'Moon Altitude: {moon_altaz.alt}')
+print(f'Moon Azimuth: {moon_altaz.az}')
+
+# Plot Moon's position
+plt.figure(figsize=(10, 8))
+plt.subplot(111, projection='polar')
+plt.title('\n Shipra Jana - 014 \n\n Moon Position', y=1.1)
+plt.polar(moon.ra.radian, moon.dec.radian, 'o', markersize=10, label='Shipra Jana - 014 \n\nMoon Position')
+plt.grid(True)
+plt.legend()
+plt.show(block=True)  # Keeps the plot open until manually closed
+
 
 
 `;
 
-        var text6 = `# Pract 6 - Scrape Online Social Media 
+        var text5 = `# Pract 5A - Daily COVID-19 Case (line)
 
-# Scrape an online Social Media Site for Data. Use Python to scrape information from any website.
+# Visualizing New COVID-19 Cases Using Plotly Express:
+# •	Daily COVID-19 Case Trends: A Line Plot Visualization
 
-# Import necessary libraries
-import requests
-from bs4 import BeautifulSoup
+import pandas as pd
+import plotly.express as px
 
-print("*******************")
-print("Shipra Jana 014")
-print("*******************")
+# Load dataset from the internet (Johns Hopkins COVID-19 dataset)
+url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/jhu/total_cases.csv"
+df = pd.read_csv(url)
 
-# Define a function to scrape data from a website and check for a specific word
-def check_word_in_webpage(url, word):
-    # Send a GET request to the specified URL
-    response = requests.get(url)
+# Convert 'date' column to datetime
+df['Date'] = pd.to_datetime(df['date'])
 
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Parse the webpage content using BeautifulSoup
-        soup = BeautifulSoup(response.content, 'html.parser')
+# Calculate new cases (daily difference)
+df['New Cases'] = df['World'].diff()
 
-        # Extract all text content from the webpage
-        text_content = soup.get_text()
+# Filter out rows with missing new case values
+df = df.dropna(subset=['New Cases'])
 
-        # Check if the specified word is present in the text content (case insensitive)
-        if word.lower() in text_content.lower():
-            print(f"The word '{word}' is present in the webpage.")
-        else:
-            print(f"The word '{word}' is not present in the webpage.")
-    else:
-        # Print an error message if the webpage could not be retrieved
-        print("Failed to retrieve webpage.")
+# Daily COVID-19 Case Trends: Line Plot
+fig_daily = px.line(df, x='Date', y='New Cases',
+                    title="Daily COVID-19 Case Trends KSMSCIT014 - Shipra Jana",
+                    labels={'New Cases': 'New Cases Per Day', 'Date': 'Date'})
+fig_daily.show()
 
-# Prompt the user to enter the URL of the webpage they want to scrape
-url = input("Enter the URL you want to scrape: ")
+# Create a 'Month' column from 'Date'
+df['Month'] = df['Date'].dt.to_period('M').astype(str)  # Convert Period to string
 
-# Prompt the user to enter the word they want to check for in the webpage
-word_to_check = input("Enter the text you want to check for presence in the webpage: ")
+# Group by 'Month' and sum 'New Cases'
+monthly_data = df.groupby('Month')['New Cases'].sum().reset_index()
 
-# Call the function to scrape the webpage and check for the specified word
-check_word_in_webpage(url, word_to_check)
+# Monthly COVID-19 Case Trends: Bar Plot
+fig_monthly = px.bar(monthly_data, x='Month', y='New Cases',
+                     title='Monthly COVID-19 Case Trends' +'\n' +'KSMSCIT014 - Shipra Jana' ,
+                     labels={'New Cases': 'Total New Cases', 'Month': 'Month'})
+fig_monthly.show()
 
-print("*******************")
-print("Shipra Jana 014")
-print("*******************")
+
+
+
+`;
+
+        var text6 = `# Pract 5B - Monthly COVID-19 Case (bar)
+
+
+# Visualizing New COVID-19 Cases Using Plotly Express:
+# •	Daily COVID-19 Case Trends: A Line Plot Visualization
+
+import pandas as pd
+import plotly.express as px
+
+# Load dataset from the internet (Johns Hopkins COVID-19 dataset)
+url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/jhu/total_cases.csv"
+df = pd.read_csv(url)
+
+# Convert 'date' column to datetime
+df['Date'] = pd.to_datetime(df['date'])
+
+# Calculate new cases (daily difference)
+df['New Cases'] = df['World'].diff()
+
+# Filter out rows with missing new case values
+df = df.dropna(subset=['New Cases'])
+
+# Daily COVID-19 Case Trends: Line Plot
+fig_daily = px.line(df, x='Date', y='New Cases',
+                    title="Daily COVID-19 Case Trends KSMSCIT014 - Shipra Jana",
+                    labels={'New Cases': 'New Cases Per Day', 'Date': 'Date'})
+fig_daily.show()
+
+# Create a 'Month' column from 'Date'
+df['Month'] = df['Date'].dt.to_period('M').astype(str)  # Convert Period to string
+
+# Group by 'Month' and sum 'New Cases'
+monthly_data = df.groupby('Month')['New Cases'].sum().reset_index()
+
+# Monthly COVID-19 Case Trends: Bar Plot
+fig_monthly = px.bar(monthly_data, x='Month', y='New Cases',
+                     title='Monthly COVID-19 Case Trends' +'\n' +'KSMSCIT014 - Shipra Jana' ,
+                     labels={'New Cases': 'Total New Cases', 'Month': 'Month'})
+fig_monthly.show()
+
 
 `;
    
-        var text7 = `# Pract 7 - Web Crawling & Indexing
+        var text7 = `# Pract 6 - Linear Regression (Diabetes Data)
+
+# Linear Regression Analysis of Diabetes Data: Predicting Age from BMI
+
+import numpy as np
+from sklearn import datasets, linear_model
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
+import plotly.graph_objs as go
+import plotly.express as px
+
+# Load the diabetes dataset
+diabetes = datasets.load_diabetes()
+
+# Use only the BMI feature (column 2)
+diabetes_X = diabetes.data[:, np.newaxis, 2]
+
+# Split the data into training/testing sets (80% train, 20% test)
+diabetes_X_train, diabetes_X_test, diabetes_y_train, diabetes_y_test = train_test_split(
+    diabetes_X, diabetes.target, test_size=0.2, random_state=42
+)
+
+# Create linear regression object
+regr = linear_model.LinearRegression()
+
+# Train the model using the training sets
+regr.fit(diabetes_X_train, diabetes_y_train)
+
+# Make predictions using the testing set
+diabetes_y_pred = regr.predict(diabetes_X_test)
+
+# Output the coefficients
+print('Coefficients:', regr.coef_)
+
+# Calculate and print the mean squared error
+print("Mean squared error: %.2f" % mean_squared_error(diabetes_y_test, diabetes_y_pred))
+
+# Calculate and print the variance score (R^2)
+print('Variance score: %.2f' % r2_score(diabetes_y_test, diabetes_y_pred))
+
+# Prepare data for interactive plotting
+scatter_trace = go.Scatter(
+    x=diabetes_X_test.flatten(),
+    y=diabetes_y_test,
+    mode='markers',
+    name='Actual values',
+    marker=dict(size=8, color='blue', line=dict(width=1)),
+    text=[f"BMI: {x:.2f}, Progression: {y:.2f}" for x, y in zip(diabetes_X_test.flatten(), diabetes_y_test)],  # Hover text
+    hoverinfo="text"
+)
+
+line_trace = go.Scatter(
+    x=diabetes_X_test.flatten(),
+    y=diabetes_y_pred,
+    mode='lines',
+    name='Regression line',
+    line=dict(color='red', width=2),
+    hoverinfo="skip"  # No hover information for the line
+)
+
+# Define layout for Plotly
+layout = go.Layout(
+    title="Diabetes Progression vs BMI | KSMSCIT014 - Shipra Jana",
+    xaxis=dict(title='BMI'),
+    yaxis=dict(title='Disease Progression'),
+    hovermode="closest",  # Hover mode for tooltips
+    template="plotly",  # Aesthetic template
+    showlegend=True,
+    width=1200
+)
+
+# Create the figure and add the traces
+fig = go.Figure(data=[scatter_trace, line_trace], layout=layout)
+print("KSMSCIT014 - Shipra Jana")
+
+# Show the figure
+fig.show()
 
 
-# Web Crawling and Indexing
-# a) Develop a web crawler to fetch and index a web page.
-# Handle challenges such as robots.txt, dynamic content and crawling delays.
+`;
+
+var text8 = `# Pract 7 - Word Cloud 
+
+# Creating a Word Cloud
+
+from wordcloud import WordCloud #STOPWORDS
+import matplotlib.pyplot as plt
+
+text ="“SHIPRA_JANA. Grit. Power. Relentless. Edge. Fearless. Unstoppable. Fury. Strength. Chaos. Vibe. Roar. Apex. Bold. Thrill."
+wordcloud=WordCloud().generate(text)
+plt.figure(figsize=(12,12))
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.show()
+
+print("Shipra Jana - 014")
 
 
-# !pip install nltk  -- download
-import nltk
-import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-import re
+`;
+
+var text9 = `# Pract 8A - Cassandra (Basic Commands)
+
+#A -  Basic Commands
+
+#C:\apache-cassandra-3.11.3\bin>cassandra
+#Cassandra
+#cqlsh
+#help;
+#show host;
+#show version;
+#consistency;
+
+# B - KeySpace Creation.
+
+#describe cluster;
+#CREATE KEYSPACE ShipraJana WITH replication = {'class':'SimpleStrategy', 'replication_factor':3};
+#USE ShipraJana;
+#CREATE TABLE students(
+#             ... id UUID PRIMARY KEY,
+#              ... name text,
+#              ... age int,
+#              ... department text
+#                  );
+
+#INSERT INTO students (id, name, age, department) VALUES (uuid(), 'Shipra Jana', 14, 'MscIT');
+#SELECT * FROM students;
+#describe keyspaces;
+#describe tables;
 
 
-print("*********************")
-print("Shipra Jana 014")
-print("*********************")
+`;
 
-# Ensure that the required NLTK data is downloaded
-nltk.download('stopwords')
-nltk.download('punkt')
-# Download the 'punkt_tab' data package
-nltk.download('punkt_tab')  # This line is added to fix the error
+var text10 = `# Pract 8B - KeySpace Creation
 
-# Stop words (to filter out common words)
-stop_words = set(stopwords.words('english'))
+#A -  Basic Commands
 
-# Seed URLs (updated with real URLs for testing)
-seed_urls = [
-    'https://www.bbc.com/news',
-    'https://edition.cnn.com',
-    'https://www.theguardian.com',
-    'https://www.yelp.com/search?find_desc=Restaurants&find_loc=New+York%2C+NY',
-    'https://ny.eater.com'
+#C:\apache-cassandra-3.11.3\bin>cassandra
+
+#Start Cassandra Service
+#C:\apache-cassandra-3.11.3\bin>Cassandra
+#	Cassandra
+
+#Launch Cassandra Query Language Shell (CQLSH)
+#	cqlsh
+
+#Provides help and lists available commands in the Cassandra shell.
+#	help;
+
+#Displays the connected host.
+#	show host;
+
+#Displays the version of Cassandra.
+#	show version;
+
+#Shows the current consistency level for reads and writes.
+#	consistency;
+
+
+
+# B - KeySpace Creation.
+
+
+#Provides details about the current cluster configuration.
+#	describe cluster;
+
+#Create a new Keyspaces
+#	CREATE KEYSPACE ShipraJana WITH replication = {'class':'SimpleStrategy', 'replication_factor':3};
+
+
+#Use Keyspace: After creating a keyspace, you need to select it to run queries within it:
+#	USE ShipraJana;
+
+#	Create Table: You can create tables within your keyspace, for example:
+#	CREATE TABLE students{...}
+
+#	CREATE TABLE students(
+#             ... id UUID PRIMARY KEY,
+#              ... name text,
+#              ... age int,
+#              ... department text
+#                  );
+
+
+#Insert Data: To insert data into your table:
+#	INSERT INTO students (id, name, age, department) VALUES (uuid(), 'Shipra Jana', 14, 'MscIT');
+
+
+#Select Data: Fetch data from the table:
+#	SELECT * FROM students;
+
+#Shows all the keyspaces in the database.
+#	describe keyspaces;
+
+#Lists the tables in the current keyspace (ensure you have a keyspace selected).
+#	describe tables;
+
+
+
+
+`;
+
+var text11 = `# Pract 9A - OpenCV (Frames(IMG) from Video)
+
+# Video to Img
+
+# Using OpenCV and File Management Libraries
+
+# Utility Start Movie to HORUS (Part 1) ======================
+# Standard Tools
+#=============================================================
+import os
+import shutil
+import cv2
+#=============================================================
+print('Shipra Jana 014')
+# sInputFileName="/content/shinchan.gif"
+# sDataBaseDir="C:/Users/shipra/Desktop/KC/SEM 3/DSI/Images"  # path to save
+sInputFileName="shinchan.gif"
+sDataBaseDir="IMG"
+if os.path.exists(sDataBaseDir):
+    pass  # Add code to execute if the directory exists
+    pass  # Add code to execute if the directory exists
+    shutil.rmtree(sDataBaseDir)
+if not os.path.exists(sDataBaseDir):
+    os.makedirs(sDataBaseDir)
+print('=====================================================')
+print('Start Movie to Frames')
+print('=====================================================')
+vidcap = cv2.VideoCapture(sInputFileName)
+success,image = vidcap.read()
+count = 0
+while success:
+    # Moved read to the beginning of the loop to ensure a frame is read before writing.
+    success,image = vidcap.read()
+    if not success:
+        break # Exit the loop if no frame is read
+
+    sFrame=sDataBaseDir + str('/pic-frame-' + str(format(count, '04d')) + '.jpg')
+    print('Extracted: ', sFrame)
+    cv2.imwrite(sFrame, image)
+    if os.path.getsize(sFrame) == 0:
+        count += -1
+        os.remove(sFrame)
+        print('Removed: ', sFrame)
+    if cv2.waitKey(10) == 27: # exit if Escape is hit
+        break
+    if count > 5000: # exit
+        break
+    count += 1
+print('=====================================================')
+print('Generated : ', count, ' Frames')
+print('=====================================================')
+print('Movie to Frames HORUS - Done')
+print('=====================================================')
+# Utility done ===============================================
+
+
+`;
+
+var text12 = `# Pract 9B - Video from Image Frames
+
+# Img to Video
+
+# Reconstructing a Video from Image Frames.
+
+import os
+import cv2
+from PIL import Image
+
+# Checking the current directory path
+print(os.getcwd())
+
+# Folder which contains all the images from which video is to be generated
+os.chdir(r"C:\Users\shipra\PycharmProjects\DSI\Image")   # images
+path = r"C:\Users\shipra\PycharmProjects\DSI\Image"      # save video
+
+mean_height = 0
+mean_width = 0
+
+num_of_images = len(os.listdir('.'))
+# print(num_of_images)
+
+for file in os.listdir('.'):
+    if file.endswith(".jpg") or file.endswith(".jpeg") or file.endswith(".png"):
+        im = Image.open(os.path.join(path, file))
+        width, height = im.size
+        mean_width += width
+        mean_height += height
+        # im.show() # uncomment this for displaying the image
+
+# Finding the mean height and width of all images
+# This is required because the video frame needs to be set with the same width and height.
+mean_width = int(mean_width / num_of_images)
+mean_height = int(mean_height / num_of_images)
+
+# print(mean_height)
+# print(mean_width)
+
+# Resizing of the images to give them the same width and height
+for file in os.listdir('.'):
+    if file.endswith(".jpg") or file.endswith(".jpeg") or file.endswith(".png"):
+        # opening image using PIL Image
+        im = Image.open(os.path.join(path, file))
+
+        # im.size includes the height and width of the image
+        width, height = im.size
+        print(width, height)
+
+        # resizing
+        imResize = im.resize((mean_width, mean_height), Image.Resampling.LANCZOS)
+        imResize.save(file, 'JPEG', quality=95)  # Set the quality for the saved image
+
+        # printing each resized image name
+        print(im.filename.split('\\')[-1], " is resized")
+
+
+# Video Generating function
+def generate_video():
+    image_folder = '.'  # Make sure to use your folder
+    video_name = 'mygeneratedvideo.avi'
+
+    images = [img for img in os.listdir(image_folder)
+              if img.endswith(".jpg") or
+              img.endswith(".jpeg") or
+              img.endswith(".png")]
+
+    # Array images should only consider the image files ignoring others if any
+    print(images)
+
+    frame = cv2.imread(os.path.join(image_folder, images[0]))
+
+    # Setting the frame width and height based on the first image
+    height, width, layers = frame.shape
+
+    video = cv2.VideoWriter(video_name, cv2.VideoWriter_fourcc(*'DIVX'), 1, (width, height))
+
+    # Appending the images to the video one by one
+    for image in images:
+        video.write(cv2.imread(os.path.join(image_folder, image)))
+
+    # Deallocating memories taken for window creation
+    cv2.destroyAllWindows()
+    video.release()  # Releasing the video generated
+
+
+# Calling the generate_video function
+generate_video()
+
+
+`;
+
+var text13 = `# Pract 10A - MongoDB (python)
+
+# MongoDB - python
+
+from pymongo import MongoClient
+
+client = MongoClient('mongodb+srv://shipra191122:sXdAQft7csi7mfy@cluster0.yrbbf.mongodb.net/?retryWrites=true&w=majority')
+
+db = client['mydatabase']
+collection = db['pymongo2']
+
+document = [
+    {"_Id": "Moin1911","name": "Moin", "city": "Delhi"},
+    {"_Id": "Sam123","name": "Samira", "city": "Kolkata"},
+    {"_Id":"Iqra789","name": "Iqra", "city": "Ahemdabad"},
 ]
 
-# Keywords to focus on
-keywords = ['restaurant', 'food', 'local']
+insert_doc = collection.insert_many(document)
 
-# Visited URLs
-visited = set()
+for doc_id in insert_doc.inserted_ids:
+  print(f"Inserted Document IDs: {doc_id}")
 
-def is_relevant(content, keywords):
-    """
-    Check if the content is relevant based on the keywords.
-    """
-    words = word_tokenize(content.lower())
-    words = [w for w in words if w.isalnum() and w not in stop_words]
-    return any(keyword in words for keyword in keywords)
+client.close()
 
-def crawl(url):
-    """
-    Crawl a single webpage.
-    """
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an HTTPError for bad responses
-        soup = BeautifulSoup(response.content, 'html.parser')
-        text = soup.get_text()
 
-        # Check if the content is relevant
-        if is_relevant(text, keywords):
-            print(f"Relevant content found at: {url}")
-            # Here you could save the content to a file or database
+`;
 
-        # Extract links and follow them
-        for link in soup.find_all('a', href=True):
-            new_url = urljoin(url, link['href'])
-            if new_url not in visited and re.match(r'^https?://', new_url):
-                visited.add(new_url)
-                crawl(new_url)
-    except requests.exceptions.RequestException as e:
-        print(f"Error crawling {url}: {e}")
-
-# Start crawling from the seed URLs
-for url in seed_urls:
-    if url not in visited:
-        visited.add(url)
-        crawl(url)
-
-print("*********************")
-print("Shipra Jana 014")
-print("*********************")
-
+var text14 = `# Pract 10B - MongoDB (R)
 
 
 
 `;
 
-var text8 = `# Pract 8 - Focused crawler-Reddit
+var text15 = `# Pract 11A - Horus (Audio to CSV File)
 
 
-# 1)	Create a REDDIT Account First.
-# 2)	Go to Reddit /Preferences /Apps.  https://www.reddit.com/prefs/apps
-# 3)	Create an application.
-# 4)	Client_id, Client_secret will be generated.
-# Client_id - PchAOkUNcBteGiXsjrGiSg  |  Client_secret - QyzHLj77qxdx1zwNM7flUjRsbj6bdQ
+# Multi Audio File Conversation to Hours
+
+# https://drive.google.com/drive/folders/1G5lEkMhzLkUS-1gfJVr0wMOUNPuqYjCs?usp=drive_link
+
+# 4 - Channel
 
 
-# Develop a focused crawler for local search(Use Reddit).
 
-#User defined keyword webcrawling- Reddit Subs
-#Libraries Required
-# pip install praw  - install
 
-import praw
+from scipy.io import wavfile
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+# Function to plot audio signal
+def plot_info(aname, a, r):
+    sTitle = 'Signal Wave - ' + aname + ' at ' + str(r) + ' Hz'
+    plt.title(sTitle)
+    sLegend = []
+    if len(a.shape) == 1:  # Single channel audio
+        plt.plot(a, label='Mono Channel')
+        sLegend = ['Mono Channel']
+    else:  # Multi-channel audio
+        for c in range(a.shape[1]):
+            sLabel = 'Ch' + str(c + 1)
+            sLegend.append(sLabel)
+            plt.plot(a[:, c], label=sLabel)
+    plt.legend(sLegend)
+    plt.xlabel("Samples")
+    plt.ylabel("Amplitude")
+    plt.show()
+
+
+# Function to display information and process audio
+def show_info(aname, a, r):
+    print(f"Audio: {aname}\n")
+    print(f"Rate: {r}\n")
+    print(f"Shape: {a.shape}\n")
+    plot_info(aname, a, r)
+
+
+# Main script
+sInputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/4ch-sound.wav'  # Update this to the correct path of your .wav file
+sOutputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/HORUS-Audio-4ch.csv'  # Update this to the desired output path
+
+try:
+    print('Processing:', sInputFileName)
+    InputRate, InputData = wavfile.read(sInputFileName)  # Read .wav file
+    show_info("Audio File", InputData, InputRate)
+
+    # Convert to DataFrame
+    ProcessData = pd.DataFrame(InputData)
+    if len(InputData.shape) > 1:
+        sColumns = [f"Ch{i + 1}" for i in range(InputData.shape[1])]
+    else:
+        sColumns = ["Mono Channel"]
+    ProcessData.columns = sColumns
+
+    # Save as CSV
+    ProcessData.to_csv(sOutputFileName, index=False)
+    print(f"CSV saved successfully at: {sOutputFileName}")
+except FileNotFoundError:
+    print(f"Error: File not found at {sInputFileName}. Please check the path.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+
+
+
+
+
+
+# 6 - Channel
+
+
+'''
+
+from scipy.io import wavfile
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Function to plot audio signal
+def plot_info(aname, a, r):
+    sTitle = 'Signal Wave - ' + aname + ' at ' + str(r) + ' Hz'
+    plt.title(sTitle)
+    sLegend = []
+    if len(a.shape) == 1:  # Single channel audio
+        plt.plot(a, label='Mono Channel')
+        sLegend = ['Mono Channel']
+    else:  # Multi-channel audio
+        for c in range(a.shape[1]):
+            sLabel = 'Ch' + str(c + 1)
+            sLegend.append(sLabel)
+            plt.plot(a[:, c], label=sLabel)
+    plt.legend(sLegend)
+    plt.xlabel("Samples")
+    plt.ylabel("Amplitude")
+    plt.show()
+
+
+# Function to display information and process audio
+def show_info(aname, a, r):
+    print(f"Audio: {aname}\n")
+    print(f"Rate: {r} Hz\n")
+    print(f"Shape: {a.shape}\n")
+    plot_info(aname, a, r)
+
+
+# Main script
+sInputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/6ch-sound.wav'  # Path to 6-channel .wav file
+sOutputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/HORUS-Audio-6ch.csv'  # Path to save CSV
+
+try:
+    print('Processing:', sInputFileName)
+    InputRate, InputData = wavfile.read(sInputFileName)  # Read .wav file
+    show_info("6-Channel Audio File", InputData, InputRate)
+
+    # Verify that the audio is 6-channel
+    if len(InputData.shape) > 1 and InputData.shape[1] == 6:
+        # Convert to DataFrame
+        ProcessData = pd.DataFrame(InputData)
+        sColumns = [f"Ch{i + 1}" for i in range(6)]  # Column names for 6 channels
+        ProcessData.columns = sColumns
+
+        # Save as CSV
+        ProcessData.to_csv(sOutputFileName, index=False)
+        print(f"CSV saved successfully at: {sOutputFileName}")
+    else:
+        print("Error: The file is not a 6-channel audio file.")
+except FileNotFoundError:
+    print(f"Error: File not found at {sInputFileName}. Please check the path.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+    
+    
+'''
+
+
+
+# 8 - Channel
+
+
+
+'''
+
+
+from scipy.io import wavfile
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Function to plot audio signal
+def plot_info(aname, a, r):
+    sTitle = 'Signal Wave - ' + aname + ' at ' + str(r) + ' Hz'
+    plt.title(sTitle)
+    sLegend = []
+    if len(a.shape) == 1:  # Single channel audio
+        plt.plot(a, label='Mono Channel')
+        sLegend = ['Mono Channel']
+    else:  # Multi-channel audio
+        for c in range(a.shape[1]):
+            sLabel = 'Ch' + str(c + 1)
+            sLegend.append(sLabel)
+            plt.plot(a[:, c], label=sLabel)
+    plt.legend(sLegend)
+    plt.xlabel("Samples")
+    plt.ylabel("Amplitude")
+    plt.show()
+
+
+# Function to display information and process audio
+def show_info(aname, a, r):
+    print(f"Audio: {aname}\n")
+    print(f"Rate: {r} Hz\n")
+    print(f"Shape: {a.shape}\n")
+    plot_info(aname, a, r)
+
+
+# Main script
+sInputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/8ch-sound.wav'  # Path to 8-channel .wav file
+sOutputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/HORUS-Audio-8ch.csv'  # Path to save CSV
+
+try:
+    print('Processing:', sInputFileName)
+    InputRate, InputData = wavfile.read(sInputFileName)  # Read .wav file
+    show_info("8-Channel Audio File", InputData, InputRate)
+
+    # Verify that the audio is 8-channel
+    if len(InputData.shape) > 1 and InputData.shape[1] == 8:
+        # Convert to DataFrame
+        ProcessData = pd.DataFrame(InputData)
+        sColumns = [f"Ch{i + 1}" for i in range(8)]  # Column names for 8 channels
+        ProcessData.columns = sColumns
+
+        # Save as CSV
+        ProcessData.to_csv(sOutputFileName, index=False)
+        print(f"CSV saved successfully at: {sOutputFileName}")
+    else:
+        print("Error: The file is not an 8-channel audio file.")
+except FileNotFoundError:
+    print(f"Error: File not found at {sInputFileName}. Please check the path.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+    
+    
+'''
+
+
+
+`;
+
+var text16 = `# Pract 11B - Hours (Image to CSV File)
+
+
+# Image to csv.
+
+# https://drive.google.com/drive/folders/1G5lEkMhzLkUS-1gfJVr0wMOUNPuqYjCs?usp=drive_link
+
+
+from PIL import Image
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+def image_to_csv_and_show(image_path, csv_output_path):
+    # Open and convert image to RGB
+    img = Image.open(image_path).convert('RGB')
+
+    # Convert image to NumPy array
+    img_array = np.array(img)
+
+    # Print image info
+    print(f"Image Path: {image_path}")
+    print(f"Shape: {img_array.shape}")
+    print(f"Dtype: {img_array.dtype}")
+    print(f"Min, Max: {img_array.min()}, {img_array.max()}")
+
+    # Reshape array to 2D (rows of pixel values) and convert to DataFrame
+    df = pd.DataFrame(img_array.reshape(-1, 3), columns=['R', 'G', 'B'])
+
+    # Save DataFrame to CSV
+    df.to_csv(csv_output_path, index=False, header=False)  # Avoid header and index
+
+    # Show the image
+    plt.imshow(img_array)
+    plt.title('Image Preview')
+    plt.axis('off')  # Hide axis
+    plt.show()
+
+def visualize_csv(csv_path, image_shape):
+    df = pd.read_csv(csv_path, header=None, names=['R', 'G', 'B'])
+
+    # Reshape DataFrame to image shape (height, width, 3)
+    img_array = df.values.reshape(image_shape)
+
+    # Plot a horizontal strip of the image (e.g., the middle row) for each channel
+    mid_row = img_array.shape[0] // 2
+
+    plt.figure(figsize=(15, 5))
+
+    # Plot Red channel
+    plt.subplot(3, 1, 1)
+    plt.plot(img_array[mid_row, :, 0], color='red')
+    plt.title('Red Channel Pixel Values')
+
+    # Plot Green channel
+    plt.subplot(3, 1, 2)
+    plt.plot(img_array[mid_row, :, 1], color='green')
+    plt.title('Green Channel Pixel Values')
+
+    # Plot Blue channel
+    plt.subplot(3, 1, 3)
+    plt.plot(img_array[mid_row, :, 2], color='blue')
+    plt.title('Blue Channel Pixel Values')
+
+    plt.tight_layout()
+    plt.show()
+
+
+# Define file paths
+print('=======================')
+print("Shipra Jana - 14")
+print('=======================')
+
+image_path = 'C:/Users/shipra/PycharmProjects/DSI/Image/zenitsu.jpg'  # Replace with your image path
+csv_output_path = 'C:/Users/shipra/PycharmProjects/DSI/Image/anime.csv'  # Replace with your desired CSV output path
+
+#image_path = '/content/drive/MyDrive/KC_SEM 3/DSI/zenitsu.jpg'  # Replace with your image path
+#csv_output_path = '/content/drive/MyDrive/KC_SEM 3/DSI/demonsSlayer.csv'  # Replace with your desired CSV output path
+
+# Get image array and shape
+img_array = np.array(Image.open(image_path).convert('RGB'))
+shape = img_array.shape
+
+# Process image and save as CSV
+image_to_csv_and_show(image_path, csv_output_path)
+
+# Visualize data from CSV
+visualize_csv(csv_output_path, shape)
+
+`;
+
+var text17 = `# Pract 12A - Data Analysis (Binning)
+
+# Data Analysis and Visualization
+
+# A- Binning
+
+
+
+import numpy as np
 import pandas as pd
 
-print("******************")
-print("Shipra Jana - 014")
-print("******************")
+# Generate random data and define bins
+data = np.random.random(10000)
+bins = np.linspace(0, 1, 11)
 
-#https://www.youtube.com/watch?v=NRgfgtzIhBQ
-#Watch start 4 mins to get client_id,client_secret,user_agent
-#after adding above mentioned than only it will work
+# Calculate means for each bin using digitize
+digitized = np.digitize(data, bins)
+bin_means = [data[digitized == i].mean() for i in range(1, len(bins))]
 
-reddit = praw.Reddit(client_id='PchAOkUNcBteGiXsjrGiSg', #removed trailing space
-                     client_secret='QyzHLj77qxdx1zwNM7flUjRsbj6bdQ', #removed trailing space
-                     user_agent='Shipra_014')
+# Calculate means using histogram
+hist_counts, _ = np.histogram(data, bins)
+weighted_counts, _ = np.histogram(data, bins, weights=data)
+bin_means2 = weighted_counts / hist_counts
 
-sub_name = input("enter the Keyword - ")
-max_posts = 5
+print("            \033[1m\033[4mKSMSCIT014 SHIPRA JANA\033[0m")
 
-# Enable read-only mode
-reddit.read_only = True
+# Create a table with bin number and means
+table = pd.DataFrame({
+    'Bin Number': range(1, len(bins)),
+    'Digitized Means': bin_means,
+    'Histogram Means': bin_means2
+})
 
-title=[]
+# Display the table
+print(table.head(10))
 
-for submission in reddit.subreddit(sub_name).new(limit=max_posts):
- title.append(submission.title)
 
-print(title)
 
-df = pd.DataFrame(title,columns=['Title'])
-print(df)
 
-print("******************")
-print("Shipra Jana - 014")
-print("******************")
+
+
+# second approach
+
+
+'''
+
+
+import pandas as pd
+
+# Define ages and bins
+ages = [18, 23, 22, 25, 46, 45, 34, 87]
+bins = [0, 18, 40, 60, 75, 100]
+print("             \033[1m\033[4mKSMSCIT014 SHIPRA JANA\033[0m")
+bin_labels = ['Young', 'Adult', 'Senior', 'Existential Crisis', 'Dead']
+# Categorize ages and print results
+age_bins = pd.cut(ages, bins, labels=bin_labels)
+print(age_bins.tolist())
+print("\nPredicted Counts:")
+print(age_bins.value_counts())
+
+
+'''
 
 
 `;
 
+var text18 = `# Pract 12B - Location Coordinates Average 
+
+# Location Co-ordinate Average
+
+print('=======================')
+print("Shipra Jana - 14")
+print('=======================')
+
+import numpy as np
+import pandas as pd
+
+num_points = 10  # Number of random coordinates
+latitudes = np.random.uniform(-90, 90, num_points)
+longitudes = np.random.uniform(-180, 180, num_points)
+# Create a DataFrame
+coordinates_df = pd.DataFrame({
+    'Latitude': latitudes,
+    'Longitude': longitudes
+})
+# Calculate the mean latitude and longitude
+mean_latitude = np.mean(latitudes)
+mean_longitude = np.mean(longitudes)
+
+print(coordinates_df)
+print('===================================')
+print("Mean Latitude:", mean_latitude)
+print("Mean Longitude:", mean_longitude)
+
+
+`;
+
+var text19 = `# Pract 12C - Random Coordinates and Plottig Using Basemap
+
+# 12C - Random Coordinates and Plottig Using Basemap
+
+
+import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
+
+# Example coordinates (random points)
+longitudes = [-74.006, 77.209, 139.6917, -0.1278, 151.2093]  # Longitude values
+latitudes = [40.7128, 28.6139, 35.6895, 51.5074, -33.8688]   # Latitude values
+
+# Calculate mean coordinate
+mean_longitude = sum(longitudes) / len(longitudes)
+mean_latitude = sum(latitudes) / len(latitudes)
+
+# Plotting
+plt.figure(figsize=(10, 6))
+m = Basemap(projection='cyl', resolution='l',
+            llcrnrlat=-90, urcrnrlat=90,
+            llcrnrlon=-180, urcrnrlon=180)
+
+m.drawcoastlines()
+m.drawcountries()
+m.drawmapboundary(fill_color='aqua')
+m.fillcontinents(color='lightgreen', lake_color='aqua')
+
+# Plot random coordinates
+m.scatter(longitudes, latitudes, latlon=True, color='red', marker='o', s=100, label='Random Points')
+
+# Plot mean coordinate
+m.scatter(mean_longitude, mean_latitude, latlon=True, color='blue', marker='X', s=200, label='Mean Point')
+
+# Add a legend
+plt.legend()
+plt.title('\n\n Shipra Jana - 14\n\nRandom Coordinates and Mean Point on Base Map')
+plt.show()
+
+
+`;
 
 
 function copyText(text) {
