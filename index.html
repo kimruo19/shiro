@@ -1008,10 +1008,10 @@ hist_counts, _ = np.histogram(data, bins)
 weighted_counts, _ = np.histogram(data, bins, weights=data)
 bin_means2 = weighted_counts / hist_counts
 
-print("            \033[1m\033[4mKSMSCIT014 SHIPRA JANA\033[0m")
+print("KSMSCIT014 SHIPRA JANA")
 
 # Create a table with bin number and means
-table = pd.DataFrame({
+ table = pd.DataFrame({
     'Bin Number': range(1, len(bins)),
     'Digitized Means': bin_means,
     'Histogram Means': bin_means2
@@ -1036,7 +1036,7 @@ import pandas as pd
 # Define ages and bins
 ages = [18, 23, 22, 25, 46, 45, 34, 87]
 bins = [0, 18, 40, 60, 75, 100]
-print("             \033[1m\033[4mKSMSCIT014 SHIPRA JANA\033[0m")
+print("KSMSCIT014 SHIPRA JANA")
 bin_labels = ['Young', 'Adult', 'Senior', 'Existential Crisis', 'Dead']
 # Categorize ages and print results
 age_bins = pd.cut(ages, bins, labels=bin_labels)
