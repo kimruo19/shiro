@@ -11,7 +11,7 @@
         }
 
         body {
-            background-color: black;
+            background-color: #f0f0f0;
             /* Light gray background */
             font-family: Arial, sans-serif;
             text-align: center;
@@ -21,9 +21,9 @@
             margin: 10px;
             padding: 10px;
             font-size: 16px;
-            background-color: DimGray;
+            background-color: #ddd;
             /* Light gray button background */
-            border: 1px solid #560b0b;
+            border: 1px solid #aaa;
             /* Dark gray border */
             cursor: pointer;
         }
@@ -37,1090 +37,500 @@
 
 <body>
 
-    <button onclick="copyText(text1)">1-Color Maps</button>
-    <button onclick=" copyText(text2)">2-Geospatial Visualization with GeoPandas</button>
-    <button onclick="copyText(text3)">3-Geospatial Visualization with Folium</button>
-    <button onclick="copyText(text4)">4-Current Position of the Moon Using Astropy</button>
-    <button onclick="copyText(text5)">5A-Daily COVID-19 Case (line)</button>
-    <button onclick="copyText(text6)">5B-Monthly COVID-19 Case (bar)</button>
-    <button onclick="copyText(text7)">6-Linear Regression (Diabetes Data)</button>
-    <button onclick="copyText(text8)">7-Word Cloud</button>
-    <button onclick="copyText(text9)">8A-Cassandra (Basic Commands)</button>
-    <button onclick="copyText(text10)">8B-KeySpace Creation</button>
-    <button onclick="copyText(text11)">9A-OpenCV (Frames from Video)</button>
-    <button onclick="copyText(text12)">9B-Video from Image Frames</button>
-    <button onclick="copyText(text13)">10A-MongoDB (python)</button>
-    <button onclick="copyText(text14)">10B-MongoDB (R)</button>
-    <button onclick="copyText(text15)">11A-Horus (Audio to CSV File)</button>
-    <button onclick="copyText(text16)">11B-Hours (Image to CSV File)</button>
-    <button onclick="copyText(text17)">12A-Data Analysis (Binning)</button>
-    <button onclick="copyText(text18)">12B-Location Coordinates Average</button>
-    <button onclick="copyText(text19)">12C-Random Coordinates and Plottig Using Basemap</button>
-    
+    <button onclick="copyText(text1)">1 Design a simple machine learning model (Linear Regression) </button>
+    <button onclick=" copyText(text2)"> 2a Design a simple linear neural network model</button>
+    <button onclick="copyText(text3)"> 2b Calculate the output of neural net using both binary and bipolar sigmoidal function </button>
+    <button onclick="copyText(text4)">2c  Calculate the net input for the network shown in Figure 2 with bias</button>
+    <button onclick="copyText(text5)">2d Hebb rule with Bipolar inputs and targets. Use ANDNOT Function</button>
+    <button onclick="copyText(text6)">3 Membership and Identity Operators in, not in for Crisp Logic</button>
+    <button onclick="copyText(text7)">3b Find ratios using fuzzy logic</button>
+    <button onclick="copyText(text7)">4 Design an Expert System using AIML</button>
+    <button onclick="copyText(text7)">5 k-Nearest Neighbor algorithm to classify the </button>
+    <button onclick="copyText(text7)">6 implement Rule Based System</button>
+    <button onclick="copyText(text7)">7 Conditional Probability </button>
+    <button onclick="copyText(text7)">7a Joint Probability </button>
+    <button onclick="copyText(text7)">8 implement Bayes Theorem </button>
+    <button onclick="copyText(text7)">9 SVM algorithm for binary classification </button>
+    <button onclick="copyText(text7)">10 Naive Bayes' algorithm </button>
+    <button onclick="copyText(text7)">11 decision tree </button>
+    <button onclick="copyText(text7)">12 Confusion Matrix.</button>
+
+
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `#Pract 1 - Color Maps 
-
-# Exploring Color Maps in Matplotlib: Visualizing Random Data with Different Color Schemes.
-
-import matplotlib.pyplot as plt
-import numpy as np
-
-for i in plt.colormaps():
-  sTitle='\n Shipra Jana - 014 \n\n Color Map:' + i
-  fig=plt.figure(figsize=(10, 10))
-  plt.title(sTitle)
-  imgplot = plt.imshow(np.random.rand(10,10))
-  if i != "cividis":
-    imgplot.set_cmap(i)
-    plt.show()
-  else:
-    break
+        var text1 = ` p1 
+        import random
+        from sklearn.linear_model import LinearRegression
+        print("Moinuddin dhuni")
+        feature_set = []
+        target_set = []
+        number_of_rows = 200
+        limit = 2000
+        for i in range(0, number_of_rows):
+            x = random.randint(0, limit)
+            y = random.randint(0, limit)
+            z = random.randint(0, limit)
+            g= 10*x + 2*y + 3*z
+            print(i, "x = ", x, "y = ", y, "z = ", z, "g = ", g)
+            feature_set.append([x,y,z])
+            target_set.append(g)
+        model = LinearRegression()
+        model.fit(feature_set, target_set)
+        test_date = [[1, 2, 3]]
+        prediction = model.predict(test_date)
+        print('Prediction:'+str(prediction)+'\t'+'Coefficient:'+str(model.coef_))
+        print("Moinunddin Dhuni")  
         
 
+
     `;
+        var text2 = `p2a
+        print("Name:Moinuddin Dhuni 23")
+print("Input x=")
+x = float(input())
+print("Weight w=")
+w = float(input())
+print("Bias b=")
+b = float(input())
+yin=b+(x*w)
+if yin>=0:
+    y1=1
+else:
+    y1=0
+if yin>=0:
+    y2=1
+else:
+    y2=-1
+print("Input x=",x)
+print("Weight w=",w)
+print("Bias b=",b)
+print("Net Input yin=",yin)
+print("Binary Activation Output y1=",y1)
+print("Bipolar Activation Output y2=",y2)
+print("Name:Moinuddin Dhuni 23")
 
-        var text2 = ` #Pract 2 - Geospatial Visualization with GeoPandas
 
-# Geospatial Visualization with GeoPandas
-# Downlaod file paste in the path and add
-
-
-# !pip install geopandas
-import geopandas as gpd
-import matplotlib.pyplot as plt
-from shapely.geometry import Point
-
-# Load the shapefile
-india_gdf = gpd.read_file('geoBoundaries-IND-ADM1.geojson') #look at the #rd Cell for variables
-
-# Mumbai City
-mumbai = gpd.GeoDataFrame([{'City': 'Mumbai', 'geometry': Point(72.877, 19.0760)}], crs="EPSG:4326")
-
-# Plot
-fig, ax = plt.subplots(figsize=(7, 7))
-india_gdf.plot(ax=ax, color='white', edgecolor="black")
-mumbai.plot(ax=ax, color='red')
-
-# Add Mumbai label and title
-ax.text(72.877, 19.0760, 'Mumbai', fontsize=10, fontweight='bold', color='black')
-plt.title("Bharat\n\nKSMSCIT014 - Shipra Jana", fontsize=10, fontweight='bold')
-
-# Remove axis and display
-ax.set_axis_off()
-plt.show()
-
+        
 
 `;
 
-        var text3 = ` # Practical No 3 - Geospatial Visualization with Folium
+        var text3 = `p2b
+        print("Moinuddin Dhuni 23")
+n = int(input("Enter number of elements : ")) 
+print("Enter the inputs")
+inputs = []
+for i in range(0, n):
+    ele = float(input())
+    inputs.append(ele)
+print(inputs) 
+print("Enter the weights")
+weights = [] 
+for i in range(0, n):
+     ele = float(input())
+     weights.append(ele)   
+print(weights) 
+print("The net input can be calculated as   Yin = x1w1 + x2w2 + x3w3")
+Yin = []
+for i in range(0,n):
+    Yin.append(inputs[i]*weights[i])
+print(round(sum(Yin),3))
+print("Moinuddin Dhuni 23")
+  
 
-# Interactive Geospatial Visualization with Folium: Mapping Major Cities of India
-# geojson = 'https://drive.google.com/file/d/1hzbA2QCGFXFOxW6mdGCybP-tz0ME50Kx/view?usp=drive_link'
-# run - open - india_cities_map.html - open in browser - choose enter
+        
+`;
 
-import folium
-import requests
-
-print("***********************")
-print("Shipra Jana - 014")
-print("***********************")
-
-# Create a map centered around India
-m = folium.Map(location=[20.5937, 78.9629], zoom_start=5)
-
-# GeoJSON data for India's borders
-geojson_data = requests.get("https://raw.githubusercontent.com/python-visualization/folium/master/examples/data/world-countries.json").json()
-
-# Highlight India's boundary and add markers
-folium.GeoJson(geojson_data, name="India", highlight_function=lambda x: {'fillColor': 'green'}).add_to(m)
-
-# List of cities with their names, locations, and populations
-cities = [
-    {"name": "New Delhi", "location": [28.6139, 77.2090], "population": "21.75 million"},
-    {"name": "Mumbai", "location": [19.0760, 72.8777], "population": "20.18 million"},
-    {"name": "Bengaluru", "location": [12.9716, 77.5946], "population": "8.42 million"},
-    {"name": "Chennai", "location": [13.0827, 80.2707], "population": "10.97 million"},
-    {"name": "Kolkata", "location": [22.5726, 88.3639], "population": "14.85 million"}
-]
-
-# Add markers for each city
-for city in cities:
-    folium.Marker(city['location'], popup=f"<b>{city['name']}</b><br>Population: {city['population']}", tooltip=city['name']).add_to(m)
-
-# Save and display the map
-m.save("india_cities_map.html")
-m
+        var text4 = ` p2c
+        print("Moinuddin dhuni 23")
+print("Input x1 = ")
+x1 = float(input())
+print("Input x2 = ")
+x2 = float(input())
+print("Weight w1 = ")
+w1 = float(input())
+print("Weight w2 = ")
+w2 = float(input())
+print("Bias b = ")
+b = float(input())
+yin = b + (x1*w1 + x2*w2)
+print("Input nodes x1 and x2 =",x1,x2)
+print("Weight =",w1,w2)
+print("Bias b =",b)
+print("Net Input yin =",yin)
 
 
+        
+`;
+
+        var text5 = `p2d
+        print("Moinuddin dhuni 23")
+x1 = []
+x2 = []
+# x1 = [1,1,-1,-1]
+# x2 = [1,-1,1,-1]
+y = [-1,1,-1,-1]
+print("Enter Bipolar Input X1 = ")
+for i in range(0,4):
+   e1 = float(input())
+   x1.append(e1)
+print("Input Bipolar X1 are :", x1)
+print("Enter Bipolar Input X2 = ")
+for i in range(0,4):
+   e1 = float(input())
+   x2.append(e1)
+print("Input Bipolar X2 are :", x2)
+print("x1 = ", x1)
+print("x2 = ", x2)
+print("Traget y =",y)
+w1=0
+w2=0
+b=0
+for i in range(0,4):
+    w1=w1+x1[i]*y[i]
+    w2=w2+x2[i]*y[i]
+    b=b+y[i]
+print("w1(new)=", w1)
+print("w2(new)=", w2)
+print("b(new)=", b)
+print("===================")
+print("Final weights and bias:")
+print("w1(new)=", w1)
+print("w2(new)=", w2)
+print("b(new)=", b)
+print("Moinuddin Dhuni 23 ")
         
   `;
   
-        var text4 = ` # Pract 4 - Current Position of the Moon Using Astropy  
+        var text6 = ` p3a
+        print("Moinuddin dhuni 23")
+a=10
+b=20
+list=[1,2,3,4,5];
+if a in list:
+    print("Line 1 - a is available in the given list")
+else:
+    print("Line 1 - a is not available in the given list")
+    if b not in list:
+        print("Line 2 - b is not available in the given list")
+    else:
+        print("Line 2 - b is not available in the given list")
+a = 2
+if a in list:
+    print("Line 3 - a is available in the given list")
+else:
+    print("Line 3 - a is not available in the given list")
+print("Moinuddin Dhuni 23")
+      
+`;
 
-# Calculating and Visualizing the Current Position of the Moon Using Astropy
+        var text7 = `p3b 
+        !pip install fuzzywuzzy 
+print ("Moinuddin Dhuni 23")
+from fuzzywuzzy import fuzz 
+from fuzzywuzzy import process
+s1 = "I like softcomputing"
+s2= "I like hardcomputing"
+print ("FuzzyWuzzy Ratio: ", fuzz.ratio(s1, s2))
+print ("FuzzyWuzzy PartialRatio: ", fuzz.partial_ratio(s1, s2))
+print ("FuzzyWuzzy TokenSortRatio: ", fuzz.token_sort_ratio(s1, s2)) 
+print ("FuzzyWuzzy TokenSetRatio: ", fuzz.token_set_ratio(s1, s2))
+print ("FuzzyWuzzy WRatio: ", fuzz.WRatio (s1, s2), '\n\n')
+print ("Moinuddin Dhuni 23")
 
+`;
+  var text7 = `p4
+  import aiml
 
-from astropy.coordinates import solar_system_ephemeris, get_body, AltAz, EarthLocation
-import astropy.units as u
-from astropy.time import Time
+def main():
+    kernel = aiml.Kernel()
+    kernel.learn("flu.aiml")  # Ensure 'flu.aiml' is in the correct path
+    print("Pratiksha Kareliya 18\nWelcome to the flu diagnosis center")
+
+    while True:
+        user_input = input("You: ").strip().lower()
+        if user_input == "exit":
+            print("Goodbye!...\nPratiksha Kareliya 18")
+            break
+        print("Expert System:", kernel.respond(user_input))
+
+if __name__ == "__main__":
+    main()
+ 
+`;
+var text8 = `p5
 import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
 
-# Set matplotlib backend
-import matplotlib
-matplotlib.use('TkAgg')  # Use the TkAgg backend
+#Data Set
+x = [4, 5, 10, 4, 3, 11, 14 , 8, 10, 12]
+y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
+classes = [0, 0, 1, 0, 0, 1, 1, 0, 1, 1]
+print("x=",x)
+print("y=",y)
+#To plot data set
+plt.scatter(x, y, c=classes)
+plt.title("Yash Sing 39 : Data Set")
+plt.show()
+data = list(zip(x, y))
+print(data)
+#model creation
+model = KNeighborsClassifier(n_neighbors=1)
+# Model is trained
+model.fit(data, classes)
+new_x = 8
+new_y = 21
+new_point = [(new_x, new_y)]
+prediction = model.predict(new_point)
+plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
+plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
+plt.title("Moinuddin D: Data Set")
+plt.show()
+#model creation
+model = KNeighborsClassifier(n_neighbors=3)
+# Model is trained
+model.fit(data, classes)
+new_x = 8
+new_y = 21
+new_point = [(new_x, new_y)]
+prediction = model.predict(new_point)
+plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
+plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
+plt.title("PMoinuddin dhuni 23 : Data Set")
+plt.show()
+#model creation
+model = KNeighborsClassifier(n_neighbors=5)
+# Model is trained
+model.fit(data, classes)
+new_x = 8
+new_y = 21
+new_point = [(new_x, new_y)]
+prediction = model.predict(new_point)
+plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
+plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
+plt.title("Moinuddin dhuni : Data Set")
+plt.show()
 
-# Set solar system ephemeris
-solar_system_ephemeris.set('builtin')
 
-# Print details
-print("***********************")
-print("Shipra Jana - 014")
-print("***********************")
 
-# Get the current UTC time
-time_utc = Time.now()
-print(f"Current UTC Time: {time_utc}")
+        
 
-# Get Moon's position
-moon = get_body("moon", time_utc)  # Updated function call
-location = EarthLocation.of_site('Kitt Peak')
+`;
+var text9 = `p6 
+print ("Moinuddin dhuni 23")
+class Rule:
+    def __init__(self, conditions, conclusion):
+        self.conditions = conditions  
+        self.conclusion = conclusion  
+    def is_applicable(self, facts):
+        """Check if all conditions are met by the current facts."""
+        return all(condition in facts for condition in self.conditions)
+class RuleBasedSystem:
+    def __init__(self):
+        self.rules = []  
+        self.facts = set()
+    def add_rule(self, conditions, conclusion):
+        """Add a rule to the rule-based system."""
+        rule = Rule(conditions, conclusion)
+        self.rules.append(rule)
 
-# Transform Moon's position to AltAz
-moon_altaz = moon.transform_to(AltAz(obstime=time_utc, location=location))
-print(f'Moon coordinates (RA, Dec): {moon.ra}, {moon.dec}')
-print(f'Moon Altitude: {moon_altaz.alt}')
-print(f'Moon Azimuth: {moon_altaz.az}')
+    def add_fact(self, fact):
+        """Add a new fact to the knowledge base."""
+        self.facts.add(fact)
 
-# Plot Moon's position
-plt.figure(figsize=(10, 8))
-plt.subplot(111, projection='polar')
-plt.title('\n Shipra Jana - 014 \n\n Moon Position', y=1.1)
-plt.polar(moon.ra.radian, moon.dec.radian, 'o', markersize=10, label='Shipra Jana - 014 \n\nMoon Position')
-plt.grid(True)
-plt.legend()
-plt.show(block=True)  # Keeps the plot open until manually closed
+    def infer(self):
+        """Perform forward-chaining to infer new facts."""
+        new_facts = True
+        while new_facts:
+            new_facts = False
+            for rule in self.rules:
+                if rule.is_applicable(self.facts) and rule.conclusion not in self.facts:
+                    self.facts.add(rule.conclusion)
+                    new_facts = True
+                    print(f"New fact inferred: {rule.conclusion}")
 
+    def display_facts(self):
+        """Display the facts in the knowledge base."""
+        print("Current facts in the knowledge base:")
+        for fact in sorted(self.facts):
+            print(f"- {fact}")
+if __name__ == "__main__":
+    rbs = RuleBasedSystem()
+    rbs.add_rule(["rainy"], "wet_ground")
+    rbs.add_rule(["wet_ground", "cold"], "slippery_road")
+    rbs.add_rule(["sunny"], "dry_ground")
+    rbs.add_fact("rainy")
+    rbs.add_fact("cold")
+    print("Initial facts:")
+    rbs.display_facts()
+    print("\nInferring new facts...")
+    rbs.infer()
+    print("\nFinal facts:")
+    rbs.display_facts()
+    print ("Moinuddin Dhuni 23 ")
+
+
+        
+
+`;
+var text10 = `p7a
+Conditional Probability:
+def conditional():
+  pass_stats = 0.15
+  pass_codingWstats = 0.60
+  pass_codingWOstats = 0.40
+  prob_both = pass_stats * pass_codingWstats
+  print("The probability that bapplicant passes both is:", round(prob_both, 3))
+  prob_coding = (prob_both) + ((1- pass_stats)*pass_codingWOstats)
+  print("The probability that he/she passes only coding is:", round(prob_coding, 3))
+  stats_given_coding = prob_both/prob_coding
+  print("Conditional probability is:", round(stats_given_coding, 3))
+print("Pratiksha Kareliya 18")
+conditional()
 
 
 `;
+var text11 = `p7b
+print("Moinuddin Dhuni 23")
+def cp(a_and_b,b):
+    if b == 0 :
+        raise ValueError("The probability of B cannot be zero.")
+    cprob = a_and_b / b
+    return cprob
+print("Enter The probability of a")
+p1 = float(input())
+print("Enter The probability of B=")
+p2 = float(input())
+p1_and_p2 = p1 * p2
+print("Conditional Probility :",cp(p1_and_p2,p2))
+print("Moinuddin dhuni 23")
 
-        var text5 = `# Pract 5A - Daily COVID-19 Case (line)
 
-# Visualizing New COVID-19 Cases Using Plotly Express:
-# •	Daily COVID-19 Case Trends: A Line Plot Visualization
+        
 
+`;
+var text12 = `p8
+def bayes_theorem (prior_prob, likelihood, evidence):
+  
+  posterior_prob = (likelihood*prior_prob) / evidence
+  return posterior_prob
+  
+if __name__ == "__main__":
+  print("MOinuddin Dhuni 23")
+  prior_prob = float(input("Enter prior probability: "))
+  likelihood = float(input("Enter likelihood: "))
+  evidence = float(input("Enter evidence: "))
+  #Calculate and print the posterior probability
+  posterior_prob = bayes_theorem(prior_prob, likelihood, evidence)
+
+print("Posterior Probability:", posterior_prob)
+print("Moinuddin Dhuni 23")
+
+        
+
+`;
+var text13 = `p9
 import pandas as pd
-import plotly.express as px
+print("Pratiksha Kareliya 18")
+iris = pd.read_csv("/content/iris.csv")
+data = pd.DataFrame(iris)
+print(data)
 
-# Load dataset from the internet (Johns Hopkins COVID-19 dataset)
-url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/jhu/total_cases.csv"
-df = pd.read_csv(url)
+x = data.drop("species",axis=1)
+y = data["species"]
 
-# Convert 'date' column to datetime
-df['Date'] = pd.to_datetime(df['date'])
+print("Feature Set")
+print(x)
 
-# Calculate new cases (daily difference)
-df['New Cases'] = df['World'].diff()
-
-# Filter out rows with missing new case values
-df = df.dropna(subset=['New Cases'])
-
-# Daily COVID-19 Case Trends: Line Plot
-fig_daily = px.line(df, x='Date', y='New Cases',
-                    title="Daily COVID-19 Case Trends KSMSCIT014 - Shipra Jana",
-                    labels={'New Cases': 'New Cases Per Day', 'Date': 'Date'})
-fig_daily.show()
-
-# Create a 'Month' column from 'Date'
-df['Month'] = df['Date'].dt.to_period('M').astype(str)  # Convert Period to string
-
-# Group by 'Month' and sum 'New Cases'
-monthly_data = df.groupby('Month')['New Cases'].sum().reset_index()
-
-# Monthly COVID-19 Case Trends: Bar Plot
-fig_monthly = px.bar(monthly_data, x='Month', y='New Cases',
-                     title='Monthly COVID-19 Case Trends' +'\n' +'KSMSCIT014 - Shipra Jana' ,
-                     labels={'New Cases': 'Total New Cases', 'Month': 'Month'})
-fig_monthly.show()
-
-
-
-
-`;
-
-        var text6 = `# Pract 5B - Monthly COVID-19 Case (bar)
-
-
-# Visualizing New COVID-19 Cases Using Plotly Express:
-# •	Daily COVID-19 Case Trends: A Line Plot Visualization
-
-import pandas as pd
-import plotly.express as px
-
-# Load dataset from the internet (Johns Hopkins COVID-19 dataset)
-url = "https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/jhu/total_cases.csv"
-df = pd.read_csv(url)
-
-# Convert 'date' column to datetime
-df['Date'] = pd.to_datetime(df['date'])
-
-# Calculate new cases (daily difference)
-df['New Cases'] = df['World'].diff()
-
-# Filter out rows with missing new case values
-df = df.dropna(subset=['New Cases'])
-
-# Daily COVID-19 Case Trends: Line Plot
-fig_daily = px.line(df, x='Date', y='New Cases',
-                    title="Daily COVID-19 Case Trends KSMSCIT014 - Shipra Jana",
-                    labels={'New Cases': 'New Cases Per Day', 'Date': 'Date'})
-fig_daily.show()
-
-# Create a 'Month' column from 'Date'
-df['Month'] = df['Date'].dt.to_period('M').astype(str)  # Convert Period to string
-
-# Group by 'Month' and sum 'New Cases'
-monthly_data = df.groupby('Month')['New Cases'].sum().reset_index()
-
-# Monthly COVID-19 Case Trends: Bar Plot
-fig_monthly = px.bar(monthly_data, x='Month', y='New Cases',
-                     title='Monthly COVID-19 Case Trends' +'\n' +'KSMSCIT014 - Shipra Jana' ,
-                     labels={'New Cases': 'Total New Cases', 'Month': 'Month'})
-fig_monthly.show()
-
-
-`;
-   
-        var text7 = `# Pract 6 - Linear Regression (Diabetes Data)
-
-# Linear Regression Analysis of Diabetes Data: Predicting Age from BMI
-
-import numpy as np
-from sklearn import datasets, linear_model
-from sklearn.metrics import mean_squared_error, r2_score
+print("Target Set")
+print(y)
 from sklearn.model_selection import train_test_split
-import plotly.graph_objs as go
-import plotly.express as px
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2)
+print(x_train)
+print(x_test)
+print(y_train)
+print(y_test)
 
-# Load the diabetes dataset
-diabetes = datasets.load_diabetes()
+from sklearn.svm import SVC
+model = SVC(kernel='linear')
+model.fit(x_train,y_train)
+y_pred = model.predict(x_test)
+print(y_pred)
 
-# Use only the BMI feature (column 2)
-diabetes_X = diabetes.data[:, np.newaxis, 2]
+from sklearn.metrics import accuracy_score
+print(accuracy_score(y_test,y_pred))
+print("Moinuddin Dhuni 23")
 
-# Split the data into training/testing sets (80% train, 20% test)
-diabetes_X_train, diabetes_X_test, diabetes_y_train, diabetes_y_test = train_test_split(
-    diabetes_X, diabetes.target, test_size=0.2, random_state=42
-)
 
-# Create linear regression object
-regr = linear_model.LinearRegression()
-
-# Train the model using the training sets
-regr.fit(diabetes_X_train, diabetes_y_train)
-
-# Make predictions using the testing set
-diabetes_y_pred = regr.predict(diabetes_X_test)
-
-# Output the coefficients
-print('Coefficients:', regr.coef_)
-
-# Calculate and print the mean squared error
-print("Mean squared error: %.2f" % mean_squared_error(diabetes_y_test, diabetes_y_pred))
-
-# Calculate and print the variance score (R^2)
-print('Variance score: %.2f' % r2_score(diabetes_y_test, diabetes_y_pred))
-
-# Prepare data for interactive plotting
-scatter_trace = go.Scatter(
-    x=diabetes_X_test.flatten(),
-    y=diabetes_y_test,
-    mode='markers',
-    name='Actual values',
-    marker=dict(size=8, color='blue', line=dict(width=1)),
-    text=[f"BMI: {x:.2f}, Progression: {y:.2f}" for x, y in zip(diabetes_X_test.flatten(), diabetes_y_test)],  # Hover text
-    hoverinfo="text"
-)
-
-line_trace = go.Scatter(
-    x=diabetes_X_test.flatten(),
-    y=diabetes_y_pred,
-    mode='lines',
-    name='Regression line',
-    line=dict(color='red', width=2),
-    hoverinfo="skip"  # No hover information for the line
-)
-
-# Define layout for Plotly
-layout = go.Layout(
-    title="Diabetes Progression vs BMI | KSMSCIT014 - Shipra Jana",
-    xaxis=dict(title='BMI'),
-    yaxis=dict(title='Disease Progression'),
-    hovermode="closest",  # Hover mode for tooltips
-    template="plotly",  # Aesthetic template
-    showlegend=True,
-    width=1200
-)
-
-# Create the figure and add the traces
-fig = go.Figure(data=[scatter_trace, line_trace], layout=layout)
-print("KSMSCIT014 - Shipra Jana")
-
-# Show the figure
-fig.show()
-
+        
 
 `;
+var text14 = `p10
+import pandas as pd
+data = pd.read_csv("/content/ds4.csv")
+heart_disease = pd.DataFrame(data)
+print("Moinuddin dhuni 23")
+print(heart_disease)        
 
-var text8 = `# Pract 7 - Word Cloud 
-
-# Creating a Word Cloud
-
-from wordcloud import WordCloud #STOPWORDS
+`;
+var text15 = `p11
+import pandas as pd
+print("Moinuddin Dhuni 23")
+iris = pd.read_csv("/content/iris.csv")
+data = pd.DataFrame(iris)
+print(data)
+x=data.drop("species",axis=1)
+y=data["species"]
+print("Feature Set")
+print(x)
+print("Target Set")
+print(y)
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=80)
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+model=DecisionTreeClassifier()
+model.fit(x_train,y_train)
+y_pred=model.predict(x_test)
+print(y_pred)
+from sklearn.metrics import accuracy_score
+print("Accuracy:",accuracy_score(y_test,y_pred))
 import matplotlib.pyplot as plt
+plt.figure(figsize=(12,8))
+plot_tree(model, filled=True, feature_names=x.columns, class_names=y.unique().astype(str))
+plt.title("Decision Tree")
+plt.show()
+print("Moinuddin dhuni 23")
 
-text ="“SHIPRA_JANA. Grit. Power. Relentless. Edge. Fearless. Unstoppable. Fury. Strength. Chaos. Vibe. Roar. Apex. Bold. Thrill."
-wordcloud=WordCloud().generate(text)
-plt.figure(figsize=(12,12))
-plt.imshow(wordcloud)
-plt.axis("off")
+
+
+        
+
+`;
+var text16 = `p12
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+#dataset
+x=[4,5,10,4,3,11,14,6,10,12]
+y=[21,19,24,17,16,25,24,22,21,21]
+
+print("Pratiksha Kareliya 18")
+print("x=",x)
+print("y=",y)
+data = list(zip(x,y))
+print(data)
+
+plt.scatter(x,y)
+plt.title("Pratiksha Kareliya 18")
 plt.show()
 
-print("Shipra Jana - 014")
+model = KMeans(n_clusters=2)   
 
-
-`;
-
-var text9 = `# Pract 8A - Cassandra (Basic Commands)
-
-#A -  Basic Commands
-
-#C:\apache-cassandra-3.11.3\bin>cassandra
-#Cassandra
-#cqlsh
-#help;
-#show host;
-#show version;
-#consistency;
-
-# B - KeySpace Creation.
-
-#describe cluster;
-#CREATE KEYSPACE ShipraJana WITH replication = {'class':'SimpleStrategy', 'replication_factor':3};
-#USE ShipraJana;
-#CREATE TABLE students(
-#             ... id UUID PRIMARY KEY,
-#              ... name text,
-#              ... age int,
-#              ... department text
-#                  );
-
-#INSERT INTO students (id, name, age, department) VALUES (uuid(), 'Shipra Jana', 14, 'MscIT');
-#SELECT * FROM students;
-#describe keyspaces;
-#describe tables;
-
-
-`;
-
-var text10 = `# Pract 8B - KeySpace Creation
-
-#A -  Basic Commands
-
-#C:\apache-cassandra-3.11.3\bin>cassandra
-
-#Start Cassandra Service
-#C:\apache-cassandra-3.11.3\bin>Cassandra
-#	Cassandra
-
-#Launch Cassandra Query Language Shell (CQLSH)
-#	cqlsh
-
-#Provides help and lists available commands in the Cassandra shell.
-#	help;
-
-#Displays the connected host.
-#	show host;
-
-#Displays the version of Cassandra.
-#	show version;
-
-#Shows the current consistency level for reads and writes.
-#	consistency;
-
-
-
-# B - KeySpace Creation.
-
-
-#Provides details about the current cluster configuration.
-#	describe cluster;
-
-#Create a new Keyspaces
-#	CREATE KEYSPACE ShipraJana WITH replication = {'class':'SimpleStrategy', 'replication_factor':3};
-
-
-#Use Keyspace: After creating a keyspace, you need to select it to run queries within it:
-#	USE ShipraJana;
-
-#	Create Table: You can create tables within your keyspace, for example:
-#	CREATE TABLE students{...}
-
-#	CREATE TABLE students(
-#             ... id UUID PRIMARY KEY,
-#              ... name text,
-#              ... age int,
-#              ... department text
-#                  );
-
-
-#Insert Data: To insert data into your table:
-#	INSERT INTO students (id, name, age, department) VALUES (uuid(), 'Shipra Jana', 14, 'MscIT');
-
-
-#Select Data: Fetch data from the table:
-#	SELECT * FROM students;
-
-#Shows all the keyspaces in the database.
-#	describe keyspaces;
-
-#Lists the tables in the current keyspace (ensure you have a keyspace selected).
-#	describe tables;
-
-
-
-
-`;
-
-var text11 = `# Pract 9A - OpenCV (Frames(IMG) from Video)
-
-# Video to Img
-
-# Using OpenCV and File Management Libraries
-
-# Utility Start Movie to HORUS (Part 1) ======================
-# Standard Tools
-#=============================================================
-import os
-import shutil
-import cv2
-#=============================================================
-print('Shipra Jana 014')
-# sInputFileName="/content/shinchan.gif"
-# sDataBaseDir="C:/Users/shipra/Desktop/KC/SEM 3/DSI/Images"  # path to save
-sInputFileName="shinchan.gif"
-sDataBaseDir="IMG"
-if os.path.exists(sDataBaseDir):
-    pass  # Add code to execute if the directory exists
-    pass  # Add code to execute if the directory exists
-    shutil.rmtree(sDataBaseDir)
-if not os.path.exists(sDataBaseDir):
-    os.makedirs(sDataBaseDir)
-print('=====================================================')
-print('Start Movie to Frames')
-print('=====================================================')
-vidcap = cv2.VideoCapture(sInputFileName)
-success,image = vidcap.read()
-count = 0
-while success:
-    # Moved read to the beginning of the loop to ensure a frame is read before writing.
-    success,image = vidcap.read()
-    if not success:
-        break # Exit the loop if no frame is read
-
-    sFrame=sDataBaseDir + str('/pic-frame-' + str(format(count, '04d')) + '.jpg')
-    print('Extracted: ', sFrame)
-    cv2.imwrite(sFrame, image)
-    if os.path.getsize(sFrame) == 0:
-        count += -1
-        os.remove(sFrame)
-        print('Removed: ', sFrame)
-    if cv2.waitKey(10) == 27: # exit if Escape is hit
-        break
-    if count > 5000: # exit
-        break
-    count += 1
-print('=====================================================')
-print('Generated : ', count, ' Frames')
-print('=====================================================')
-print('Movie to Frames HORUS - Done')
-print('=====================================================')
-# Utility done ===============================================
-
-
-`;
-
-var text12 = `# Pract 9B - Video from Image Frames
-
-# Img to Video
-
-# Reconstructing a Video from Image Frames.
-
-import os
-import cv2
-from PIL import Image
-
-# Checking the current directory path
-print(os.getcwd())
-
-# Folder which contains all the images from which video is to be generated
-os.chdir(r"C:\Users\shipra\PycharmProjects\DSI\Image")   # images
-path = r"C:\Users\shipra\PycharmProjects\DSI\Image"      # save video
-
-mean_height = 0
-mean_width = 0
-
-num_of_images = len(os.listdir('.'))
-# print(num_of_images)
-
-for file in os.listdir('.'):
-    if file.endswith(".jpg") or file.endswith(".jpeg") or file.endswith(".png"):
-        im = Image.open(os.path.join(path, file))
-        width, height = im.size
-        mean_width += width
-        mean_height += height
-        # im.show() # uncomment this for displaying the image
-
-# Finding the mean height and width of all images
-# This is required because the video frame needs to be set with the same width and height.
-mean_width = int(mean_width / num_of_images)
-mean_height = int(mean_height / num_of_images)
-
-# print(mean_height)
-# print(mean_width)
-
-# Resizing of the images to give them the same width and height
-for file in os.listdir('.'):
-    if file.endswith(".jpg") or file.endswith(".jpeg") or file.endswith(".png"):
-        # opening image using PIL Image
-        im = Image.open(os.path.join(path, file))
-
-        # im.size includes the height and width of the image
-        width, height = im.size
-        print(width, height)
-
-        # resizing
-        imResize = im.resize((mean_width, mean_height), Image.Resampling.LANCZOS)
-        imResize.save(file, 'JPEG', quality=95)  # Set the quality for the saved image
-
-        # printing each resized image name
-        print(im.filename.split('\\')[-1], " is resized")
-
-
-# Video Generating function
-def generate_video():
-    image_folder = '.'  # Make sure to use your folder
-    video_name = 'mygeneratedvideo.avi'
-
-    images = [img for img in os.listdir(image_folder)
-              if img.endswith(".jpg") or
-              img.endswith(".jpeg") or
-              img.endswith(".png")]
-
-    # Array images should only consider the image files ignoring others if any
-    print(images)
-
-    frame = cv2.imread(os.path.join(image_folder, images[0]))
-
-    # Setting the frame width and height based on the first image
-    height, width, layers = frame.shape
-
-    video = cv2.VideoWriter(video_name, cv2.VideoWriter_fourcc(*'DIVX'), 1, (width, height))
-
-    # Appending the images to the video one by one
-    for image in images:
-        video.write(cv2.imread(os.path.join(image_folder, image)))
-
-    # Deallocating memories taken for window creation
-    cv2.destroyAllWindows()
-    video.release()  # Releasing the video generated
-
-
-# Calling the generate_video function
-generate_video()
-
-
-`;
-
-var text13 = `# Pract 10A - MongoDB (python)
-
-# MongoDB - python
-
-from pymongo import MongoClient
-
-client = MongoClient('mongodb+srv://shipra191122:sXdAQft7csi7mfy@cluster0.yrbbf.mongodb.net/?retryWrites=true&w=majority')
-
-db = client['mydatabase']
-collection = db['pymongo2']
-
-document = [
-    {"_Id": "Moin1911","name": "Moin", "city": "Delhi"},
-    {"_Id": "Sam123","name": "Samira", "city": "Kolkata"},
-    {"_Id":"Iqra789","name": "Iqra", "city": "Ahemdabad"},
-]
-
-insert_doc = collection.insert_many(document)
-
-for doc_id in insert_doc.inserted_ids:
-  print(f"Inserted Document IDs: {doc_id}")
-
-client.close()
-
-
-`;
-
-var text14 = `# Pract 10B - MongoDB (R)
-
-
-
-`;
-
-var text15 = `# Pract 11A - Horus (Audio to CSV File)
-
-
-# Multi Audio File Conversation to Hours
-
-# https://drive.google.com/drive/folders/1G5lEkMhzLkUS-1gfJVr0wMOUNPuqYjCs?usp=drive_link
-
-# 4 - Channel
-
-
-
-
-from scipy.io import wavfile
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-
-
-# Function to plot audio signal
-def plot_info(aname, a, r):
-    sTitle = 'Signal Wave - ' + aname + ' at ' + str(r) + ' Hz'
-    plt.title(sTitle)
-    sLegend = []
-    if len(a.shape) == 1:  # Single channel audio
-        plt.plot(a, label='Mono Channel')
-        sLegend = ['Mono Channel']
-    else:  # Multi-channel audio
-        for c in range(a.shape[1]):
-            sLabel = 'Ch' + str(c + 1)
-            sLegend.append(sLabel)
-            plt.plot(a[:, c], label=sLabel)
-    plt.legend(sLegend)
-    plt.xlabel("Samples")
-    plt.ylabel("Amplitude")
-    plt.show()
-
-
-# Function to display information and process audio
-def show_info(aname, a, r):
-    print(f"Audio: {aname}\n")
-    print(f"Rate: {r}\n")
-    print(f"Shape: {a.shape}\n")
-    plot_info(aname, a, r)
-
-
-# Main script
-sInputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/4ch-sound.wav'  # Update this to the correct path of your .wav file
-sOutputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/HORUS-Audio-4ch.csv'  # Update this to the desired output path
-
-try:
-    print('Processing:', sInputFileName)
-    InputRate, InputData = wavfile.read(sInputFileName)  # Read .wav file
-    show_info("Audio File", InputData, InputRate)
-
-    # Convert to DataFrame
-    ProcessData = pd.DataFrame(InputData)
-    if len(InputData.shape) > 1:
-        sColumns = [f"Ch{i + 1}" for i in range(InputData.shape[1])]
-    else:
-        sColumns = ["Mono Channel"]
-    ProcessData.columns = sColumns
-
-    # Save as CSV
-    ProcessData.to_csv(sOutputFileName, index=False)
-    print(f"CSV saved successfully at: {sOutputFileName}")
-except FileNotFoundError:
-    print(f"Error: File not found at {sInputFileName}. Please check the path.")
-except Exception as e:
-    print(f"An error occurred: {e}")
-
-
-
-
-
-
-
-# 6 - Channel
-
-
-'''
-
-from scipy.io import wavfile
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Function to plot audio signal
-def plot_info(aname, a, r):
-    sTitle = 'Signal Wave - ' + aname + ' at ' + str(r) + ' Hz'
-    plt.title(sTitle)
-    sLegend = []
-    if len(a.shape) == 1:  # Single channel audio
-        plt.plot(a, label='Mono Channel')
-        sLegend = ['Mono Channel']
-    else:  # Multi-channel audio
-        for c in range(a.shape[1]):
-            sLabel = 'Ch' + str(c + 1)
-            sLegend.append(sLabel)
-            plt.plot(a[:, c], label=sLabel)
-    plt.legend(sLegend)
-    plt.xlabel("Samples")
-    plt.ylabel("Amplitude")
-    plt.show()
-
-
-# Function to display information and process audio
-def show_info(aname, a, r):
-    print(f"Audio: {aname}\n")
-    print(f"Rate: {r} Hz\n")
-    print(f"Shape: {a.shape}\n")
-    plot_info(aname, a, r)
-
-
-# Main script
-sInputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/6ch-sound.wav'  # Path to 6-channel .wav file
-sOutputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/HORUS-Audio-6ch.csv'  # Path to save CSV
-
-try:
-    print('Processing:', sInputFileName)
-    InputRate, InputData = wavfile.read(sInputFileName)  # Read .wav file
-    show_info("6-Channel Audio File", InputData, InputRate)
-
-    # Verify that the audio is 6-channel
-    if len(InputData.shape) > 1 and InputData.shape[1] == 6:
-        # Convert to DataFrame
-        ProcessData = pd.DataFrame(InputData)
-        sColumns = [f"Ch{i + 1}" for i in range(6)]  # Column names for 6 channels
-        ProcessData.columns = sColumns
-
-        # Save as CSV
-        ProcessData.to_csv(sOutputFileName, index=False)
-        print(f"CSV saved successfully at: {sOutputFileName}")
-    else:
-        print("Error: The file is not a 6-channel audio file.")
-except FileNotFoundError:
-    print(f"Error: File not found at {sInputFileName}. Please check the path.")
-except Exception as e:
-    print(f"An error occurred: {e}")
-    
-    
-'''
-
-
-
-# 8 - Channel
-
-
-
-'''
-
-
-from scipy.io import wavfile
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Function to plot audio signal
-def plot_info(aname, a, r):
-    sTitle = 'Signal Wave - ' + aname + ' at ' + str(r) + ' Hz'
-    plt.title(sTitle)
-    sLegend = []
-    if len(a.shape) == 1:  # Single channel audio
-        plt.plot(a, label='Mono Channel')
-        sLegend = ['Mono Channel']
-    else:  # Multi-channel audio
-        for c in range(a.shape[1]):
-            sLabel = 'Ch' + str(c + 1)
-            sLegend.append(sLabel)
-            plt.plot(a[:, c], label=sLabel)
-    plt.legend(sLegend)
-    plt.xlabel("Samples")
-    plt.ylabel("Amplitude")
-    plt.show()
-
-
-# Function to display information and process audio
-def show_info(aname, a, r):
-    print(f"Audio: {aname}\n")
-    print(f"Rate: {r} Hz\n")
-    print(f"Shape: {a.shape}\n")
-    plot_info(aname, a, r)
-
-
-# Main script
-sInputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/8ch-sound.wav'  # Path to 8-channel .wav file
-sOutputFileName = 'C:/Users/shipra/PycharmProjects/DSI/sound/HORUS-Audio-8ch.csv'  # Path to save CSV
-
-try:
-    print('Processing:', sInputFileName)
-    InputRate, InputData = wavfile.read(sInputFileName)  # Read .wav file
-    show_info("8-Channel Audio File", InputData, InputRate)
-
-    # Verify that the audio is 8-channel
-    if len(InputData.shape) > 1 and InputData.shape[1] == 8:
-        # Convert to DataFrame
-        ProcessData = pd.DataFrame(InputData)
-        sColumns = [f"Ch{i + 1}" for i in range(8)]  # Column names for 8 channels
-        ProcessData.columns = sColumns
-
-        # Save as CSV
-        ProcessData.to_csv(sOutputFileName, index=False)
-        print(f"CSV saved successfully at: {sOutputFileName}")
-    else:
-        print("Error: The file is not an 8-channel audio file.")
-except FileNotFoundError:
-    print(f"Error: File not found at {sInputFileName}. Please check the path.")
-except Exception as e:
-    print(f"An error occurred: {e}")
-    
-    
-'''
-
-
-
-`;
-
-var text16 = `# Pract 11B - Hours (Image to CSV File)
-
-
-# Image to csv.
-
-# https://drive.google.com/drive/folders/1G5lEkMhzLkUS-1gfJVr0wMOUNPuqYjCs?usp=drive_link
-
-
-from PIL import Image
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
-def image_to_csv_and_show(image_path, csv_output_path):
-    # Open and convert image to RGB
-    img = Image.open(image_path).convert('RGB')
-
-    # Convert image to NumPy array
-    img_array = np.array(img)
-
-    # Print image info
-    print(f"Image Path: {image_path}")
-    print(f"Shape: {img_array.shape}")
-    print(f"Dtype: {img_array.dtype}")
-    print(f"Min, Max: {img_array.min()}, {img_array.max()}")
-
-    # Reshape array to 2D (rows of pixel values) and convert to DataFrame
-    df = pd.DataFrame(img_array.reshape(-1, 3), columns=['R', 'G', 'B'])
-
-    # Save DataFrame to CSV
-    df.to_csv(csv_output_path, index=False, header=False)  # Avoid header and index
-
-    # Show the image
-    plt.imshow(img_array)
-    plt.title('Image Preview')
-    plt.axis('off')  # Hide axis
-    plt.show()
-
-def visualize_csv(csv_path, image_shape):
-    df = pd.read_csv(csv_path, header=None, names=['R', 'G', 'B'])
-
-    # Reshape DataFrame to image shape (height, width, 3)
-    img_array = df.values.reshape(image_shape)
-
-    # Plot a horizontal strip of the image (e.g., the middle row) for each channel
-    mid_row = img_array.shape[0] // 2
-
-    plt.figure(figsize=(15, 5))
-
-    # Plot Red channel
-    plt.subplot(3, 1, 1)
-    plt.plot(img_array[mid_row, :, 0], color='red')
-    plt.title('Red Channel Pixel Values')
-
-    # Plot Green channel
-    plt.subplot(3, 1, 2)
-    plt.plot(img_array[mid_row, :, 1], color='green')
-    plt.title('Green Channel Pixel Values')
-
-    # Plot Blue channel
-    plt.subplot(3, 1, 3)
-    plt.plot(img_array[mid_row, :, 2], color='blue')
-    plt.title('Blue Channel Pixel Values')
-
-    plt.tight_layout()
-    plt.show()
-
-
-# Define file paths
-print('=======================')
-print("Shipra Jana - 14")
-print('=======================')
-
-image_path = 'C:/Users/shipra/PycharmProjects/DSI/Image/zenitsu.jpg'  # Replace with your image path
-csv_output_path = 'C:/Users/shipra/PycharmProjects/DSI/Image/anime.csv'  # Replace with your desired CSV output path
-
-#image_path = '/content/drive/MyDrive/KC_SEM 3/DSI/zenitsu.jpg'  # Replace with your image path
-#csv_output_path = '/content/drive/MyDrive/KC_SEM 3/DSI/demonsSlayer.csv'  # Replace with your desired CSV output path
-
-# Get image array and shape
-img_array = np.array(Image.open(image_path).convert('RGB'))
-shape = img_array.shape
-
-# Process image and save as CSV
-image_to_csv_and_show(image_path, csv_output_path)
-
-# Visualize data from CSV
-visualize_csv(csv_output_path, shape)
-
-`;
-
-var text17 = `# Pract 12A - Data Analysis (Binning)
-
-# Data Analysis and Visualization
-
-# A- Binning
-
-
-
-import numpy as np
-import pandas as pd
-
-# Generate random data and define bins
-data = np.random.random(10000)
-bins = np.linspace(0, 1, 11)
-
-# Calculate means for each bin using digitize
-digitized = np.digitize(data, bins)
-bin_means = [data[digitized == i].mean() for i in range(1, len(bins))]
-
-# Calculate means using histogram
-hist_counts, _ = np.histogram(data, bins)
-weighted_counts, _ = np.histogram(data, bins, weights=data)
-bin_means2 = weighted_counts / hist_counts
-
-print("KSMSCIT014 SHIPRA JANA")
-
-# Create a table with bin number and means
- table = pd.DataFrame({
-    'Bin Number': range(1, len(bins)),
-    'Digitized Means': bin_means,
-    'Histogram Means': bin_means2
-})
-
-# Display the table
-print(table.head(10))
-
-
-
-
-
-
-# second approach
-
-
-"""
-
-
-import pandas as pd
-
-# Define ages and bins
-ages = [18, 23, 22, 25, 46, 45, 34, 87]
-bins = [0, 18, 40, 60, 75, 100]
-print("KSMSCIT014 SHIPRA JANA")
-bin_labels = ['Young', 'Adult', 'Senior', 'Existential Crisis', 'Dead']
-# Categorize ages and print results
-age_bins = pd.cut(ages, bins, labels=bin_labels)
-print(age_bins.tolist())
-print("\nPredicted Counts:")
-print(age_bins.value_counts())
-
-
-"""
-
-
-`;
-
-var text18 = `# Pract 12B - Location Coordinates Average 
-
-# Location Co-ordinate Average
-
-print('=======================')
-print("Shipra Jana - 14")
-print('=======================')
-
-import numpy as np
-import pandas as pd
-
-num_points = 10  # Number of random coordinates
-latitudes = np.random.uniform(-90, 90, num_points)
-longitudes = np.random.uniform(-180, 180, num_points)
-# Create a DataFrame
-coordinates_df = pd.DataFrame({
-    'Latitude': latitudes,
-    'Longitude': longitudes
-})
-# Calculate the mean latitude and longitude
-mean_latitude = np.mean(latitudes)
-mean_longitude = np.mean(longitudes)
-
-print(coordinates_df)
-print('===================================')
-print("Mean Latitude:", mean_latitude)
-print("Mean Longitude:", mean_longitude)
-
-
-`;
-
-var text19 = `# Pract 12C - Random Coordinates and Plottig Using Basemap
-
-# 12C - Random Coordinates and Plottig Using Basemap
-
-
-import matplotlib.pyplot as plt
-from mpl_toolkits.basemap import Basemap
-
-# Example coordinates (random points)
-longitudes = [-74.006, 77.209, 139.6917, -0.1278, 151.2093]  # Longitude values
-latitudes = [40.7128, 28.6139, 35.6895, 51.5074, -33.8688]   # Latitude values
-
-# Calculate mean coordinate
-mean_longitude = sum(longitudes) / len(longitudes)
-mean_latitude = sum(latitudes) / len(latitudes)
-
-# Plotting
-plt.figure(figsize=(10, 6))
-m = Basemap(projection='cyl', resolution='l',
-            llcrnrlat=-90, urcrnrlat=90,
-            llcrnrlon=-180, urcrnrlon=180)
-
-m.drawcoastlines()
-m.drawcountries()
-m.drawmapboundary(fill_color='aqua')
-m.fillcontinents(color='lightgreen', lake_color='aqua')
-
-# Plot random coordinates
-m.scatter(longitudes, latitudes, latlon=True, color='red', marker='o', s=100, label='Random Points')
-
-# Plot mean coordinate
-m.scatter(mean_longitude, mean_latitude, latlon=True, color='blue', marker='X', s=200, label='Mean Point')
-
-# Add a legend
-plt.legend()
-plt.title('\n\n Shipra Jana - 14\n\nRandom Coordinates and Mean Point on Base Map')
+plt.scatter(x,y, c = model.labels_)
+plt.title("Moinuddin Dhuni ")
 plt.show()
-
-
 `;
+
+
 
 
 function copyText(text) {
