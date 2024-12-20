@@ -46,7 +46,7 @@
     <button onclick="copyText(text7)">3 A multicast Socket example.</button>
     <button onclick="copyText(text8)">4 program to show the object communication using RMI.</button>
     <button onclick="copyText(text9)">4b RMI converts digits to words, e.g. 123 will be converted to one two three</button>
-    <button onclick="copyText(text10)">5 implementation of web services.</button>
+    <button onclick="copyText(text10)">6 STEPS</button>
     
     
     
@@ -608,18 +608,186 @@ public class BroadcastClient {
 
 `;
 
-var text8 = `# 
+var text8 = `# 4a
+1. DateTimeInter.java
+import java.io.*;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.*;
+public interface DateTimeInter extends Remote
+{
+public String getDateTime() throws Exception;
+}
+2. DateTimeImpl.java
+import java.io.*;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.*;
+public class DateTimeImpl extends UnicastRemoteObject implements DateTimeInter
+{
+public DateTimeImpl() throws Exception
+{
+super();
+}
+public String getDateTime() throws Exception
+{
+Date d=new Date();
+return d.toString();
+}
+}
+3. DateTimeServer.java
+import java.io.*;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.*;
+public class DateTimeServer
+{
+public static void main(String args[]) throws Exception{
+DateTimeImpl obj=new DateTimeImpl();
+Naming.bind("abc",obj);
+System.out.println("Waiting for Client");
+}
+}
+4. DateTimeClient.java
+import java.io.*;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.*;
+public class DateTimeClient
+{
+public static void main(String args[]) throws Exception{
+DateTimeInter obj=(DateTimeInter)Naming.lookup("abc");
+System.out.println("Date Time is:" + obj.getDateTime());
+}
+}        
 
 
 
 `;
 
-var text9 = `# 
+var text9 = `# 4b
+1.ConvertInter.java
+import java.io.*;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.*;
+public interface ConvertInter extends Remote
+{
+public String convertDigit(String no) throws Exception;
+}
+2.ConvertImpl.java
+import java.io.*;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.*;
+public class ConvertImpl extends UnicastRemoteObject implements ConvertInter
+{
+public ConvertImpl() throws Exception
+{
+super();
+}
+public String convertDigit(String no) throws Exception
+{
+String str="";
+for(int i = 0; i < no.length(); i++)
+{
+int p=no.charAt(i);
+if(p==48)
+{
+str+="zero ";
+}
+if(p==49)
+{
+    str+="one ";
+}
+if(p==50)
+{
+str+="two ";
+}
+if(p==51)
+{
+str+="three ";
+}
+if(p==52)
+{
+str+="four ";
+}
+if(p==53)
+{
+str+="five ";
+ }
+if(p==54)
+{
+str+="six ";
+}
+if(p==55)
+{
+str+="seven ";
+}
+if(p==56)
+{
+str+="eight ";
+}
+if(p==57)
+{
+str+="nine ";
+}
+}
+return str;
+}
+}
+3. ConvertServer.java
+import java.io.*;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.*;
+public class ConvertServer
+{
+public static void main(String args[]) throws Exception
+{
+ConvertImpl obj=new ConvertImpl();
+Naming.bind("word",obj);
+System.out.println("Waiting for Client");
+}
+}
+4. ConvertClient.java
+import java.io.*;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.*;
+public class ConvertClient{
+public static void main(String args[]) throws Exception
+{
+ConvertInter obj=(ConvertInter)Naming.lookup("word");
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+System.out.println("Enter a number :\t");
+String no = br.readLine();
+String ans = obj.convertDigit(no);
+System.out.println("The word representation of the entered digit is : " +ans);
+}
+}
 
 
 `;
 
-var text10 = `# 
+var text10 = `# 6a
+
+# STEPS
+#Fill IP address copied from Installation and User name as “root” and Password
+#as “root123” which we had given during installation and Click on Add.
+#* Then click on Ok
+#* Now Click on New Storage
+
+#Select Window File Sharing (CIFS) and click on next
+#* Uncheck Auto generate option Click on Next.
+#* Provide the path of shared windows XP image and enter local
+#pc credential , click on Finish
+#* Click on New VM – and Windows XP SP3
+#* Select ISO file and click on next –
+#* Click on Next –
+#* Uncheck – Start the new VM and click on create now
+#* Now Right click on Windows XP and Start -
+#Installation is successful and virtual node has been created if we get below Welcome screen of Windows XP machine.
 
 `;
 
