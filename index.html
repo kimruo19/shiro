@@ -11,14 +11,14 @@
         }
 
         body {
-            background-color: black;
+          background-color: black;
             /* Light gray background */
             font-family: Arial, sans-serif;
             text-align: center;
         }
 
         button {
-            margin: 10px;
+          margin: 10px;
             padding: 10px;
             font-size: 16px;
             background-color: DimGray;
@@ -29,8 +29,8 @@
         }
 
         button:hover {
-            background-color: #ccc;
-            /* Slightly darker background on hover */
+          background-color: #ccc;
+          /* Slightly darker background on hover */
         }
     </style>
 </head>
@@ -38,739 +38,505 @@
 <body>
 
     <button onclick="copyText(text1)">1a Implement TCP Programming(prime & non prime)</button>
-    <button onclick=" copyText(text2)">1b A client server TCP based chatting application/button>
-    <button onclick="copyText(text3)"> 2a Client Server communication model using UDP (odd and even)</button>
+    <button onclick=" copyText(text2)">1b A client server TCP based chatting application</button>
+    <button onclick="copyText(text3)">2a Client Server communication model using UDP </button>
     <button onclick="copyText(text4)">2b UDP to find the factorial of the entered number</button>
-    <button onclick="copyText(text5)">2c calculator operations like addition, subtraction, multiplication and division</button>
-    <button onclick="copyText(text6)">2d finds the square, square root, cube and cube root of the entered number</button>
-    <button onclick="copyText(text7)">3 A multicast Socket example.</button>
-    <button onclick="copyText(text8)">4 program to show the object communication using RMI.</button>
-    <button onclick="copyText(text9)">4b RMI converts digits to words, e.g. 123 will be converted to one two three</button>
-    <button onclick="copyText(text10)">6 STEPS</button>
-    
-    
+    <button onclick="copyText(text5)">3 A multicast Socket example</button>
+    <button onclick="copyText(text6)">4 program to show the object communication using RMI</button>
+    <button onclick="copyText(text7)">4b RMI converts digits to words, e.g. 123 will be converted to one two three </button>
+    <button onclick="copyText(text8)">5 step</button>
     
     <p id="copiedMsg"></p>
     <script>
+        var text1 = `p1a
+1. tcpServerPrime.java
+import java.io.*;
+import java.net.*;
+class tcpServerPrime
+{
+public static void main(String args[])
+{
+try
+{
+ServerSocket ss = new ServerSocket(8001);
+System.out.println("Server Started........");
+Socket s = ss.accept();
+DataInputStream in = new DataInputStream(s.getInputStream());
+int x= in.readInt();
+DataOutputStream otc = new DataOutputStream(s.getOutputStream());
+int y = x/2;
+if(x==1 || x==2 || x==3)
+{
+otc.writeUTF(x + " is Prime");
+System.exit(0);
+}
+for(int i=2; i<=y; i++)
+{
+if(x%i !=0)
+{
+otc.writeUTF(x + " is Prime");
+}
+else
+{
+otc.writeUTF(x + " is not Prime");
+}
+}
+}
+catch(Exception e)
+{
+System.out.println(e.toString());
+}
+}
+}
+2. tcpClientPrime.java
+import java.net.*;
+import java.io.*;
+class tcpClientPrime
+{
+public static void main(String args[])
+{
+try
+{
+Socket cs = new Socket("LocalHost",8001);
+BufferedReader infu = new BufferedReader(new InputStreamReader(System.in));
+System.out.println("Enter a number :");
+int a = Integer.parseInt(infu.readLine());
+DataOutputStream out = new DataOutputStream(cs.getOutputStream());
+out.writeInt(a);
+DataInputStream in = new DataInputStream(cs.getInputStream());
+System.out.println(in.readUTF());
+cs.close();
+}
+catch(Exception e)
+{
+System.out.println(e.toString());
+}
+}
+}
+
+
+
+    `;
+        var text2 = `p1b
+1. ChatServer.java
+import java.io.*;
+import java.net.*;
+class ChatServer
+{
+public static void main(String args[])
+{
+try
+{
+ServerSocket ss = new ServerSocket(8000);
+System.out.println("Waiting for client to connect...");
+Socket s = ss.accept();
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+DataOutputStream out = new DataOutputStream(s.getOutputStream());
+DataInputStream in = new DataInputStream(s.getInputStream());
+String receive, send;
+while((receive = in.readLine()) != null)
+{
+if(receive.equals("STOP"))
+break;
+System.out.println("Client Says : "+receive);
+System.out.print("Server Says : ");
+send = br.readLine();
+out.writeBytes(send+"\n");
+}
+br.close();
+in.close();
+out.close();
+s.close();
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}
+}
+}
+2. ChatClient.java
+import java.net.*;
+import java.io.*;
+class ChatClient
+{
+public static void main(String args[])
+{
+try
+{
+Socket s = new Socket("Localhost",8000);
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+DataOutputStream out = new DataOutputStream(s.getOutputStream());
+DataInputStream in = new DataInputStream(s.getInputStream());
+String msg;
+System.out.println("To stop chatting with server type STOP");
+System.out.print("Client Says : ");
+while((msg = br.readLine()) != null)
+{
+out.writeBytes(msg+"\n");
+if(msg.equals("STOP"))
+break;
+System.out.println("Server Says : "+in.readLine());
+System.out.print("Client Says : ");
+}
+br.close();
+in.close();
+out.close();
+s.close();
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}
+}
+}
+
 
         
-        var text1 = `#1a 
-1. tcpServerPrime.java
-package Pract1A;
-import java.net.*;
-import java.io.*;
-public class tcpServerPrime {
- public static void main(String[] args) {
- try {
- ServerSocket ss = new ServerSocket(8001);
- System.out.println("Server Started........");
- Socket s = ss.accept();
-
- DataInputStream in = new DataInputStream(s.getInputStream());
- int x = in.readInt();
-
- DataOutputStream otc = new DataOutputStream(s.getOutputStream());
- // Check for prime numbers
- if (x <= 1) {
- otc.writeUTF(x + " is not Prime");
- } else {
- boolean isPrime = true;
- for (int i = 2; i <= Math.sqrt(x); i++) {
- if (x % i == 0) {
- isPrime = false;
- break; // Exit the loop if a divisor is found
- }
- }
- if (isPrime) {
- otc.writeUTF(x + " is Prime");
- } else {
- otc.writeUTF(x + " is not Prime");
- }
- }
- } catch (Exception e) {
- System.out.println(e.toString());
- }
- }
-}
-
-2. tcpClientPrime.java
-package Pract1A;
-import java.net.*;
-import java.io.*;
-public class tcpClientPrime {
- public static void main(String[] args) {
- try{
- Socket cs = new Socket("LocalHost",8001);
- BufferedReader infu = new BufferedReader(new InputStreamReader(System.in));
- System.out.println("Enter a number : ");
-
- int a = Integer.parseInt(infu.readLine());
- DataOutputStream out = new DataOutputStream(cs.getOutputStream());
- out.writeInt(a);
-
- DataInputStream in = new DataInputStream(cs.getInputStream());
- System.out.println(in.readUTF());
- cs.close();
- }catch(Exception e){
- System.out.println(e.toString());
- }
- }
-}
-
-
 
 `;
 
-        var text2 = ` # 1b 
-        1. chatServer.java
-package pract1B;
-import java.net.*;
-import java.io.*;
-class ChatServer {
- public static void main(String args[]) {
- try {
- ServerSocket ss = new ServerSocket(8000);
- System.out.println("Waiting for client to connect..");
- Socket s = ss.accept();
-
- BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
- DataOutputStream out = new DataOutputStream(s.getOutputStream());
- DataInputStream in = new DataInputStream(s.getInputStream());
- String receive, send;
- while ((receive = in.readLine()) != null) {
- if (receive.equals("STOP")) {
- out.writeBytes("Server: Connection closed.\n");
- break;
- }
- System.out.println("Client Says: " + receive);
- System.out.print("Server Says: ");
- send = br.readLine();
- out.writeBytes(send + "\n");
- }
- // Close resources
- br.close();
- in.close();
- out.close();
- s.close();
- ss.close(); // Close the server socket as well
- } catch (Exception e) {
- e.printStackTrace();
- }
- }
+        var text3 = `p2 
+        1. udpServerEO.java
+        /*Program which finds entered number is even or odd*/
+        import java.io.*;
+        import java.net.*;
+        public class udpServerEO
+        {
+        public static void main(String args[])
+        {
+        try
+        {
+        DatagramSocket ds = new DatagramSocket(2000);
+        byte b[] = new byte[1024];
+        DatagramPacket dp = new DatagramPacket(b,b.length);
+        ds.receive(dp);
+        String str = new
+        String(dp.getData(),0,dp.getLength());
+        System.out.println(str);
+        int a= Integer.parseInt(str);
+        String s= new String();
+        if (a%2 == 0)
+        s = "Number is even";
+        else
+        s = "Number is odd";
+        byte b1[] = new byte[1024];
+b1 = s.getBytes();
+DatagramPacket dp1 = new
+DatagramPacket(b1,b1.length,InetAddress.getLocalHost(),1000);
+ds.send(dp1);
 }
-2. chatClient.java
-package pract1B;
-import java.net.*;
+catch(Exception e)
+{
+e.printStackTrace();
+}
+}
+}
+2. udpClientEO.java
+/*Program which finds entered number is even or odd*/
 import java.io.*;
-class ChatClient {
- public static void main(String args[]) {
- try {
- Socket s = new Socket("localhost", 8000);
- BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
- DataOutputStream out = new DataOutputStream(s.getOutputStream());
- DataInputStream in = new DataInputStream(s.getInputStream());
- String msg;
- System.out.println("To stop chatting with server type STOP");
- System.out.print("Client Says: ");
- while ((msg = br.readLine()) != null) {
- out.writeBytes(msg + "\n");
- if (msg.equals("STOP")) {
- System.out.println("Client: Connection closed.");
- break;
- }
- System.out.println("Server Says: " + in.readLine());
- System.out.print("Client Says: ");
- }
- // Close resources
- br.close();
- in.close();
- out.close();
- s.close();
- } catch (Exception e) {
- e.printStackTrace();
- }
- }
-}   
+import java.net.*;
+public class udpClientEO
+{
+public static void main(String args[])
+{
+try
+{
+DatagramSocket ds = new DatagramSocket(1000);
+BufferedReader br = new BufferedReader(new
+InputStreamReader(System.in));
+System.out.println("Enter a number : ");
+String num = br.readLine();
+byte b[] = new byte[1024];
+b=num.getBytes();
+DatagramPacket dp = new
+DatagramPacket(b,b.length,InetAddress.getLocalHost(),2000);
+ds.send(dp);
+byte b1[] = new byte[1024];
+DatagramPacket dp1 = new DatagramPacket(b1,b1.length); ds.receive(dp1);
+String str = new String(dp1.getData(),0,dp1.getLength());
+System.out.println(str);
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}
+}
+}
 
+        
+`;
+
+        var text4 = ` p2b
+        1. udpServerFact.java
+        /*Program which calculate factorial of a number*/
+        import java.io.*;
+        import java.net.*;
+        public class udpServerFact
+        {
+        public static void main(String args[])
+        {
+        try
+        {
+        DatagramSocket ds = new DatagramSocket(2000);
+        byte b[] = new byte[1024];
+        DatagramPacket dp = new DatagramPacket(b,b.length);
+        ds.receive(dp);
+        String str = new String(dp.getData(),0,dp.getLength());
+        System.out.println(str);
+        int a= Integer.parseInt(str);
+        int f = 1, i;
+        String s= new String();
+        for(i=1;i<=a;i++)
+        {
+        f=f*i;
+        }
+        s=Integer.toString(f);
+        String str1 = "The Factorial of " + str + " is : " + f;
+        byte b1[] = new byte[1024]; b1 = str1.getBytes();
+        DatagramPacket dp1 = new
+        DatagramPacket(b1,b1.length,InetAddress.getLocalHost(),1000);
+        ds.send(dp1);
+        }
+        catch(Exception e)
+        {
+        e.printStackTrace();
+        }
+        }
+        }
+        2. udpClientFact.java
+        /*Program which calculate factorial of a number*/
+        import java.io.*;
+        import java.net.*;
+        public class udpClientFact
+        {
+        public static void main(String args[])
+        {
+        try
+        {
+        DatagramSocket ds = new DatagramSocket(1000);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter a number : ");
+        String num = br.readLine();
+        byte b[] = new byte[1024];
+        b=num.getBytes();
+        DatagramPacket dp = new
+DatagramPacket(b,b.length,InetAddress.getLocalHost(),2000);
+ds.send(dp);
+byte b1[] = new byte[1024];
+DatagramPacket dp1 = new DatagramPacket(b1,b1.length);
+ds.receive(dp1);
+String str = new String(dp1.getData(),0,dp1.getLength());
+System.out.println(str);
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}
+}
+}
+    
+`;
+
+        var text5 = `p3 
+        1. BroadcastServer.java
+        import java.net.*;
+        import java.io.*;
+        import java.util.*;
+        public class BroadcastServer
+        {
+        public static final int PORT = 1234;
+        public static void main(String args[])throws
+        Exception
+        {
+        MulticastSocket socket;
+        DatagramPacket packet;
+        InetAddress address;
+        //set multicast address to your local subnet
+        address = InetAddress.getByName("239.1.2.3");
+        socket = new MulticastSocket();
+        //join a Multicast group and send the group messages
+        socket.joinGroup(address);
+        byte[] data = null;
+        for(;;)
+        {
+            Thread.sleep(10000);
+            System.out.println("Sending ");
+            String str = ("This is Shariqua Calling.....");
+            data = str.getBytes();
+            packet = new DatagramPacket(data, str.length(),address,PORT);
+            //Sends the packet
+            socket.send(packet);
+            }
+            }
+            }
+            2. BroadcastClient.java
+            import java.net.*;
+            import java.io.*;
+            public class BroadcastClient
+            {
+            public static final int PORT = 1234;
+            public static void main(String args[])throws
+            Exception
+            {
+            MulticastSocket socket;
+            DatagramPacket packet;
+            InetAddress address;
+            // set the mulitcast address to your local subnet 
+address = InetAddress.getByName("239.1.2.3");
+socket = new MulticastSocket(PORT);
+//join a Multicast group and wait for a message
+socket.joinGroup(address);
+byte[] data = new byte[100];
+packet = new DatagramPacket(data,data.length);
+for(;;)
+{
+// receive the packets
+socket.receive(packet);
+String str = new String(packet.getData()); System.out.println("Message received from
+"+ packet.getAddress() + "Message is : "+str);
+} // for
+} // main
+} // end BroadcastClient
 
 
         
   `;
   
-        var text3 = ` # 2a
-        1. udpSeverEO.java
-package Pract2A;
-import java.io.*;
-import java.net.*;
-public class udpServerEO {
- public static void main(String args[]) {
- try {
- DatagramSocket ds = new DatagramSocket(2000);
- byte[] b = new byte[1024];
- DatagramPacket dp = new DatagramPacket(b, b.length);
- ds.receive(dp);
-
- String str = new String(dp.getData(), 0, dp.getLength());
- System.out.println("Received: " + str);
- int a = Integer.parseInt(str);
- String response;
- if (a % 2 == 0) {
- response = "Number is even";
- } else {
- response = "Number is odd";
- }
- byte[] b1 = response.getBytes();
- DatagramPacket dp1 = new DatagramPacket(b1, b1.length, dp.getAddress(), dp.getPort());
- ds.send(dp1);
- ds.close(); // Close the socket after sending the response
- } catch (Exception e) {
- e.printStackTrace();
- }
- }
-}
-2. udpClientEO.java
-package Pract2A;
-import java.io.*;
-import java.net.*;
-public class udpClientEO {
- public static void main(String args[]) {
- try {
- DatagramSocket ds = new DatagramSocket();
- BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
- System.out.print("Enter a number: ");
- String num = br.readLine();
-
- byte[] b = num.getBytes();
- DatagramPacket dp = new DatagramPacket(b, b.length, InetAddress.getLocalHost(), 2000);
- ds.send(dp);
-
- byte[] b1 = new byte[1024];
- DatagramPacket dp1 = new DatagramPacket(b1, b1.length);
- ds.receive(dp1);
-
- String response = new String(dp1.getData(), 0, dp1.getLength());
- System.out.println("Server Response: " + response);
-
- ds.close(); // Close the socket after receiving the response
- } catch (Exception e) {
- e.printStackTrace();
- }
- }
-}
-
-
-`;
-
-        var text4 = `# 2b 
-        1. udpServerFact.java
-package pract2B;
-import java.io.*;
-import java.net.*;
-public class udpServerFact {
- public static void main(String args[]) {
- try {
- DatagramSocket ds = new DatagramSocket(2000);
- byte[] b = new byte[1024];
- DatagramPacket dp = new DatagramPacket(b, b.length);
- ds.receive(dp);
-
- String str = new String(dp.getData(), 0, dp.getLength());
- System.out.println("Received: " + str);
- int a = Integer.parseInt(str);
- long factorial = 1; // Use long to handle larger factorials
-
- for (int i = 1; i <= a; i++) {
- factorial *= i;
- }
- String response = "The Factorial of " + a + " is: " + factorial;
- byte[] b1 = response.getBytes();
- DatagramPacket dp1 = new DatagramPacket(b1, b1.length, dp.getAddress(), dp.getPort());
- ds.send(dp1);
- ds.close(); // Close the socket after sending the response
- } catch (Exception e) {
- e.printStackTrace();
- }
- }
-}
-2. udpClientFact.java
-package pract2B;
-import java.io.*;
-import java.net.*;
-public class udpClientFact {
- public static void main(String args[]) {
- try {
- DatagramSocket ds = new DatagramSocket();
- BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
- System.out.print("Enter a number: ");
- String num = br.readLine();
-
- byte[] b = num.getBytes();
- DatagramPacket dp = new DatagramPacket(b, b.length, InetAddress.getLocalHost(), 2000);
- ds.send(dp);
-
- byte[] b1 = new byte[1024];
- DatagramPacket dp1 = new DatagramPacket(b1, b1.length);
- ds.receive(dp1);
-
- String response = new String(dp1.getData(), 0, dp1.getLength());
- System.out.println("Server Response: " + response);
-
- ds.close(); // Close the socket after receiving the response
- } catch (Exception e) {
- e.printStackTrace();
- }
- }
-}       
-
-
-`;
-
-        var text5 = `# 2c
-        1. RPCServer.java
-package Pract2C;
-import java.util.*;
-import java.net.*;
-class RPCServer {
- DatagramSocket ds;
- DatagramPacket dp;
- String str, methodName, result;
- int val1, val2;
- RPCServer() {
- try {
- ds = new DatagramSocket(1200);
- byte[] b = new byte[4096];
- while (true) {
- dp = new DatagramPacket(b, b.length);
- ds.receive(dp);
- str = new String(dp.getData(), 0, dp.getLength());
- if (str.equalsIgnoreCase("q")) {
- System.out.println("Server shutting down.");
- break; // Exit the loop if "q" is received
- }
- StringTokenizer st = new StringTokenizer(str, " ");
- methodName = st.nextToken(); // Get the method name
- val1 = Integer.parseInt(st.nextToken()); // Get first parameter
- val2 = Integer.parseInt(st.nextToken()); // Get second parameter
- System.out.println("Received: " + str);
- // Perform the requested operation
- switch (methodName.toLowerCase()) {
- case "add":
- result = "" + add(val1, val2);
- break;
- case "sub":
- result = "" + sub(val1, val2);
- break;
- case "mul":
- result = "" + mul(val1, val2);
- break;
- case "div":
- if (val2 != 0) {
- result = "" + div(val1, val2);
- } else {
- result = "Error: Division by zero";
- }
- break;
- default:
- result = "Error: Unknown method";
- }
- byte[] b1 = result.getBytes();
- DatagramPacket dp1 = new DatagramPacket(b1, b1.length, dp.getAddress(), 1300);
- System.out.println("Result: " + result);
- ds.send(dp1);
- }
- ds.close(); // Close the socket when done
- } catch (Exception e) {
- e.printStackTrace();
- }
- }
- public int add(int val1, int val2) {
- return val1 + val2;
- }
- public int sub(int val1, int val2) {
- return val1 - val2;
- }
- public int mul(int val1, int val2) {
- return val1 * val2;
- }
- public int div(int val1, int val2) {
- return val1 / val2;
- }
- public static void main(String[] args) {
- new RPCServer();
- }
-}
-2. RPCClient.java
-package Pract2C;
-import java.io.*;
-import java.net.*;
-class RPCClient {
- RPCClient() {
- try {
- InetAddress ia = InetAddress.getLocalHost();
- DatagramSocket ds = new DatagramSocket();
- DatagramSocket ds1 = new DatagramSocket(1300);
- System.out.println("\nRPC Client\n");
- System.out.println("Enter method name and parameters like 'add 3 4' (type 'q' to quit)");
- while (true) {
- BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
- String str = br.readLine();
- if (str.equalsIgnoreCase("q")) {
- System.out.println("Client shutting down.");
- break; // Exit the loop if "q" is entered
- }
- byte[] b = str.getBytes();
- DatagramPacket dp = new DatagramPacket(b, b.length, ia, 1200);
- ds.send(dp);
- // Prepare to receive the result
- byte[] b1 = new byte[4096];
- DatagramPacket dp1 = new DatagramPacket(b1, b1.length);
- ds1.receive(dp1);
- String response = new String(dp1.getData(), 0, dp1.getLength());
- System.out.println("\nResult = " + response + "\n");
- }
- ds.close(); // Close the socket when done
- ds1.close(); // Close the response socket
- } catch (Exception e) {
- e.printStackTrace();
- }
- }
- public static void main(String[] args) { new RPCClient(); } }
-
-
-
-`;
-   
-        var text6 = `# 2d 1. RPCNumServer.java
-        package Pract2D;
+        var text6 = ` p4
+        1. InterDate.java
+        import java.rmi.*;
+        public interface InterDate extends Remote
+        {
+        public String display() throws Exception;
+        }
+        2. ServerDate.java
+        import java.rmi.*;
+        import java.rmi.server.*;
         import java.util.*;
-        import java.net.*;
-        import java.io.*;
-        class RPCNumServer {
-         DatagramSocket ds;
-         DatagramPacket dp;
-         String str, methodName, result;
-         int val;
-         RPCNumServer() {
-         try {
-         ds = new DatagramSocket(1200);
-         byte[] b = new byte[4096];
-         while (true) {
-         dp = new DatagramPacket(b, b.length);
-         ds.receive(dp);
-         str = new String(dp.getData(), 0, dp.getLength());
-         if (str.equalsIgnoreCase("q")) {
-         System.out.println("Server shutting down.");
-         break; // Exit the loop if "q" is received
-         }
-         StringTokenizer st = new StringTokenizer(str, " ");
-         methodName = st.nextToken(); // Get the method name
-         val = Integer.parseInt(st.nextToken()); // Get the parameter
-         System.out.println("Received: " + str);
-         // Perform the requested operation
-         switch (methodName.toLowerCase()) {
-         case "square":
-         result = "" + square(val);
-         break;
-         case "squareroot":
-         result = "" + squareroot(val);
-         break;
-         case "cube":
- result = "" + cube(val);
- break;
- case "cuberoot":
- result = "" + cuberoot(val);
- break;
- default:
- result = "Error: Unknown method";
- }
- byte[] b1 = result.getBytes();
- DatagramPacket dp1 = new DatagramPacket(b1, b1.length, dp.getAddress(), 1300);
- System.out.println("Result: " + result);
- ds.send(dp1);
- }
- ds.close(); // Close the socket when done
- } catch (Exception e) {
- e.printStackTrace();
- }
- }
- public double square(int a) {
- return a * a;
- }
- public double squareroot(int a) {
- return Math.sqrt(a);
- }
- public double cube(int a) {
- return a * a * a;
- }
- public double cuberoot(int a) {
- return Math.cbrt(a);
- }
- public static void main(String[] args) {
- new RPCNumServer();
- }
+        public class ServerDate extends UnicastRemoteObject implements InterDate
+        {
+        public ServerDate() throws Exception
+        {
+        }
+        public String display() throws Exception
+        {
+        String str = "";
+        Date d = new Date();
+        str = d.toString();
+        return str;
+        }
+        public static void main(String args[]) throws Exception
+        {
+            ServerDate s1 = new ServerDate();
+Naming.bind("DS",s1);
+System.out.println("Object registered.....");
 }
-2. RPCNumClient.java
-package Pract2D;
+}
+3. ClientDate.java
+import java.rmi.*;
 import java.io.*;
-import java.net.*;
-class RPCNumClient {
- RPCNumClient() {
- try {
- InetAddress ia = InetAddress.getLocalHost();
- DatagramSocket ds = new DatagramSocket();
- DatagramSocket ds1 = new DatagramSocket(1300);
- System.out.println("\nRPC Client\n");
- System.out.println("1. Square of the number - square");
- System.out.println("2. Square root of the number - squareroot");
- System.out.println("3. Cube of the number - cube");
- System.out.println("4. Cube root of the number - cuberoot");
- System.out.println("Enter method name and the number (type 'q' to quit)\n");
- while (true) {
- BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
- String str = br.readLine();
- if (str.equalsIgnoreCase("q")) {
- System.out.println("Client shutting down.");
- break; // Exit the loop if "q" is entered
- }
- byte[] b = str.getBytes();
- DatagramPacket dp = new DatagramPacket(b, b.length, ia, 1200);
- ds.send(dp);
- // Prepare to receive the result
- byte[] b1 = new byte[4096];
- DatagramPacket dp1 = new DatagramPacket(b1, b1.length);
- ds1.receive(dp1);
- String response = new String(dp1.getData(), 0, dp1.getLength());
- System.out.println("\nResult = " + response + "\n");
- }
- ds.close(); // Close the socket when done
- ds1.close(); // Close the response socket
- } catch (Exception e) {
-    e.printStackTrace();
- }
- }
- public static void main(String[] args) {
- new RPCNumClient();
- }
+public class ClientDate
+{
+public static void main(String args[]) throws Exception
+{
+String s1;
+InterDate h1 = (InterDate)Naming.lookup("DS");
+s1 = h1.display();
+System.out.println(s1);
+}
 }
 
-
-
+        
 `;
 
-var text7 = `# 3a
-        1. BroadcastServer.java
-package pract3;
-import java.net.*;
-import java.io.*;
-public class BroadcastServer {
- public static final int PORT = 1234;
- public static void main(String args[]) throws Exception {
- MulticastSocket socket;
- DatagramPacket packet;
- InetAddress address;
- // Set the multicast address
- address = InetAddress.getByName("239.1.2.3");
- socket = new MulticastSocket();
- // Join a Multicast group
- socket.joinGroup(address);
- byte[] data;
- for (;;) {
- Thread.sleep(10000); // Sleep for 10 seconds
- System.out.println("Sending...");
- String str = "This is Tanuja Calling";
- data = str.getBytes();
- packet = new DatagramPacket(data, data.length, address, PORT);
- // Sends the packet
- socket.send(packet);
- } // end for
- } // end main
-} // end class BroadcastServer
-2. BroadcastClient.java
-package pract3;
-import java.net.*;
-import java.io.*;
-public class BroadcastClient {
- public static final int PORT = 1234;
- public static void main(String args[]) throws Exception {
- MulticastSocket socket;
- DatagramPacket packet;
- InetAddress address;
- // Set the multicast address
- address = InetAddress.getByName("239.1.2.3");
- socket = new MulticastSocket(PORT);
- // Join a Multicast group and wait for a message
- socket.joinGroup(address);
- byte[] data = new byte[100];
- packet = new DatagramPacket(data, data.length);
- System.
-
-
-
-`;
-
-var text8 = `# 4a
-1. DateTimeInter.java
-import java.io.*;
-import java.rmi.*;
-import java.rmi.server.*;
-import java.util.*;
-public interface DateTimeInter extends Remote
-{
-public String getDateTime() throws Exception;
+        var text7 = `p4b 
+        1. InterConvert.java
+        import java.rmi.*;
+        public interface InterConvert extends Remote
+        {
+        public String convertDigit(String no) throws Exception;
+        }
+        2. ServerConvert.java
+        import java.rmi.*;
+        import java.rmi.server.*;
+        public class ServerConvert extends UnicastRemoteObject implements InterConvert
+        {
+        public ServerConvert() throws Exception
+        {
+        }
+        public String convertDigit(String no) throws Exception
+        {
+        String str = "";
+        for(int i = 0; i < no.length(); i++)
+        {
+        int p = no.charAt(i);
+        if( p == 48)
+        {
+        str += "zero ";
+    }
+    if( p == 49)
+    {
+    str += "one ";
+    }
+    if( p == 50)
+    {
+    str += "two ";
+    }
+    if( p == 51)
+    {
+    str += "three ";
+    }
+    if( p == 52)
+    {
+    str += "four ";
+    }
+    if( p == 53)
+    {
+    str += "five ";
+    }
+    if( p == 54)
+    {
+    str += "six ";
+    }
+    if( p == 55)
+    {
+    str += "seven ";
 }
-2. DateTimeImpl.java
-import java.io.*;
-import java.rmi.*;
-import java.rmi.server.*;
-import java.util.*;
-public class DateTimeImpl extends UnicastRemoteObject implements DateTimeInter
+if( p == 56)
 {
-public DateTimeImpl() throws Exception
-{
-super();
+str += "eight ";
 }
-public String getDateTime() throws Exception
+if( p == 57)
 {
-Date d=new Date();
-return d.toString();
-}
-}
-3. DateTimeServer.java
-import java.io.*;
-import java.rmi.*;
-import java.rmi.server.*;
-import java.util.*;
-public class DateTimeServer
-{
-public static void main(String args[]) throws Exception{
-DateTimeImpl obj=new DateTimeImpl();
-Naming.bind("abc",obj);
-System.out.println("Waiting for Client");
-}
-}
-4. DateTimeClient.java
-import java.io.*;
-import java.rmi.*;
-import java.rmi.server.*;
-import java.util.*;
-public class DateTimeClient
-{
-public static void main(String args[]) throws Exception{
-DateTimeInter obj=(DateTimeInter)Naming.lookup("abc");
-System.out.println("Date Time is:" + obj.getDateTime());
-}
-}        
-
-
-
-`;
-
-var text9 = `# 4b
-1.ConvertInter.java
-import java.io.*;
-import java.rmi.*;
-import java.rmi.server.*;
-import java.util.*;
-public interface ConvertInter extends Remote
-{
-public String convertDigit(String no) throws Exception;
-}
-2.ConvertImpl.java
-import java.io.*;
-import java.rmi.*;
-import java.rmi.server.*;
-import java.util.*;
-public class ConvertImpl extends UnicastRemoteObject implements ConvertInter
-{
-public ConvertImpl() throws Exception
-{
-super();
-}
-public String convertDigit(String no) throws Exception
-{
-String str="";
-for(int i = 0; i < no.length(); i++)
-{
-int p=no.charAt(i);
-if(p==48)
-{
-str+="zero ";
-}
-if(p==49)
-{
-    str+="one ";
-}
-if(p==50)
-{
-str+="two ";
-}
-if(p==51)
-{
-str+="three ";
-}
-if(p==52)
-{
-str+="four ";
-}
-if(p==53)
-{
-str+="five ";
- }
-if(p==54)
-{
-str+="six ";
-}
-if(p==55)
-{
-str+="seven ";
-}
-if(p==56)
-{
-str+="eight ";
-}
-if(p==57)
-{
-str+="nine ";
+str += "nine ";
 }
 }
 return str;
 }
+public static void main(String args[]) throws Exception
+{
+ServerConvert s1 = new ServerConvert();
+Naming.bind("Wrd",s1);
+System.out.println("Object registered....");
 }
-3. ConvertServer.java
-import java.io.*;
+}
+3. ClientConvert.java
 import java.rmi.*;
-import java.rmi.server.*;
-import java.util.*;
-public class ConvertServer
+import java.io.*;
+public class ClientConvert
 {
 public static void main(String args[]) throws Exception
 {
-ConvertImpl obj=new ConvertImpl();
-Naming.bind("word",obj);
-System.out.println("Waiting for Client");
-}
-}
-4. ConvertClient.java
-import java.io.*;
-import java.rmi.*;
-import java.rmi.server.*;
-import java.util.*;
-public class ConvertClient{
-public static void main(String args[]) throws Exception
-{
-ConvertInter obj=(ConvertInter)Naming.lookup("word");
+InterConvert h1 = (InterConvert)Naming.lookup("Wrd");
 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-System.out.println("Enter a number :\t");
-String no = br.readLine();
-String ans = obj.convertDigit(no);
+System.out.println("Enter a number : \t"); String no = br.readLine();
+String ans = h1.convertDigit(no);
 System.out.println("The word representation of the entered digit is : " +ans);
 }
 }
-
-
+        
 `;
-
-var text10 = `# 6a
+var text8 = `# 6a
 
 # STEPS
 #Fill IP address copied from Installation and User name as “root” and Password
@@ -789,10 +555,8 @@ var text10 = `# 6a
 #* Now Right click on Windows XP and Start -
 #Installation is successful and virtual node has been created if we get below Welcome screen of Windows XP machine.
 
-`;
 
-
-
+    `;
 
 
 function copyText(text) {
