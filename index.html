@@ -37,561 +37,555 @@
 
 <body>
 
-    <button onclick="copyText(text1)">1 Design a simple machine learning model (Linear Regression) </button>
-    <button onclick=" copyText(text2)"> 2a Design a simple linear neural network model</button>
-    <button onclick="copyText(text3)"> 2b Calculate the output of neural net using both binary and bipolar sigmoidal function </button>
-    <button onclick="copyText(text4)">2c  Calculate the net input for the network shown in Figure 2 with bias</button>
-    <button onclick="copyText(text5)">2d Hebb rule with Bipolar inputs and targets. Use ANDNOT Function</button>
-    <button onclick="copyText(text6)">3 Membership and Identity Operators in, not in for Crisp Logic</button>
-    <button onclick="copyText(text7)">3b Find ratios using fuzzy logic</button>
-    <button onclick="copyText(text8)">4 Design an Expert System using AIML</button>
-    <button onclick="copyText(text9)">5 k-Nearest Neighbor algorithm to classify the </button>
-    <button onclick="copyText(text10)">6 implement Rule Based System</button>
-    <button onclick="copyText(text11)">7 Conditional Probability </button>
-    <button onclick="copyText(text12)">7a Joint Probability </button>
-    <button onclick="copyText(text13)">8 implement Bayes Theorem </button>
-    <button onclick="copyText(text14)">9 SVM algorithm for binary classification </button>
-    <button onclick="copyText(text15)">10 Naive Bayes' algorithm </button>
-    <button onclick="copyText(text16)">11 decision tree </button>
-    <button onclick="copyText(text17)">12 Confusion Matrix.</button>
+    <button onclick="copyText(text1)">1a Implement TCP Programming(prime & non prime)</button>
+    <button onclick=" copyText(text2)">1b A client server TCP based chatting application</button>
+    <button onclick="copyText(text3)">2a Client Server communication model using UDP (odd and even)</button>
+    <button onclick="copyText(text4)">2b UDP to find the factorial of the entered number </button>
+    <button onclick="copyText(text5)">2c calculator operations like addition, subtraction, multiplication and division</button>
+    <button onclick="copyText(text6)">2d finds the square, square root, cube and cube root of the entered number</button>
+    <button onclick="copyText(text7)">3 A multicast Socket example.</button>
+    <button onclick="copyText(text8)">4 program to show the object communication using RMI.</button>
+    <button onclick="copyText(text9)">4b RMI converts digits to words, e.g. 123 will be converted to one two three </button>
+    <button onclick="copyText(text10)">5 implementation of web services.</button>
     
     
     <p id="copiedMsg"></p>
     <script>
-        
-        var text1 = `#Practical 1 
-import random
-from sklearn.linear_model import LinearRegression
-print("Moinuddin dhuni")
-feature_set = []
-target_set = []
-number_of_rows = 200
-limit = 2000
-for i in range(0, number_of_rows):
-    x = random.randint(0, limit)
-    y = random.randint(0, limit)
-    z = random.randint(0, limit)
-    g= 10*x + 2*y + 3*z
-    print(i, "x = ", x, "y = ", y, "z = ", z, "g = ", g)
-    feature_set.append([x,y,z])
-    target_set.append(g)
-model = LinearRegression()
-model.fit(feature_set, target_set)
-test_date = [[1, 2, 3]]
-prediction = model.predict(test_date)
-print('Prediction:'+str(prediction)+'\t'+'Coefficient:'+str(model.coef_))
-print("Moinunddin Dhuni")  
+        var text1 = `1a 
+1. tcpServerPrime.java
+package Pract1A;
+import java.net.*;
+import java.io.*;
+public class tcpServerPrime {
+ public static void main(String[] args) {
+ try {
+ ServerSocket ss = new ServerSocket(8001);
+ System.out.println("Server Started........");
+ Socket s = ss.accept();
 
-        
+ DataInputStream in = new DataInputStream(s.getInputStream());
+ int x = in.readInt();
+
+ DataOutputStream otc = new DataOutputStream(s.getOutputStream());
+ // Check for prime numbers
+ if (x <= 1) {
+ otc.writeUTF(x + " is not Prime");
+ } else {
+ boolean isPrime = true;
+ for (int i = 2; i <= Math.sqrt(x); i++) {
+ if (x % i == 0) {
+ isPrime = false;
+ break; // Exit the loop if a divisor is found
+ }
+ }
+ if (isPrime) {
+ otc.writeUTF(x + " is Prime");
+ } else {
+ otc.writeUTF(x + " is not Prime");
+ }
+ }
+ } catch (Exception e) {
+ System.out.println(e.toString());
+ }
+ }
+}
+
+2. tcpClientPrime.java
+package Pract1A;
+import java.net.*;
+import java.io.*;
+public class tcpClientPrime {
+ public static void main(String[] args) {
+ try{
+ Socket cs = new Socket("LocalHost",8001);
+ BufferedReader infu = new BufferedReader(new InputStreamReader(System.in));
+ System.out.println("Enter a number : ");
+
+ int a = Integer.parseInt(infu.readLine());
+ DataOutputStream out = new DataOutputStream(cs.getOutputStream());
+ out.writeInt(a);
+
+ DataInputStream in = new DataInputStream(cs.getInputStream());
+ System.out.println(in.readUTF());
+ cs.close();
+ }catch(Exception e){
+ System.out.println(e.toString());
+ }
+ }
+}
 
     `;
+        var text2 = `1b 
+        1. chatServer.java
+package pract1B;
+import java.net.*;
+import java.io.*;
+class ChatServer {
+ public static void main(String args[]) {
+ try {
+ ServerSocket ss = new ServerSocket(8000);
+ System.out.println("Waiting for client to connect..");
+ Socket s = ss.accept();
 
-        var text2 = ` #practical no  2
-print("Name:Moinuddin Dhuni 23")
-print("Input x=")
-x = float(input())
-print("Weight w=")
-w = float(input())
-print("Bias b=")
-b = float(input())
-yin=b+(x*w)
-if yin>=0:
-    y1=1
-    else:
-    y1=0
-if yin>=0:
-    y2=1
-else:
-    y2=-1
-print("Input x=",x)
-print("Weight w=",w)
-print("Bias b=",b)
-print("Net Input yin=",yin)
-print("Binary Activation Output y1=",y1)
-print("Bipolar Activation Output y2=",y2)
-print("Name:Moinuddin Dhuni 23")
-
-
+ BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ DataOutputStream out = new DataOutputStream(s.getOutputStream());
+ DataInputStream in = new DataInputStream(s.getInputStream());
+ String receive, send;
+ while ((receive = in.readLine()) != null) {
+ if (receive.equals("STOP")) {
+ out.writeBytes("Server: Connection closed.\n");
+ break;
+ }
+ System.out.println("Client Says: " + receive);
+ System.out.print("Server Says: ");
+ send = br.readLine();
+ out.writeBytes(send + "\n");
+ }
+ // Close resources
+ br.close();
+ in.close();
+ out.close();
+ s.close();
+ ss.close(); // Close the server socket as well
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+}
+2. chatClient.java
+package pract1B;
+import java.net.*;
+import java.io.*;
+class ChatClient {
+ public static void main(String args[]) {
+ try {
+ Socket s = new Socket("localhost", 8000);
+ BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ DataOutputStream out = new DataOutputStream(s.getOutputStream());
+ DataInputStream in = new DataInputStream(s.getInputStream());
+ String msg;
+ System.out.println("To stop chatting with server type STOP");
+ System.out.print("Client Says: ");
+ while ((msg = br.readLine()) != null) {
+ out.writeBytes(msg + "\n");
+ if (msg.equals("STOP")) {
+ System.out.println("Client: Connection closed.");
+ break;
+ }
+ System.out.println("Server Says: " + in.readLine());
+ System.out.print("Client Says: ");
+ }
+ // Close resources
+ br.close();
+ in.close();
+ out.close();
+ s.close();
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+}   
 
 `;
 
-        var text3 = ` # practical 2b
-print("Moinuddin Dhuni 23")
-n = int(input("Enter number of elements : ")) 
-print("Enter the inputs")
-inputs = []
-for i in range(0, n):
-    ele = float(input())
-    inputs.append(ele)
-print(inputs) 
-print("Enter the weights")
-weights = [] 
-for i in range(0, n):
-     ele = float(input())
-     weights.append(ele)   
-print(weights) 
-print("The net input can be calculated as   Yin = x1w1 + x2w2 + x3w3")
-Yin = []
-for i in range(0,n):
-    Yin.append(inputs[i]*weights[i])
-print(round(sum(Yin),3))
-print("Moinuddin Dhuni 23")
+        var text3 = `2a
+        1. udpSeverEO.java
+package Pract2A;
+import java.io.*;
+import java.net.*;
+public class udpServerEO {
+ public static void main(String args[]) {
+ try {
+ DatagramSocket ds = new DatagramSocket(2000);
+ byte[] b = new byte[1024];
+ DatagramPacket dp = new DatagramPacket(b, b.length);
+ ds.receive(dp);
+
+ String str = new String(dp.getData(), 0, dp.getLength());
+ System.out.println("Received: " + str);
+ int a = Integer.parseInt(str);
+ String response;
+ if (a % 2 == 0) {
+ response = "Number is even";
+ } else {
+ response = "Number is odd";
+ }
+ byte[] b1 = response.getBytes();
+ DatagramPacket dp1 = new DatagramPacket(b1, b1.length, dp.getAddress(), dp.getPort());
+ ds.send(dp1);
+ ds.close(); // Close the socket after sending the response
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+}
+2. udpClientEO.java
+package Pract2A;
+import java.io.*;
+import java.net.*;
+public class udpClientEO {
+ public static void main(String args[]) {
+ try {
+ DatagramSocket ds = new DatagramSocket();
+ BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ System.out.print("Enter a number: ");
+ String num = br.readLine();
+
+ byte[] b = num.getBytes();
+ DatagramPacket dp = new DatagramPacket(b, b.length, InetAddress.getLocalHost(), 2000);
+ ds.send(dp);
+
+ byte[] b1 = new byte[1024];
+ DatagramPacket dp1 = new DatagramPacket(b1, b1.length);
+ ds.receive(dp1);
+
+ String response = new String(dp1.getData(), 0, dp1.getLength());
+ System.out.println("Server Response: " + response);
+
+ ds.close(); // Close the socket after receiving the response
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+}
+        
+`;
+
+        var text4 = ` # 2b 
+        1. udpServerFact.java
+package pract2B;
+import java.io.*;
+import java.net.*;
+public class udpServerFact {
+ public static void main(String args[]) {
+ try {
+ DatagramSocket ds = new DatagramSocket(2000);
+ byte[] b = new byte[1024];
+ DatagramPacket dp = new DatagramPacket(b, b.length);
+ ds.receive(dp);
+
+ String str = new String(dp.getData(), 0, dp.getLength());
+ System.out.println("Received: " + str);
+ int a = Integer.parseInt(str);
+ long factorial = 1; // Use long to handle larger factorials
+
+ for (int i = 1; i <= a; i++) {
+ factorial *= i;
+ }
+ String response = "The Factorial of " + a + " is: " + factorial;
+ byte[] b1 = response.getBytes();
+ DatagramPacket dp1 = new DatagramPacket(b1, b1.length, dp.getAddress(), dp.getPort());
+ ds.send(dp1);
+ ds.close(); // Close the socket after sending the response
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+}
+2. udpClientFact.java
+package pract2B;
+import java.io.*;
+import java.net.*;
+public class udpClientFact {
+ public static void main(String args[]) {
+ try {
+ DatagramSocket ds = new DatagramSocket();
+ BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ System.out.print("Enter a number: ");
+ String num = br.readLine();
+
+ byte[] b = num.getBytes();
+ DatagramPacket dp = new DatagramPacket(b, b.length, InetAddress.getLocalHost(), 2000);
+ ds.send(dp);
+
+ byte[] b1 = new byte[1024];
+ DatagramPacket dp1 = new DatagramPacket(b1, b1.length);
+ ds.receive(dp1);
+
+ String response = new String(dp1.getData(), 0, dp1.getLength());
+ System.out.println("Server Response: " + response);
+
+ ds.close(); // Close the socket after receiving the response
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+}       
+`;
+
+        var text5 = `2c
+        1. RPCServer.java
+package Pract2C;
+import java.util.*;
+import java.net.*;
+class RPCServer {
+ DatagramSocket ds;
+ DatagramPacket dp;
+ String str, methodName, result;
+ int val1, val2;
+ RPCServer() {
+ try {
+ ds = new DatagramSocket(1200);
+ byte[] b = new byte[4096];
+ while (true) {
+ dp = new DatagramPacket(b, b.length);
+ ds.receive(dp);
+ str = new String(dp.getData(), 0, dp.getLength());
+ if (str.equalsIgnoreCase("q")) {
+ System.out.println("Server shutting down.");
+ break; // Exit the loop if "q" is received
+ }
+ StringTokenizer st = new StringTokenizer(str, " ");
+ methodName = st.nextToken(); // Get the method name
+ val1 = Integer.parseInt(st.nextToken()); // Get first parameter
+ val2 = Integer.parseInt(st.nextToken()); // Get second parameter
+ System.out.println("Received: " + str);
+ // Perform the requested operation
+ switch (methodName.toLowerCase()) {
+ case "add":
+ result = "" + add(val1, val2);
+ break;
+ case "sub":
+ result = "" + sub(val1, val2);
+ break;
+ case "mul":
+ result = "" + mul(val1, val2);
+ break;
+ case "div":
+ if (val2 != 0) {
+ result = "" + div(val1, val2);
+ } else {
+ result = "Error: Division by zero";
+ }
+ break;
+ default:
+ result = "Error: Unknown method";
+ }
+ byte[] b1 = result.getBytes();
+ DatagramPacket dp1 = new DatagramPacket(b1, b1.length, dp.getAddress(), 1300);
+ System.out.println("Result: " + result);
+ ds.send(dp1);
+ }
+ ds.close(); // Close the socket when done
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+ public int add(int val1, int val2) {
+ return val1 + val2;
+ }
+ public int sub(int val1, int val2) {
+ return val1 - val2;
+ }
+ public int mul(int val1, int val2) {
+ return val1 * val2;
+ }
+ public int div(int val1, int val2) {
+ return val1 / val2;
+ }
+ public static void main(String[] args) {
+ new RPCServer();
+ }
+}
+2. RPCClient.java
+package Pract2C;
+import java.io.*;
+import java.net.*;
+class RPCClient {
+ RPCClient() {
+ try {
+ InetAddress ia = InetAddress.getLocalHost();
+ DatagramSocket ds = new DatagramSocket();
+ DatagramSocket ds1 = new DatagramSocket(1300);
+ System.out.println("\nRPC Client\n");
+ System.out.println("Enter method name and parameters like 'add 3 4' (type 'q' to quit)");
+ while (true) {
+ BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ String str = br.readLine();
+ if (str.equalsIgnoreCase("q")) {
+ System.out.println("Client shutting down.");
+ break; // Exit the loop if "q" is entered
+ }
+ byte[] b = str.getBytes();
+ DatagramPacket dp = new DatagramPacket(b, b.length, ia, 1200);
+ ds.send(dp);
+ // Prepare to receive the result
+ byte[] b1 = new byte[4096];
+ DatagramPacket dp1 = new DatagramPacket(b1, b1.length);
+ ds1.receive(dp1);
+ String response = new String(dp1.getData(), 0, dp1.getLength());
+ System.out.println("\nResult = " + response + "\n");
+ }
+ ds.close(); // Close the socket when done
+ ds1.close(); // Close the response socket
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+ public static void main(String[] args) { new RPCClient(); } }
 
 
         
   `;
   
-        var text4 = ` # practical no 2c 
-print("Moinuddin dhuni 23")
-print("Input x1 = ")
-x1 = float(input())
-print("Input x2 = ")
-x2 = float(input())
-print("Weight w1 = ")
-w1 = float(input())
-print("Weight w2 = ")
-w2 = float(input())
-print("Bias b = ")
-b = float(input())
-yin = b + (x1*w1 + x2*w2)
-print("Input nodes x1 and x2 =",x1,x2)
-print("Weight =",w1,w2)
-print("Bias b =",b)
-print("Net Input yin =",yin)
-
-
-
-`;
-
-        var text5 = `# practical 2d
-print("Moinuddin dhuni 23")
-x1 = []
-x2 = []
-# x1 = [1,1,-1,-1]
-# x2 = [1,-1,1,-1]
-y = [-1,1,-1,-1]
-print("Enter Bipolar Input X1 = ")
-for i in range(0,4):
-   e1 = float(input())
-   x1.append(e1)
-print("Input Bipolar X1 are :", x1)
-print("Enter Bipolar Input X2 = ")
-for i in range(0,4):
-   e1 = float(input())
-   x2.append(e1)
-print("Input Bipolar X2 are :", x2)
-print("x1 = ", x1)
-print("x2 = ", x2)
-print("Traget y =",y)
-w1=0
-w2=0
-b=0
-for i in range(0,4):
-    w1=w1+x1[i]*y[i]
-    w2=w2+x2[i]*y[i]
-    b=b+y[i]
-print("w1(new)=", w1)
-print("w2(new)=", w2)
-print("b(new)=", b)
-print("===================")
-print("Final weights and bias:")
-print("w1(new)=", w1)
-print("w2(new)=", w2)
-print("b(new)=", b)
-print("Moinuddin Dhuni 23 ")
-
-
-
-`;
-
-        var text6 = `# practical 3
-print("Moinuddin dhuni 23")
-a=10
-b=20
-list=[1,2,3,4,5];
-if a in list:
-    print("Line 1 - a is available in the given list")
-else:
-    print("Line 1 - a is not available in the given list")
-    if b not in list:
-        print("Line 2 - b is not available in the given list")
-    else:
-        print("Line 2 - b is not available in the given list")
-a = 2
-if a in list:
-    print("Line 3 - a is available in the given list")
-else:
-    print("Line 3 - a is not available in the given list")
-print("Moinuddin Dhuni 23")
-practical no 3b
-!pip install fuzzywuzzy 
-print ("Moinuddin Dhuni 23")
-from fuzzywuzzy import fuzz 
-from fuzzywuzzy import process
-s1 = "I like softcomputing"
-s2= "I like hardcomputing"
-print ("FuzzyWuzzy Ratio: ", fuzz.ratio(s1, s2))
-print ("FuzzyWuzzy PartialRatio: ", fuzz.partial_ratio(s1, s2))
-print ("FuzzyWuzzy TokenSortRatio: ", fuzz.token_sort_ratio(s1, s2)) 
-print ("FuzzyWuzzy TokenSetRatio: ", fuzz.token_set_ratio(s1, s2))
-print ("FuzzyWuzzy WRatio: ", fuzz.WRatio (s1, s2), '\n\n')
-print ("Moinuddin Dhuni 23")
-
-
-
-`;
-   
-        var text7 = `# practical no 3b
-!pip install fuzzywuzzy 
-print ("Moinuddin Dhuni 23")
-from fuzzywuzzy import fuzz 
-from fuzzywuzzy import process
-s1 = "I like softcomputing"
-s2= "I like hardcomputing"
-print ("FuzzyWuzzy Ratio: ", fuzz.ratio(s1, s2))
-print ("FuzzyWuzzy PartialRatio: ", fuzz.partial_ratio(s1, s2))
-print ("FuzzyWuzzy TokenSortRatio: ", fuzz.token_sort_ratio(s1, s2)) 
-print ("FuzzyWuzzy TokenSetRatio: ", fuzz.token_set_ratio(s1, s2))
-print ("FuzzyWuzzy WRatio: ", fuzz.WRatio (s1, s2), '\n\n')
-print ("Moinuddin Dhuni 23")
-
-`;
-
-var text8 = `# practical no 4 (doubt )
-import aiml
-import time
-def main():
-  kernel = aiml.Kernel()
-  kernel.learn("/content/flu.aiml")
-  print("Pratiksha Kareliya 18")
-  print("Welcome to the flu diag center")
-  while True:
-    user_input = input("You: ").strip().lower()
-    if user_input == "exit":
-      print("GoodBye!...")
-      print("Pratiksha Kareliya 18")
-      break
-    response = kernel.respond(user_input)
-    print("Expert System: ", response)
-if __name__ == "__main__":
-  main()
-
-
-`;
-
-var text9 = `# practical no 5
-import matplotlib.pyplot as plt
-from sklearn.neighbors import KNeighborsClassifier
-
-#Data Set
-x = [4, 5, 10, 4, 3, 11, 14 , 8, 10, 12]
-y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
-classes = [0, 0, 1, 0, 0, 1, 1, 0, 1, 1]
-print("x=",x)
-print("y=",y)
-#To plot data set
-plt.scatter(x, y, c=classes)
-plt.title("Yash Sing 39 : Data Set")
-plt.show()
-data = list(zip(x, y))
-print(data)
-#model creation
-model = KNeighborsClassifier(n_neighbors=1)
-# Model is trained
-model.fit(data, classes)
-new_x = 8
-new_y = 21
-new_point = [(new_x, new_y)]
-prediction = model.predict(new_point)
-plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
-plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
-plt.title("Moinuddin D: Data Set")
-plt.show()
-#model creation
-model = KNeighborsClassifier(n_neighbors=3)
-# Model is trained
-model.fit(data, classes)
-new_x = 8
-new_y = 21
-new_point = [(new_x, new_y)]
-prediction = model.predict(new_point)
-plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
-plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
-plt.title("PMoinuddin dhuni 23 : Data Set")
-plt.show()
-#model creation
-model = KNeighborsClassifier(n_neighbors=5)
-# Model is trained
-model.fit(data, classes)
-new_x = 8
-new_y = 21
-new_point = [(new_x, new_y)]
-prediction = model.predict(new_point)
-plt.scatter(x + [new_x], y + [new_y], c=classes + [prediction[0]])
-plt.text(x=new_x-1.7, y=new_y-0.7, s=f"new point, class: {prediction[0]}")
-plt.title("Moinuddin dhuni : Data Set")
-plt.show()
-
-
-
-`;
-
-var text10 = `# practical no 6
-print ("Moinuddin dhuni 23")
-class Rule:
-    def __init__(self, conditions, conclusion):
-        self.conditions = conditions  
-        self.conclusion = conclusion  
-    def is_applicable(self, facts):
-        """Check if all conditions are met by the current facts."""
-        return all(condition in facts for condition in self.conditions)
-class RuleBasedSystem:
-    def __init__(self):
-        self.rules = []  
-        self.facts = set()
-    def add_rule(self, conditions, conclusion):
-        """Add a rule to the rule-based system."""
-        rule = Rule(conditions, conclusion)
-        self.rules.append(rule)
-
-    def add_fact(self, fact):
-        """Add a new fact to the knowledge base."""
-        self.facts.add(fact)
-
-    def infer(self):
-        """Perform forward-chaining to infer new facts."""
-        new_facts = True
-        while new_facts:
-            new_facts = False
-            for rule in self.rules:
-                if rule.is_applicable(self.facts) and rule.conclusion not in self.facts:
-                    self.facts.add(rule.conclusion)
-                    new_facts = True
-                    print(f"New fact inferred: {rule.conclusion}")
-
-    def display_facts(self):
-        """Display the facts in the knowledge base."""
-        print("Current facts in the knowledge base:")
-        for fact in sorted(self.facts):
-            print(f"- {fact}")
-if __name__ == "__main__":
-    rbs = RuleBasedSystem()
-    rbs.add_rule(["rainy"], "wet_ground")
-    rbs.add_rule(["wet_ground", "cold"], "slippery_road")
-    rbs.add_rule(["sunny"], "dry_ground")
-    rbs.add_fact("rainy")
-    rbs.add_fact("cold")
-    print("Initial facts:")
-    rbs.display_facts()
-    print("\nInferring new facts...")
-    rbs.infer()
-    print("\nFinal facts:")
-    rbs.display_facts()
-    print ("Moinuddin Dhuni 23 ")
-
-
-`;
-
-var text11 = `# practical no 7a
-Conditional Probability:
-def conditional():
-  pass_stats = 0.15
-  pass_codingWstats = 0.60
-  pass_codingWOstats = 0.40
-  prob_both = pass_stats * pass_codingWstats
-  print("The probability that bapplicant passes both is:", round(prob_both, 3))
-  prob_coding = (prob_both) + ((1- pass_stats)*pass_codingWOstats)
-  print("The probability that he/she passes only coding is:", round(prob_coding, 3))
-  stats_given_coding = prob_both/prob_coding
-  print("Conditional probability is:", round(stats_given_coding, 3))
-print("Pratiksha Kareliya 18")
-conditional()
-
-
-`;
-
-var text12 = `# practical no 7b
-print("Moinuddin Dhuni 23")
-def cp(a_and_b,b):
-    if b == 0 :
-        raise ValueError("The probability of B cannot be zero.")
-    cprob = a_and_b / b
-    return cprob
-print("Enter The probability of a")
-p1 = float(input())
-print("Enter The probability of B=")
-p2 = float(input())
-p1_and_p2 = p1 * p2
-print("Conditional Probility :",cp(p1_and_p2,p2))
-print("Moinuddin dhuni 23")
-
-
-
-
-`;
-
-var text13 = `# Practical no 8
-def bayes_theorem (prior_prob, likelihood, evidence):
-  
-  posterior_prob = (likelihood*prior_prob) / evidence
-  return posterior_prob
-  
-if __name__ == "__main__":
-  print("MOinuddin Dhuni 23")
-  prior_prob = float(input("Enter prior probability: "))
-  likelihood = float(input("Enter likelihood: "))
-  evidence = float(input("Enter evidence: "))
-  #Calculate and print the posterior probability
-  posterior_prob = bayes_theorem(prior_prob, likelihood, evidence)
-
-print("Posterior Probability:", posterior_prob)
-print("Moinuddin Dhuni 23")
-
-
-`;
-
-var text14 = `# practical no 9 
-import pandas as pd
-print("Pratiksha Kareliya 18")
-iris = pd.read_csv("/content/iris.csv")
-data = pd.DataFrame(iris)
-print(data)
-
-x = data.drop("species",axis=1)
-y = data["species"]
-
-print("Feature Set")
-print(x)
-
-print("Target Set")
-print(y)
-from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2)
-print(x_train)
-print(x_test)
-print(y_train)
-print(y_test)
-
-from sklearn.svm import SVC
-model = SVC(kernel='linear')
-model.fit(x_train,y_train)
-y_pred = model.predict(x_test)
-print(y_pred)
-
-from sklearn.metrics import accuracy_score
-print(accuracy_score(y_test,y_pred))
-print("Moinuddin Dhuni 23")
-
-
-`;
-
-
-var text15 = `# Practical no 10
-from pgmpy.models import BayesianModel
-model = BayesianModel([
-('age', 'Lifestyle'),
-('Gender', 'Lifestyle'),
-('Family', 'heartdisease'),
-('diet', 'cholestrol'),
-('Lifestyle', 'diet'),
-('cholestrol', 'heartdisease'),
-('diet', 'cholestrol')
-])
-from pgmpy.estimators import MaximumLikelihoodEstimator
-model.fit(heart_disease,estimator=MaximumLikelihoodEstimator)
-from pgmpy.inference import VariableElimination
-HeartDisease_infer = VariableElimination(model)
-print('For Age enter SuperSeniorCitizen:0, SeniorCitizen: 1, MiddleAged: 2, Youth: 3,
-Teen: 4')
-print('For Gender enter Male: 0, Female: 1')
-print('For Family History enter Yes: 1, No:0')
-print('For Diet enter High: 0, Medium: 1')
-print('for LifeStyle enter Athlete:0, Active:1, Moderate: 2, Sedentary:3')
-print('for Cholesterol enter High: 0, BorderLine:1, Normal:2')
-q = HeartDisease_infer.query (variables=['heartdisease'],
-evidence={
-'age': int(input('Enter Age: ')),
-'Gender': int(input('Enter Gender: ')),
-'Family': int(input('Enter Family History: ')),
-'diet': int(input('Enter Diet: ')),
-'Lifestyle': int(input('Enter Lifestyle: ')),
-'cholestrol': int(input('Enter Cholestrol: '))
-})
-print (q)
-print("Jasar Shaikh 33")
-
-
-`;
-
-var text16 = `# practical no 11
-import pandas as pd
-print("Moinuddin Dhuni 23")
-iris = pd.read_csv("/content/iris.csv")
-data = pd.DataFrame(iris)
-print(data)
-x=data.drop("species",axis=1)
-y=data["species"]
-print("Feature Set")
-print(x)
-print("Target Set")
-print(y)
-from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=80)
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-model=DecisionTreeClassifier()
-model.fit(x_train,y_train)
-y_pred=model.predict(x_test)
-print(y_pred)
-from sklearn.metrics import accuracy_score
-print("Accuracy:",accuracy_score(y_test,y_pred))
-import matplotlib.pyplot as plt
-plt.figure(figsize=(12,8))
-plot_tree(model, filled=True, feature_names=x.columns, class_names=y.unique().astype(str))
-plt.title("Decision Tree")
-plt.show()
-print("Moinuddin dhuni 23")
-
-
-`;
-
-
-var text17 = `# practical no 12
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-#dataset
-x=[4,5,10,4,3,11,14,6,10,12]
-y=[21,19,24,17,16,25,24,22,21,21]
-
-print("Pratiksha Kareliya 18")
-print("x=",x)
-print("y=",y)
-data = list(zip(x,y))
-print(data)
-
-plt.scatter(x,y)
-plt.title("Pratiksha Kareliya 18")
-plt.show()
-
-model = KMeans(n_clusters=2)   
-
-plt.scatter(x,y, c = model.labels_)
-plt.title("Moinuddin Dhuni ")
-plt.show()
-
-
-`;
-
-
-
-function copyText(text) {
-    navigator.clipboard.writeText(text).then(function () {
-        document.getElementById('copiedMsg').innerHTML = "Text Copied"
-    }).catch(function (err) {
-        console.error('Unable to copy text', err);
-    });
+        var text6 = ` 2d 1. RPCNumServer.java
+        package Pract2D;
+        import java.util.*;
+        import java.net.*;
+        import java.io.*;
+        class RPCNumServer {
+         DatagramSocket ds;
+         DatagramPacket dp;
+         String str, methodName, result;
+         int val;
+         RPCNumServer() {
+         try {
+         ds = new DatagramSocket(1200);
+         byte[] b = new byte[4096];
+         while (true) {
+         dp = new DatagramPacket(b, b.length);
+         ds.receive(dp);
+         str = new String(dp.getData(), 0, dp.getLength());
+         if (str.equalsIgnoreCase("q")) {
+         System.out.println("Server shutting down.");
+         break; // Exit the loop if "q" is received
+         }
+         StringTokenizer st = new StringTokenizer(str, " ");
+         methodName = st.nextToken(); // Get the method name
+         val = Integer.parseInt(st.nextToken()); // Get the parameter
+         System.out.println("Received: " + str);
+         // Perform the requested operation
+         switch (methodName.toLowerCase()) {
+         case "square":
+         result = "" + square(val);
+         break;
+         case "squareroot":
+         result = "" + squareroot(val);
+         break;
+         case "cube":
+ result = "" + cube(val);
+ break;
+ case "cuberoot":
+ result = "" + cuberoot(val);
+ break;
+ default:
+ result = "Error: Unknown method";
+ }
+ byte[] b1 = result.getBytes();
+ DatagramPacket dp1 = new DatagramPacket(b1, b1.length, dp.getAddress(), 1300);
+ System.out.println("Result: " + result);
+ ds.send(dp1);
+ }
+ ds.close(); // Close the socket when done
+ } catch (Exception e) {
+ e.printStackTrace();
+ }
+ }
+ public double square(int a) {
+ return a * a;
+ }
+ public double squareroot(int a) {
+ return Math.sqrt(a);
+ }
+ public double cube(int a) {
+ return a * a * a;
+ }
+ public double cuberoot(int a) {
+ return Math.cbrt(a);
+ }
+ public static void main(String[] args) {
+ new RPCNumServer();
+ }
 }
-</script>
+2. RPCNumClient.java
+package Pract2D;
+import java.io.*;
+import java.net.*;
+class RPCNumClient {
+ RPCNumClient() {
+ try {
+ InetAddress ia = InetAddress.getLocalHost();
+ DatagramSocket ds = new DatagramSocket();
+ DatagramSocket ds1 = new DatagramSocket(1300);
+ System.out.println("\nRPC Client\n");
+ System.out.println("1. Square of the number - square");
+ System.out.println("2. Square root of the number - squareroot");
+ System.out.println("3. Cube of the number - cube");
+ System.out.println("4. Cube root of the number - cuberoot");
+ System.out.println("Enter method name and the number (type 'q' to quit)\n");
+ while (true) {
+ BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ String str = br.readLine();
+ if (str.equalsIgnoreCase("q")) {
+ System.out.println("Client shutting down.");
+ break; // Exit the loop if "q" is entered
+ }
+ byte[] b = str.getBytes();
+ DatagramPacket dp = new DatagramPacket(b, b.length, ia, 1200);
+ ds.send(dp);
+ // Prepare to receive the result
+ byte[] b1 = new byte[4096];
+ DatagramPacket dp1 = new DatagramPacket(b1, b1.length);
+ ds1.receive(dp1);
+ String response = new String(dp1.getData(), 0, dp1.getLength());
+ System.out.println("\nResult = " + response + "\n");
+ }
+ ds.close(); // Close the socket when done
+ ds1.close(); // Close the response socket
+ } catch (Exception e) {
+    e.printStackTrace();
+ }
+ }
+ public static void main(String[] args) {
+ new RPCNumClient();
+ }
+}
+        
+`;
 
-</body>
-
-</html>
+        var text7 = `3a
+        1. BroadcastServer.java
+package pract3;
+import java.net.*;
+import java.io.*;
+public class BroadcastServer {
+ public static final int PORT = 1234;
+ public static void main(String args[]) throws Exception {
+ MulticastSocket socket;
+ DatagramPacket packet;
+ InetAddress address;
+ // Set the multicast address
+ address = InetAddress.getByName("239.1.2.3");
+ socket = new MulticastSocket();
+ // Join a Multicast group
+ socket.joinGroup(address);
+ byte[] data;
+ for (;;) {
+ Thread.sleep(10000); // Sleep for 10 seconds
+ System.out.println("Sending...");
+ String str = "This is Tanuja Calling";
+ data = str.getBytes();
+ packet = new DatagramPacket(data, data.length, address, PORT);
+ // Sends the packet
+ socket.send(packet);
+ } // end for
+ } // end main
+} // end class BroadcastServer
+2. BroadcastClient.java
+package pract3;
+import java.net.*;
+import java.io.*;
+public class BroadcastClient {
+ public static final int PORT = 1234;
+ public static void main(String args[]) throws Exception {
+ MulticastSocket socket;
+ DatagramPacket packet;
+ InetAddress address;
+ // Set the multicast address
+ address = InetAddress.getByName("239.1.2.3");
+ socket = new MulticastSocket(PORT);
+ // Join a Multicast group and wait for a message
+ socket.joinGroup(address);
+ byte[] data = new byte[100];
+ packet = new DatagramPacket(data, data.length);
+ System.
