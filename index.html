@@ -38,20 +38,23 @@
 <body>
 
     <button onclick="copyText(text1)">1a Implement TCP Programming(prime & non prime)</button>
-    <button onclick=" copyText(text2)">1b A client server TCP based chatting application</button>
-    <button onclick="copyText(text3)">2a Client Server communication model using UDP (odd and even)</button>
-    <button onclick="copyText(text4)">2b UDP to find the factorial of the entered number </button>
+    <button onclick=" copyText(text2)">1b A client server TCP based chatting application/button>
+    <button onclick="copyText(text3)"> 2a Client Server communication model using UDP (odd and even)</button>
+    <button onclick="copyText(text4)">2b UDP to find the factorial of the entered number</button>
     <button onclick="copyText(text5)">2c calculator operations like addition, subtraction, multiplication and division</button>
     <button onclick="copyText(text6)">2d finds the square, square root, cube and cube root of the entered number</button>
     <button onclick="copyText(text7)">3 A multicast Socket example.</button>
     <button onclick="copyText(text8)">4 program to show the object communication using RMI.</button>
-    <button onclick="copyText(text9)">4b RMI converts digits to words, e.g. 123 will be converted to one two three </button>
+    <button onclick="copyText(text9)">4b RMI converts digits to words, e.g. 123 will be converted to one two three</button>
     <button onclick="copyText(text10)">5 implementation of web services.</button>
+    
     
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `1a 
+
+        
+        var text1 = `#1a 
 1. tcpServerPrime.java
 package Pract1A;
 import java.net.*;
@@ -90,8 +93,6 @@ public class tcpServerPrime {
  }
 }
 
-
-
 2. tcpClientPrime.java
 package Pract1A;
 import java.net.*;
@@ -116,8 +117,11 @@ public class tcpClientPrime {
  }
 }
 
-    `;
-        var text2 = `1b 
+
+
+`;
+
+        var text2 = ` # 1b 
         1. chatServer.java
 package pract1B;
 import java.net.*;
@@ -188,9 +192,12 @@ class ChatClient {
  }
 }   
 
-`;
 
-        var text3 = `2a
+
+        
+  `;
+  
+        var text3 = ` # 2a
         1. udpSeverEO.java
 package Pract2A;
 import java.io.*;
@@ -250,10 +257,11 @@ public class udpClientEO {
  }
  }
 }
-        
+
+
 `;
 
-        var text4 = ` # 2b 
+        var text4 = `# 2b 
         1. udpServerFact.java
 package pract2B;
 import java.io.*;
@@ -313,9 +321,11 @@ public class udpClientFact {
  }
  }
 }       
+
+
 `;
 
-        var text5 = `2c
+        var text5 = `# 2c
         1. RPCServer.java
 package Pract2C;
 import java.util.*;
@@ -427,10 +437,10 @@ class RPCClient {
  public static void main(String[] args) { new RPCClient(); } }
 
 
-        
-  `;
-  
-        var text6 = ` 2d 1. RPCNumServer.java
+
+`;
+   
+        var text6 = `# 2d 1. RPCNumServer.java
         package Pract2D;
         import java.util.*;
         import java.net.*;
@@ -542,10 +552,12 @@ class RPCNumClient {
  new RPCNumClient();
  }
 }
-        
+
+
+
 `;
 
-        var text7 = `3a
+var text7 = `# 3a
         1. BroadcastServer.java
 package pract3;
 import java.net.*;
@@ -591,3 +603,39 @@ public class BroadcastClient {
  byte[] data = new byte[100];
  packet = new DatagramPacket(data, data.length);
  System.
+
+
+
+`;
+
+var text8 = `# 
+
+
+
+`;
+
+var text9 = `# 
+
+
+`;
+
+var text10 = `# 
+
+`;
+
+
+
+
+
+function copyText(text) {
+    navigator.clipboard.writeText(text).then(function () {
+        document.getElementById('copiedMsg').innerHTML = "Text Copied"
+    }).catch(function (err) {
+        console.error('Unable to copy text', err);
+    });
+}
+</script>
+
+</body>
+
+</html>
