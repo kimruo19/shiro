@@ -37,686 +37,535 @@
 
 <body>
 
-    <button onclick="copyText(text1)"> 1 Read data from csv & perform data preprocessing</button>
-    <button onclick=" copyText(text2)">2 Introduction to R programming </button>
-    <button onclick="copyText(text3)">3 Implementation of Information Gain</button>
-    <button onclick="copyText(text4)">4 Implementation of Decision Tree Classifier </button>
-    <button onclick="copyText(text5)">5 Implementation of Naive Bayes Classifier  </button>
-    <button onclick="copyText(text6)">6 Implementation of Linear Regression</button>
-    <button onclick="copyText(text7)">6b Implementation of  Multiple Linear Regression</button>
-    <button onclick="copyText(text8)">7a Logistic Regression using Breast cancer data</button>
-    <button onclick="copyText(text9)">7b Spam detection using logistic regression </button>
-    <button onclick="copyText(text10)">7c Predict Customer Churn using logistic regression </button>
-    <button onclick="copyText(text11)">8a Calculate the Euclidean distance between two points </button>
-    <button onclick="copyText(text12)"> 8b KNN algo for classifying colors based on brightness and saturation </button>
-    <button onclick="copyText(text13)"> 9 Implement the classification model using clustering for the following techniques with K means clustering with Prediction</button>
-    <button onclick="copyText(text14)">10 data Visualizations </button>
-
+    <button onclick="copyText(text1)"> 1 BUILDING A ASP.NET CORE MVC APPLICATION  </button>
+    <button onclick=" copyText(text2)">2 BUILDING ASP .NET CORE REST API </button>
+    <button onclick="copyText(text3)">3 WORKING WITH DOCKER</button>
+    <button onclick="copyText(text4)">4 INSTALLING SOFTWARE PACKAGES ON DOCKER </button>
+    <button onclick="copyText(text5)">5 WORKING WITH DOCKER VOLUMES AND NETWORKS </button>
+    <button onclick="copyText(text6)">6 WORKING WITH CIRCLECI FOR CONTINUOUS INTEGRATION</button>
+    <button onclick="copyText(text7)">7 CREATING BACKING SERVICE WITH ASP.NET 2.0 CORE</button>
+    <button onclick="copyText(text8)">8 WORKING WITH KUBERNETES  </button>
+   
 
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `p1
-       #Display first 5 records
-print(df.head())   #head gives by default first 5 records
-#Display last 5 records
-print(df.tail())
+  
 
-#Display first 10 records
-print(df.head(10))
-#Display last 10 records
-print(df.tail(10))
+        var text 1 = ` Step-1: Install .Net Core Sdk (Link: https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install)  
 
+Step-2: Create folder mymvc folder in D: drive or any other drive. 
 
-print("Displaying dataset info")
-print(df.info())
+Step-3: Open command prompt and perform the following operations.
+Command to create mvc project: 
+dotnet new mvc --auth none
+
+[visual studio code will open automatically with a HomeController.cs file and some existing code which needs to be modified]
 
 
-print("Displaying shape of dataset")
-print(df.shape)
+Step-4: Go to controllers’ folder and modify HomeController.cs file to match following:
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using mymvc.Models;
+namespace mymvc.Controllers
+{
+    public class HomeController : Controller
+    {
+        public String Index()
+        { return "Your name"; }
+    }
+}
+
+Step-5: Run the project: 
+Dotnet run
+
+Now open browser and and type URL: http://localhost:5046 - You will get this url when you run the dotnet run command 
+
+Step-6: Now go back to command prompt and stop running the project using CTRL+C.
+
+Step-7: Go to models’ folder and add new file StockQuote.cs to it with following content:
+
+using System;
+namespace mymvc.Models
+{
+    public class StockQuote
+    {
+        public string Symbol { get; set; }
+        public int Price { get; set; }
+
+    }
+}
 
 
-print("Displaying columns of the dataset")
-print(df.columns)
+Step-8: Now Add View to folder then home folder in it and modify index.cshtml file to match 
+ D:/mymvc/Views/Home 
+Code:
+following:
+@{
+    ViewData["Title"] = "Home Page";
+}
+< div >
+Symbol: @Model.Symbol < br />
+Price: $@Model.Price < br />
+</ div >
+
+Step-9: Now modify HomeController.cs file to match following:
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using mymvc.Models;
+namespace mymvc.Controllers
+{
+    public class HomeController : Controller
+    {
+        public async Task<IActionResult> Index()
+        {
+            var model = new StockQuote { Symbol = “Hello surabhi”, Price = 3200 };
+            return View(model);
+        }
+    }
+}
+
+Step-10: Now run the project using:
+dotnet run
 
 
-print("Handling null values")
-print(df.isnull())
-print(df['Cabin'].isnull())
-
-
-print("Fill missing value")
-df_new =df['Cabin'].fillna("C85",inplace =True)
-print(df_new)
-print(df.info())
-print(df.isnull())  
-
-
-print("Calculate the mean of age and replace any empty values with it (into another data frame)")
-df_mean_age = df['Age'].mean()
-df['Age'] = df['Age'].fillna(df_mean_age)
-print(df['Age'])
-
-
-print("Coulmns before dropping")
-print(df.columns)
-print("Dropping a column")
-df.drop(['Embarked'], axis=1, inplace=True)
-print("Coulmns after dropping")
-print(df.columns)
-
-
-print("Dependent and independent columns")
-x = df.drop("Survived",axis=1)
-y= df["Survived"]
-print("Independent Cols")
-print(x)
-print("Dependent Cols")
-print(y)
-
-
-`;
-
-        var text2 = `p2
-       print("Amy")
-name <- "Amy"
-age <- 23
-var1 <- var2 <- var3 <- "Mango"
-print(name)
-print(age)
-print(var1)
-print(var2)
-print(var3)
-
-
-plot(1,3)
-plot(c(1,3), c(3,10))
-
-
-plot(1:10, type ="l")
-plot(1:10, type ="l",col ="blue")
-plot(1:10, type ="l",lwd = 5)
-
-
-line1 <- c(1,2,3,4,5,10)
-line2 <- c(10,9,8,7,6,5)
-plot(line1, type= "l", col="blue ")
-plot(line2, type= "l", col="red")
-
-x <- c(5,7,8,7,2,2,9,4,11,12,9,6)
-y <- c(99,86,87,88,111,103,87,94,78,77,85,86)
-plot(x,y)
-
-
-x <- c(5,7,8,7,2,2,9,4,11,12,9,6)
-y <- c(99,86,87,88,111,103,87,94,78,77,85,86)
-plot(x,y, main="Observations of cars", xlab ="car age", ylab ="car speed")
-
-`;
-
-        var text3 = `p3
-       parent_node = [50,30,20]
-child_1= [30,20,10]
-child_2 = [20,10,10]
-print("Parent Node: ",parent_node)
-print("Child 1: ", child_1)
-print("Child 2: ", child_2)
-
-
-
-
-#Calculate entropy of parent node
-import numpy as np
-def entropy(classes):
-  total = sum(classes)
-  proportions = [count / total for count in classes if count in classes if count > 0]
-  return -sum(p* np.log2(p) for p in proportions)
-#Calculations
-parent_entropy = entropy (parent_node)
-print("Parent Entropy: ", parent_entropy)
-
-
-
-
-#Calculate entropy of the child node
-print("Child 1 Entropy", entropy(child_1))
-print("Child 2 Entropy", entropy (child_2))
-weighted_entropy= sum([entropy (child_1), entropy(child_2)])
-print("Weight Entropy", weighted_entropy)
-
-
-
-
-#Information gain
-def information_gain(parent, children):
-  total_instances = sum(parent)
-  parent_entropy = entropy (parent)
-  weighted_entropy = sum(sum(child)/ total_instances * entropy (child) for child in children)
-  return parent_entropy - weighted_entropy
-gain = information_gain(parent_node, [child_1, child_2])
-print("Information Gain = ", gain)
+Step-11: Now go back to browser(Local host link) and refresh to get modified view response.
 
 
 `;
 
-        var text4 = `p4
-import pandas as pd
-from sklearn.datasets import load_iris
-#Step 1: read the dataset
-data =load_iris()
-df=pd.DataFrame(data.data,columns= data.feature_names)
-print(df.head())
+        var text2 = `
+        
+Install .NET 8 SDK: 
+dotnet – version
+
+Create a New Web API Project: 
+dotnet new webapi -n GlossaryApi
+cd GlossaryApi
+
+Create the Model (in same mymvc folder - edit the file)
+Create Models/GlossaryItem.cs:
+namespace GlossaryApi.Models
+{
+    public class GlossaryItem
+    {
+        public int Id { get; set; }
+        public string Term { get; set; }
+        public string Definition { get; set; }
+    }
+}
+
+
+Create the Controller
+------Create Controllers/GlossaryController.cs:
+
+
+using Microsoft.AspNetCore.Mvc;
+using GlossaryApi.Models;
+
+namespace GlossaryApi.Controllers
+{
+
+
+    [ApiController]
+    [Route("api/[controller]")]
+    public class GlossaryController : ControllerBase
+    {
+        private static readonly List<GlossaryItem> _glossary = new List<GlossaryItem>
+{
+    new GlossaryItem { Id = 1, Term = "API", Definition = "Application Programming Interface" },
+    new GlossaryItem { Id = 2, Term = "HTTP", Definition = "HyperText Transfer Protocol" }
+};
+
+        [HttpGet]
+        public ActionResult<List<GlossaryItem>> Get()
+        {
+            return Ok(_glossary);
+        }
+
+        // GET by ID
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var item = _glossary.FirstOrDefault(g => g.Id == id);
+            return item != null ? Ok(item) : NotFound();
+        }
+
+        // POST (Create)
+        [HttpPost]
+        public IActionResult Create(GlossaryItem newItem)
+        {
+            newItem.Id = _glossary.Max(g => g.Id) + 1;
+            _glossary.Add(newItem);
+            return CreatedAtAction(nameof(GetById), new { id = newItem.Id }, newItem);
+        }
+
+        // PUT (Update)
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, GlossaryItem updatedItem)
+        {
+            var item = _glossary.FirstOrDefault(g => g.Id == id);
+            if (item == null) return NotFound();
+
+            item.Term = updatedItem.Term;
+            item.Definition = updatedItem.Definition;
+            return NoContent();
+        }
+
+        // DELETE
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var item = _glossary.FirstOrDefault(g => g.Id == id);
+            if (item == null) return NotFound();
+
+            _glossary.Remove(item);
+            return NoContent();
+        }
+    }
+}
+
+Update Program.cs for Swagger
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+// Enable Swagger in Development
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+app.Run();
+
+Run  the Application
+Before running this command run the swagger installation commands
+dotnet run
+
+Test the API
+https://localhost:5027/swagger
 
 
 
 
-#Step 2: Split the data into features and target
-x= data.data
-y= data.target
-print("features:",x)
-print("target:",y)
+
+CURL COMMANDS 
+GET ALL ITEM ----        curl --insecure http://localhost:5027/api/glossary
+GET BY ID  ---                   curl --insecure http://localhost:5027/api/glossary/1
+
+PUT ---- curl --insecure -X PUT  -d "{\"term\":\"REST\",\"definition\":\"surabhi here\"}" -H "Content-Type: application/json" http://localhost:5027/api/glossary
+
+  POST---                  curl --insecure -X POST  -d "{\"term\":\"REST\",\"definition\":\"Representational                  State      Transfer\"}" -H "Content-Type: application/json" http://localhost:5027/api/glossary
+
+DELETE----       curl --insecure -X DELETE https://localhost:5027/api/glossary/3
 
 
-#Step 3: Split the data into training and testing data
-from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
-print("x train:",x_train)
-print("x test:",x_test)
-print("y train:",y_train)
-print("y test:",y_test)
+SWAGGER INSTALLATION COMMAND
 
-#Step 4: Model creation and training
-from sklearn.tree import DecisionTreeClassifier
-model=DecisionTreeClassifier()
-#If we need to use gini index method
-# model=DecisionTreeClassifier(criterion="gini", random_state=42, max_depth=4)
-#If we need to use entropy method
-# model=DecisionTreeClassifier(criterion="entropy", random_state=42, max_depth=4)
-model.fit(x_train,y_train)
-print("Model is trained")
-#Step 5 & 6: Model evaluation and testing
-from sklearn.metrics import accuracy_score
-y_pred=model.predict(x_test)
-print("Accuracy:",accuracy_score(y_test,y_pred))
-#Step 7: Plot Decision Tree
-from sklearn.tree import plot_tree
-import matplotlib.pyplot as plt
-plt.figure(figsize=(15,10))
-plot_tree(model,filled=True, feature_names=data.feature_names,class_names=data.target_names)
-plt.title("My Decision Tree")
-plt.show()
+Install the Required Package
+Run this command in your project directory:
+dotnet add package Swashbuckle.AspNetCore
+
+
+Swagger commands
+1️.GET All Items
+Click on GET /api/glossary
+Click Try it out ---- Execute.
+Check the Response Body for the list of items.
+2️. GET Item by ID
+Click GET /api/glossary/{id}.
+Click Try it out -- Enter an ID (e.g., 1) --- Execute.
+Check for the glossary item details if it exists.
+3. POST (Add) New Item
+Click POST /api/glossary --- Try it out.
+In the Request Body, enter: 
+{
+  "term": "REST",
+  "definition": "Representational State Transfer"
+}
+Click Execute.
+Check Response Code → 201 Created if successful.
+4️ .PUT (Update) Existing Item
+Click PUT /api/glossary/{id} -- Try it out.
+Enter an existing ID (e.g., 1).
+In the Request Body, enter: 
+{
+  "term": "REST",
+  "definition": "Updated Definition"
+}
+Click Execute.
+Check for 204 No Content if the update is successful.
+5️ DELETE an Item
+Click DELETE /api/glossary/{id} -- Try it out.
+Enter an existing ID (e.g., 3) -- Execute.
+Look for 204 No Content if deletion is successful.
+
+`;
+
+        var text3 = `
+Step-1: Create a Docker Hub account (sign up).
+Email- surabhi.maydeokc@gmail.com
+Username- surabhimaydeo
+
+
+Step-2: Login to https://labs.play-with-docker.com/ 
+
+Click on start.
+
+Step-3: Add  new instance.
+
+Step-4: Perform following:
+Method 1:
+To pull and push images using docker.
+Command to check docker version: (2 dashes before version)
+docker –version
+
+To pull readymade image
+Command: docker pull rocker/verse
+
+To check images in docker (note the image id) 
+Command: docker images
+
+Now Login to docker hub and create a repository.
+https://hub.docker.com/repositories/surabhimaydeo
+
+Click on the Create button.
+Now check repository created
+
+Command: To login to your docker account: 
+docker login –username = surabhimaydeo
+Password: surabhi1234
+Note: surabhimaydeo is my docker ID. You will use your docker ID here. And enter your password.
+
+Command: To tag image: docker tag eb0074c1abee surabhimaydeo/ surabhi_maydeo:firsttry
+Note: here e036e0ec200c this is image ID which you can get from docker images command.
+
+Command: to push image to docker hub account: docker push surabhimaydeo/surabhi_maydeo : firsttry
+
+Check it in docker hub now.
+
+Click on tags and check.
+
+
+Method 2:
+Build an image then push it to docker and run it
+Command: to create docker file
+1. cat > Dockerfile <<EOF
+2. FROM busybox
+3. CMD echo "Hello world! This is me."
+4. EOF
+Command: To build image from docker file: 
+docker build –t surabhimaydeo/surabhi_maydeo.
+
+Command: To check docker images: docker images
+
+Command: To push image to docker hub: docker push surabhimaydeo/surabhi_maydeo
+
+Now check it on docker hub
+
+Command: To run docker image: docker run surabhimaydeo/surabhi_maydeo
+Output:
+
+Now close session.
 
 
   `;
  
-        var text5 = `p5
-        import pandas as pd
-data = {
-    'Outlook': ['Sunny', 'Sunny', 'Overcast', 'Rain', 'Rain', 'Rain', 'Overcast', 'Sunny', 'Sunny', 'Rain', 'Sunny', 'Overcast', 'Overcast', 'Rain'],
-    'Temperature': ['Hot', 'Hot', 'Hot', 'Mild', 'Cool', 'Cool', 'Cool', 'Mild', 'Cool', 'Mild', 'Mild', 'Mild', 'Hot', 'Mild'],
-    'Humidity': ['High', 'High', 'High', 'High', 'Normal', 'Normal', 'Normal', 'High', 'Normal', 'Normal', 'Normal', 'High', 'Normal', 'High'],
-    'Wind': ['Weak', 'Strong', 'Weak', 'Weak', 'Weak', 'Strong', 'Strong', 'Weak', 'Weak', 'Weak', 'Strong', 'Strong', 'Weak', 'Strong'],
-    'Play': ['No', 'No', 'Yes', 'Yes', 'Yes', 'No', 'Yes', 'No', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'No']
-}
-df = pd.DataFrame(data)
+        var text4 = `
+Step-1: Create a container with ubuntu installed in it.
+Command: docker pull ubuntu
 
+Step-2: Now run the ubuntu from the command prompt and access the terminal of the ubuntu.
+Command: docker run -it ubuntu
 
-print("dataset:",df)
+Step-3: - Install some software onto the ubuntu via the terminal.
+For FireFox
+Command: apt-get -y install firefox
 
-#Step 2: Encode categorical variables
-from sklearn.preprocessing import LabelEncoder
-le=LabelEncoder()
-df['Outlook']=le.fit_transform(df['Outlook'])
-df['Temperature']=le.fit_transform(df['Temperature'])
-df['Humidity']=le.fit_transform(df['Humidity'])
-df['Wind']=le.fit_transform(df['Wind'])
-df['Play']=le.fit_transform(df['Play'])
+For vim
+Command: apt-get install vim
 
-
-print("dataset:",df)
-
-#Step 3: Split the data in features and target
-x=df.drop('Play',axis=1)
-y=df['Play']
-print("features:",x)
-print("target:",y)
-
-#Step 4: Split the data into training and testing
-from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
-print("x train:",x_train)
-print("x test:",x_test)
-print("y train:",y_train)
-print("y test:",y_test)
-
-#Step 5: Model creation & Training
-from sklearn.naive_bayes import GaussianNB
-model=GaussianNB()
-model.fit(x_train,y_train)
-print("Model is trained")
-#Step 6: Test the model
-y_pred=model.predict(x_test)
-print(y_pred)
-
-#Step 7: Caluculate the accuracy of the model
-from sklearn.metrics import accuracy_score
-y_pred=model.predict(x_test)
-print(y_pred)
-print("Accuracy:",accuracy_score(y_test,y_pred))
-
-`;
-
-        var text6 = `p6
-        import pandas as pd
-data = {'Size (sq ft)': [750, 800, 850, 900, 950, 1000, 1100, 1200],
-        'Price (USD)': [150000, 160000, 165000, 175000, 180000, 190000, 205000, 220000]}
-df = pd.DataFrame(data)
-print("Dataset :")
-print(df)
-# Step 2: Split the data in features & target
-X= df[['Size (sq ft)']]
-y = df[['Price (USD)']]
-print("Feature: ", X)
-print("Target:", y)
-# Step 3: Split training & testing data
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-print("X_train:", X_train)
-print("X_test:", X_test)
-print("y_train:", y_train)
-print("y_test:", y_test)
-#Step 4: Model creation & training
-from sklearn.linear_model import LinearRegression
-model = LinearRegression()
-model.fit(X_train, y_train)
-print("Linear Regression Model is trained")
-#Step 5: Model prediction
-y_pred = model.predict(X_test)
-print("Predicted Price:", y_pred)
-#Step 6:Find accuracy of the model
-from sklearn.metrics import r2_score, mean_squared_error
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
-print("Mean Squared Error:", mse)
-print("Accuracy:", r2_score(y_test, y_pred))
-print("R-squared:", r2)
-#Step 7: Visualizations of target & features
-import matplotlib.pyplot as plt
-#scatter plot of actual vs predicted
-plt.scatter(X_train, y_train, color='blue', label='Actual Prices')
-plt.scatter(X_test, y_test, color='red', label='Predicted Prices')
-plt.xlabel("Size (sq ft)")
-plt.ylabel("Price (USD)")
-plt.title("Linear Regression Mode")
-plt.legend()
-plt.show()
+Step-4: Run the installed software.
+Command: vim
 
 
 
 `;
-var text7 = `p6b
-import pandas as pd
-data = {
-    'Size (sq ft)': [750, 800, 850, 900, 950, 1000, 1100, 1200],
-    'Bedrooms': [2, 3, 2, 3, 4, 3, 4, 5],
-    'Bathrooms': [1, 2, 2, 2, 3, 2, 3, 3],
-    'Price (USD)': [150000, 160000, 165000, 175000, 180000, 190000, 205000, 220000]
-}
-df = pd.DataFrame(data)
-print("Dataset :")
-print(df)
-# Step 2: Split the data in features & target
-X= df[['Size (sq ft)']]
-y = df[['Price (USD)']]
-print("Feature: ", X)
-print("Target:", y)
-# Step 3: Split training & testing data
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-print("X_train:", X_train)
-print("X_test:", X_test)
-print("y_train:", y_train)
-print("y_test:", y_test)
-#Step 4: Model creation & training
-from sklearn.linear_model import LinearRegression
-model = LinearRegression()
-model.fit(X_train, y_train)
-print("Linear Regression Model is trained")
-#Step 5: Model prediction
-y_pred = model.predict(X_test)
-print("Predicted Price:", y_pred)
-#Step 6:Find accuracy of the model
-from sklearn.metrics import r2_score, mean_squared_error
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
-print("Mean Squared Error:", mse)
-print("Accuracy:", r2_score(y_test, y_pred))
-print("R-squared:", r2)
-#Step 7: Visualizations of target & features
-import matplotlib.pyplot as plt
-#scatter plot of actual vs predicted
-plt.scatter(X_train, y_train, color='blue', label='Actual Prices')
-plt.plot(X_test, y_pred, color='red', linewidth=2, label='Predicted Prices')
-plt.xlabel("Size (sq ft)")
-plt.ylabel("Price (USD)")
-plt.title("Linear Regression Mode")
-plt.legend()
-plt.show()
+var text5 = `
+Pre-Requisites:
+1. Open Windows Firewall
+2. Click on Advanced Security
+3. Click on Inbound Rules
+4. Create a New Rule
+a. Which type of rule would you like to create port.
+b. Does this rule apply to the local ports or specific local ports.
+c. Select Specific local ports - 80.
+d. What action should be taken when a connection matches the specified conditions? - Allow the      connection
+e. When does this apply? - Domain, Private, Public
+f. Name: ReportServer
+g. Description: ReportServer
+Step-1: Enter the following Commands.
+a) docker pull nginx nginx: nginx is the image which is already available in docker
+b) docker run -it-name-webapp -d -p 80:80 nginx: Create a webapp and run it with nginx image on port 80
+
+Step-2: Click on Port and enter 80 in the dropdown window and click OK.
+
+
+Step-3: Enter the below command to enter bash shell and then open port 80.
+docker exec -it WebApp bash
+Cd/usr/share/nginx/html
+Echo "Hello Welcome to updated nginx Page."> index.html
+exit
+Step-4: List all the running containers: 
+docker ps
+Step-5: Create another container in Docker: webappl
+Docker run -it-name webappl -d -p 80:80 nginx:
+Step-6: Click on port and enter 80 in the dropdown and click ok.
+Step-7: Creation of Volume(MyVolume)
+Command:
+a) docker volume create MyVolume
+b) docker volume is
+c) docker volume inspect MyVolume
+d) docker stop WebAppl
+Step-8: Create a container (WebApp 2 ) inside the container MyVolume
+docker run -d-name = WebApp2-mount source-MyVolume,destination=/usr/share/nginx/html -p 80:80 nginx
+Step-9: Enter the below commands:
+a) ls/
+b) cd /var/lib/docker
+c) ls
+d) cd volumes
+e) ls
+f) cd MyVolume
+g) Is
+h) cd_data
+Step-10: Edit the index file with the below content to "Display the content on the Webpage."
+$ echo “From Volume,My user” > index.html
+Open Port 80
+Step-11: Stop the above container (WebApp2) and Create another container within the volume (MyVolume).
+Open port 80
 
     `;
 
-    var text8 = `p7
-   import pandas as pd
-from sklearn.datasets import load_breast_cancer
-cancer = load_breast_cancer()
-df=pd.DataFrame(cancer.data, columns=cancer.feature_names)
-print("Dataset ")
-print(df.head())
+    var text6 = `
+    Step-1: - Let’s follow some basic steps to begin:
+1.   Login to GitHub. - surabhi.maydeo@gmail.com 
+
+2.   Create a repository with the name HelloWorld.
+3.   Keep it public and check the add a REAME file.
+Step-2: Login to Circle ci with GitHub login & Navigate to Projects tab where you will find the repositories you have created. Once you find the hello-world repository click on setup project.
+Circle ci link - https://circleci.com/
+Step-3: Select Faster and click on setup project.
+
+Step-4: The circle ci will create a branch repository to the root(hello-world) repository.
+Step-5: In GitHub go to hello-world repository and navigate to the branch repository circlrci-project and open the config.yml file.
 
 
-#Step 2: Split the data in features & target
-df['target'] = cancer.target
-X = df.drop(columns=['target'])
-y = df['target']
-
-
-print("X=")
-print(X)
-print("y=")
-print(y)
-
-
-#Step 3: Split training & testing data
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-print("X_train :")
-print(X_train)
-print("X test :")
-print(X_test)
-
-
-#Step 4: Model creation & training
-from sklearn.linear_model import LogisticRegression
-model = LogisticRegression()
-model.fit(X_train,y_train)
-print("Model Name :", model)
-print("Model is trained !!!")
-
-
-#Step 5: Model prediction
-y_pred=model.predict(X_test)
-print("Predicted Values :")
-print(y_pred)
-
-
-#Step 6: Find accuracy of the model
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-print("accuracy:", accuracy_score(y_test, y_pred))
-print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
-print("Classification Report:\n", classification_report(y_test, y_pred))
-
-
-#Step 7: Visualizations of target & features
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix
-
-
-cm = confusion_matrix(y_test, y_pred)
-# Plot the confusion matrix
-sns.heatmap(cm, annot=True, cmap='Blues', xticklabels=['Malignant', 'Benign'], yticklabels=['Malignant', 'Benign'])
-plt.xlabel("Predicted")
-plt.ylabel("Actual")
-plt.title("Confusion Matrix")
-plt.show()
-
-
+Step-6: Edit the name in config file and commit changes.
+Commit message - Update config.yml
+Commit directly to the main branch 
+ 
+Step-7: Now we can observe that the changes from the GitHub are logged and the message is recorded for seamless integration.
     `;
-    var text9 = `p7b
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-import seaborn as sns
-import matplotlib.pyplot as plt
-data = pd.read_csv('/content/sample_data/emails.csv')
-print("Dataset ")
-print(data.head())
+    var text 7  = `
+ Step-1: Open docker play- https://labs.play-with-docker.com/ and enter the login credentials & add new instance
+Start typing the following commands.  
+Command: docker run -d -p 5000:5000 -e PORT=5000 -e LOCATION_URL=http://localhost:5001 dotnetcoreservices/teamservice:location
 
+Step-2: Start typing the following commands. 
+Command: to run location service 
+docker run -d -p 5001:5001 -e PORT=5001 dotnetcoreservices/locationservice:nodb
 
-#Step 2: Split the data in features & target
-X = data['text']  # Feature: The text message content
-y = data['spam']  # Target: 'spam' or 'ham'
-print("X=")
-print(X)
-print("y=")
-print(y)
+Step-3: To check running images in docker images. (note image id)
+Command: docker images 
 
+Step-4: To create a new team. 
+Command: curl -H "Content-Type:application/json" -X POST -d \
+'{"id":"e52baa63-d511-417e-9e54-7aab04286281", "name":"KC"}' http://localhost:5000/teams 
 
-#Step 3: Split training & testing data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-print("X_train :")
-print(X_train)
-print("X test :")
-print(X_test)
+Command: curl http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281
 
+Step-5: To add new members to the team. 
+Command: curl -H "Content-Type:application/json" -X POST -d \ 
+'{"id":"63e7acf8-8fae-42ce-9349-3c8593ac8292","firstName":"Surabhi", "lastName":"Maydeo 021"}' http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281/members 
 
-#Convert the text data to numerical features
-vectorizer = CountVectorizer(stop_words='english')  # Remove common stop words
-X_train_vec = vectorizer.fit_transform(X_train)
-X_test_vec = vectorizer.transform(X_test)
-print("Surabhi Maydeo 021")
-print("X_train_vec :")
-print(X_train_vec)
-print("X_test_vec :")
-print(X_test_vec)
+Command: To confirm member added
+curl http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281
 
+Step-6: To add location for member. 
+Command: curl -H "Content-Type:application/json" -X POST -d '{"id":"64c3e69f-1580-4b2f-a9ff-2c5f3b8f0e1f", "latitude":12.0,"longitude":12.0,"altitude":10.0, "timestamp":0,"memberId":"63e7acf8-8fae-42ce-9349-3c8593ac8292"}' http://localhost:5001/locations/63e7acf8-8fae-42ce-9349-3c8593ac8292
 
-#Step 4:  Model creation & training
-model = LogisticRegression(max_iter=1000)  # Increase max_iter if convergence issues occur
-print("Model Name :", model)
-print("Model is trained !!!")
-
-
-#Step 5: Model prediction
-y_pred = model.predict(X_test_vec)
-print("Predicted Values :")
-print(y_pred)
-
-
-#Step 6: Find accuracy of the model
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
-print("Classification Report:\n", classification_report(y_test, y_pred))
-
-
-
-
-#Step 7: Visualizations of target & features
-cm = confusion_matrix(y_test, y_pred)
-# Plot the confusion matrix
-sns.heatmap(cm, annot=True, cmap='Blues', xticklabels=['Ham', 'Spam'], yticklabels=['Ham', 'Spam'])
-plt.xlabel("Predicted")
-plt.ylabel("Actual")
-plt.title("Confusion Matrix: Email Spam Detection")
-plt.show()
-
-    `;
-
-    var text10 = `7c
-import pandas as pd
-
-
-# Load dataset
-df = pd.read_csv("custom_customer_churn.csv")
-# Convert 'Churn' column
-df["Churn"] = df["Churn"].map({"Yes": 1, "No": 0})
-# Verify conversion
-print(df["Churn"].value_counts())
-
-
-# Save modified dataset
-df.to_csv("custom_customer_churn_updated.csv", index=False)
-data = pd.read_csv("custom_customer_churn_updated.csv")
-data = data.drop(columns=['CustomerID'])
-
-
-# Convert categorical variables to numerical using one-hot encoding
-data = pd.get_dummies(data, drop_first=True)
-ds = pd.DataFrame(data)
-X = ds.drop(columns=['Churn'])
-y = ds['Churn']
-print("Features (X): ")
-print(X)
-print("Target (y): ")
-print(y)
-from sklearn.model_selection import train_test_split
-
-
-X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=42)
-print('Training Data (X_train): ')
-print(X_train)
-print('Testing Data (X_test): ')
-print(X_test)
-from sklearn.linear_model import LogisticRegression
-model = LogisticRegression()
-model.fit(X_train,y_train)
-print('Model name: ', model)
-print('Model Trained Successfully!!!')
-y_pred = model.predict(X_test)
-print('Predicted Values: ')
-print(y_pred)
-from sklearn.metrics import accuracy_score,confusion_matrix, classification_report
-accuracy = accuracy_score(y_test,y_pred)
-print("Accuracy score: ",accuracy)
-conf = confusion_matrix(y_test,y_pred)
-print("Confusion Matrix: \n",conf)
-class_report = classification_report(y_test,y_pred)
-print("Classification Report: \n",class_report)
-import seaborn as sns
-import matplotlib.pyplot as plt
-sns.heatmap(conf,annot=True,cmap='Blues',fmt='d')
-plt.xlabel('Predicted')
-plt.ylabel('Actual')
-plt.title('Customer Churn Prediction')
-plt.show()
-
+Command: To confirm location is added in member Surabhi Maydeo 
+curl http://localhost:5001/locations/63e7acf8-8fae-42ce-9349-3c8593ac8292
 
 `;
 
 
-   var text11 = `8
-import numpy as np
-def euclidean_distance (point1, point2):
-  return np.sqrt(np.sum((np.array (point1)- np.array(point2)) ** 2))
-# Example
-A = (3, 4)
-B = (7, 1)
-distance = euclidean_distance (A, B)
-print(f"Euclidean Distance: {distance}")
+   var text8 = `
+   Open Play with Kubernetes or Killercoda Add a new Instance. 
+Open - https://killercoda.com/playgrounds/scenario/kubernetes
+
+Step 1: Create a Deployment
+kubectl create deployment my-nginx --image=nginx
+This will create a pod running the official Nginx web server.
+
+Step 2: Expose the Deployment as a Service
+kubectl expose deployment my-nginx --port=80 --target-port=80 --name=my-nginx
+This creates a ClusterIP service, which is only accessible within the cluster.
+
+Step 3: Port Forward to Access Nginx Locally
+Choose a local port like 3000:
+kubectl port-forward deployment/my-nginx 3000:80
+Keep this terminal open while accessing.
+
+Step 4: Test Access
+From another terminal (open a new tab in Killercoda):
+curl http://localhost:3000
+You should see the default Nginx welcome page in HTML format.
+From your local browser (if Killercoda allows), try:
+http://127.0.0.1:3000
+
+Step 5: View Running Pods and Services
+kubectl get pods
+kubectl get svc
+
+Step 6: Scale the Application
+kubectl scale deployment my-nginx --replicas=3
+Check the updated pods:
+kubectl get pods
+
+Step 7: Clean Up
+To delete everything after the test:
+kubectl delete service my-nginx
+kubectl delete deployment my-nginx
 
    `;
 
 
-   var text12 = `8b
-import numpy as np
-# Data (Brightness, Saturation) and corresponding class labels
-X= np.array([
-[40, 20],
-[50, 50],
-[60, 90],
 
 
-[10, 25],
-[70, 70],
-[60, 10],
-[25, 80] ])
-y = np.array(['Red', 'Blue', 'Blue', 'Red', 'Blue', 'Red', 'Blue'])
-print("Features:")
-print(X)
-print("Target: ")
-print(y)
-#Step2:Create and train the KNN model
-from sklearn.neighbors import KNeighborsClassifier
-knn = KNeighborsClassifier(n_neighbors=3)
-knn.fit(X, y)
-print(knn)
-print("Model is trained ...")
-#Step3: Test the model with new data
-new_data = np.array([[30, 40], [65, 60]])
-predictions = knn.predict(new_data)
-# Display predictions
-for i, pred in enumerate (predictions):
-  print(f"Data point {new_data[i]} is classified as {pred}")
-   `;
-
-
-   var text13 = `9
-   x = [4,5,10,4,3,11,14,6,10,12]
-y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
-print("x",x)
-print("y",y)
-
-
-import matplotlib.pyplot as plt
-plt.scatter(x,y)
-plt.title(" Data points before clustering")
-plt.show()
-
-
-from sklearn.cluster import KMeans
-data = list(zip(x,y))
-print(data)
-
-
-kmeans = KMeans(n_clusters=2)
-kmeans.fit(data)
-plt.scatter(x,y, c= kmeans.labels_)
-plt.title("Data points after clustering where k=2")
-plt.show()
-
-
-kmeans = KMeans(n_clusters=3)
-kmeans.fit(data)
-plt.scatter(x,y, c= kmeans.labels_)
-plt.title("Data points after clustering where k=3")
-plt.show()
-
-
-   `;
-
-
-   var text14 = `10
-   import pandas as pd 
-import numpy as np
-dates = pd.date_range(start=' 2023-01-01', periods=100,freq='D')
-categories = ['Electronics', 'Clothing', 'Groceries','Furniture']
-data = {
-'Date': np. random.choice(dates, 200),
-'Category': np. random.choice(categories, 200),
-'Sales_Amount': np. random. randint(100, 1000, 200),
-'Units_Sold': np.random.randint(1, 20, 200)
-}
-df = pd.DataFrame(data)
-print (df)
-# Convert Date column to datetime format
-df[ 'Date'] = pd. to_datetime(df[ 'Date'])
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-#Sales trend overtime
-plt.figure(figsize=(12, 6))
-
-
-#Sales by Category
-plt.figure(figsize=(5, 5))
-sns. barplot(data=df.groupby ('Category', as_index=False)['Sales_Amount'].sum(), x='Category', y='Sales_Amount' , palette= 'viridis')
-plt. title('Total Sales by Category') 
-plt. xlabel( 'Category')
-plt. ylabel('Sales Amount')
-plt. show( )
-
-   `;
 
 
 function copyText(text) {
