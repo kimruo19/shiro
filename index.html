@@ -37,81 +37,74 @@
 
 <body>
 
-    <button onclick="copyText(text1)">1.Basic Data analysis</button>
-    <button onclick=" copyText(text2)">3.Decision Tree Implementation Information Gain Method</button>
-    <button onclick="copyText(text3)">4.Implementation of DECISION TREE CLASSIFIER</button>
-    <button onclick="copyText(text4)">5.Gaussian NB</button>
-    <button onclick="copyText(text5)">6.Linear Regression House Prices</button>
-    <button onclick="copyText(text6)">7 Implementation of Logistic regression to predict breast Cancer </button>
-    <button onclick="copyText(text7)">7b Emails </button>
-    <button onclick="copyText(text8)">8A Euclidean Distance</button>
-    <button onclick="copyText(text9)">8B Euclidean long</button>
-    <button onclick="copyText(text10)">P9 Kmeans </button>
-    <button onclick="copyText(text11)">P10B Data Visualization</button>
-    
+    <button onclick="copyText(text1)"> 1 Read data from csv & perform data preprocessing</button>
+    <button onclick=" copyText(text2)">2 Introduction to R programming </button>
+    <button onclick="copyText(text3)">3 Implementation of Information Gain</button>
+    <button onclick="copyText(text4)">4 Implementation of Decision Tree Classifier </button>
+    <button onclick="copyText(text5)">5 Implementation of Naive Bayes Classifier  </button>
+    <button onclick="copyText(text6)">6 Implementation of Linear Regression</button>
+    <button onclick="copyText(text7)">6b Implementation of  Multiple Linear Regression</button>
+    <button onclick="copyText(text8)">7a Logistic Regression using Breast cancer data</button>
+    <button onclick="copyText(text9)">7b Spam detection using logistic regression </button>
+    <button onclick="copyText(text10)">7c Predict Customer Churn using logistic regression </button>
+    <button onclick="copyText(text11)">8a Calculate the Euclidean distance between two points </button>
+    <button onclick="copyText(text12)"> 8b KNN algo for classifying colors based on brightness and saturation </button>
+    <button onclick="copyText(text13)"> 9 Implement the classification model using clustering for the following techniques with K means clustering with Prediction</button>
+    <button onclick="copyText(text14)">10 data Visualizations </button>
 
-   
+
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `1
-import pandas as pd
-print("Jasar Shaikh KCFMSCIT33")
-df = pd.read_csv("/content/train.csv")
-print("Dataset\n", df)
-
-#Step 2 - Display first 5 records & display last 5 records
-#Display first 5 records
-print(df.head()) #head gives by default first 5 records
+        var text1 = `p1
+       #Display first 5 records
+print(df.head())   #head gives by default first 5 records
 #Display last 5 records
 print(df.tail())
+
 #Display first 10 records
 print(df.head(10))
 #Display last 10 records
 print(df.tail(10))
 
-#Step 3 - To display dataset information
+
 print("Displaying dataset info")
 print(df.info())
 
-#Step 4 - To display shape of dataset
+
 print("Displaying shape of dataset")
 print(df.shape)
 
-#Step 5 - Displaying columns of dataset
+
 print("Displaying columns of the dataset")
 print(df.columns)
 
-#Step 6 - Handling null values
+
 print("Handling null values")
 print(df.isnull())
 print(df['Cabin'].isnull())
 
-#Step 7 - Fill null values (global constant= filling a null value with this value)
+
 print("Fill missing value")
 df_new =df['Cabin'].fillna("C85",inplace =True)
 print(df_new)
 print(df.info())
-print(df.isnull())
+print(df.isnull())  
 
-#Step 8 - Calculate Mean
+
 print("Calculate the mean of age and replace any empty values with it (into another data frame)")
 df_mean_age = df['Age'].mean()
 df['Age'] = df['Age'].fillna(df_mean_age)
 print(df['Age'])
 
-#Step 9 - Dropping columns
+
 print("Coulmns before dropping")
 print(df.columns)
 print("Dropping a column")
-# Check if 'Embarked' column exists before dropping
-if 'Embarked' in df.columns:
-  df.drop(['Embarked'], axis=1, inplace=True)
-  else:
-    print("Column 'Embarked' not found in DataFrame.")
+df.drop(['Embarked'], axis=1, inplace=True)
 print("Coulmns after dropping")
 print(df.columns)
 
-#Step 10 - Define dependent and independent variables
+
 print("Dependent and independent columns")
 x = df.drop("Survived",axis=1)
 y= df["Survived"]
@@ -121,394 +114,580 @@ print("Dependent Cols")
 print(y)
 
 
+`;
+
+        var text2 = `p2
+       print("Amy")
+name <- "Amy"
+age <- 23
+var1 <- var2 <- var3 <- "Mango"
+print(name)
+print(age)
+print(var1)
+print(var2)
+print(var3)
+
+
+plot(1,3)
+plot(c(1,3), c(3,10))
+
+
+plot(1:10, type ="l")
+plot(1:10, type ="l",col ="blue")
+plot(1:10, type ="l",lwd = 5)
+
+
+line1 <- c(1,2,3,4,5,10)
+line2 <- c(10,9,8,7,6,5)
+plot(line1, type= "l", col="blue ")
+plot(line2, type= "l", col="red")
+
+x <- c(5,7,8,7,2,2,9,4,11,12,9,6)
+y <- c(99,86,87,88,111,103,87,94,78,77,85,86)
+plot(x,y)
+
+
+x <- c(5,7,8,7,2,2,9,4,11,12,9,6)
+y <- c(99,86,87,88,111,103,87,94,78,77,85,86)
+plot(x,y, main="Observations of cars", xlab ="car age", ylab ="car speed")
+
+`;
+
+        var text3 = `p3
+       parent_node = [50,30,20]
+child_1= [30,20,10]
+child_2 = [20,10,10]
+print("Parent Node: ",parent_node)
+print("Child 1: ", child_1)
+print("Child 2: ", child_2)
 
 
 
 
-    `;
-        var text2 = `P3
-        #1
-parent_node=[50,30,20]
-#Class A=50,B=30,C=20
-child_1=[30,20,10]
-child_2=[20,10,10]
-print("Jasar Shaikh - KCFMSCIT33")
-print("Parent Node:", parent_node)
-print("Child 1", child_1)
-print("Child 2", child_2)
-#2
+#Calculate entropy of parent node
 import numpy as np
-def entropy (classes):
-  total=sum(classes)
-  proportions= [count/total for count in classes if count > 0]
-  return -sum(p*np.log2(p) for p in proportions)
-#Calculation
+def entropy(classes):
+  total = sum(classes)
+  proportions = [count / total for count in classes if count in classes if count > 0]
+  return -sum(p* np.log2(p) for p in proportions)
+#Calculations
 parent_entropy = entropy (parent_node)
-print("Parent Entropy =", parent_entropy)
-#3
-weighted_entropy=sum([entropy(child_1),entropy(child_2)])
-print("Weighted Entropy =", weighted_entropy)
-print("Child 1 Entropy =", entropy (child_1))
-print("Child 2 Entropy =", entropy (child_2))
-#4
-def information_gain(parent, children):
-  total_instance=sum(parent)
-  parent_entropy=entropy(parent)
-  weighted_entropy=sum(sum(child/total_instance)*entropy(child) for child in children)
-  return entropy(parent)-weighted_entropy
-gain = information_gain(parent_node, [child_1, child_2])
-print("Information Gain =", gain)
+print("Parent Entropy: ", parent_entropy)
 
+
+
+
+#Calculate entropy of the child node
+print("Child 1 Entropy", entropy(child_1))
+print("Child 2 Entropy", entropy (child_2))
+weighted_entropy= sum([entropy (child_1), entropy(child_2)])
+print("Weight Entropy", weighted_entropy)
+
+
+
+
+#Information gain
+def information_gain(parent, children):
+  total_instances = sum(parent)
+  parent_entropy = entropy (parent)
+  weighted_entropy = sum(sum(child)/ total_instances * entropy (child) for child in children)
+  return parent_entropy - weighted_entropy
+gain = information_gain(parent_node, [child_1, child_2])
+print("Information Gain = ", gain)
 
 
 `;
 
-        var text3 = `P4A&B
-        #1
+        var text4 = `p4
+import pandas as pd
 from sklearn.datasets import load_iris
-from sklearn.tree import DecisionTreeClassifier
+#Step 1: read the dataset
+data =load_iris()
+df=pd.DataFrame(data.data,columns= data.feature_names)
+print(df.head())
+
+
+
+
+#Step 2: Split the data into features and target
+x= data.data
+y= data.target
+print("features:",x)
+print("target:",y)
+
+
+#Step 3: Split the data into training and testing data
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-iris = load_iris()
-print(iris)
-print("Jasar Shaikh - KCFMSCIT33")
-#2
-x=pd.DataFrame(iris.data,columns=iris.feature_names)
-y=pd.Series(iris.target, names='Species')
-print("Features: ", X)
-print("Target : ", y)
-#3
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
-print("Training Data: ", x_train)
-print("Testing Data: ", x_test)
-print("Training Target: ", y_train)
-print("Testing Target: ", y_test)
-#4
-#for information gain
-model=DecisionTreeClassifier(criterion='entropy',random_state=42,max_depth=3)
-#for gini index
-#model=DecisionTreeClassifier(criterion='gini',random_state=42,max_depth=3)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
+print("x train:",x_train)
+print("x test:",x_test)
+print("y train:",y_train)
+print("y test:",y_test)
+
+#Step 4: Model creation and training
+from sklearn.tree import DecisionTreeClassifier
+model=DecisionTreeClassifier()
+#If we need to use gini index method
+# model=DecisionTreeClassifier(criterion="gini", random_state=42, max_depth=4)
+#If we need to use entropy method
+# model=DecisionTreeClassifier(criterion="entropy", random_state=42, max_depth=4)
 model.fit(x_train,y_train)
 print("Model is trained")
-#5
+#Step 5 & 6: Model evaluation and testing
+from sklearn.metrics import accuracy_score
 y_pred=model.predict(x_test)
-print("Predicted Values: ", y_pred)
-#6
-accuracy = accuracy_score(y_test, y_pred)
-print("Accuracy:", accuracy)
-#7
+print("Accuracy:",accuracy_score(y_test,y_pred))
+#Step 7: Plot Decision Tree
 from sklearn.tree import plot_tree
 import matplotlib.pyplot as plt
-print("Jasar Shaikh - KCFMSCIT33")
-plt.figure(figsize=(12, 8))
-plot_tree(model, feature_names=iris.feature_names, class_names=iris.target_names, filled=True,rounded=True)
-plt.title("Decision Tree Visualization : Jasar Shaikh - KCFMSCIT33")
+plt.figure(figsize=(15,10))
+plot_tree(model,filled=True, feature_names=data.feature_names,class_names=data.target_names)
+plt.title("My Decision Tree")
 plt.show()
 
-`;
 
-        var text4 = `P5
-        #1
-#if not this use csv file
-import pandas as pd
+  `;
+ 
+        var text5 = `p5
+        import pandas as pd
 data = {
-    'Outlook': ['Sunny', 'Sunny', 'Overcast', 'Rain', 'Rain', 'Rain', 'Overcast', 'Sunny', 'Sunny', 'Rain',
-                'Sunny', 'Overcast', 'Overcast', 'Rain'],
-    'Temperature': ['Hot', 'Hot', 'Hot', 'Mild', 'Cool', 'Cool', 'Cool', 'Mild', 'Cool', 'Mild',
-                    'Mild', 'Mild', 'Hot', 'Mild'],
-    'Humidity': ['High', 'High', 'High', 'High', 'Normal', 'Normal', 'Normal', 'High', 'Normal', 'Normal',
-                 'Normal', 'High', 'Normal', 'High'],
-    'Windy': ['False', 'True', 'False', 'False', 'False', 'True', 'True', 'False', 'False', 'False',
-              'True', 'True', 'False', 'True'],
-    'Play': ['No', 'No', 'Yes', 'Yes', 'Yes', 'No', 'Yes', 'No', 'Yes', 'Yes',
-             'Yes', 'Yes','Yes','No']
+    'Outlook': ['Sunny', 'Sunny', 'Overcast', 'Rain', 'Rain', 'Rain', 'Overcast', 'Sunny', 'Sunny', 'Rain', 'Sunny', 'Overcast', 'Overcast', 'Rain'],
+    'Temperature': ['Hot', 'Hot', 'Hot', 'Mild', 'Cool', 'Cool', 'Cool', 'Mild', 'Cool', 'Mild', 'Mild', 'Mild', 'Hot', 'Mild'],
+    'Humidity': ['High', 'High', 'High', 'High', 'Normal', 'Normal', 'Normal', 'High', 'Normal', 'Normal', 'Normal', 'High', 'Normal', 'High'],
+    'Wind': ['Weak', 'Strong', 'Weak', 'Weak', 'Weak', 'Strong', 'Strong', 'Weak', 'Weak', 'Weak', 'Strong', 'Strong', 'Weak', 'Strong'],
+    'Play': ['No', 'No', 'Yes', 'Yes', 'Yes', 'No', 'Yes', 'No', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'No']
 }
-df =pd.DataFrame(data)
-print("Jasar Shaikh-33")
-print("Dataset:\n",df)
-#2
+df = pd.DataFrame(data)
+
+
+print("dataset:",df)
+
+#Step 2: Encode categorical variables
 from sklearn.preprocessing import LabelEncoder
-print("Jasar Shaikh-33")
-label_encoder={}
-for column in df.columns:
-    label_encoder[column]=LabelEncoder()
-    df[column]=label_encoder[column].fit_transform(df[column])
-print("Encoded Dataset:\n",df)
-print("Label Encoded Successfully")
-#3
-x=df.drop(columns=['Play'])
+le=LabelEncoder()
+df['Outlook']=le.fit_transform(df['Outlook'])
+df['Temperature']=le.fit_transform(df['Temperature'])
+df['Humidity']=le.fit_transform(df['Humidity'])
+df['Wind']=le.fit_transform(df['Wind'])
+df['Play']=le.fit_transform(df['Play'])
+
+
+print("dataset:",df)
+
+#Step 3: Split the data in features and target
+x=df.drop('Play',axis=1)
 y=df['Play']
-print("Jasar Shaikh-33")
-print("Features:\n",x)
-print("Target:\n",y)
-#4
+print("features:",x)
+print("target:",y)
+
+#Step 4: Split the data into training and testing
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
-print("Jasar Shaikh-33")
-print("Training Data:\n",x_train)
-print("Testing Data:\n",x_test)
-print("Training Target:\n",y_train)
-print("Testing Target:\n",y_test)
-#5:Model
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
+print("x train:",x_train)
+print("x test:",x_test)
+print("y train:",y_train)
+print("y test:",y_test)
+
+#Step 5: Model creation & Training
 from sklearn.naive_bayes import GaussianNB
-nb_model=GaussianNB()
-nb_model.fit(x_train,y_train)
-print("Jasar Shaikh-33")
+model=GaussianNB()
+model.fit(x_train,y_train)
 print("Model is trained")
-#6: predict
-y_pred = nb_model.predict(x_test)
-print("Predicted Values:\n",y_pred)
-#7:evaluate
+#Step 6: Test the model
+y_pred=model.predict(x_test)
+print(y_pred)
+
+#Step 7: Caluculate the accuracy of the model
 from sklearn.metrics import accuracy_score
-print(f"Accuracy:{accuracy_score(y_test,y_pred):.2f}")
+y_pred=model.predict(x_test)
+print(y_pred)
+print("Accuracy:",accuracy_score(y_test,y_pred))
 
-
-   
 `;
 
-        var text5 = `P6A
-        #1
-import pandas as pd
-data = {'size(sq ft)': [750,800,850,900,950,1000,1100,1200],
-        'Price(USD)':[15000,16000,16500,17500,18000,19000,20500,22000]}
+        var text6 = `p6
+        import pandas as pd
+data = {'Size (sq ft)': [750, 800, 850, 900, 950, 1000, 1100, 1200],
+        'Price (USD)': [150000, 160000, 165000, 175000, 180000, 190000, 205000, 220000]}
 df = pd.DataFrame(data)
-print("Jasar Shaikh-33")
+print("Dataset :")
 print(df)
-#2
-x=df[['size(sq ft)']]
-y=df[['Price(USD)']]
-#print("Jasar Shaikh-33")
-#print("Features:\n",x)
-#print("Target:\n",y)
-#3:Split
+# Step 2: Split the data in features & target
+X= df[['Size (sq ft)']]
+y = df[['Price (USD)']]
+print("Feature: ", X)
+print("Target:", y)
+# Step 3: Split training & testing data
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
-print("Jasar Shaikh-33")
-#print("Training Data:\n",x_train)
-#print("Testing Data:\n",x_test)
-#4:Model
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+print("X_train:", X_train)
+print("X_test:", X_test)
+print("y_train:", y_train)
+print("y_test:", y_test)
+#Step 4: Model creation & training
 from sklearn.linear_model import LinearRegression
-model=LinearRegression()
-model.fit(x_train,y_train)
-#print("Model is trained")
-#5:Predict
-y_pred=model.predict(x_test)
-#print("Predicted Values:\n",y_pred)
-#6:Evaluate
-from sklearn.metrics import mean_squared_error,r2_score
-mse = mean_squared_error(y_test,y_pred)
-r2 = r2_score(y_test,y_pred)
-#print(f"Mean Squared Error: {mse:.2f}")
-#print(f"R2 Score: {r2:.2f}")
-#7:Visualize
+model = LinearRegression()
+model.fit(X_train, y_train)
+print("Linear Regression Model is trained")
+#Step 5: Model prediction
+y_pred = model.predict(X_test)
+print("Predicted Price:", y_pred)
+#Step 6:Find accuracy of the model
+from sklearn.metrics import r2_score, mean_squared_error
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print("Mean Squared Error:", mse)
+print("Accuracy:", r2_score(y_test, y_pred))
+print("R-squared:", r2)
+#Step 7: Visualizations of target & features
 import matplotlib.pyplot as plt
-plt.scatter(x_test,y_test,color='blue',label='Actual')
-plt.plot(x_test,y_pred,color='red',linewidth=2,label='Predicted')
-plt.xlabel('size(sq ft)')
-plt.ylabel('Price(USD)')
-plt.title('Linear Regression House Prices: Jasar Shaikh-33')
+#scatter plot of actual vs predicted
+plt.scatter(X_train, y_train, color='blue', label='Actual Prices')
+plt.scatter(X_test, y_test, color='red', label='Predicted Prices')
+plt.xlabel("Size (sq ft)")
+plt.ylabel("Price (USD)")
+plt.title("Linear Regression Mode")
 plt.legend()
 plt.show()
 
 
-       
-  `;
- 
-        var text6 = `P7
-       #pract 7
-#Implementation of Logistic regression to predict breast Cancer ?
-#Step 1- Read Datasets From pandas and save it in .csv file
+
+`;
+var text7 = `p6b
 import pandas as pd
+data = {
+    'Size (sq ft)': [750, 800, 850, 900, 950, 1000, 1100, 1200],
+    'Bedrooms': [2, 3, 2, 3, 4, 3, 4, 5],
+    'Bathrooms': [1, 2, 2, 2, 3, 2, 3, 3],
+    'Price (USD)': [150000, 160000, 165000, 175000, 180000, 190000, 205000, 220000]
+}
+df = pd.DataFrame(data)
+print("Dataset :")
+print(df)
+# Step 2: Split the data in features & target
+X= df[['Size (sq ft)']]
+y = df[['Price (USD)']]
+print("Feature: ", X)
+print("Target:", y)
+# Step 3: Split training & testing data
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+print("X_train:", X_train)
+print("X_test:", X_test)
+print("y_train:", y_train)
+print("y_test:", y_test)
+#Step 4: Model creation & training
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_train, y_train)
+print("Linear Regression Model is trained")
+#Step 5: Model prediction
+y_pred = model.predict(X_test)
+print("Predicted Price:", y_pred)
+#Step 6:Find accuracy of the model
+from sklearn.metrics import r2_score, mean_squared_error
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print("Mean Squared Error:", mse)
+print("Accuracy:", r2_score(y_test, y_pred))
+print("R-squared:", r2)
+#Step 7: Visualizations of target & features
+import matplotlib.pyplot as plt
+#scatter plot of actual vs predicted
+plt.scatter(X_train, y_train, color='blue', label='Actual Prices')
+plt.plot(X_test, y_pred, color='red', linewidth=2, label='Predicted Prices')
+plt.xlabel("Size (sq ft)")
+plt.ylabel("Price (USD)")
+plt.title("Linear Regression Mode")
+plt.legend()
+plt.show()
+
+    `;
+
+    var text8 = `p7
+   import pandas as pd
 from sklearn.datasets import load_breast_cancer
 cancer = load_breast_cancer()
 df=pd.DataFrame(cancer.data, columns=cancer.feature_names)
-print("Jasar Shaikh - KCFMSCIT33")
 print("Dataset ")
 print(df.head())
-df["target"] = cancer.target
-#step 2 divide the data into feature and target
-#load the dataset
-from sklearn.datasets import load_breast_cancer
-x = df.drop(columns=['target'])
+
+
+#Step 2: Split the data in features & target
+df['target'] = cancer.target
+X = df.drop(columns=['target'])
 y = df['target']
-print("Jasar Shaikh - KCFMSCIT33")
-print("x=")
-print(x)
-print("y=",y)
 
-print("Jasar Shaikh - KCFMSCIT33")
-# step 3 slipt data into trainting and testing
+
+print("X=")
+print(X)
+print("y=")
+print(y)
+
+
+#Step 3: Split training & testing data
 from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
-print("Jasar Shaikh - KCFMSCIT33")
-print("x_train:")
-print(x_train)
-print("x_test:")
-print(x_test)
-#step 4 train the model LR
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+print("X_train :")
+print(X_train)
+print("X test :")
+print(X_test)
 
+
+#Step 4: Model creation & training
 from sklearn.linear_model import LogisticRegression
 model = LogisticRegression()
-model.fit(x_train, y_train)
-print("Jasar Shaikh - KCFMSCIT33")
-print("model is trained.......")
-print(model)
-#step 5 model prediction
-y_pred = model.predict(x_test)
-print("Jasar Shaikh - KCFMSCIT33")
-print("Predicted Value:")
+model.fit(X_train,y_train)
+print("Model Name :", model)
+print("Model is trained !!!")
+
+
+#Step 5: Model prediction
+y_pred=model.predict(X_test)
+print("Predicted Values :")
 print(y_pred)
-#Step 6 model evalution
-from sklearn.metrics import accuracy_score,confusion_matrix,classification_report
-print("Jasar Shaikh - KCFMSCIT33")
-print("Accuracy:",accuracy_score(y_test,y_pred))
-print("Confusion Matrix:")
-print(confusion_matrix(y_test,y_pred))
-print("Classification Report:")
-print(classification_report(y_test,y_pred))
-#step
+
+
+#Step 6: Find accuracy of the model
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+print("accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
+
+
+#Step 7: Visualizations of target & features
 import seaborn as sns
 import matplotlib.pyplot as plt
-#confusion matrix
-cn = confusion_matrix(y_test,y_pred)
-sns.heatmap(cn,annot=True,cmap='Blues',fmt='d', xticklabels=['Malignant','Benign'], yticklabels=['Malignant','Benign'])
+from sklearn.metrics import confusion_matrix
+
+
+cm = confusion_matrix(y_test, y_pred)
+# Plot the confusion matrix
+sns.heatmap(cm, annot=True, cmap='Blues', xticklabels=['Malignant', 'Benign'], yticklabels=['Malignant', 'Benign'])
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
-plt.title("Confusion Matrix: Jasar Shaikh - KCFMSCIT33")
+plt.title("Confusion Matrix")
 plt.show()
-`;
 
-        var text7 = `P7B:Emails
-       import pandas as pd
+
+    `;
+    var text9 = `p7b
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 import seaborn as sns
 import matplotlib.pyplot as plt
-
-# Step 1: Load the spam.csv dataset
-# Replace 'path_to_spam.csv' with the path to your spam.csv file
-data = pd.read_csv('/content/emails.csv')
-
-print("Jasar Shaikh - KCFMSCIT33")
+data = pd.read_csv('/content/sample_data/emails.csv')
 print("Dataset ")
 print(data.head())
-# Step 2: Split the data into features (text messages) and target (spam or ham)
+
+
+#Step 2: Split the data in features & target
 X = data['text']  # Feature: The text message content
 y = data['spam']  # Target: 'spam' or 'ham'
-print("Jasar Shaikh - KCFMSCIT33")
 print("X=")
 print(X)
 print("y=")
 print(y)
-# Step 3: Split into training and testing data
+
+
+#Step 3: Split training & testing data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-print("Jasar Shaikh - KCFMSCIT33")
 print("X_train :")
 print(X_train)
 print("X test :")
 print(X_test)
-# Step 4: Convert the text data into numerical features using CountVectorizer
+
+
+#Convert the text data to numerical features
 vectorizer = CountVectorizer(stop_words='english')  # Remove common stop words
 X_train_vec = vectorizer.fit_transform(X_train)
 X_test_vec = vectorizer.transform(X_test)
-print("Jasar Shaikh - KCFMSCIT33")
+print("Surabhi Maydeo 021")
 print("X_train_vec :")
 print(X_train_vec)
 print("X_test_vec :")
 print(X_test_vec)
-# Step 5: Model creation and training using Logistic Regression
+
+
+#Step 4:  Model creation & training
 model = LogisticRegression(max_iter=1000)  # Increase max_iter if convergence issues occur
-model.fit(X_train_vec, y_train)
-print("Jasar Shaikh - KCFMSCIT33")
 print("Model Name :", model)
 print("Model is trained !!!")
-# Step 6: Model prediction on the test set
+
+
+#Step 5: Model prediction
 y_pred = model.predict(X_test_vec)
-print("Jasar Shaikh - KCFMSCIT33")
 print("Predicted Values :")
 print(y_pred)
-# Step 7: Model evaluation: accuracy, confusion matrix, and classification report
-print("Jasar Shaikh - KCFMSCIT33")
+
+
+#Step 6: Find accuracy of the model
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
 print("Classification Report:\n", classification_report(y_test, y_pred))
-# Step 8: Visualize the confusion matrix using Seaborn's heatmap
-cm = confusion_matrix(y_test, y_pred)
 
+
+
+
+#Step 7: Visualizations of target & features
+cm = confusion_matrix(y_test, y_pred)
 # Plot the confusion matrix
 sns.heatmap(cm, annot=True, cmap='Blues', xticklabels=['Ham', 'Spam'], yticklabels=['Ham', 'Spam'])
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
-plt.title("Confusion Matrix:Jasar Shaikh - KCFMSCIT33")
+plt.title("Confusion Matrix: Email Spam Detection")
 plt.show()
+
+    `;
+
+    var text10 = `7c
+import pandas as pd
+
+
+# Load dataset
+df = pd.read_csv("custom_customer_churn.csv")
+# Convert 'Churn' column
+df["Churn"] = df["Churn"].map({"Yes": 1, "No": 0})
+# Verify conversion
+print(df["Churn"].value_counts())
+
+
+# Save modified dataset
+df.to_csv("custom_customer_churn_updated.csv", index=False)
+data = pd.read_csv("custom_customer_churn_updated.csv")
+data = data.drop(columns=['CustomerID'])
+
+
+# Convert categorical variables to numerical using one-hot encoding
+data = pd.get_dummies(data, drop_first=True)
+ds = pd.DataFrame(data)
+X = ds.drop(columns=['Churn'])
+y = ds['Churn']
+print("Features (X): ")
+print(X)
+print("Target (y): ")
+print(y)
+from sklearn.model_selection import train_test_split
+
+
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=42)
+print('Training Data (X_train): ')
+print(X_train)
+print('Testing Data (X_test): ')
+print(X_test)
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(X_train,y_train)
+print('Model name: ', model)
+print('Model Trained Successfully!!!')
+y_pred = model.predict(X_test)
+print('Predicted Values: ')
+print(y_pred)
+from sklearn.metrics import accuracy_score,confusion_matrix, classification_report
+accuracy = accuracy_score(y_test,y_pred)
+print("Accuracy score: ",accuracy)
+conf = confusion_matrix(y_test,y_pred)
+print("Confusion Matrix: \n",conf)
+class_report = classification_report(y_test,y_pred)
+print("Classification Report: \n",class_report)
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.heatmap(conf,annot=True,cmap='Blues',fmt='d')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Customer Churn Prediction')
+plt.show()
+
+
 `;
 
-    var text8 = `P8A:Eculidean
-print("Jasar Shaikh-KCFMSCIT33")
+
+   var text11 = `8
 import numpy as np
-def euclidean_distance(point1, point2) :
-  return np.sqrt(np.sum((np.array(point1) - np.array(point2)) ** 2))
+def euclidean_distance (point1, point2):
+  return np.sqrt(np.sum((np.array (point1)- np.array(point2)) ** 2))
 # Example
 A = (3, 4)
 B = (7, 1)
-distance = euclidean_distance(A, B)
+distance = euclidean_distance (A, B)
 print(f"Euclidean Distance: {distance}")
-`;
-    var text9= `P8B
-    print("Jasar Shaikh-KCFMSCIT33")
+
+   `;
+
+
+   var text12 = `8b
 import numpy as np
 # Data (Brightness, Saturation) and corresponding class labels
-X = np.array([
-    [40, 20],
-    [50, 50],
-    [60, 90],
-    [10, 25],
-    [70, 70],
-    [60, 10],
-    [25, 80],
-])
-y = np.array(['Red', 'Blue', 'Blue', 'Red', 'Blue', 'Red', 'Blue'])
-#print ("Features :")
-#print (X)
-#print ("Target :")
-#print (y)
+X= np.array([
+[40, 20],
+[50, 50],
+[60, 90],
 
+
+[10, 25],
+[70, 70],
+[60, 10],
+[25, 80] ])
+y = np.array(['Red', 'Blue', 'Blue', 'Red', 'Blue', 'Red', 'Blue'])
+print("Features:")
+print(X)
+print("Target: ")
+print(y)
+#Step2:Create and train the KNN model
 from sklearn.neighbors import KNeighborsClassifier
 knn = KNeighborsClassifier(n_neighbors=3)
-knn. fit (X, y)
-#print (knn)
-#print("Model is trained ...")
-
-new_data = np. array ([[30, 40], [65, 6011]])
-predictions = knn. predict (new_data)
-print(predictions)
+knn.fit(X, y)
+print(knn)
+print("Model is trained ...")
+#Step3: Test the model with new data
+new_data = np.array([[30, 40], [65, 60]])
+predictions = knn.predict(new_data)
 # Display predictions
-#for i, pred in enumerate (predictions):
-  #print(f"Data point {new_data[i]} is classified as {pred}")
-`;
-    var text10= `P9
-    x = [4, 5, 10, 4, 3, 11, 14, 6, 10, 12]
+for i, pred in enumerate (predictions):
+  print(f"Data point {new_data[i]} is classified as {pred}")
+   `;
+
+
+   var text13 = `9
+   x = [4,5,10,4,3,11,14,6,10,12]
 y = [21, 19, 24, 17, 16, 25, 24, 22, 21, 21]
-print ("Jasar Shaikh - 33")
-print ("x=", x)
-print ("y=",y)
+print("x",x)
+print("y",y)
+
+
 import matplotlib.pyplot as plt
-plt. scatter (x, y)
-plt.title('Data Points Before Clustering Jasar Shaikh-33')
-plt. show()
+plt.scatter(x,y)
+plt.title(" Data points before clustering")
+plt.show()
+
+
 from sklearn.cluster import KMeans
-data = list(zip(x, y))
+data = list(zip(x,y))
 print(data)
+
+
 kmeans = KMeans(n_clusters=2)
-kmeans. fit(data)
-plt. scatter(x, y, c=kmeans. labels_)
-plt. title('Data points after K-Means Clustering with k=2')
-plt. show()
-`;
-    var text11= `P10B
-    import pandas as pd
+kmeans.fit(data)
+plt.scatter(x,y, c= kmeans.labels_)
+plt.title("Data points after clustering where k=2")
+plt.show()
+
+
+kmeans = KMeans(n_clusters=3)
+kmeans.fit(data)
+plt.scatter(x,y, c= kmeans.labels_)
+plt.title("Data points after clustering where k=3")
+plt.show()
+
+
+   `;
+
+
+   var text14 = `10
+   import pandas as pd 
 import numpy as np
 dates = pd.date_range(start=' 2023-01-01', periods=100,freq='D')
 categories = ['Electronics', 'Clothing', 'Groceries','Furniture']
@@ -519,23 +698,26 @@ data = {
 'Units_Sold': np.random.randint(1, 20, 200)
 }
 df = pd.DataFrame(data)
-print("Surbhi Maydeo-21")
 print (df)
 # Convert Date column to datetime format
 df[ 'Date'] = pd. to_datetime(df[ 'Date'])
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 #Sales trend overtime
 plt.figure(figsize=(12, 6))
 
+
 #Sales by Category
 plt.figure(figsize=(5, 5))
 sns. barplot(data=df.groupby ('Category', as_index=False)['Sales_Amount'].sum(), x='Category', y='Sales_Amount' , palette= 'viridis')
-plt. title('Total Sales by Category : Surbhi Maydeo-21')
+plt. title('Total Sales by Category') 
 plt. xlabel( 'Category')
 plt. ylabel('Sales Amount')
 plt. show( )
-`;
+
+   `;
+
 
 function copyText(text) {
     navigator.clipboard.writeText(text).then(function () {
