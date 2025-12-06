@@ -11,7 +11,7 @@
         }
 
         body {
-            background-color: black;
+            background-color: #f0f0f0;
             /* Light gray background */
             font-family: Arial, sans-serif;
             text-align: center;
@@ -21,18 +21,17 @@
             margin: 10px;
             padding: 10px;
             font-size: 16px;
-            background-color: DimGray;
+            background-color: #ddd;
             /* Light gray button background */
-            border: 1px solid #560b0b;
+            border: 1px solid #aaa;
             /* Dark gray border */
             cursor: pointer;
         }
 
         button:hover {
             background-color: #ccc;
-          /* Slightly darker background on hover */
+            /* Slightly darker background on hover */
         }
-
     </style>
 </head>
 
@@ -45,14 +44,14 @@
     <button onclick="copyText(text5)">5 CURD Operations (Student Library)</button>
     <button onclick="copyText(text6)">6 CURD Operations (Employee Payroll)</button>
     <button onclick="copyText(text7)">7 CURD Operations (Course Registration)</button>
-    <button onclick="copyText(text8)">8 CURD Operations (Cinema Ticket Booking System)</button>
-    <button onclick="copyText(text9)">9 Operators, Conditional Statements & Message Types in ABAP</button>
-    <button onclick="copyText(text10)">10 Student Result Checker</button>
-    <button onclick="copyText(text11)">11 Compare Two Numbers</button>
-    <button onclick="copyText(text12)">12 Age Calculator</button>
-    <button onclick="copyText(text13)">13 Fibonacci Series</button>
-    <button onclick="copyText(text14)">14 Factorial Calculation</button>
-    <button onclick="copyText(text15)">15 Palindrome Checker</button>
+    <button onclick="copyText(text7)">8 CURD Operations (Cinema Ticket Booking System)</button>
+    <button onclick="copyText(text7)">9 Operators, Conditional Statements & Message Types in ABAP</button>
+    <button onclick="copyText(text7)">10 Student Result Checker</button>
+    <button onclick="copyText(text7)">11 Compare Two Numbers</button>
+    <button onclick="copyText(text7)">12 Age Calculator</button>
+    <button onclick="copyText(text7)">13 Fibonacci Series</button>
+    <button onclick="copyText(text7)">14 Factorial Calculation</button>
+    <button onclick="copyText(text7)">15 Palindrome Checker</button>
     
     <p id="copiedMsg"></p>
     <script>
@@ -93,20 +92,20 @@ WRITE: / 'Length Final String:', lv_len_final.
         var text2 = `# p2 ABAP String – Replace, Split, Uppercase
 
 
-PARAMETERS: p_fname TYPE string,
-p_mname TYPE string,
-p_lname TYPE string.
+        PARAMETERS: p_fname TYPE string,
+ p_mname TYPE string,
+ p_lname TYPE string.
 DATA: lv_fullname TYPE string,
-lv_upper TYPE string,
-lv_lower TYPE string,
-lv_replace TYPE string,
-lv_reverse TYPE string.
+ lv_upper TYPE string,
+ lv_lower TYPE string,
+ lv_replace TYPE string,
+ lv_reverse TYPE string.
 DATA: lt_words TYPE TABLE OF string WITH EMPTY KEY.
 lv_fullname = |{ p_fname } { p_mname } { p_lname }|.
 CONDENSE lv_fullname.
 IF lv_fullname IS INITIAL.
-WRITE: / 'No name provided. Please enter first/middle/last name.'.
-RETURN.
+ WRITE: / 'No name provided. Please enter first/middle/last name.'.
+ RETURN.
 ENDIF.
 lv_upper = to_upper( lv_fullname ).
 lv_lower = to_lower( lv_fullname ).
@@ -114,7 +113,7 @@ lv_lower = to_lower( lv_fullname ).
 lv_replace = lv_fullname.
 DATA(lv_search) = ' '. " ensure search term is a real single space
 IF lv_search IS NOT INITIAL.
-REPLACE ALL OCCURRENCES OF ` ` IN lv_replace WITH -.
+ REPLACE ALL OCCURRENCES OF ` ` IN lv_replace WITH -.
 ENDIF.
 SPLIT lv_fullname AT ' ' INTO TABLE lt_words.
 lv_reverse = reverse( lv_fullname ).
@@ -124,14 +123,14 @@ WRITE: / 'Hyphen Name: ', lv_replace.
 WRITE: / 'Reversed Name:', lv_reverse.
 WRITE: / 'Split Words:'.
 LOOP AT lt_words INTO DATA(lv_word).
-WRITE: / lv_word.
+ WRITE: / lv_word.
 ENDLOOP.
 
 `;
 
         var text3 = `#P3 -  ABAP 7.4+ Chain of String Operations 
 
-PARAMETERS: p_fname TYPE string,
+        PARAMETERS: p_fname TYPE string,
 p_mname TYPE string,
 p_lname TYPE string.
 DATA: lv_temp TYPE string,
@@ -164,7 +163,7 @@ WRITE: / 'Length After Condense:', strlen( lv_condense ).
 
         var text4 = ` # 4p ABAP - Input Validation + String Ops
 
-PARAMETERS: p_fname TYPE string,
+        PARAMETERS: p_fname TYPE string,
 p_mname TYPE string,
 p_lname TYPE string.
 DATA: lv_full TYPE string,
@@ -524,168 +523,177 @@ ENDFORM.
 `;
 
 var text8 = `#8p CURD Operations (Cinema Ticket Booking System)
-REPORT Z_KC_CINEMA
-_BOOK_CRUD142
-
-TABLES:ZCINEMA_BOOK142.
-
+REPORT z_kc_cinema_book_crud142.
+TABLES: zcinema_book142.
 *----------------------------------------------------------------------
 * Selection Screen
 *----------------------------------------------------------------------
 SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE text-001.
 PARAMETERS: p_insert RADIOBUTTON GROUP g1 DEFAULT 'X',
-            p_update RADIOBUTTON GROUP g1,
-            p_delete RADIOBUTTON GROUP g1,
-            p_modify RADIOBUTTON GROUP g1,
-            p_display RADIOBUTTON GROUP g1.
+ p_update RADIOBUTTON GROUP g1,
+ p_delete RADIOBUTTON GROUP g1,
+ p_modify RADIOBUTTON GROUP g1,
+ p_display RADIOBUTTON GROUP g1.
 SELECTION-SCREEN END OF BLOCK b1.
-
 SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE text-002.
-PARAMETERS: s_bid     TYPE zcinema_book142-booking_id,
-            s_cname   TYPE zcinema_book142-customer_name,
-            s_mname   TYPE zcinema_book142-movie_name,
-            s_time    TYPE zcinema_book142-show_time,
-            s_seat    TYPE zcinema_book142-seat_no,
-            s_bdate   TYPE zcinema_book142-booking_date.
+PARAMETERS: s_bid TYPE zcinema_book142-booking_id,
+ s_cname TYPE zcinema_book142-customer_name,
+ s_mname TYPE zcinema_book142-movie_name,
+ s_time TYPE zcinema_book142-show_time,
+ s_seat TYPE zcinema_book142-seat_no,
+ s_bdate TYPE zcinema_book142-booking_date.
 SELECTION-SCREEN END OF BLOCK b2.
-
 *----------------------------------------------------------------------
 * Start of Selection
 *----------------------------------------------------------------------
 START-OF-SELECTION.
-
-  CASE 'X'.
-    WHEN p_insert.
-      PERFORM insert_record.
-
-    WHEN p_update.
-      PERFORM update_record.
-
-    WHEN p_delete.
-      PERFORM delete_record.
-
-    WHEN p_modify.
-      PERFORM modify_record.
-
-    WHEN p_display.
-      PERFORM display_records.
-  ENDCASE.
-
+ CASE 'X'.
+ WHEN p_insert.
+ PERFORM insert_record.
+ WHEN p_update.
+ PERFORM update_record.
+  WHEN p_delete.
+ PERFORM delete_record.
+ WHEN p_modify.
+ PERFORM modify_record.
+ WHEN p_display.
+ PERFORM display_records.
+ ENDCASE.
 *----------------------------------------------------------------------
 * INSERT
 *----------------------------------------------------------------------
 FORM insert_record.
-
-  zcinema_book142-booking_id   = s_bid.
-  zcinema_book142-customer_name = s_cname.
-  zcinema_book142-movie_name    = s_mname.
-  zcinema_book142-show_time     = s_time.
-  zcinema_book142-seat_no       = s_seat.
-  zcinema_book142-booking_date  = s_bdate.
-
-  INSERT zcinema_book142.
-  IF sy-subrc = 0.
-    MESSAGE 'Booking added successfully.' TYPE 'S'.
-  ELSE.
-    MESSAGE 'Insert failed. Duplicate Booking ID?' TYPE 'E'.
-  ENDIF.
-
+ zcinema_book142-booking_id = s_bid.
+ zcinema_book142-customer_name = s_cname.
+ zcinema_book142-movie_name = s_mname.
+ zcinema_book142-show_time = s_time.
+ zcinema_book142-seat_no = s_seat.
+ zcinema_book142-booking_date = s_bdate.
+ INSERT zcinema_book142.
+ IF sy-subrc = 0.
+ MESSAGE 'Booking added successfully.' TYPE 'S'.
+ ELSE.
+ MESSAGE 'Insert failed. Duplicate Booking ID?' TYPE 'E'.
+ ENDIF.
 ENDFORM.
-
 *----------------------------------------------------------------------
 * UPDATE
 *----------------------------------------------------------------------
 FORM update_record.
-
-  SELECT SINGLE * FROM zcinema_book142
-    WHERE booking_id = s_bid.
-
+SELECT SINGLE * FROM zcinema_book142
+ WHERE booking_id = s_bid.
   IF sy-subrc = 0.
-
-    zcinema_book142-customer_name = s_cname.
-    zcinema_book142-movie_name     = s_mname.
-    zcinema_book142-show_time      = s_time.
-    zcinema_book142-seat_no        = s_seat.
-    zcinema_book142-booking_date   = s_bdate.
-
-    UPDATE zcinema_book142.
-
-    IF sy-subrc = 0.
-      MESSAGE 'Booking updated successfully.' TYPE 'S'.
-    ELSE.
-      MESSAGE 'Update failed.' TYPE 'E'.
-    ENDIF.
-
-  ELSE.
-    MESSAGE 'Booking ID not found.' TYPE 'E'.
-  ENDIF.
-
+ zcinema_book142-customer_name = s_cname.
+ zcinema_book142-movie_name = s_mname.
+ zcinema_book142-show_time = s_time.
+ zcinema_book142-seat_no = s_seat.
+ zcinema_book142-booking_date = s_bdate.
+ UPDATE zcinema_book142.
+ IF sy-subrc = 0.
+ MESSAGE 'Booking updated successfully.' TYPE 'S'.
+ ELSE.
+ MESSAGE 'Update failed.' TYPE 'E'.
+ ENDIF.
+ ELSE.
+ MESSAGE 'Booking ID not found.' TYPE 'E'.
+ ENDIF.
 ENDFORM.
-
 *----------------------------------------------------------------------
 * DELETE
 *----------------------------------------------------------------------
 FORM delete_record.
-
-  DELETE FROM zcinema_book142
-    WHERE booking_id = s_bid.
-
-  IF sy-subrc = 0.
-    MESSAGE 'Booking deleted successfully.' TYPE 'S'.
-  ELSE.
-    MESSAGE 'Delete failed. Booking ID not found.' TYPE 'E'.
-  ENDIF.
-
+ DELETE FROM zcinema_book142
+ WHERE booking_id = s_bid.
+ IF sy-subrc = 0.
+ MESSAGE 'Booking deleted successfully.' TYPE 'S'.
+ ELSE.
+ MESSAGE 'Delete failed. Booking ID not found.' TYPE 'E'.
+ ENDIF.
 ENDFORM.
-
 *----------------------------------------------------------------------
 * MODIFY
 *----------------------------------------------------------------------
 FORM modify_record.
-
-  zcinema_book142-booking_id    = s_bid.
-  zcinema_book142-customer_name = s_cname.
-  zcinema_book142-movie_name    = s_mname.
-  zcinema_book142-show_time     = s_time.
-  zcinema_book142-seat_no       = s_seat.
-  zcinema_book142-booking_date  = s_bdate.
-
-  MODIFY zcinema_book142.
-
-  IF sy-subrc = 0.
-    MESSAGE 'Booking modified successfully.' TYPE 'S'.
-  ELSE.
-    MESSAGE 'Modify failed.' TYPE 'E'.
-  ENDIF.
-
+ zcinema_book142-booking_id = s_bid.
+ zcinema_book142-customer_name = s_cname.
+ zcinema_book142-movie_name = s_mname.
+ zcinema_book142-show_time = s_time.
+ zcinema_book142-seat_no = s_seat.
+ zcinema_book142-booking_date = s_bdate.
+ MODIFY zcinema_book142.
+ IF sy-subrc = 0.
+ MESSAGE 'Booking modified successfully.' TYPE 'S'.
+ ELSE.
+ MESSAGE 'Modify failed.' TYPE 'E'.
+ ENDIF.
 ENDFORM.
-
 *----------------------------------------------------------------------
 * DISPLAY ALL RECORDS
 *----------------------------------------------------------------------
 FORM display_records.
-
-  DATA: lt_data TYPE TABLE OF zcinema_book142,
-        ls_data TYPE zcinema_book142.
-
-  SELECT * FROM zcinema_book142 INTO TABLE lt_data.
-
-  IF lt_data IS INITIAL.
-    MESSAGE 'No records found.' TYPE 'I'.
-    RETURN.
-  ENDIF.
-
-  LOOP AT lt_data INTO ls_data.
-    WRITE: / 'Booking ID     :', ls_data-booking_id,
-           / 'Customer Name  :', ls_data-customer_name,
-           / 'Movie Name     :', ls_data-movie_name,
-           / 'Show Time      :', ls_data-show_time,
-           / 'Seat No        :', ls_data-seat_no,
-           / 'Booking Date   :', ls_data-booking_date,
-           / '-------------------------------------------'.
-  ENDLOOP.
-
+ DATA: lt_data TYPE TABLE OF zcinema_book142,
+ ls_data TYPE zcinema_book142.
+ SELECT * FROM zcinema_book142 INTO TABLE lt_data.
+ IF lt_data IS INITIAL.
+ MESSAGE 'No records found.' TYPE 'I'.
+ RETURN.
+ ENDIF.
+ LOOP AT lt_data INTO ls_data.
+ WRITE: / 'Booking ID :', ls_data-booking_id,
+ / 'Customer Name :', ls_data-customer_name,
+ / 'Movie Name :', ls_data-movie_name,
+ / 'Show Time :', ls_data-show_time,
+ / 'Seat No :', ls_data-seat_no,
+ / 'Booking Date :', ls_data-booking_date,
+ / '-------------------------------------------'.
+ ENDLOOP.
 ENDFORM.
+
+`;
+
+var text9 = `#9p Operators, Conditional Statements & Message Types in ABAP
+PARAMETERS: p_num1 TYPE i,
+ p_num2 TYPE i,
+ p_num3 TYPE i.
+* -------- Error Checking ---------
+IF p_num1 < 0 OR p_num2 < 0 OR p_num3 < 0.
+ MESSAGE 'Negative numbers are not allowed' TYPE 'E'.
+ENDIF.
+* -------- Operations ---------
+DATA: gv_sum TYPE i.
+gv_sum = p_num1 + p_num2 + p_num3.
+WRITE: / 'Number 1:', p_num1,
+ / 'Number 2:', p_num2,
+ / 'Number 3:', p_num3,
+ / 'Sum :', gv_sum.
+* -------- Largest Number (IF ELSEIF) ---------
+IF p_num1 > p_num2 AND p_num1 > p_num3.
+ WRITE: / 'Largest number is Number1:', p_num1.
+ELSEIF p_num2 > p_num1 AND p_num2 > p_num3.
+ WRITE: / 'Largest number is Number2:', p_num2.
+ELSE.
+ WRITE: / 'Largest number is Number3:', p_num3.
+ENDIF.
+* -------- Even or Odd (CASE) ---------
+CASE gv_sum MOD 2.
+WHEN 0.
+MESSAGE 'Sum is Even' TYPE 'S'. "Success message
+WHEN OTHERS.
+MESSAGE 'Sum is Odd' TYPE 'I'. "Information message
+ENDCASE.
+* -------- Relational Operator ---------
+IF p_num1 > p_num2.
+MESSAGE 'Number1 is greater than Number2' TYPE 'I'.
+ELSE.
+MESSAGE 'Number1 is NOT greater than Number2' TYPE 'W'. "Warning
+ENDIF.
+* -------- Check if Number3 is between Number1 & Number2 ---------
+IF p_num3 BETWEEN p_num1 AND p_num2 OR
+p_num3 BETWEEN p_num2 AND p_num1.
+WRITE: / 'Number3 lies between Number1 and Number2'.
+ELSE.
+WRITE: / 'Number3 does not lie between Number1 and Number2'.
+ENDIF.
 
 `;
 
