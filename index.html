@@ -94,45 +94,53 @@ WRITE: / 'Length Final String:', lv_len_final.
 
 
     
-        var text2 = `# p2 ABAP String – Replace, Split, Uppercase
+        var text2 = `
+# p2 ABAP String – Replace, Split, Uppercase
 
-<!--
 PARAMETERS: p_fname TYPE string,
 p_mname TYPE string,
 p_lname TYPE string.
+
 DATA: lv_fullname TYPE string,
 lv_upper TYPE string,
 lv_lower TYPE string,
 lv_replace TYPE string,
 lv_reverse TYPE string.
+
 DATA: lt_words TYPE TABLE OF string WITH EMPTY KEY.
+
 lv_fullname = |{ p_fname } { p_mname } { p_lname }|.
 CONDENSE lv_fullname.
+
 IF lv_fullname IS INITIAL.
-WRITE: / 'No name provided. Please enter first/middle/last name.'.
-RETURN.
+  WRITE: / 'No name provided. Please enter first/middle/last name.'.
+  RETURN.
 ENDIF.
+
 lv_upper = to_upper( lv_fullname ).
 lv_lower = to_lower( lv_fullname ).
+
 " --- SAFE replace
 lv_replace = lv_fullname.
-DATA(lv_search) = ' '. " ensure search term is a real single space
+
+DATA(lv_search) = ' '.
+
 IF lv_search IS NOT INITIAL.
-REPLACE ALL OCCURRENCES OF ` ` IN lv_replace WITH -.
+  REPLACE ALL OCCURRENCES OF ' ' IN lv_replace WITH '-'.
 ENDIF.
+
 SPLIT lv_fullname AT ' ' INTO TABLE lt_words.
 lv_reverse = reverse( lv_fullname ).
+
 WRITE: / 'Uppercase: ', lv_upper.
 WRITE: / 'Lowercase: ', lv_lower.
 WRITE: / 'Hyphen Name: ', lv_replace.
 WRITE: / 'Reversed Name:', lv_reverse.
 WRITE: / 'Split Words:'.
+
 LOOP AT lt_words INTO DATA(lv_word).
-WRITE: / lv_word.
+  WRITE: / lv_word.
 ENDLOOP.
-
--->
-
 `;
 
 
