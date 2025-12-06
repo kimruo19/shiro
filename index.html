@@ -58,35 +58,35 @@
     <script>
         var text1 = `#P1 ABAP String – Concatenation & Length
 
-PARAMETERS: p_fname TYPE string,
-p_mname TYPE string,
-p_lname TYPE string.
-DATA: lv_withspace TYPE string,
-lv_withoutspace TYPE string,
-lv_condensed TYPE string.
-DATA: lv_len_fname TYPE i,
-lv_len_mname TYPE i,
-lv_len_lname TYPE i,
-lv_len_final TYPE i.
-"1. With space
-lv_withspace = |{ p_fname } { p_mname } { p_lname }|.
-"2. Without space
-lv_withoutspace = p_fname && p_mname && p_lname.
-"3. Condense
-lv_condensed = lv_withspace.
-CONDENSE lv_condensed.
-"4. Lengths
-lv_len_fname = strlen( p_fname ).
-lv_len_mname = strlen( p_mname ).
-lv_len_lname = strlen( p_lname ).
-lv_len_final = strlen( lv_withspace ).
-"OUTPUT
-WRITE: / 'Full Name (with space):', lv_withspace.
-WRITE: / 'Full Name (no space):', lv_withoutspace.
-WRITE: / 'Condensed Name:', lv_condensed.
-WRITE: / 'Length First Name:', lv_len_fname.
-WRITE: / 'Length Middle Name:', lv_len_mname.
-WRITE: / 'Length Surname:', lv_len_lname.
+PARAMETERS: p_fname TYPE string, 
+p_mname TYPE string, 
+p_lname TYPE string. 
+DATA: lv_withspace    TYPE string, 
+lv_withoutspace TYPE string, 
+lv_condensed    TYPE string. 
+DATA: lv_len_fname TYPE i, 
+lv_len_mname TYPE i, 
+lv_len_lname TYPE i, 
+lv_len_final TYPE i. 
+"1. With space 
+lv_withspace = |{ p_fname } { p_mname } { p_lname }|. 
+"2. Without space 
+lv_withoutspace = p_fname && p_mname && p_lname. 
+"3. Condense 
+lv_condensed = lv_withspace. 
+CONDENSE lv_condensed. 
+"4. Lengths 
+lv_len_fname = strlen( p_fname ). 
+lv_len_mname = strlen( p_mname ). 
+lv_len_lname = strlen( p_lname ). 
+lv_len_final = strlen( lv_withspace ). 
+"OUTPUT 
+WRITE: / 'Full Name (with space):', lv_withspace. 
+WRITE: / 'Full Name (no space):', lv_withoutspace. 
+WRITE: / 'Condensed Name:', lv_condensed. 
+WRITE: / 'Length First Name:', lv_len_fname. 
+WRITE: / 'Length Middle Name:', lv_len_mname. 
+WRITE: / 'Length Surname:', lv_len_lname. 
 WRITE: / 'Length Final String:', lv_len_final.
 
     `;
@@ -97,50 +97,41 @@ WRITE: / 'Length Final String:', lv_len_final.
         var text2 = `
 # p2 ABAP String – Replace, Split, Uppercase
 
-PARAMETERS: p_fname TYPE string,
-p_mname TYPE string,
-p_lname TYPE string.
+PARAMETERS: p_fname TYPE string, 
+p_mname TYPE string, 
+p_lname TYPE string. 
+DATA: lv_fullname TYPE string, 
+lv_upper    TYPE string, 
+lv_lower    TYPE string, 
+lv_replace  TYPE string, 
+lv_reverse  TYPE string. 
+DATA: lt_words TYPE TABLE OF string WITH EMPTY KEY. 
+lv_fullname = |{ p_fname } { p_mname } { p_lname }|. 
+CONDENSE lv_fullname. 
+IF lv_fullname IS INITIAL. 
+WRITE: / 'No name provided. Please enter first/middle/last name.'. 
+RETURN. 
+ENDIF. 
+lv_upper = to_upper( lv_fullname ). 
+lv_lower = to_lower( lv_fullname ). 
+" --- SAFE replace 
+lv_replace = lv_fullname. 
+DATA(lv_search) = ' '.        
+" ensure search term is a real single space 
+IF lv_search IS NOT INITIAL. 
+REPLACE ALL OCCURRENCES OF ` ` IN lv_replace WITH `-`. 
+ENDIF. 
+SPLIT lv_fullname AT ' ' INTO TABLE lt_words. 
+lv_reverse = reverse( lv_fullname ). 
+WRITE: / 'Uppercase:    ', lv_upper. 
+WRITE: / 'Lowercase:    ', lv_lower. 
+WRITE: / 'Hyphen Name:  ', lv_replace. 
+WRITE: / 'Reversed Name:', lv_reverse. 
+WRITE: / 'Split Words:'. 
+LOOP AT lt_words INTO DATA(lv_word). 
+WRITE: / lv_word. 
+ENDLOOP. 
 
-DATA: lv_fullname TYPE string,
-lv_upper TYPE string,
-lv_lower TYPE string,
-lv_replace TYPE string,
-lv_reverse TYPE string.
-
-DATA: lt_words TYPE TABLE OF string WITH EMPTY KEY.
-
-lv_fullname = |{ p_fname } { p_mname } { p_lname }|.
-CONDENSE lv_fullname.
-
-IF lv_fullname IS INITIAL.
-  WRITE: / 'No name provided. Please enter first/middle/last name.'.
-  RETURN.
-ENDIF.
-
-lv_upper = to_upper( lv_fullname ).
-lv_lower = to_lower( lv_fullname ).
-
-" --- SAFE replace
-lv_replace = lv_fullname.
-
-DATA(lv_search) = ' '.
-
-IF lv_search IS NOT INITIAL.
-  REPLACE ALL OCCURRENCES OF ' ' IN lv_replace WITH '-'.
-ENDIF.
-
-SPLIT lv_fullname AT ' ' INTO TABLE lt_words.
-lv_reverse = reverse( lv_fullname ).
-
-WRITE: / 'Uppercase: ', lv_upper.
-WRITE: / 'Lowercase: ', lv_lower.
-WRITE: / 'Hyphen Name: ', lv_replace.
-WRITE: / 'Reversed Name:', lv_reverse.
-WRITE: / 'Split Words:'.
-
-LOOP AT lt_words INTO DATA(lv_word).
-  WRITE: / lv_word.
-ENDLOOP.
 `;
 
 
