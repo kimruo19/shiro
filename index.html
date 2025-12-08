@@ -11,7 +11,7 @@
         }
 
         body {
-            background-color: black;
+            background-color: #f0f0f0;
             /* Light gray background */
             font-family: Arial, sans-serif;
             text-align: center;
@@ -21,816 +21,570 @@
             margin: 10px;
             padding: 10px;
             font-size: 16px;
-            background-color: DimGray;
+            background-color: #ddd;
             /* Light gray button background */
-            border: 1px solid #560b0b;
+            border: 1px solid #aaa;
             /* Dark gray border */
             cursor: pointer;
         }
 
         button:hover {
             background-color: #ccc;
-          /* Slightly darker background on hover */
+            /* Slightly darker background on hover */
         }
-
     </style>
 </head>
 
 <body>
 
-    <button onclick="copyText(text1)">1 String  Concatenation & Length</button>
-    <button onclick="copyText(text2)">2 String  Replace, Split, Uppercase</button>
-    <button onclick="copyText(text3)">3 7.4+ Chain of String Operations </button>
-    <button onclick="copyText(text4)">4  Input Validation + String Ops</button>
-    <button onclick="copyText(text5)">5 CURD Operations (Student Library)</button>
-    <button onclick="copyText(text6)">6 CURD Operations (Employee Payroll)</button>
-    <button onclick="copyText(text7)">7 CURD Operations (Course Registration)</button>
-    <button onclick="copyText(text8)">8 CURD Operations (Cinema Ticket Booking System)</button>
-    <button onclick="copyText(text9)">9 Operators, Conditional Statements & Message Types in ABAP</button>
-    <button onclick="copyText(text10)">10 Student Result Checker</button>
-    <button onclick="copyText(text11)">11 Compare Two Numbers</button>
-    <button onclick="copyText(text12)">12 Age Calculator</button>
-    <button onclick="copyText(text13)">13 Fibonacci Series</button>
-    <button onclick="copyText(text14)">14 Factorial Calculation</button>
-    <button onclick="copyText(text15)">15 Palindrome Checker</button>
+    <button onclick="copyText(text1)">1 TEXT to SPEECH</button>
+    <button onclick="copyText(text2)">2 Speech recognition </button>
+    <button onclick="copyText(text3)">3 Wordcloud </button>
+    <button onclick="copyText(text4)">4 NLP libraries perform on any Indian language </button>
+    <button onclick="copyText(text5)">5.a	Implementation of lemmatization		</button>
+    <button onclick="copyText(text6)">5.b Implementation of Stemming</button>
+    <button onclick="copyText(text7)">6.a Wordnet synsets, definitions, examples, antonyms</button>
+    <button onclick="copyText(text8)">6.B	Study of lemmas, hyponyms, hypernyms, entailments</button>
+    <button onclick="copyText(text9)">6.c find synonym and antonym of the word using “active” using Wordnet</button>
+    <button onclick="copyText(text10)">7.a Implementation Of WSD</button>
+    <button onclick="copyText(text11)">7.b Visualization  Of  WSD		</button>
+    <button onclick="copyText(text12)">8.a Implementation of Treebank (Penn Bank)</button>
+    <button onclick="copyText(text13)">8.B	Implementation of Treebank (Parse Tree)		</button>
+    <button onclick="copyText(text14)">9.a Demonstrate word + POS tagging using lexical Tagging</button>
+    <button onclick="copyText(text15)">9.B	Demonstrate Concept of Shallow Parsing		</button>
+    <button onclick="copyText(text16)">10.a Demonstrate spacy</button>
+    <button onclick="copyText(text17)">10.b Demonstrate Gensim</button>
+    <button onclick="copyText(text18)">10.c Language implementation using  Gensim</button>
+    <button onclick="copyText(text19)">11 Implement google trans module multi Lingual NLP </button>
+    
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `#P1 ABAP String – Concatenation & Length
+        var text1 = `# Practical1:TEXT to SPEECH
 
-PARAMETERS: p_fname TYPE string, 
-p_mname TYPE string, 
-p_lname TYPE string. 
-DATA: lv_withspace    TYPE string, 
-lv_withoutspace TYPE string, 
-lv_condensed    TYPE string. 
-DATA: lv_len_fname TYPE i, 
-lv_len_mname TYPE i, 
-lv_len_lname TYPE i, 
-lv_len_final TYPE i. 
-"1. With space 
-lv_withspace = |{ p_fname } { p_mname } { p_lname }|. 
-"2. Without space 
-lv_withoutspace = p_fname && p_mname && p_lname. 
-"3. Condense 
-lv_condensed = lv_withspace. 
-CONDENSE lv_condensed. 
-"4. Lengths 
-lv_len_fname = strlen( p_fname ). 
-lv_len_mname = strlen( p_mname ). 
-lv_len_lname = strlen( p_lname ). 
-lv_len_final = strlen( lv_withspace ). 
-"OUTPUT 
-WRITE: / 'Full Name (with space):', lv_withspace. 
-WRITE: / 'Full Name (no space):', lv_withoutspace. 
-WRITE: / 'Condensed Name:', lv_condensed. 
-WRITE: / 'Length First Name:', lv_len_fname. 
-WRITE: / 'Length Middle Name:', lv_len_mname. 
-WRITE: / 'Length Surname:', lv_len_lname. 
-WRITE: / 'Length Final String:', lv_len_final.
+Step 1: open cmd > enter commands
+	pip install playsound==1.2.2
+	pip install gTTS
 
+from gtts import gTTS
+from playsound import playsound
+
+mytext = "Sanjana Shahi"
+language = "en"
+
+tts = gTTS(text=mytext, lang=language, slow=True)
+
+filename = "myfile1.mp3"
+tts.save(filename)
+
+print("Playing audio...")
+playsound(filename)
     `;
 
 
+        var text2 = `# 2p speech recogonization 
+        import speech_recognition as sr
+import pyttsx3
+recognizer = sr.Recognizer()
+engine = pyttsx3.init()
+def speak(text):
+ print("Bot:", text)
+ engine.say(text)
+ engine.runAndWait()
+def process_nlp(text):
+ text = text.lower()
+ if "hello" in text or "hi" in text:
+ return "Hello! How can I help you today?"
+ elif "your name" in text:
+ return "I am your Python voice assistant."
+ elif "how are you" in text:
+ return "I'm just a program, but I'm functioning as expected!"
+ elif "bye" in text:
+ return "Goodbye! Have a nice day!"
+ else:
+return "Sorry, I didn't understand that."
+def listen_and_respond():
+ with sr.Microphone() as source:
+ print("Listening... (say something)")
+ audio = recognizer.listen(source)
+ try:
+ user_input = recognizer.recognize_google(audio)
+ print("You said:", user_input)
+ response = process_nlp(user_input)
+ speak(response)
+ except sr.UnknownValueError:
+ speak("Sorry, I couldn't understand.")
+ except sr.RequestError:
+ speak("Sorry, there was an error with the speech service.")
+listen_and_respond()
+`;
 
-    
-        var text2 = `
-# p2 ABAP String – Replace, Split, Uppercase
 
-PARAMETERS: p_fname TYPE string, 
-p_mname TYPE string, 
-p_lname TYPE string. 
+        var text3 = ` #3Practical NO: 3 Word Cloud
 
-DATA: lv_fullname TYPE string, 
-      lv_upper    TYPE string, 
-      lv_lower    TYPE string, 
-      lv_replace  TYPE string, 
-      lv_reverse  TYPE string. 
+Step 1: open cmd > enter commands
+	pip install wordcloud
 
-DATA: lt_words TYPE TABLE OF string WITH EMPTY KEY. 
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+text="A dream does ;not become reality through magic; it takes sweat, determination, and hard work." "I'm a great believer In luck and T find the harder I work, the more I have of it." "Doing the best ai this moment puts you in the best place for the next moment" "Hard work beats alent if talent doesn't work hard"
+wordcloud= WordCloud(width=800, height=800, background_color="white", min_font_size=10).generate(text)
+plt.figure(figsize=(8,8))
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.show()
 
-lv_fullname = |{ p_fname } { p_mname } { p_lname }|.
-CONDENSE lv_fullname.
+`;
 
-IF lv_fullname IS INITIAL.
-  WRITE: / 'No name provided. Please enter first/middle/last name.'.
-  RETURN.
-ENDIF.
 
-lv_upper = to_upper( lv_fullname ).
-lv_lower = to_lower( lv_fullname ).
+        var text4 = ` # Prac4:Using NLP libraries perform on any Indian language
 
-" --- SAFE replace
-lv_replace = lv_fullname.
+Step 1: open cmd > enter commands
+pip install playsound
 
-DATA(lv_search) = ' '.   " ensure search term is a real single space
+from gtts import gTTS
+from playsound import playsound
 
-IF lv_search IS NOT INITIAL.
-  REPLACE ALL OCCURRENCES OF ' ' IN lv_replace WITH '-'.
-ENDIF.
+print("choose language:\n1.English\n2.Marathi")
+lang_choice = input("enter either 1 or 2 : ")
 
-SPLIT lv_fullname AT ' ' INTO TABLE lt_words.
-lv_reverse = reverse( lv_fullname ).
+if lang_choice == "1":
+    lang = 'en'
+    reminder = input("Enter your reminder message in English: ")
+elif lang_choice == "2":
+    lang = 'mr'
+    reminder = input("मराठीत तुमचा स्मरण संदेश टाइप कराः ")
+else:
+    print("Invalid choice. Defaulting to English.")
+    lang = 'en'
+    reminder = "This is a default reminder."
 
-WRITE: / 'Uppercase:    ', lv_upper.
-WRITE: / 'Lowercase:    ', lv_lower.
-WRITE: / 'Hyphen Name:  ', lv_replace.
-WRITE: / 'Reversed Name:', lv_reverse.
-WRITE: / 'Split Words:'.
+tts = gTTS(text=reminder, lang=lang)
+filename = "voice_reminder.mp3"
+tts.save(filename)
 
-LOOP AT lt_words INTO DATA(lv_word).
-  WRITE: / lv_word.
-ENDLOOP.
+print("Playing your reminder...")
+playsound(filename)
 
 `;
 
 
 
-        var text3 = `#P3 -  ABAP 7.4+ Chain of String Operations 
+        var text5 = `#Pract5A-Lemmatization
 
-PARAMETERS: p_fname TYPE string, 
-p_mname TYPE string, 
-p_lname TYPE string. 
-DATA: lv_temp     TYPE string, 
-lv_condense TYPE string, 
-lv_trim_l   TYPE string, 
-lv_trim_r   TYPE string, 
-lv_trim_all TYPE string, 
-lv_rev 
-TYPE string. 
-"String Template 
-lv_temp = |{ p_fname } { p_mname } { p_lname }|. 
-"Condense 
-lv_condense = lv_temp. 
-CONDENSE lv_condense. 
-"Trim operations 
-lv_trim_l   = shift_left(  val = lv_condense ). 
-lv_trim_r   = shift_right( val = lv_condense ). 
-lv_trim_all = condense( val = lv_condense del = 'A' ). 
-"Reverse 
-lv_rev = reverse( lv_condense ). 
-"OUTPUT 
-WRITE: / 'Template Name:', lv_temp. 
-WRITE: / 'Condensed:', lv_condense. 
-WRITE: / 'Trim Left:', lv_trim_l. 
-WRITE: / 'Trim Right:', lv_trim_r. 
-WRITE: / 'Trim All:', lv_trim_all. 
-WRITE: / 'Reversed:', lv_rev. 
-WRITE: / 'Length Before:', strlen( lv_temp ). 
-WRITE: / 'Length After Condense:', strlen( lv_condense ).
+pip uninstall pydantic -y
+pip install pydantic==1.10.12
+pip install spacy==3.7.2
+python -m spacy download en_core_web_sm
 
-
-`;
-
-        var text4 = ` # 4p ABAP - Input Validation + String Ops
-
-PARAMETERS: p_fname TYPE string, 
-p_mname TYPE string, 
-p_lname TYPE string. 
-DATA: lv_full TYPE string, 
-lv_proper   TYPE string, 
-lv_initials TYPE string, 
-lv_user     TYPE string. 
-"Validation 
-IF p_fname CA '0123456789' 
-OR p_mname CA '0123456789' 
-OR p_lname CA '0123456789'. 
-WRITE: / 'Error: Names must not contain numbers.'. 
-EXIT. 
-ENDIF. 
-"Full name 
-lv_full = |{ p_fname } { p_mname } { p_lname }|. 
-CONDENSE lv_full. 
-"Proper case 
-lv_proper = to_mixed( lv_full ). 
-"Initials 
-lv_initials = |{ p_fname+0(1) } { p_mname+0(1) } { p_lname+0(1) }|. 
-"Username 
-lv_user = |{ to_lower( p_fname ) }.{ to_lower( p_lname ) }|. 
-"OUTPUT 
-WRITE: / 'Proper Case:', lv_proper. 
-WRITE: / 'Initials:', lv_initials. 
-WRITE: / 'Username:', lv_user. 
-WRITE: / 'Word Count:', 3. 
-"WRITE: / 'Byte Count:', xstrlen( lv_full ). 
-WRITE: / 'Char Count:', strlen( lv_full ). " number of characters
-
-`;
-
-        var text5 = `#5p CURD Operations (Student Library)
-
-REPORT Z_KC_STUDENT_LIB_CRUD142. 
-TABLES: ZSTUDENT_LIB142. 
-SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE text-001. 
-PARAMETERS: p_insert RADIOBUTTON GROUP g1 DEFAULT 'X', 
-p_update RADIOBUTTON GROUP g1, 
-p_delete RADIOBUTTON GROUP g1, 
-p_modify RADIOBUTTON GROUP g1. 
-SELECTION-SCREEN END OF BLOCK b1. 
-SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE text-002. 
-PARAMETERS: s_id     TYPE zstudent_library-student_id, 
-s_name   TYPE zstudent_library-student_name, 
-s_book   TYPE zstudent_library-book_issued, 
-s_idate  TYPE zstudent_library-issue_date, 
-s_rdate  TYPE zstudent_library-return_date. 
-SELECTION-SCREEN END OF BLOCK b2. 
-INITIALIZATION. 
-START-OF-SELECTION. 
-CASE 'X'. 
-WHEN p_insert. 
-PERFORM insert_data. 
-WHEN p_update. 
-PERFORM update_data. 
-WHEN p_delete. 
-PERFORM delete_data. 
-WHEN p_modify. 
-PERFORM modify_data. 
-ENDCASE.
-*---------------------------------------------------------------------- 
-* INSERT 
-*---------------------------------------------------------------------- 
-FORM insert_data. 
-ZSTUDENT_LIB142-student_id   = s_id. 
-ZSTUDENT_LIB142-student_name = s_name. 
-ZSTUDENT_LIB142-book_issued  = s_book. 
-ZSTUDENT_LIB142-issue_date   = s_idate. 
-ZSTUDENT_LIB142-return_date  = s_rdate. 
-INSERT ZSTUDENT_LIB142. 
-IF sy-subrc = 0. 
-MESSAGE 'Record inserted successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Error inserting record. Duplicate ID?' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* UPDATE 
-*---------------------------------------------------------------------- 
-FORM update_data. 
-SELECT SINGLE * FROM ZSTUDENT_LIB142 
-WHERE student_id = s_id. 
-IF sy-subrc = 0. 
-ZSTUDENT_LIB142-student_name = s_name. 
-ZSTUDENT_LIB142-book_issued  = s_book. 
-ZSTUDENT_LIB142-issue_date   = s_idate. 
-ZSTUDENT_LIB142-return_date  = s_rdate. 
-UPDATE ZSTUDENT_LIB142. 
-IF sy-subrc = 0. 
-MESSAGE 'Record updated successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Error updating record.' TYPE 'E'. 
-ENDIF. 
-ELSE. 
-MESSAGE 'Student ID not found.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* DELETE 
-*---------------------------------------------------------------------- 
-FORM delete_data. 
-DELETE FROM ZSTUDENT_LIB142 
-WHERE student_id = s_id. 
-IF sy-subrc = 0. 
-MESSAGE 'Record deleted successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Record not found or not deleted.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* MODIFY (Insert if new, update if existing) 
-*---------------------------------------------------------------------- 
-FORM modify_data. 
-ZSTUDENT_LIB142-student_id   = s_id. 
-ZSTUDENT_LIB142-student_name = s_name. 
-ZSTUDENT_LIB142-book_issued  = s_book. 
-ZSTUDENT_LIB142-issue_date   = s_idate. 
-ZSTUDENT_LIB142-return_date  = s_rdate. 
-MODIFY ZSTUDENT_LIB142.
-IF sy-subrc = 0. 
-MESSAGE 'Record modified successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Error modifying record.' TYPE 'E'. 
-ENDIF. 
-ENDFORM.
-        
+import spacy
+nlp = spacy.load("en_core_web_sm")
+text = "She was running with better prospects and had children"
+doc = nlp(text)
+for token in doc:
+    print(f"{token.text} = {token.lemma_}")
+         
   `;
+
   
-        var text6 = ` #6p : CURD Operations (Employee Payroll)
+        var text6 = ` #Practical5B-Stemming
 
-REPORT Z_KC_EMP_LIB_CRUD142. 
-TABLES: ZEMPLOYEE_DB142. 
-SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE text-001. 
-PARAMETERS: p_insert RADIOBUTTON GROUP g1 DEFAULT 'X', 
-p_update RADIOBUTTON GROUP g1, 
-p_delete RADIOBUTTON GROUP g1, 
-p_modify RADIOBUTTON GROUP g1. 
-SELECTION-SCREEN END OF BLOCK b1. 
-SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE text-002. 
-PARAMETERS: s_id     
- TYPE zemployee_db142-emp_id, 
-s_name    TYPE zemployee_db142-emp_name, 
-s_dept    TYPE zemployee_db142-department, 
-s_salary  TYPE zemployee_db142-basic_salary, 
-s_jdate   TYPE zemployee_db142-join_date. 
-SELECTION-SCREEN END OF BLOCK b2. 
-START-OF-SELECTION. 
-CASE 'X'. 
-WHEN p_insert. 
-PERFORM insert_employee. 
-WHEN p_update. 
-PERFORM update_employee. 
-WHEN p_delete. 
-PERFORM delete_employee. 
-WHEN p_modify. 
-PERFORM modify_employee. 
-ENDCASE. 
-*---------------------------------------------------------------------- 
-* INSERT EMPLOYEE RECORD 
-*---------------------------------------------------------------------- 
-FORM insert_employee. 
-zemployee_db142-emp_id      = s_id. 
-zemployee_db142-emp_name    = s_name. 
-zemployee_db142-department  = s_dept. 
-zemployee_db142-basic_salary = s_salary. 
-zemployee_db142-join_date   = s_jdate. 
-INSERT zemployee_db142. 
-IF sy-subrc = 0. 
-MESSAGE 'Employee record inserted successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Error inserting record. Duplicate Emp ID?' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* UPDATE EMPLOYEE RECORD 
-*---------------------------------------------------------------------- 
-FORM update_employee. 
-SELECT SINGLE * FROM zemployee_db142 
-WHERE emp_id = s_id. 
-IF sy-subrc = 0. 
-zemployee_db142-emp_name     = s_name. 
-zemployee_db142-department   = s_dept. 
-zemployee_db142-basic_salary = s_salary. 
-zemployee_db142-join_date    = s_jdate. 
-UPDATE zemployee_db142. 
-IF sy-subrc = 0. 
-MESSAGE 'Employee record updated successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Update failed.' TYPE 'E'. 
-ENDIF. 
-ELSE. 
-MESSAGE 'Employee ID not found.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* DELETE EMPLOYEE RECORD 
-*---------------------------------------------------------------------- 
-FORM delete_employee. 
-DELETE FROM zemployee_db142 
-WHERE emp_id = s_id. 
-IF sy-subrc = 0. 
-MESSAGE 'Employee record deleted successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Delete failed. ID not found.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* MODIFY EMPLOYEE RECORD 
-*---------------------------------------------------------------------- 
-FORM modify_employee. 
-zemployee_db142-emp_id      = s_id. 
-zemployee_db142-emp_name    = s_name. 
-zemployee_db142-department  = s_dept. 
-zemployee_db142-basic_salary = s_salary. 
-zemployee_db142-join_date   = s_jdate. 
-MODIFY zemployee_db142.
-IF sy-subrc = 0. 
-MESSAGE 'Employee record modified successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Modify failed.' TYPE 'E'. 
-ENDIF. 
-ENDFORM.
-
-`;
-
-        var text7 = `#7 CURD Operations (Course Registration)
-
-REPORT Z_KC_COURSE_REG_CRUD142. 
-TABLES: zcourse_reg142. 
-*---------------------------------------------------------------------- 
-* Selection Screen 
-*---------------------------------------------------------------------- 
-SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE text-001. 
-PARAMETERS: p_insert RADIOBUTTON GROUP g1 DEFAULT 'X', 
-p_update RADIOBUTTON GROUP g1, 
-p_delete RADIOBUTTON GROUP g1, 
-p_modify RADIOBUTTON GROUP g1. 
-SELECTION-SCREEN END OF BLOCK b1. 
-SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE text-002. 
-PARAMETERS: s_regid    TYPE zcourse_reg142-reg_id, 
-s_stname   TYPE zcourse_reg142-student_name, 
-s_cname    TYPE zcourse_reg142-course_name, 
-s_rdate    TYPE zcourse_reg142-reg_date, 
-s_dur      
-TYPE zcourse_reg142-course_duration. 
-SELECTION-SCREEN END OF BLOCK b2. 
-*---------------------------------------------------------------------- 
-* Start of Selection 
-*---------------------------------------------------------------------- 
-START-OF-SELECTION. 
-CASE 'X'. 
-WHEN p_insert. 
-PERFORM insert_record. 
-WHEN p_update. 
-PERFORM update_record. 
-WHEN p_delete. 
-PERFORM delete_record.
-WHEN p_modify. 
-PERFORM modify_record. 
-ENDCASE. 
-*---------------------------------------------------------------------- 
-* INSERT RECORD 
-*---------------------------------------------------------------------- 
-FORM insert_record. 
-zcourse_reg142-reg_id         
-= s_regid. 
-zcourse_reg142-student_name   = s_stname. 
-zcourse_reg142-course_name    = s_cname. 
-zcourse_reg142-reg_date       
-= s_rdate. 
-zcourse_reg142-course_duration = s_dur. 
-INSERT zcourse_reg142. 
-IF sy-subrc = 0. 
-MESSAGE 'Course registration successful.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Insert failed. Duplicate Reg ID?' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* UPDATE RECORD 
-*---------------------------------------------------------------------- 
-FORM update_record. 
-SELECT SINGLE * FROM zcourse_reg142 
-WHERE reg_id = s_regid. 
-IF sy-subrc = 0. 
-zcourse_reg142-student_name    = s_stname. 
-zcourse_reg142-course_name     = s_cname. 
-zcourse_reg142-reg_date        
-= s_rdate. 
-zcourse_reg142-course_duration = s_dur.
-UPDATE zcourse_reg142. 
-IF sy-subrc = 0. 
-MESSAGE 'Record updated successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Update failed.' TYPE 'E'. 
-ENDIF. 
-ELSE. 
-MESSAGE 'Reg ID not found.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* DELETE RECORD 
-*---------------------------------------------------------------------- 
-FORM delete_record. 
-DELETE FROM zcourse_reg142 
-WHERE reg_id = s_regid. 
-IF sy-subrc = 0. 
-MESSAGE 'Record deleted successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Delete failed. Reg ID not found.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* MODIFY RECORD 
-*---------------------------------------------------------------------- 
-FORM modify_record. 
-zcourse_reg142-reg_id          
-= s_regid. 
-zcourse_reg142-student_name    = s_stname. 
-zcourse_reg142-course_name     = s_cname.
-zcourse_reg142-reg_date        
-= s_rdate. 
-zcourse_reg142-course_duration = s_dur. 
-MODIFY zcourse_reg142. 
-IF sy-subrc = 0. 
-MESSAGE 'Record modified successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Modify failed.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-
-
-`;
-
-var text8 = `#8p CURD Operations (Cinema Ticket Booking System)
-
-REPORT z_kc_cinema_book_crud142. 
-TABLES: zcinema_book142. 
-*---------------------------------------------------------------------- 
-* Selection Screen 
-*---------------------------------------------------------------------- 
-SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE text-001. 
-PARAMETERS: p_insert RADIOBUTTON GROUP g1 DEFAULT 'X', 
-p_update RADIOBUTTON GROUP g1, 
-p_delete RADIOBUTTON GROUP g1, 
-p_modify RADIOBUTTON GROUP g1, 
-p_display RADIOBUTTON GROUP g1. 
-SELECTION-SCREEN END OF BLOCK b1. 
-SELECTION-SCREEN BEGIN OF BLOCK b2 WITH FRAME TITLE text-002. 
-PARAMETERS: s_bid     TYPE zcinema_book142-booking_id, 
-s_cname   TYPE zcinema_book142-customer_name, 
-s_mname   TYPE zcinema_book142-movie_name, 
-s_time    TYPE zcinema_book142-show_time, 
-s_seat    TYPE zcinema_book142-seat_no, 
-s_bdate   TYPE zcinema_book142-booking_date. 
-SELECTION-SCREEN END OF BLOCK b2. 
-*---------------------------------------------------------------------- 
-* Start of Selection 
-*---------------------------------------------------------------------- 
-START-OF-SELECTION. 
-CASE 'X'. 
-WHEN p_insert. 
-PERFORM insert_record. 
-WHEN p_update. 
-PERFORM update_record.
-WHEN p_delete. 
-PERFORM delete_record. 
-WHEN p_modify. 
-PERFORM modify_record. 
-WHEN p_display. 
-PERFORM display_records. 
-ENDCASE. 
-*---------------------------------------------------------------------- 
-* INSERT 
-*---------------------------------------------------------------------- 
-FORM insert_record. 
-zcinema_book142-booking_id   = s_bid. 
-zcinema_book142-customer_name = s_cname. 
-zcinema_book142-movie_name    = s_mname. 
-zcinema_book142-show_time     = s_time. 
-zcinema_book142-seat_no       = s_seat. 
-zcinema_book142-booking_date  = s_bdate. 
-INSERT zcinema_book142. 
-IF sy-subrc = 0. 
-MESSAGE 'Booking added successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Insert failed. Duplicate Booking ID?' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* UPDATE 
-*---------------------------------------------------------------------- 
-FORM update_record. 
-SELECT SINGLE * FROM zcinema_book142 
-WHERE booking_id = s_bid.
-IF sy-subrc = 0. 
-zcinema_book142-customer_name = s_cname. 
-zcinema_book142-movie_name     = s_mname. 
-zcinema_book142-show_time
-      =
- s_time. 
-zcinema_book142-seat_no        = s_seat. 
-zcinema_book142-booking_date   = s_bdate. 
-UPDATE zcinema_book142. 
-IF sy-subrc = 0. 
-MESSAGE 'Booking updated successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Update failed.' TYPE 'E'. 
-ENDIF. 
-ELSE. 
-MESSAGE 'Booking ID not found.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* DELETE 
-*---------------------------------------------------------------------- 
-FORM delete_record. 
-DELETE FROM zcinema_book142 
-WHERE booking_id = s_bid. 
-IF sy-subrc = 0. 
-MESSAGE 'Booking deleted successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Delete failed. Booking ID not found.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*----------------------------------------------------------------------
-* MODIFY 
-*---------------------------------------------------------------------- 
-FORM modify_record. 
-zcinema_book142-booking_id    = s_bid. 
-zcinema_book142-customer_name = s_cname. 
-zcinema_book142-movie_name    = s_mname. 
-zcinema_book142-show_time     = s_time. 
-zcinema_book142-seat_no       = s_seat. 
-zcinema_book142-booking_date  = s_bdate. 
-MODIFY zcinema_book142. 
-IF sy-subrc = 0. 
-MESSAGE 'Booking modified successfully.' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Modify failed.' TYPE 'E'. 
-ENDIF. 
-ENDFORM. 
-*---------------------------------------------------------------------- 
-* DISPLAY ALL RECORDS 
-*---------------------------------------------------------------------- 
-FORM display_records. 
-DATA: lt_data TYPE TABLE OF zcinema_book142, 
-ls_data TYPE zcinema_book142. 
-SELECT * FROM zcinema_book142 INTO TABLE lt_data. 
-IF lt_data IS INITIAL. 
-MESSAGE 'No records found.' TYPE 'I'. 
-RETURN. 
-ENDIF. 
-LOOP AT lt_data INTO ls_data. 
-WRITE: / 'Booking ID     :', ls_data-booking_id, 
-/ 'Customer Name  :', ls_data-customer_name,
-/ 'Movie Name     
-/ 'Show Time
- :', ls_data-movie_name, 
-      :', ls_data-show_time, 
-/ 'Seat No        :', ls_data-seat_no, 
-/ 'Booking Date   :', ls_data-booking_date, 
-/ '-------------------------------------------'. 
-ENDLOOP. 
-ENDFORM.
+from nltk.stem import PorterStemmer
+stemmer = PorterStemmer()
+word = {'running','studies','happiness','easily','adjustment'}
+for w in word:
+  print(f"{w} = {stemmer.stem(w)}")
+        
 
 `;
 
 
-var text9 = `#9p Operators, Conditional Statements & Message Types in ABAP 
+        var text7 = `# Pract.6A&BStudy of Wordnet dictionary with methods such as synsets, definitions, examples, antonyms & Study of lemmas, hyponyms, hypernyms, entailments 
 
-PARAMETERS: p_num1 TYPE i, 
-p_num2 TYPE i, 
-p_num3 TYPE i. 
-* -------- Error Checking --------- 
-IF p_num1 < 0 OR p_num2 < 0 OR p_num3 < 0. 
-MESSAGE 'Negative numbers are not allowed' TYPE 'E'. 
-ENDIF. 
-* -------- Operations --------- 
-DATA: gv_sum TYPE i. 
-gv_sum = p_num1 + p_num2 + p_num3. 
-WRITE: / 'Number 1:', p_num1, 
-/ 'Number 2:', p_num2, 
-/ 'Number 3:', p_num3, 
-/ 'Sum      :', gv_sum. 
-* -------- Largest Number (IF ELSEIF) --------- 
-IF p_num1 > p_num2 AND p_num1 > p_num3. 
-WRITE: / 'Largest number is Number1:', p_num1. 
-ELSEIF p_num2 > p_num1 AND p_num2 > p_num3. 
-WRITE: / 'Largest number is Number2:', p_num2. 
-ELSE. 
-WRITE: / 'Largest number is Number3:', p_num3. 
-ENDIF. 
-* -------- Even or Odd (CASE) --------- 
-CASE gv_sum MOD 2. 
-WHEN 0. 
-MESSAGE 'Sum is Even' TYPE 'S'.   "Success message 
-WHEN OTHERS. 
-MESSAGE 'Sum is Odd' TYPE 'I'.    "Information message 
-ENDCASE. 
-* -------- Relational Operator ---------
-IF p_num1 > p_num2. 
-MESSAGE 'Number1 is greater than Number2' TYPE 'I'. 
-ELSE. 
-MESSAGE 'Number1 is NOT greater than Number2' TYPE 'W'.  "Warning 
-ENDIF. 
-* -------- Check if Number3 is between Number1 & Number2 --------- 
-IF p_num3 BETWEEN p_num1 AND p_num2 OR 
-p_num3 BETWEEN p_num2 AND p_num1. 
-WRITE: / 'Number3 lies between Number1 and Number2'. 
-ELSE. 
-WRITE: / 'Number3 does not lie between Number1 and Number2'. 
-ENDIF.
+import nltk
+from nltk.corpus import wordnet as wn
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+syn=wn.synset('computer.n.01')
+print("Synsets for 'computer':", syn.name())
+print("Definition", syn.definition())
+print("Examples", syn.examples())
+print("Lemmas", syn.lemmas())
+print("Hyponyms", syn.hyponyms())
+print("Hypernyms", syn.hypernyms())
+print("Root Hypernyms", syn.root_hypernyms())
+antonyms=[]
+for lemma in syn.lemmas():
+ antonyms.extend(lemma.antonyms())
+print("Antonyms", antonyms)
 
 `;
 
 
-var text10 = `#10p Student Result Checker
-PARAMETERS: p_m1 TYPE i, 
-p_m2 TYPE i, 
-p_m3 TYPE i. 
-IF p_m1 < 35 OR p_m2 < 35 OR p_m3 < 35. 
-MESSAGE 'Failed! Marks less than 35 not allowed' TYPE 'E'. 
-ENDIF. 
-DATA: gv_total TYPE i, 
-gv_per   TYPE p DECIMALS 2. 
-gv_total = p_m1 + p_m2 + p_m3. 
-gv_per = gv_total / 3. 
-WRITE: / 'Marks:', p_m1, p_m2, p_m3, 
-/ 'Total :', gv_total, 
-/ 'Percent:', gv_per. 
-IF gv_per >= 75. 
-MESSAGE 'Distinction' TYPE 'S'. 
-ELSEIF gv_per >= 60. 
-MESSAGE 'First Class' TYPE 'I'. 
-ELSEIF gv_per >= 50. 
-MESSAGE 'Second Class' TYPE 'I'. 
-ELSE. 
-MESSAGE 'Pass Class' TYPE 'W'. 
-ENDIF.
+        var text8 = `# Pract.6A&BStudy of Wordnet dictionary with methods such as synsets, definitions, examples, antonyms & Study of lemmas, hyponyms, hypernyms, entailments 
+
+import nltk
+from nltk.corpus import wordnet as wn
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+syn=wn.synset('computer.n.01')
+print("Synsets for 'computer':", syn.name())
+print("Definition", syn.definition())
+print("Examples", syn.examples())
+print("Lemmas", syn.lemmas())
+print("Hyponyms", syn.hyponyms())
+print("Hypernyms", syn.hypernyms())
+print("Root Hypernyms", syn.root_hypernyms())
+antonyms=[]
+for lemma in syn.lemmas():
+ antonyms.extend(lemma.antonyms())
+print("Antonyms", antonyms)
 
 `;
 
-var text11 = `#11p Compare Two Numbers
 
-PARAMETERS: n1 TYPE i, 
-n2 TYPE i. 
-IF n1 < 0 OR n2 < 0. 
-MESSAGE 'Negative numbers not allowed' TYPE 'E'. 
-ENDIF. 
-"--- Calculate arithmetic values first 
-DATA: lv_sum TYPE i, 
-lv_diff TYPE i, 
-lv_prod TYPE i. 
-lv_sum = n1 + n2. 
-lv_diff = n1 - n2. 
-lv_prod = n1 * n2. 
-"--- Output results 
-WRITE: / 'Sum :', lv_sum, 
-/ 'Difference :', lv_diff, 
-/ 'Product :', lv_prod. 
-"--- Comparison Messages 
-IF n1 = n2. 
-MESSAGE 'Both numbers are equal' TYPE 'S'. 
-ELSEIF n1 > n2. 
-MESSAGE 'First number is greater' TYPE 'I'. 
-ELSE. 
-MESSAGE 'First number is smaller' TYPE 'W'. 
-ENDIF.
+        var text9 = `# P6-C:Write a program using python to find synonym and antonym of the word using “active” using Wordnet
+
+import nltk
+from nltk.corpus import wordnet as wn
+
+nltk.download('wordnet')
+
+syn = wn.synset('dance.v.01')
+print("Synset:", syn.name())
+print("Definition:", syn.definition())
+
+entailments = syn.entailments()
+for e in entailments:
+    print(e.name(), ":", e.definition())
 
 
 
 `;
 
-var text12 = `#12p Age Calculator
+        var text10 = `#Practicalno-7A Implementation Of WSD
 
-PARAMETERS p_year TYPE i. "Birth year  
-DATA current_year TYPE i VALUE 2025.  
-DATA age TYPE i.  
-age = current_year - p_year.  
-IF age < 0.  
-MESSAGE 'Invalid Birth Year' TYPE 'E'.  
-ENDIF.  
-WRITE: / 'Your Age is:', age.  
-IF age >= 18.  
-MESSAGE 'You are an Adult' TYPE 'S'.  
-ELSE.  
-MESSAGE 'You are a Minor' TYPE 'W'.  
-ENDIF.
+import nltk
+nltk.download('punkt_tab')
+nltk.download('wordnet')
+from nltk.corpus import wordnet as wn
+from nltk import word_tokenize
+import string
 
-`;
+def simple_lesk(word, sentence):
+    tokens = [w.lower() for w in word_tokenize(sentence)]
+    tokens = [w for w in tokens if w not in string.punctuation]
+    best, max_overlap = None, 0
+    for sense in wn.synsets(word):
+        sig = word_tokenize(sense.definition().lower())
+        for ex in sense.examples():
+            sig += word_tokenize(ex.lower())
+        sig += [l.replace('_',' ') for l in sense.lemma_names()]
+        sig = [w for w in sig if w not in string.punctuation]
+        overlap = len(set(sig).intersection(tokens))
+        if overlap > max_overlap:
+            best, max_overlap = sense, overlap
+    return best
 
-var text13 = `13p Fibonacci Series
+examples = [
+    ("bank", "He sat on the bank of the river."),
+    ("bank", "She went to the bank to deposit money."),
+    ("plant", "The factory is a large chemical plant."),
+    ("plant", "Please water the plant on the balcony.")
+]
 
-PARAMETERS p_n TYPE i.  
-IF p_n <= 0.  
-MESSAGE 'Enter a positive number' TYPE 'E'.  
-ENDIF.  
-DATA: a TYPE i VALUE 0,  
-b TYPE i VALUE 1,  
-c TYPE i,  
-i TYPE i.  
-WRITE: / 'Fibonacci Series:'.  
-DO p_n TIMES.  
-WRITE: a.  
-c = a + b.  
-a = b.  
-b = c.  
-ENDDO. 
+for target, sent in examples:
+    sense = simple_lesk(target, sent)
+    print(target, ":", sense, "->", sense.definition() if sense else "None")
 
-`;
 
-var text14 = `#14p Factorial Calculation
-
-PARAMETERS p_num TYPE i.  
-IF p_num < 0.  
-MESSAGE 'Negative number not allowed' TYPE 'E'.  
-ENDIF.  
-DATA: fact TYPE i VALUE 1,  
-i     
-TYPE i.  
-IF p_num = 0.  
-fact = 1.  
-ELSE.  
-DO p_num TIMES.  
-fact = fact * sy-index.  
-ENDDO.  
-ENDIF.  
-WRITE: / 'Factorial of', p_num, 'is', fact
 
 `;
 
-var text15 = `#15p Palindrome Checker
 
-PARAMETERS p_str TYPE string. 
-DATA(lv_rev) = reverse( p_str ). 
-WRITE: / 'Original:', p_str, 
-/ 'Reversed:', lv_rev. 
-IF p_str = lv_rev. 
-MESSAGE 'It is a Palindrome' TYPE 'S'. 
-ELSE. 
-MESSAGE 'Not a Palindrome' TYPE 'W'. 
-ENDIF.
+        var text11 = `# Practical-7B Visualization Of WSD  
+
+import nltk
+from nltk.corpus import wordnet as wn
+from nltk.tokenize import word_tokenize
+import string
+import matplotlib.pyplot as plt
+
+nltk.download('punkt')
+nltk.download('wordnet')
+
+def plot_wsd(word, sentence):
+    tokens = [w.lower() for w in word_tokenize(sentence) if w not in string.punctuation]
+    senses, scores = [], []
+
+    for sense in wn.synsets(word):
+        sig = word_tokenize(sense.definition().lower())
+
+        for ex in sense.examples():
+            sig += word_tokenize(ex.lower())
+
+        sig += [l.replace('_',' ') for l in sense.lemma_names()]
+        sig = [w for w in sig if w not in string.punctuation]
+
+        overlap = len(set(sig).intersection(tokens))
+        senses.append(sense.name())
+        scores.append(overlap)
+
+    plt.figure(figsize=(8,4))
+    plt.barh(senses, scores)
+    plt.xlabel("Overlap Score")
+    plt.ylabel("Senses")
+    plt.title(f"WSD Overlaps for '{word}' in: {sentence}")
+    plt.show()
+
+plot_wsd("bank", "He sat on the bank of the river.")
 
 `;
+
+
+        var text12 = `# Practical8A:Implementation of Treebank (Penn Bank)
+
+import nltk
+from nltk.corpus import treebank
+nltk.download('treebank')
+ 
+def main():
+  # Load the tagged sentences and words from the treebank corpus
+  tagged_sentences = treebank.tagged_sents()
+  tagged_words = treebank.tagged_words()
+  #Print the first tagged sentence
+  print ("First tagged sentence:")
+  print(tagged_sentences [0])
+  #Print the first 10 tagged words
+  print ("\nFirst 10 tagged words.")
+  print(tagged_words[:10])
+ 
+if name == "main":
+  main()
+
+`;
+
+
+
+        var text13 = `# Practical8b:Implementation Parse Tree
+
+import spacy
+from spacy import displacy
+
+nlp = spacy.load("en_core_web_sm")
+
+text = "Emma visited Tommy in his room while Nero played his lyre."
+doc = nlp(text)
+
+# Show in browser
+displacy.serve(doc, style="dep")
+
+# Save as SVG
+svg = displacy.render(doc, style="dep")
+with open("dep_tree.svg", "w", encoding="utf-8") as f:
+    f.write(svg)
+
+print("Dependency tree saved as dep_tree.svg")
+
+
+open in chrome http://localhost:5000 you will see the parse Tree
+
+`;
+
+
+        var text14 = `#Pract:09(A)Demonstrate word+POS tagging using lexical Tagging
+
+import nltk
+nltk.download('punkt_tab')
+nltk.download('averaged_perceptron_tagger_eng')
+
+sentence = "He drives very carefully under the table."
+
+# Tokenize the sentence into words
+words = nltk.word_tokenize(sentence)
+
+# Part-of-speech tagging
+pos_tags = nltk.pos_tag(words)
+
+print("Lexicon / POS Tags:")
+for word, tag in pos_tags:
+    print(f"{word} -> {tag}")
+
+`;
+
+
+        var text15 = `#Practical 09(B)Demonstrate Concept of Shallow Parsing
+
+import nltk
+
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
+sentence = "He drives very carefully under the table."
+
+words = nltk.word_tokenize(sentence)
+
+pos_tags = nltk.pos_tag(words)
+
+grammar = "NP: {<DT>?<JJ>*<NN|PRP>+}"
+
+cp = nltk.RegexpParser(grammar)
+
+tree = cp.parse(pos_tags)
+
+print("\nShallow Parsing / Chunking Result:")
+print(tree)
+tree.pretty_print()
+
+`;
+
+
+        var text16 = `#Practical10(A)Demonstrate spacy(pos tagging and lemmatization)
+
+import spacy
+from spacy import displacy
+
+# Load English model
+nlp = spacy.load("en_core_web_sm")
+
+text = "She was running with a better prospects and had children"
+doc = nlp(text)
+
+# Print tokens, POS tags, and lemmas
+print("Token -> POS -> Lemma")
+for token in doc:
+    print(f"{token.text} -> {token.pos_} -> {token.lemma_}")
+
+# Serve dependency diagram on localhost:5000
+# Opens the diagram in your browser at http://localhost:5000
+displacy.serve(doc, style="dep")
+
+`;
+
+
+        var text17 = `#Practical10(B)Demonstrate Gensim
+
+# Step 1: Install and Import Libraries
+pip install gensim matplotlib scikit-learn
+
+from gensim.models import Word2Vec
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+
+
+sentences = [
+    ["students", "love", "python"],
+    ["teachers", "guide", "students"],
+    ["college", "life", "is", "fun"],
+    ["friends", "enjoy", "festivals"],
+    ["learning", "never", "ends"],
+    ["python", "is", "interesting"],
+    ["study", "hard", "for", "success"],
+    ["teachers", "help", "in", "learning"],
+    ["campus", "events", "are", "memorable"],
+]
+
+model = Word2Vec(sentences, vector_size=50, window=3, min_count=1, sg=1)
+
+words = list(model.wv.key_to_index.keys())
+word_vectors = model.wv[words]
+
+tsne = TSNE(n_components=2, random_state=42, perplexity=5)
+vectors_2d = tsne.fit_transform(word_vectors)
+
+plt.figure(figsize=(10, 6))
+plt.scatter(vectors_2d[:, 0], vectors_2d[:, 1])
+
+for i, word in enumerate(words):
+    plt.annotate(word, xy=(vectors_2d[i, 0], vectors_2d[i, 1]), fontsize=10, color='blue')
+
+plt.title("Gensim Word2Vec Visualization (College Life Example)")
+plt.xlabel("t-SNE Dimension 1")
+plt.ylabel("t-SNE Dimension 2")
+plt.grid(True)
+plt.show()
+
+`;
+
+
+        var text18 = `#
+        Practical10(C)Language implementation using  Gensim
+
+from gensim.models import Word2Vec
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+
+sentences = [
+    ["الطلاب", "يكرهون", "بايثون"],
+    ["هو", "يرشد", "ها"],
+    ["الحياة", "جميلة"],
+    ["هي", "تستمتع", "بالنوم"]
+]
+
+model = Word2Vec(sentences, vector_size=50, window=3, min_count=1, sg=1)
+
+words = list(model.wv.key_to_index.keys())
+word_vectors = model.wv[words]
+
+tsne = TSNE(n_components=2, random_state=42, perplexity=5)
+vectors_2d = tsne.fit_transform(word_vectors)
+
+plt.figure(figsize=(10, 6))
+plt.scatter(vectors_2d[:, 0], vectors_2d[:, 1])
+
+for i, word in enumerate(words):
+    plt.annotate(word, xy=(vectors_2d[i, 0], vectors_2d[i, 1]), fontsize=10, color='blue')
+
+plt.title("Gensim Word2Vec Visualization (College Life Example)")
+plt.xlabel("t-SNE Dimension 1")
+plt.ylabel("t-SNE Dimension 2")
+plt.grid(True)
+plt.show()
+
+`;
+
+
+        var text19 = `# Practical11google trans module(multi Lingual NLP )
+
+install: pip install playsound
+         pip install googletrans==4.0.0-rc1
+         or pip install googletrans==4.0.0-rc1 gtts
+
+
+from googletrans import Translator
+from gtts import gTTS
+from playsound import playsound
+
+translator = Translator()
+
+text = "Education gives power and confidence to everyone."
+
+translations = {
+    "Hindi": "hi",
+    "Urdu": "ur",
+    "Marathi": "mr",
+    "Gujarati": "gu",
+    "Chinese": "zh-cn"
+}
+
+print("Original Text:", text)
+print("-" * 60)
+
+for lang, code in translations.items():
+    translated_text = translator.translate(text, dest=code).text
+    print(f"{lang}: {translated_text}")
+
+    # Generate audio
+    tts = gTTS(text=translated_text, lang=code, slow=False)
+    filename = f"{lang}_translation.mp3"
+    tts.save(filename)
+
+    # Play audio in IDLE
+    print(f"Playing {lang} translation...")
+    playsound(filename)
+
+`;
+
 
 function copyText(text) {
     navigator.clipboard.writeText(text).then(function () {
