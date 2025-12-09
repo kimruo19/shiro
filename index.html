@@ -38,554 +38,930 @@
 
 <body>
 
-    <button onclick="copyText(text1)">1 TEXT to SPEECH</button>
-    <button onclick="copyText(text2)">2 Speech recognition </button>
-    <button onclick="copyText(text3)">3 Wordcloud </button>
-    <button onclick="copyText(text4)">4 NLP libraries perform on any Indian language </button>
-    <button onclick="copyText(text5)">5.a	Implementation of lemmatization		</button>
-    <button onclick="copyText(text6)">5.b Implementation of Stemming</button>
-    <button onclick="copyText(text7)">6.a Wordnet synsets, definitions, examples, antonyms</button>
-    <button onclick="copyText(text8)">6.B	Study of lemmas, hyponyms, hypernyms, entailments</button>
-    <button onclick="copyText(text9)">6.c find synonym and antonym of the word using “active” using Wordnet</button>
-    <button onclick="copyText(text10)">7.a Implementation Of WSD</button>
-    <button onclick="copyText(text11)">7.b Visualization  Of  WSD		</button>
-    <button onclick="copyText(text12)">8.a Implementation of Treebank (Penn Bank)</button>
-    <button onclick="copyText(text13)">8.B	Implementation of Treebank (Parse Tree)		</button>
-    <button onclick="copyText(text14)">9.a Demonstrate word + POS tagging using lexical Tagging</button>
-    <button onclick="copyText(text15)">9.B	Demonstrate Concept of Shallow Parsing		</button>
-    <button onclick="copyText(text16)">10.a Demonstrate spacy</button>
-    <button onclick="copyText(text17)">10.b Demonstrate Gensim</button>
-    <button onclick="copyText(text18)">10.c Language implementation using  Gensim</button>
-    <button onclick="copyText(text19)">11 Implement google trans module multi Lingual NLP </button>
-    
+    <button onclick="copyText(text1)"> 1(A) Design a simple linear neural network model with Binary and Bipolar activation function</button>
+    <button onclick="copyText(text2)"> 1(B)	Calculate the output of neural network using both binary and bipolar activation function</button>
+    <button onclick="copyText(text3)"> 1c Calculate the net input for the network given as follows with bias included in the network apply binary and bipolar sigmoidal activation function</button>
+    <button onclick="copyText(text4)"> 2(A)	Generate AND NOT function using MC-CULLOCH PITS Neural Network </button>
+    <button onclick="copyText(text5)"> 2(B)	Demonstration of Hebb rule with bipolar inputs and targets. Use AND NOT function</button>
+    <button onclick="copyText(text6)"> 3(A)	Implementation of Perceptron Neural Network	</button>
+    <button onclick="copyText(text7)"> 3(B)	Implementation of ADALINE Neural Network</button>
+    <button onclick="copyText(text8)"> 3(C)	Implementation of MADALINE Neural Network</button>
+    <button onclick="copyText(text9)">4	Implementation of Back Propagation Neural Network with XOR</button>
+    <button onclick="copyText(text10)">5 (A) Auto-Associative Neural Network</button>
+    <button onclick="copyText(text11)">5 (B) Implementation of Hetero-Associative Neural Network </button>
+    <button onclick="copyText(text12)">6 (A) Construct and test a BAM network to associate letters E and F with simple bipolar input–output vectors. The target output for E is (–1, 1) and for F is (1, 1).The display matrix size is 5 × 3. </button>
+    <button onclick="copyText(text13)">	6 (B) Construct and test a BAM network to associate letters T and O with simple bipolar input–output vectors. The target output for T is (1,-1) and for O is (1, 1).The display matrix size is 4 × 3.	</button>
+    <button onclick="copyText(text14)">7 Implement Radial Basis Function </button>
+    <button onclick="copyText(text15)">8 Implement Support Vector Machine Algorithm	</button>
+    <button onclick="copyText(text16)">9 Implement Least Mean Square Algorithm	</button>
+    <button onclick="copyText(text17)">10 (A) Implementation of Crisp or Binary Logic </button>
+    <button onclick="copyText(text18)">10 (B) Implementation of Crisp or Binary Logic	</button>
+    <button onclick="copyText(text19)">10(c) Implementation of Fuzzy Logic  </button>
+    <button onclick="copyText(text20)">10(D) Implementation of Fuzzy Logic </button>
     
     <p id="copiedMsg"></p>
     <script>
-        var text1 = `# Practical1:TEXT to SPEECH
+        var text1 = `# 1(A)Design a simple linear neural network model with Binary and Bipolar activation functions
 
-Step 1: open cmd > enter commands
-	pip install playsound==1.2.2
-	pip install gTTS
+#Design a simple linear neural network model with Binary and Bipolar activation functions
 
-from gtts import gTTS
-from playsound import playsound
+print("Input x = ")
+x = float(input())
 
-mytext = "Sanjana Shahi"
-language = "en"
+print("Weight w = ")
+w = float(input())
 
-tts = gTTS(text=mytext, lang=language, slow=True)
+print("Bias b = ")
+b = float(input())
 
-filename = "myfile1.mp3"
-tts.save(filename)
+yin = b + x*w
+if yin >= 0:
+    y = 1
+else:
+    y = 0
 
-print("Playing audio...")
-playsound(filename)
+print("Input x = ",x)
+print("Weight w = ",w)
+print("Bias b = ",b)
+print("yin = ", yin)
+print("Output (y) = ", y)
     `;
 
 
-        var text2 = `# 2p speech recogonization 
-        import speech_recognition as sr
-import pyttsx3
-recognizer = sr.Recognizer()
-engine = pyttsx3.init()
-def speak(text):
- print("Bot:", text)
- engine.say(text)
- engine.runAndWait()
-def process_nlp(text):
- text = text.lower()
- if "hello" in text or "hi" in text:
- return "Hello! How can I help you today?"
- elif "your name" in text:
- return "I am your Python voice assistant."
- elif "how are you" in text:
- return "I'm just a program, but I'm functioning as expected!"
- elif "bye" in text:
- return "Goodbye! Have a nice day!"
- else:
-return "Sorry, I didn't understand that."
-def listen_and_respond():
- with sr.Microphone() as source:
- print("Listening... (say something)")
- audio = recognizer.listen(source)
- try:
- user_input = recognizer.recognize_google(audio)
- print("You said:", user_input)
- response = process_nlp(user_input)
- speak(response)
- except sr.UnknownValueError:
- speak("Sorry, I couldn't understand.")
- except sr.RequestError:
- speak("Sorry, there was an error with the speech service.")
-listen_and_respond()
-`;
+        var text2 = `# 1(B)Calculate the output of neural network using both binary and bipolar activation function
 
+print("enter the no.of input nodes = ")
+n = int(input())
 
-        var text3 = ` #3Practical NO: 3 Word Cloud
+x = []
+print("enter the inputs = ")
+for i in range (0,n):
+    e1 = float(input())
+    x.append(e1)
 
-Step 1: open cmd > enter commands
-	pip install wordcloud
+w =  []
+print("enter the weights = ")
+for i in range (0,n):
+    e2 = float(input())
+    w.append(e2)
 
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
-text="A dream does ;not become reality through magic; it takes sweat, determination, and hard work." "I'm a great believer In luck and T find the harder I work, the more I have of it." "Doing the best ai this moment puts you in the best place for the next moment" "Hard work beats alent if talent doesn't work hard"
-wordcloud= WordCloud(width=800, height=800, background_color="white", min_font_size=10).generate(text)
-plt.figure(figsize=(8,8))
-plt.imshow(wordcloud)
-plt.axis("off")
-plt.show()
+yin = []
+for i in range (0,n):
+    e3 = (x[i]*w[i])
+    yin.append(e3)
+fyin = round(sum(yin),3)
 
-`;
-
-
-        var text4 = ` # Prac4:Using NLP libraries perform on any Indian language
-
-Step 1: open cmd > enter commands
-pip install playsound
-
-from gtts import gTTS
-from playsound import playsound
-
-print("choose language:\n1.English\n2.Marathi")
-lang_choice = input("enter either 1 or 2 : ")
-
-if lang_choice == "1":
-    lang = 'en'
-    reminder = input("Enter your reminder message in English: ")
-elif lang_choice == "2":
-    lang = 'mr'
-    reminder = input("मराठीत तुमचा स्मरण संदेश टाइप कराः ")
+print("Binary Activation")
+if fyin >= 0:
+    y1 =1
 else:
-    print("Invalid choice. Defaulting to English.")
-    lang = 'en'
-    reminder = "This is a default reminder."
+    y1 = 0
 
-tts = gTTS(text=reminder, lang=lang)
-filename = "voice_reminder.mp3"
-tts.save(filename)
+print("Bipolar Activation")
+if fyin >= 0:
+    y2 =1
+else:
+    y2 = -1
 
-print("Playing your reminder...")
-playsound(filename)
+print("No of input nodes: ",n)
+print("Inputs = ",x)
+print("Weights = ",w)
+print("Net input (yin)=",fyin)
+print("Output for Binary Activation = ", y1)
+print("Output for Bipolar Activation = ", y2)
+`;
+
+
+        var text3 = ` #1(C) Calculate the net input for the network given as follows with bias included in the network apply
+binary and bipolar sigmoidal activation function
+
+import math
+
+# Binary Sigmoidal Activation Function
+def binary_sigmoid(yin):
+  return 1 / (1 + math.exp(-yin))
+
+# Bipolar Sigmoidal Activation Function
+def bipolar_sigmoid(yin):
+  return (1 - math.exp(-yin)) / (1 + math.exp(-yin))
+
+print("Enter the number of input nodes n=")
+n = int(input())
+
+x = []
+print("Enter the input values x=")
+for i in range(0, n):
+  e1 = float(input())
+  x.append(e1)
+
+w = []
+print("Enter the weights w=")
+for i in range(0, n):
+  e2 = float(input())
+  w.append(e2)
+
+print("Enter the bias b=")
+b = float(input())
+
+# Calculate the net input
+yin_values = []
+for i in range(0, n):
+  yin_values.append(x[i] * w[i])
+
+net_input = round(sum(yin_values) + b, 3)
+
+# Apply binary sigmoidal activation
+binary_output = round(binary_sigmoid(net_input), 3)
+
+# Apply bipolar sigmoidal activation
+bipolar_output = round(bipolar_sigmoid(net_input), 3)
+
+print("number of nodes n =", n)
+print("Input x=", x)
+print("Weight w=", w)
+print("Bias b=", b)
+print("Net input (yin)=", net_input)
+print("Output for binary sigmoidal activation =", binary_output)
+print("Output for bipolar sigmoidal activation =", bipolar_output)
+
+`;
+
+
+        var text4 = ` # 2(A) Generate AND NOT function using MC-CULLOCH PITS Neural Network
+
+n =  int(input("Enter the number of inputs = "))
+print("For then", n, " inputs calculate the net inout using yin = x1*w1+ x2*w2")
+w1 = 1
+w2 = 1
+x1 = []
+x2 = []
+for i in range (0,n):
+    ele1 = float(input())
+    x1.append(ele1)
+for i in range (0,n):
+    ele2 = float(input())
+    x2.append(ele2)
+print("x1= ",x1)
+print("x2= ",x2)
+p = x1*w1
+m = x2*w2
+yin1 = []
+yin2 = []
+
+for i in range (0,n):
+    yin1.append(p[i]+m[i])
+print("yin1=", yin1)
+for i in range (0,n):
+    yin2.append(p[i]-m[i])
+print("yin2=", yin2)
+print("After assuming one weight exhibitory and other as inhibitory yin = ", yin2)
+#activation function
+y = []
+for i in range (0,n):
+    if(yin2[i]>=1):
+        ele=1
+        y.append(ele)
+    if(yin2[i]<1):
+        ele=0
+        y.append(ele)
+print("Y = ",y)
+
 
 `;
 
 
 
-        var text5 = `#Pract5A-Lemmatization
+        var text5 = `#2(B) Demonstration of Hebb rule with bipolar inputs and targets. Use AND NOT function
 
-pip uninstall pydantic -y
-pip install pydantic==1.10.12
-pip install spacy==3.7.2
-python -m spacy download en_core_web_sm
+n =  int(input("Enter the number of inputs = "))
 
-import spacy
-nlp = spacy.load("en_core_web_sm")
-text = "She was running with better prospects and had children"
-doc = nlp(text)
-for token in doc:
-    print(f"{token.text} = {token.lemma_}")
-         
-  `;
+x1 = []
+x2 = []
+for i in range (0,n):
+    ele1 = float(input())
+    x1.append(ele1)
+for i in range (0,n):
+    ele2 = float(input())
+    x2.append(ele2)
+w1 = 0
+w2 = 0
+b= 0
+y =[-1,1,-1,-1]
+print("x1= ",x1)
+print("x2= ",x2)
+print("Target (y) = ", y)
+for i in range (0,n):
+    w1 = w1 + x1[i]*y[i]
+    w2 = w2 + x2[i]*y[i]
+    b = b + y[i]
+print("Final weights and bias:")
+print("w1(new) = ",w1)
+print("w2(new) = ",w2)
+print("b(new) = ",b)
 
-  
-        var text6 = ` #Practical5B-Stemming
 
-from nltk.stem import PorterStemmer
-stemmer = PorterStemmer()
-word = {'running','studies','happiness','easily','adjustment'}
-for w in word:
-  print(f"{w} = {stemmer.stem(w)}")
+`;
+
+
+        var text6 = ` #3(A) Implementation of Perceptron Neural Network
+
+
+def step_function(x):
+  return 1 if x >=0 else 0
+def train_perceptron(inputs,labels,lr=0.1,epochs=4):
+  weights = [0,0] #initial weight to 0
+  bias =0 #initial bias to 0
+  for epoch in range(epochs):
+    print(f"Epoch {epoch+1}")
+    for i in range(len(inputs)):
+      x1,x2 = inputs[i]
+      y = labels[i]
+
+      #weighted sum
+      linear_output = weights[0]*x1 + weights[1]*x2 + bias
+      prediction = step_function(linear_output)
+
+      #perceptron rule
+      error = y - prediction
+      weights[0] += lr * error * x1
+      weights[1] += lr * error * x2
+      bias += lr * error
+      print(f"Input: {x1}, {x2} | Prediction: {prediction} | Target: {y} | Weights: {weights} | Bias: {bias}")
+  return weights,bias
+
+def predict(x1,x2,weights,bias):
+  output = weights[0]*x1 + weights[1]*x2 + bias
+  return step_function(output)
+
+#dataset for AND Gate
+inputs = [[0,0],[0,1],[1,0],[1,1]]
+labels = [0,0,0,1]
+
+#training the perceptron
+weights,bias = train_perceptron(inputs,labels)
+
+#testing the perceptron
+print("\nTesting the perceptron:")
+for x1,x2 in inputs:
+  print(f"Input: {x1}, {x2} | Prediction: {predict(x1,x2,weights,bias)}")
         
 
 `;
 
 
-        var text7 = `# Pract.6A&BStudy of Wordnet dictionary with methods such as synsets, definitions, examples, antonyms & Study of lemmas, hyponyms, hypernyms, entailments 
+        var text7 = `# 3(B) Implementation of ADALINE Neural Network
 
-import nltk
-from nltk.corpus import wordnet as wn
-nltk.download('wordnet')
-nltk.download('omw-1.4')
-syn=wn.synset('computer.n.01')
-print("Synsets for 'computer':", syn.name())
-print("Definition", syn.definition())
-print("Examples", syn.examples())
-print("Lemmas", syn.lemmas())
-print("Hyponyms", syn.hyponyms())
-print("Hypernyms", syn.hypernyms())
-print("Root Hypernyms", syn.root_hypernyms())
-antonyms=[]
-for lemma in syn.lemmas():
- antonyms.extend(lemma.antonyms())
-print("Antonyms", antonyms)
-
-`;
-
-
-        var text8 = `# Pract.6A&BStudy of Wordnet dictionary with methods such as synsets, definitions, examples, antonyms & Study of lemmas, hyponyms, hypernyms, entailments 
-
-import nltk
-from nltk.corpus import wordnet as wn
-nltk.download('wordnet')
-nltk.download('omw-1.4')
-syn=wn.synset('computer.n.01')
-print("Synsets for 'computer':", syn.name())
-print("Definition", syn.definition())
-print("Examples", syn.examples())
-print("Lemmas", syn.lemmas())
-print("Hyponyms", syn.hyponyms())
-print("Hypernyms", syn.hypernyms())
-print("Root Hypernyms", syn.root_hypernyms())
-antonyms=[]
-for lemma in syn.lemmas():
- antonyms.extend(lemma.antonyms())
-print("Antonyms", antonyms)
-
-`;
-
-
-        var text9 = `# P6-C:Write a program using python to find synonym and antonym of the word using “active” using Wordnet
-
-import nltk
-from nltk.corpus import wordnet as wn
-
-nltk.download('wordnet')
-
-syn = wn.synset('dance.v.01')
-print("Synset:", syn.name())
-print("Definition:", syn.definition())
-
-entailments = syn.entailments()
-for e in entailments:
-    print(e.name(), ":", e.definition())
-
-
-
-`;
-
-        var text10 = `#Practicalno-7A Implementation Of WSD
-
-import nltk
-nltk.download('punkt_tab')
-nltk.download('wordnet')
-from nltk.corpus import wordnet as wn
-from nltk import word_tokenize
-import string
-
-def simple_lesk(word, sentence):
-    tokens = [w.lower() for w in word_tokenize(sentence)]
-    tokens = [w for w in tokens if w not in string.punctuation]
-    best, max_overlap = None, 0
-    for sense in wn.synsets(word):
-        sig = word_tokenize(sense.definition().lower())
-        for ex in sense.examples():
-            sig += word_tokenize(ex.lower())
-        sig += [l.replace('_',' ') for l in sense.lemma_names()]
-        sig = [w for w in sig if w not in string.punctuation]
-        overlap = len(set(sig).intersection(tokens))
-        if overlap > max_overlap:
-            best, max_overlap = sense, overlap
-    return best
-
-examples = [
-    ("bank", "He sat on the bank of the river."),
-    ("bank", "She went to the bank to deposit money."),
-    ("plant", "The factory is a large chemical plant."),
-    ("plant", "Please water the plant on the balcony.")
-]
-
-for target, sent in examples:
-    sense = simple_lesk(target, sent)
-    print(target, ":", sense, "->", sense.definition() if sense else "None")
-
-
-
-`;
-
-
-        var text11 = `# Practical-7B Visualization Of WSD  
-
-import nltk
-from nltk.corpus import wordnet as wn
-from nltk.tokenize import word_tokenize
-import string
+import numpy as np
 import matplotlib.pyplot as plt
-
-nltk.download('punkt')
-nltk.download('wordnet')
-
-def plot_wsd(word, sentence):
-    tokens = [w.lower() for w in word_tokenize(sentence) if w not in string.punctuation]
-    senses, scores = [], []
-
-    for sense in wn.synsets(word):
-        sig = word_tokenize(sense.definition().lower())
-
-        for ex in sense.examples():
-            sig += word_tokenize(ex.lower())
-
-        sig += [l.replace('_',' ') for l in sense.lemma_names()]
-        sig = [w for w in sig if w not in string.punctuation]
-
-        overlap = len(set(sig).intersection(tokens))
-        senses.append(sense.name())
-        scores.append(overlap)
-
-    plt.figure(figsize=(8,4))
-    plt.barh(senses, scores)
-    plt.xlabel("Overlap Score")
-    plt.ylabel("Senses")
-    plt.title(f"WSD Overlaps for '{word}' in: {sentence}")
-    plt.show()
-
-plot_wsd("bank", "He sat on the bank of the river.")
-
-`;
-
-
-        var text12 = `# Practical8A:Implementation of Treebank (Penn Bank)
-
-import nltk
-from nltk.corpus import treebank
-nltk.download('treebank')
- 
-def main():
-  # Load the tagged sentences and words from the treebank corpus
-  tagged_sentences = treebank.tagged_sents()
-  tagged_words = treebank.tagged_words()
-  #Print the first tagged sentence
-  print ("First tagged sentence:")
-  print(tagged_sentences [0])
-  #Print the first 10 tagged words
-  print ("\nFirst 10 tagged words.")
-  print(tagged_words[:10])
- 
-if name == "main":
-  main()
-
-`;
-
-
-
-        var text13 = `# Practical8b:Implementation Parse Tree
-
-import spacy
-from spacy import displacy
-
-nlp = spacy.load("en_core_web_sm")
-
-text = "Emma visited Tommy in his room while Nero played his lyre."
-doc = nlp(text)
-
-# Show in browser
-displacy.serve(doc, style="dep")
-
-# Save as SVG
-svg = displacy.render(doc, style="dep")
-with open("dep_tree.svg", "w", encoding="utf-8") as f:
-    f.write(svg)
-
-print("Dependency tree saved as dep_tree.svg")
-
-
-open in chrome http://localhost:5000 you will see the parse Tree
-
-`;
-
-
-        var text14 = `#Pract:09(A)Demonstrate word+POS tagging using lexical Tagging
-
-import nltk
-nltk.download('punkt_tab')
-nltk.download('averaged_perceptron_tagger_eng')
-
-sentence = "He drives very carefully under the table."
-
-# Tokenize the sentence into words
-words = nltk.word_tokenize(sentence)
-
-# Part-of-speech tagging
-pos_tags = nltk.pos_tag(words)
-
-print("Lexicon / POS Tags:")
-for word, tag in pos_tags:
-    print(f"{word} -> {tag}")
-
-`;
-
-
-        var text15 = `#Practical 09(B)Demonstrate Concept of Shallow Parsing
-
-import nltk
-
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
-
-sentence = "He drives very carefully under the table."
-
-words = nltk.word_tokenize(sentence)
-
-pos_tags = nltk.pos_tag(words)
-
-grammar = "NP: {<DT>?<JJ>*<NN|PRP>+}"
-
-cp = nltk.RegexpParser(grammar)
-
-tree = cp.parse(pos_tags)
-
-print("\nShallow Parsing / Chunking Result:")
-print(tree)
-tree.pretty_print()
-
-`;
-
-
-        var text16 = `#Practical10(A)Demonstrate spacy(pos tagging and lemmatization)
-
-import spacy
-from spacy import displacy
-
-# Load English model
-nlp = spacy.load("en_core_web_sm")
-
-text = "She was running with a better prospects and had children"
-doc = nlp(text)
-
-# Print tokens, POS tags, and lemmas
-print("Token -> POS -> Lemma")
-for token in doc:
-    print(f"{token.text} -> {token.pos_} -> {token.lemma_}")
-
-# Serve dependency diagram on localhost:5000
-# Opens the diagram in your browser at http://localhost:5000
-displacy.serve(doc, style="dep")
-
-`;
-
-
-        var text17 = `#Practical10(B)Demonstrate Gensim
-
-# Step 1: Install and Import Libraries
-pip install gensim matplotlib scikit-learn
-
-from gensim.models import Word2Vec
-from sklearn.manifold import TSNE
-import matplotlib.pyplot as plt
-
-
-sentences = [
-    ["students", "love", "python"],
-    ["teachers", "guide", "students"],
-    ["college", "life", "is", "fun"],
-    ["friends", "enjoy", "festivals"],
-    ["learning", "never", "ends"],
-    ["python", "is", "interesting"],
-    ["study", "hard", "for", "success"],
-    ["teachers", "help", "in", "learning"],
-    ["campus", "events", "are", "memorable"],
-]
-
-model = Word2Vec(sentences, vector_size=50, window=3, min_count=1, sg=1)
-
-words = list(model.wv.key_to_index.keys())
-word_vectors = model.wv[words]
-
-tsne = TSNE(n_components=2, random_state=42, perplexity=5)
-vectors_2d = tsne.fit_transform(word_vectors)
-
-plt.figure(figsize=(10, 6))
-plt.scatter(vectors_2d[:, 0], vectors_2d[:, 1])
-
-for i, word in enumerate(words):
-    plt.annotate(word, xy=(vectors_2d[i, 0], vectors_2d[i, 1]), fontsize=10, color='blue')
-
-plt.title("Gensim Word2Vec Visualization (College Life Example)")
-plt.xlabel("t-SNE Dimension 1")
-plt.ylabel("t-SNE Dimension 2")
+# Input and Target Output (OR Gate)
+X = np.array([
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
+])
+y = np.array([-1, 1, 1, 1]) # OR logic gate using -1 and 1
+
+epochs = 20
+learning_rate = 0.1
+n_samples, n_features = X. shape
+
+weights = np.zeros(n_features)
+bias = 0
+losses = []
+
+for epoch in range(epochs):
+  # Net input (linear combination)
+  net_input = np.dot (X, weights) + bias
+
+  # Linear activation (same as net input)
+  output = net_input
+
+  # Error
+  errors = y - output
+
+  # Weight update using gradient descent
+  weights += learning_rate * np.dot (X.T, errors)
+  bias += learning_rate * np.sum (errors)
+
+  # Mean squared error
+  loss = np.mean (errors ** 2)
+  losses.append(loss)
+
+  print (f"Epoch {epoch+1}, Loss: {loss:.4f}")
+
+# Prediction
+
+def predict(X):
+  net_input = np.dot(X, weights) + bias
+  return np.where (net_input >= 0.0, 1, -1)
+
+predictions = predict(X)
+print("\nPredictions:", predictions)
+#
+# Plotting Loss
+#
+plt.plot(losses)
+plt.title('Adaline Training Loss ')
+plt.xlabel('Epochs')
+plt.ylabel('Mean Squared Error')
 plt.grid(True)
 plt.show()
 
 `;
 
 
-        var text18 = `#
-        Practical10(C)Language implementation using  Gensim
+        var text8 = `# 3(C) Implementation of MADALINE Neural Network
 
-from gensim.models import Word2Vec
-from sklearn.manifold import TSNE
-import matplotlib.pyplot as plt
+import numpy as np
+#
+# Input and Target (OR Gate)
+#
+X = np.array([
+  [0, 0],
+  [0, 1],
+  [1, 0],
+  [1, 1]
+])
+y = np.array([-1, 1, 1, 1]) # OR gate output in bipolar form
 
-sentences = [
-    ["الطلاب", "يكرهون", "بايثون"],
-    ["هو", "يرشد", "ها"],
-    ["الحياة", "جميلة"],
-    ["هي", "تستمتع", "بالنوم"]
-]
+epochs = 20
+learning_rate = 0.1
+n_samples, n_features = X. shape
 
-model = Word2Vec(sentences, vector_size=50, window=3, min_count=1, sg=1)
+#2 Adaline units in hidden layer
+w1 = np.random.randn(n_features) # weights for neuron 1
+b1 = np.random.randn()
+w2 = np.random.randn(n_features) # weights for neuron 2
+b2 = np.random.randn()
 
-words = list(model.wv.key_to_index.keys())
-word_vectors = model.wv[words]
+# Output layer weights
+v = np.array([1, 1]) # usually fixed to 1 for MADALINE Rule I
 
-tsne = TSNE(n_components=2, random_state=42, perplexity=5)
-vectors_2d = tsne.fit_transform(word_vectors)
+for epoch in range (epochs):
+  print (f"Epoch {epoch+1}")
+  for xi, target in zip (X, y):
+  # Hidden layer outputs
+    z1 =  np.dot(xi, w1) + b1
+    z2 =  np.dot(xi, w2) + b2
 
-plt.figure(figsize=(10, 6))
-plt.scatter(vectors_2d[:, 0], vectors_2d[:, 1])
+    a1 = 1 if z1 >= 0 else -1
+    a2 = 1 if z2 >= 0 else -1
 
-for i, word in enumerate(words):
-    plt.annotate(word, xy=(vectors_2d[i, 0], vectors_2d[i, 1]), fontsize=10, color='blue')
+    # Output layer
+    output = np.sign(np.dot(v, [a1, a2]))
 
-plt.title("Gensim Word2Vec Visualization (College Life Example)")
-plt.xlabel("t-SNE Dimension 1")
-plt.ylabel("t-SNE Dimension 2")
-plt.grid(True)
-plt.show()
+    # If output is incorrect, adjust the Adaline whose output contributes most
+    if output != target:
+      if a1 != target:
+        error = target - a1
+        w1 += learning_rate  * error * xi
+        b1 += learning_rate  * error
+      elif a2 != target:
+        error = target - a2
+        w2 += learning_rate * error * xi
+        b2 += learning_rate * error
+      # Optionally display weights
+      print(f"w1: {w1}, b1: {b1}")
+      print(f"w2: {w2}, b2: {b2}")
+      print("-" * 30)
+
+# Prediction Function
+
+def predict(x):
+  z1 = np.dot(x, w1) + b1
+  z2 = np.dot(x, w2) + b2
+  a1 = 1 if z1 >= 0 else -1
+  a2 = 1 if z2 >= 0 else -1
+  return np.sign (np.dot(v, [a1, a2]))
+
+# Test Predictions
+
+print("\nFinal Predictions:")
+for xi in X:
+  print (f"Input: {xi} => Output: {predict(xi)}")
+
+`;
+
+
+        var text9 = `# 4 Implementation of Back Propagation Neural Network with 
+
+import numpy as np
+
+# -----------------------------
+# Activation and Derivative
+# -----------------------------
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def sigmoid_derivative(x):
+    return x * (1 - x)
+
+# -----------------------------
+# Input and Target (XOR Gate)
+# -----------------------------
+X = np.array([
+    [0, 0],
+    [0, 1],
+    [1, 0],
+    [1, 1]
+])
+y = np.array([[0], [1], [1], [0]])
+
+# -----------------------------
+# Initialize Parameters
+# -----------------------------
+np.random.seed(42)
+input_neurons = 2
+hidden_neurons = 2
+output_neurons = 1
+learning_rate = 0.5
+epochs = 10000
+
+# Random weights and biases
+W1 = np.random.uniform(size=(input_neurons, hidden_neurons))
+b1 = np.random.uniform(size=(1, hidden_neurons))
+W2 = np.random.uniform(size=(hidden_neurons, output_neurons))
+b2 = np.random.uniform(size=(1, output_neurons))
+
+# -----------------------------
+# Training Loop
+# -----------------------------
+for epoch in range(epochs):
+    # Forward pass
+    hidden_input = np.dot(X, W1) + b1
+    hidden_output = sigmoid(hidden_input)
+
+    final_input = np.dot(hidden_output, W2) + b2
+    final_output = sigmoid(final_input)
+
+    # Compute error
+    error = y - final_output
+
+    # Backpropagation
+    d_output = error * sigmoid_derivative(final_output)
+    d_hidden = d_output.dot(W2.T) * sigmoid_derivative(hidden_output)
+
+    # Update weights and biases
+    W2 += hidden_output.T.dot(d_output) * learning_rate
+    b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
+
+    W1 += X.T.dot(d_hidden) * learning_rate
+    b1 += np.sum(d_hidden, axis=0, keepdims=True) * learning_rate
+
+    # Print loss every 1000 epochs
+    if epoch % 1000 == 0:
+        loss = np.mean(np.square(error))
+        print(f"Epoch {epoch}, Loss: {loss:.4f}")
+
+# -----------------------------
+#  Final Predictions
+# -----------------------------
+print("\nFinal Predictions:")
+for xi in X:
+    hidden_output = sigmoid(np.dot(xi, W1) + b1)
+    final_output = sigmoid(np.dot(hidden_output, W2) + b2)
+    print(f"Input: {xi} => Predicted: {np.round(final_output[0], 2)}")
+
+
+`;
+
+        var text10 = `#5(A) Auto-Associative Neural Network
+
+
+#Practical No.5-A : Auto-Associative Neural Network*
+import numpy as np
+# Step 1: Define bipolar input and target patterns
+X = np.array([
+    [-1, -1],
+    [-1,  1],
+    [ 1, -1],
+    [ 1,  1]
+])
+
+T = np.array([
+    [-1],
+    [-1],
+    [-1],
+    [ 1]
+])  # AND output in bipolar form
+
+# Step 2: Initialize weights and bias
+W = np.zeros((2, 1))
+b = 0
+
+# Step 3: Hebbian Learning Rule
+for i in range(len(X)):
+    W += X[i].reshape(2, 1) * T[i]   # Outer product update
+    b += T[i]                         # Bias update
+
+print("Weight matrix:\n", W)
+print("Bias:\n", b)
+
+# Step 4: Testing (Recall Phase)
+print("\nRecall Phase:")
+for i in range(len(X)):
+    y_in = np.dot(X[i], W) + b
+    y = np.sign(y_in)   # Activation function
+    print(f"Input: {X[i]} → Net: {y_in[0]:.2f} → Output: {y[0]} → Target: {T[i][0]}")
 
 `;
 
 
-        var text19 = `# Practical11google trans module(multi Lingual NLP )
+        var text11 = `# 5 (B) Implementation of Hetero-Associative Neural Network.
 
-install: pip install playsound
-         pip install googletrans==4.0.0-rc1
-         or pip install googletrans==4.0.0-rc1 gtts
+import numpy as np
 
+# Step 1: Define bipolar input patterns (4 inputs)
+X = np.array([
+    [ 1, -1, -1, -1],   # Input pattern 1
+    [-1,  1, -1, -1],   # Input pattern 2
+    [-1, -1,  1, -1],   # Input pattern 3
+    [-1, -1, -1,  1]    # Input pattern 4
+])
 
-from googletrans import Translator
-from gtts import gTTS
-from playsound import playsound
+# Step 2: Define bipolar output patterns (3 outputs)
+T = np.array([
+    [ 1, -1, -1],   # Output pattern for input 1
+    [-1,  1, -1],   # Output pattern for input 2
+    [-1, -1,  1],   # Output pattern for input 3
+    [ 1,  1, -1]    # Output pattern for input 4
+])
 
-translator = Translator()
+# Step 3: Initialize weight matrix
+W = np.zeros((X.shape[1], T.shape[1]))  # 4x3 matrix
 
-text = "Education gives power and confidence to everyone."
+# Step 4: Hebbian Learning Rule (Outer Product)
+for i in range(len(X)):
+    W += np.outer(X[i], T[i])
 
-translations = {
-    "Hindi": "hi",
-    "Urdu": "ur",
-    "Marathi": "mr",
-    "Gujarati": "gu",
-    "Chinese": "zh-cn"
-}
+print("Weight matrix (4x3):\n", W)
 
-print("Original Text:", text)
-print("-" * 60)
-
-for lang, code in translations.items():
-    translated_text = translator.translate(text, dest=code).text
-    print(f"{lang}: {translated_text}")
-
-    # Generate audio
-    tts = gTTS(text=translated_text, lang=code, slow=False)
-    filename = f"{lang}_translation.mp3"
-    tts.save(filename)
-
-    # Play audio in IDLE
-    print(f"Playing {lang} translation...")
-    playsound(filename)
+# Step 5: Recall / Testing Phase
+print("\nRecall Phase:")
+for i in range(len(X)):
+    y_in = np.dot(X[i], W)
+    y = np.sign(y_in)
+    print(f"Input: {X[i]} → Net: {y_in} → Output: {y} → Target: {T[i]}")
 
 `;
 
+
+        var text12 = `# 6(A) Construct and test a BAM network to associate letters E and F with simple bipolar input–output vectors.
+The target output for E is (–1, 1) and for F is (1,1).The display matrix size is 5 × 3.
+
+import numpy as np
+
+# Step 1: Define input patterns for 'E' and 'F' (5x3)
+# '*' -> 1, blank -> -1
+E = np.array([
+    [1, 1, 1],
+    [1, -1, -1],
+    [1, 1, 1],
+    [1, -1, -1],
+    [1, 1, 1]
+])
+F = np.array([
+    [1, 1, 1],
+    [1, -1, -1],
+    [1, 1, 1],
+    [1, -1, -1],
+    [1, -1, -1]
+])
+# Flatten into vectors (15 elements)
+X_E = E.reshape(15)
+X_F = F.reshape(15)
+# Step 2: Define target output vectors
+Y_E = np.array([-1, 1])   # for letter E
+Y_F = np.array([1, 1])    # for letter F
+# Step 3: Combine patterns into arrays
+X = np.vstack((X_E, X_F))
+Y = np.vstack((Y_E, Y_F))
+# Step 4: Compute weight matrix (Hebbian learning rule)
+W = np.zeros((15, 2))
+for i in range(len(X)):
+    W += np.outer(X[i], Y[i])
+print("Weight matrix (15x2):\n", W)
+# Step 5: Recall phase
+def bam_recall(x, W):
+    """Recall output Y from input X using BAM."""
+    y_in = np.dot(x, W)
+    y = np.sign(y_in)
+    return y
+
+# Test recall
+print("\nRecall Phase:")
+
+for i, label in enumerate(["E", "F"]):
+    y_recalled = bam_recall(X[i], W)
+    print(f"Input: {label} → Recalled Output: {y_recalled}")
+
+
+`;
+
+
+
+        var text13 = `# 6(B) Construct and test a BAM network to associate letters T and O with simple bipolar input–output
+vectors. The target output for T is (1,-1) and for O is(1, 1).The display matrix size is 4 × 3
+
+import numpy as np
+# Step 1: Define input patterns for 'E' and 'F' (5x3)
+# '*' -> 1, blank -> -1
+T = np.array([
+    [1, 1, 1],
+    [-1, 1, -1],
+    [-1, 1, -1],
+    [-1, 1, -1]
+])
+O = np.array([
+    [1, 1, 1],
+    [1, -1, 1],
+    [1, -1, 1],
+    [1, 1, 1]
+])
+# Flatten into vectors (12 elements)
+X_T = T.reshape(12)
+X_O = O.reshape(12)
+# Step 2: Define target output vectors
+Y_T = np.array([1, -1])   # for letter E
+Y_O = np.array([1, 1])    # for letter F
+# Step 3: Combine patterns into arrays
+X = np.vstack((X_T, X_O))
+Y = np.vstack((Y_T, Y_O))
+# Step 4: Compute weight matrix (Hebbian learning rule)
+W = np.zeros((12, 2))
+for i in range(len(X)):
+    W += np.outer(X[i], Y[i])
+print("Weight matrix (12x2):\n", W)
+# Step 5: Recall phase
+def bam_recall(x, W):
+    """Recall output Y from input X using BAM."""
+    y_in = np.dot(x, W)
+    y = np.sign(y_in)
+    return y
+# Test recall
+print("\nRecall Phase:")
+for i, label in enumerate(["T", "O"]):
+    y_recalled = bam_recall(X[i], W)
+    print(f"Input: {label} → Recalled Output: {y_recalled}")
+`;
+
+
+        var text14 = `#7 Implement Radial Basis Function
+
+#7 Implement Radial Basis Function
+import numpy as np
+#1. Training data (input x, output y)
+x_train = np.array ([0, 1, 2, 3])
+y_train = np.array ([0, 0.8, 0.9, 0.1])# arbitrary target values
+print("X_train :")
+print(x_train)
+print("Y_train :")
+print(y_train)
+# 2. Define simple Gaussian RBF
+def rbf(x, c, sigma):
+ return np.exp(- (x-c) *2 / (2 * sigma*2))
+#3. RBF centers and spread
+centers = np.array ([0, 1, 2, 3]) # same as training points for simplicity
+sigma = 1.0
+print("centers:",centers)
+print("sigma",sigma)
+#4. Build RBF design matrix
+G = np.zeros((len(x_train), len (centers)))
+print(G)
+for i, c in enumerate(centers):
+ G[:,i] = rbf(x_train,c, sigma)
+print("G:",G)
+#5. Compute weights using pseudo-inverse
+weights = np.dot(np.linalg.pinv (G), y_train)
+print("Weights :")
+print(weights)
+# 6. Test on new data
+x_test = np.array ([0.5, 1.5, 2.5])
+G_test = np.zeros((len(x_test), len(centers)))
+for i, c in enumerate (centers):
+ G_test[:, i] = rbf(x_test, c, sigma)
+y_pred= np.dot (G_test, weights)
+print("y_pred",y_pred)
+# 7. Output
+print("Test Inputs:", x_test)
+print("Predicted Outputs:", y_pred)
+`;
+
+
+        var text15 = `#8 Implement Support Vector Machine Algorithm
+
+import numpy as np
+# Step 1: Generate simple dataset (binary classification)
+X= np.array([[2, 3],
+[1, 1],
+[2, 1],
+[3,2],
+[4, 4],
+[5, 3]])
+y= np.array([1, -1, -1, 1, 1, 1])
+# Labels: +1 or -1
+print("X=",X)
+print("y=",y)
+# Step 2: Initialize weights and bias
+w= np.zeros(X.shape[1])
+b = 0
+learning_rate = 0.01
+epochs= 1000
+C=1 # Regularization parameter
+print("Initial Weights Bias Learning Rate etc")
+print("w=",w)
+print("b=",b)
+print("learning_rate=",learning_rate)
+print("epochs=",epochs)
+print("C=",C)
+for epoch in range(epochs):
+   for i, x_i in enumerate(X):
+    condition =y[i]* (np.dot(x_i, w) + b) >= 1
+    if condition:
+   # If correctly classified
+      w -= learning_rate *(2 *1/epochs *w) # L2 regularization gradient
+   else:
+      # If misclassified
+      w -= learning_rate *(2 *1/epochs * w - np.dot(x_i, y[i]))
+      b -= learning_rate *y[i]
+print("Final Weights and Bias")
+print("w=",w)
+print("b=",b)
+# Step 4: Test on training data
+predictions =np.sign(np.dot(X, w)+ b)
+print("Weights:", w)
+print("Bias:", b)
+print("Predictions:",predictions)
+print("Actual Labels:", y)
+
+`;
+
+
+        var text16 = `#9 Implement Least Mean Square Algorithm
+
+
+
+import numpy as np
+# Step 1: Training data (inputs X and desired outputs y)
+X= np.array([[0, 0],
+[0, 1],
+[1, 0],
+[1, 1]]) # Inputs for XOR (example)
+y = np.array([0, 1, 1, 0]) # Desired output
+print("x:",X)
+print("y:",y)
+# Step 2: Initialize weights and bias
+w = np.zeros(X.shape[1])
+b = 0
+learning_rate = 0.1
+epochs = 20
+print("W=",w)
+print("b=",b)
+print("learning_rate=",learning_rate)
+print("epochs=",epochs)
+# Step 3: LMS Training
+for epoch in range(epochs):
+ for i in range(len(X)):
+     # Linear output
+   y_pred= np.dot (X[i], w) + b
+     # Error
+   e = y[i] -y_pred
+   # Update weights and bias
+   w += learning_rate* e* X[i]
+   b += learning_rate*e
+
+#Optional: Print error at each epoch
+mse = np.mean((y -(np.dot(X, w) + b))**2)
+print(f"Epoch {epoch+1}, MSE: {mse:.4f}")
+# Step 4: Test
+y_pred_final = np.dot (X, w) + b
+print("\nFinal Weights:", w)
+print("Final Bias:", b)
+print("Predicted Outputs:", y_pred_final)
+print("Actual Outputs:", y)
+`;
+
+
+        var text17 = `#10(A)Implementation of Crisp or Binary Logic(Logical Operations (AND, OR, NOT, XOR))
+
+
+
+# Input values (binary logic: 1 = True, 0 = False)
+A = 0
+B = 1
+# Logical operations
+AND = A and B          # Logical AND
+OR = A or B            # Logical OR
+NOT_A = not A          # Logical NOT
+XOR = (A and not B) or (not A and B)   # Logical XOR
+# Display results
+print("A =", A)
+print("B =", B)
+print("A AND B =", AND)
+print("A OR B =", OR)
+print("NOT A =", NOT_A)
+print("A XOR B =", XOR)
+
+`;
+
+
+        var text18 = `#110(B)Implementation of Crisp or Binary Logic(Decision Making using IF condition)
+
+marks= 45
+has_certificate = True
+# Binary logic: admission only if marks >= 80 AND certificate is True
+if marks > 80 and has_certificate:
+ print("Admission Granted")
+else:
+ print("Admission Denied")
+
+`;
+
+
+        var text19 = `10(c) Implementation of Fuzzy Logic(Only Fuzzy Membership Calculation)
+
+#Tells how much the temperature belongs to Cold, Warm, and Hot categories.
+
+temperature = int(input("Enter The temperature")) # degrees Celsius
+# Define fuzzy membership functions
+def cold(temp):
+ if temp <= 10:
+  return 1
+ elif 10 < temp < 20:
+  return (20 - temp) / 10
+ else:
+  return 0
+def warm(temp):
+ if 15 < temp < 25:
+  return (temp-15)/10
+ elif 25 <= temp <= 35:
+  return (35 - temp) / 10
+ else:
+  return 0
+def hot(temp):
+ if temp <= 25:
+  return 0
+ elif 25 < temp < 35:
+  return (temp - 25) / 10
+ else:
+  return 1
+# Calculate fuzzy values
+coldness = cold(temperature)
+warmness = warm(temperature)
+hotness = hot(temperature)
+# Display fuzzy membership degrees
+print(f"Temperature = {temperature}°C")
+print(f"Cold = {coldness:.2f}")
+print(f"Warm = {warmness:.2f}")
+print(f"Hot = {hotness:.2f}")
+
+`;
+
+
+        var text20 = `10(D) Implementation of Fuzzy Logic(fuzzy rules to decide the fan speed.)
+
+
+def cold(temp):
+    if temp <= 15:
+        return 1
+    elif 15 < temp < 25:
+        return (25 - temp) / 10
+    else:
+        return 0
+def warm(temp):
+    if 15 < temp < 25:
+        return (temp - 15) / 10
+    elif 25 <= temp <= 35:
+        return (35 - temp) / 10
+    else:
+        return 0
+def hot(temp):
+    if temp <= 25:
+        return 0
+    elif 25 < temp < 35:
+        return (temp - 25) / 10
+    else:
+        return 1
+# Step 2: Fuzzy rules
+# IF temperature is cold THEN fan is OFF
+# IF temperature is warm THEN fan is MEDIUM
+# IF temperature is hot THEN fan is HIGH
+def fan_speed(temp):
+    cold_level = cold(temp)
+    warm_level = warm(temp)
+    hot_level = hot(temp)
+    # Crisp output using weighted average (defuzzification)
+    # Fan speed: 0 = off, 50 = medium, 100 = high
+    speed = (cold_level * 0 + warm_level * 50 + hot_level * 100) / (cold_level + warm_level + hot_level)
+    return speed
+# Step 3: Test
+temperature = float(input("Enter temperature (°C): "))
+speed = fan_speed(temperature)
+print(f"Temperature: {temperature}°C")
+print(f"Recommended Fan Speed: {speed:.2f}%")
+
+`;
 
 function copyText(text) {
     navigator.clipboard.writeText(text).then(function () {
