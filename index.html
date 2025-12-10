@@ -1,977 +1,702 @@
-<!DOCTYPE html>
-<html lang="en">
+            <!DOCTYPE html>
+            <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copy Text Buttons</title>
-    <style>
-        button {
-            margin: 5px;
-        }
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Copy Text Buttons</title>
+                <style>
+                    button {
+                        margin: 5px;
+                    }
 
-        body {
-            background-color: black;
-            /* Light gray background */
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+                    body {
+                        background-color: black;
+                        /* Light gray background */
+                        font-family: Arial, sans-serif;
+                        text-align: center;
+                    }
 
-        button {
-            margin: 10px;
-            padding: 10px;
-            font-size: 16px;
-            background-color: DimGray;
-            /* Light gray button background */
-            border: 1px solid #560b0b;
-            /* Dark gray border */
-            cursor: pointer;
-        }
+                    button {
+                        margin: 10px;
+                        padding: 10px;
+                        font-size: 16px;
+                        background-color: DimGray;
+                        /* Light gray button background */
+                        border: 1px solid #560b0b;
+                        /* Dark gray border */
+                        cursor: pointer;
+                    }
 
-        button:hover {
-            background-color: #ccc;
-          /* Slightly darker background on hover */
-        }
+                    button:hover {
+                        background-color: #ccc;
+                    /* Slightly darker background on hover */
+                    }
 
-    </style>
-</head>
+                </style>
+            </head>
 
-<body>
+            <body>
 
-    <button onclick="copyText(text1)"> 1(A) Design a simple linear neural network model with Binary and Bipolar activation function</button>
-    <button onclick="copyText(text2)"> 1(B)	Calculate the output of neural network using both binary and bipolar activation function</button>
-    <button onclick="copyText(text3)"> 1c Calculate the net input for the network given as follows with bias included in the network apply binary and bipolar sigmoidal activation function</button>
-    <button onclick="copyText(text4)"> 2(A)	Generate AND NOT function using MC-CULLOCH PITS Neural Network </button>
-    <button onclick="copyText(text5)"> 2(B)	Demonstration of Hebb rule with bipolar inputs and targets. Use AND NOT function</button>
-    <button onclick="copyText(text6)"> 3(A)	Implementation of Perceptron Neural Network	</button>
-    <button onclick="copyText(text7)"> 3(B)	Implementation of ADALINE Neural Network</button>
-    <button onclick="copyText(text8)"> 3(C)	Implementation of MADALINE Neural Network</button>
-    <button onclick="copyText(text9)">4	Implementation of Back Propagation Neural Network with XOR</button>
-    <button onclick="copyText(text10)">5 (A) Auto-Associative Neural Network</button>
-    <button onclick="copyText(text11)">5 (B) Implementation of Hetero-Associative Neural Network </button>
-    <button onclick="copyText(text12)">6 (A) Construct and test a BAM network to associate letters E and F with simple bipolar input–output vectors. The target output for E is (–1, 1) and for F is (1, 1).The display matrix size is 5 × 3. </button>
-    <button onclick="copyText(text13)">	6 (B) Construct and test a BAM network to associate letters T and O with simple bipolar input–output vectors. The target output for T is (1,-1) and for O is (1, 1).The display matrix size is 4 × 3.	</button>
-    <button onclick="copyText(text14)">7 Implement Radial Basis Function </button>
-    <button onclick="copyText(text15)">8 Implement Support Vector Machine Algorithm	</button>
-    <button onclick="copyText(text16)">9 Implement Least Mean Square Algorithm	</button>
-    <button onclick="copyText(text17)">10 (A) Implementation of Crisp or Binary Logic </button>
-    <button onclick="copyText(text18)">10 (B) Implementation of Crisp or Binary Logic	</button>
-    <button onclick="copyText(text19)">10(c) Implementation of Fuzzy Logic  </button>
-    <button onclick="copyText(text20)">10(D) Implementation of Fuzzy Logic </button>
-    
-    <p id="copiedMsg"></p>
-    <script>
-        var text1 = `# 1(A)Design a simple linear neural network model with Binary and Bipolar activation functions
+                <button onclick="copyText(text1)"> 1(A)  Real-Time Processing and Object Detection</button>
+                <button onclick="copyText(text2)"> 1(B)	 Gray Scale Conversion</button>
+                <button onclick="copyText(text3)"> 1(C)  Edge detection</button>
+                <button onclick="copyText(text4)"> 1(D)	Face detection</button>
+                <button onclick="copyText(text5)"> 1(E)	Image Cropping and Mouse Events </button>
+                <button onclick="copyText(text6)"> 1(F)	Save the image</button>
+                <button onclick="copyText(text7)"> 2 - Multicolor Object Tracking </button>
+                <button onclick="copyText(text8)"> 3 - Real Time Doc Scanners</button>
+                <button onclick="copyText(text9)"> 4 - Virtual drawing using finger tracking (only green and blue)</button>
+                <button onclick="copyText(text10)">5 (A) Multi-Face and object Detection(Group Photo-classify girls and boys )</button>
+                <button onclick="copyText(text11)">5 (B) Group Photo-with Person name Detection</button>
+                <button onclick="copyText(text12)">5 (C)  Detect and label common object(like eraser,scale,pencil) in a static image using opencv</button>
+                <button onclick="copyText(text13)">6 - Write a program use PYOpenGL and GLUT TO draw simple triangle</button>
+                <button onclick="copyText(text14)">7 - Write a program use PYOpenGL and GLUT TO draw simple square</button>
+                <button onclick="copyText(text15)">8 - Write a program with PYOpenGL to draw 3d cubes</button>
+                
+                
+                <p id="copiedMsg"></p>
+                <script>
+                    var text1 = `#1A_Image Capture Real-Time Processing and Object Detection
 
-#Design a simple linear neural network model with Binary and Bipolar activation functions
+cmd- pip install opencv-python 
 
-print("Input x = ")
-x = float(input())
+import cv2
 
-print("Weight w = ")
-w = float(input())
+img = cv2.imread("input.png")   
 
-print("Bias b = ")
-b = float(input())
 
-yin = b + x*w
-if yin >= 0:
-    y = 1
+if img is None:
+    print("Image not found!")
 else:
-    y = 0
+    cv2.imshow("Captured Image", img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
-print("Input x = ",x)
-print("Weight w = ",w)
-print("Bias b = ",b)
-print("yin = ", yin)
-print("Output (y) = ", y)
-    `;
 
+                `;
 
-        var text2 = `# 1(B)Calculate the output of neural network using both binary and bipolar activation function
 
-print("enter the no.of input nodes = ")
-n = int(input())
+                    var text2 = `# 1B_GrayScaleConversion
 
-x = []
-print("enter the inputs = ")
-for i in range (0,n):
-    e1 = float(input())
-    x.append(e1)
+cmd: pip install opencv-python 
 
-w =  []
-print("enter the weights = ")
-for i in range (0,n):
-    e2 = float(input())
-    w.append(e2)
+import cv2
+img = cv2.imread("input.png")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+cv2.imshow("Original Image", img)
+cv2.imshow("Gray Image", gray)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
-yin = []
-for i in range (0,n):
-    e3 = (x[i]*w[i])
-    yin.append(e3)
-fyin = round(sum(yin),3)
+            `;
 
-print("Binary Activation")
-if fyin >= 0:
-    y1 =1
-else:
-    y1 = 0
 
-print("Bipolar Activation")
-if fyin >= 0:
-    y2 =1
-else:
-    y2 = -1
+                    var text3 = ` #1C_Edge detection
 
-print("No of input nodes: ",n)
-print("Inputs = ",x)
-print("Weights = ",w)
-print("Net input (yin)=",fyin)
-print("Output for Binary Activation = ", y1)
-print("Output for Bipolar Activation = ", y2)
-`;
+cmd: pip install opencv-python
 
+import cv2
 
-        var text3 = ` #1(C) Calculate the net input for the network given as follows with bias included in the network apply
-binary and bipolar sigmoidal activation function
+# Load image
+img = cv2.imread("input.png")
 
-import math
+# Convert to grayscale (edge detection works on gray images)
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-# Binary Sigmoidal Activation Function
-def binary_sigmoid(yin):
-  return 1 / (1 + math.exp(-yin))
+# Apply Canny Edge Detection
+edges = cv2.Canny(gray, 100, 200)
 
-# Bipolar Sigmoidal Activation Function
-def bipolar_sigmoid(yin):
-  return (1 - math.exp(-yin)) / (1 + math.exp(-yin))
-
-print("Enter the number of input nodes n=")
-n = int(input())
-
-x = []
-print("Enter the input values x=")
-for i in range(0, n):
-  e1 = float(input())
-  x.append(e1)
-
-w = []
-print("Enter the weights w=")
-for i in range(0, n):
-  e2 = float(input())
-  w.append(e2)
-
-print("Enter the bias b=")
-b = float(input())
-
-# Calculate the net input
-yin_values = []
-for i in range(0, n):
-  yin_values.append(x[i] * w[i])
-
-net_input = round(sum(yin_values) + b, 3)
-
-# Apply binary sigmoidal activation
-binary_output = round(binary_sigmoid(net_input), 3)
-
-# Apply bipolar sigmoidal activation
-bipolar_output = round(bipolar_sigmoid(net_input), 3)
-
-print("number of nodes n =", n)
-print("Input x=", x)
-print("Weight w=", w)
-print("Bias b=", b)
-print("Net input (yin)=", net_input)
-print("Output for binary sigmoidal activation =", binary_output)
-print("Output for bipolar sigmoidal activation =", bipolar_output)
-
-`;
-
-
-        var text4 = ` # 2(A) Generate AND NOT function using MC-CULLOCH PITS Neural Network
-
-n =  int(input("Enter the number of inputs = "))
-print("For then", n, " inputs calculate the net inout using yin = x1*w1+ x2*w2")
-w1 = 1
-w2 = 1
-x1 = []
-x2 = []
-for i in range (0,n):
-    ele1 = float(input())
-    x1.append(ele1)
-for i in range (0,n):
-    ele2 = float(input())
-    x2.append(ele2)
-print("x1= ",x1)
-print("x2= ",x2)
-p = x1*w1
-m = x2*w2
-yin1 = []
-yin2 = []
-
-for i in range (0,n):
-    yin1.append(p[i]+m[i])
-print("yin1=", yin1)
-for i in range (0,n):
-    yin2.append(p[i]-m[i])
-print("yin2=", yin2)
-print("After assuming one weight exhibitory and other as inhibitory yin = ", yin2)
-#activation function
-y = []
-for i in range (0,n):
-    if(yin2[i]>=1):
-        ele=1
-        y.append(ele)
-    if(yin2[i]<1):
-        ele=0
-        y.append(ele)
-print("Y = ",y)
-
-
-`;
-
-
-
-        var text5 = `#2(B) Demonstration of Hebb rule with bipolar inputs and targets. Use AND NOT function
-
-n =  int(input("Enter the number of inputs = "))
-
-x1 = []
-x2 = []
-for i in range (0,n):
-    ele1 = float(input())
-    x1.append(ele1)
-for i in range (0,n):
-    ele2 = float(input())
-    x2.append(ele2)
-w1 = 0
-w2 = 0
-b= 0
-y =[-1,1,-1,-1]
-print("x1= ",x1)
-print("x2= ",x2)
-print("Target (y) = ", y)
-for i in range (0,n):
-    w1 = w1 + x1[i]*y[i]
-    w2 = w2 + x2[i]*y[i]
-    b = b + y[i]
-print("Final weights and bias:")
-print("w1(new) = ",w1)
-print("w2(new) = ",w2)
-print("b(new) = ",b)
-
-
-`;
-
-
-        var text6 = ` #3(A) Implementation of Perceptron Neural Network
-
-
-def step_function(x):
-  return 1 if x >=0 else 0
-def train_perceptron(inputs,labels,lr=0.1,epochs=4):
-  weights = [0,0] #initial weight to 0
-  bias =0 #initial bias to 0
-  for epoch in range(epochs):
-    print(f"Epoch {epoch+1}")
-    for i in range(len(inputs)):
-      x1,x2 = inputs[i]
-      y = labels[i]
-
-      #weighted sum
-      linear_output = weights[0]*x1 + weights[1]*x2 + bias
-      prediction = step_function(linear_output)
-
-      #perceptron rule
-      error = y - prediction
-      weights[0] += lr * error * x1
-      weights[1] += lr * error * x2
-      bias += lr * error
-      print(f"Input: {x1}, {x2} | Prediction: {prediction} | Target: {y} | Weights: {weights} | Bias: {bias}")
-  return weights,bias
-
-def predict(x1,x2,weights,bias):
-  output = weights[0]*x1 + weights[1]*x2 + bias
-  return step_function(output)
-
-#dataset for AND Gate
-inputs = [[0,0],[0,1],[1,0],[1,1]]
-labels = [0,0,0,1]
-
-#training the perceptron
-weights,bias = train_perceptron(inputs,labels)
-
-#testing the perceptron
-print("\nTesting the perceptron:")
-for x1,x2 in inputs:
-  print(f"Input: {x1}, {x2} | Prediction: {predict(x1,x2,weights,bias)}")
-        
-
-`;
-
-
-        var text7 = `# 3(B) Implementation of ADALINE Neural Network
-
-import numpy as np
-import matplotlib.pyplot as plt
-# Input and Target Output (OR Gate)
-X = np.array([
-    [0, 0],
-    [0, 1],
-    [1, 0],
-    [1, 1]
-])
-y = np.array([-1, 1, 1, 1]) # OR logic gate using -1 and 1
-
-epochs = 20
-learning_rate = 0.1
-n_samples, n_features = X. shape
-
-weights = np.zeros(n_features)
-bias = 0
-losses = []
-
-for epoch in range(epochs):
-  # Net input (linear combination)
-  net_input = np.dot (X, weights) + bias
-
-  # Linear activation (same as net input)
-  output = net_input
-
-  # Error
-  errors = y - output
-
-  # Weight update using gradient descent
-  weights += learning_rate * np.dot (X.T, errors)
-  bias += learning_rate * np.sum (errors)
-
-  # Mean squared error
-  loss = np.mean (errors ** 2)
-  losses.append(loss)
-
-  print (f"Epoch {epoch+1}, Loss: {loss:.4f}")
-
-# Prediction
-
-def predict(X):
-  net_input = np.dot(X, weights) + bias
-  return np.where (net_input >= 0.0, 1, -1)
-
-predictions = predict(X)
-print("\nPredictions:", predictions)
-#
-# Plotting Loss
-#
-plt.plot(losses)
-plt.title('Adaline Training Loss ')
-plt.xlabel('Epochs')
-plt.ylabel('Mean Squared Error')
-plt.grid(True)
-plt.show()
-
-`;
-
-
-        var text8 = `# 3(C) Implementation of MADALINE Neural Network
-
-import numpy as np
-#
-# Input and Target (OR Gate)
-#
-X = np.array([
-  [0, 0],
-  [0, 1],
-  [1, 0],
-  [1, 1]
-])
-y = np.array([-1, 1, 1, 1]) # OR gate output in bipolar form
-
-epochs = 20
-learning_rate = 0.1
-n_samples, n_features = X. shape
-
-#2 Adaline units in hidden layer
-w1 = np.random.randn(n_features) # weights for neuron 1
-b1 = np.random.randn()
-w2 = np.random.randn(n_features) # weights for neuron 2
-b2 = np.random.randn()
-
-# Output layer weights
-v = np.array([1, 1]) # usually fixed to 1 for MADALINE Rule I
-
-for epoch in range (epochs):
-  print (f"Epoch {epoch+1}")
-  for xi, target in zip (X, y):
-  # Hidden layer outputs
-    z1 =  np.dot(xi, w1) + b1
-    z2 =  np.dot(xi, w2) + b2
-
-    a1 = 1 if z1 >= 0 else -1
-    a2 = 1 if z2 >= 0 else -1
-
-    # Output layer
-    output = np.sign(np.dot(v, [a1, a2]))
-
-    # If output is incorrect, adjust the Adaline whose output contributes most
-    if output != target:
-      if a1 != target:
-        error = target - a1
-        w1 += learning_rate  * error * xi
-        b1 += learning_rate  * error
-      elif a2 != target:
-        error = target - a2
-        w2 += learning_rate * error * xi
-        b2 += learning_rate * error
-      # Optionally display weights
-      print(f"w1: {w1}, b1: {b1}")
-      print(f"w2: {w2}, b2: {b2}")
-      print("-" * 30)
-
-# Prediction Function
-
-def predict(x):
-  z1 = np.dot(x, w1) + b1
-  z2 = np.dot(x, w2) + b2
-  a1 = 1 if z1 >= 0 else -1
-  a2 = 1 if z2 >= 0 else -1
-  return np.sign (np.dot(v, [a1, a2]))
-
-# Test Predictions
-
-print("\nFinal Predictions:")
-for xi in X:
-  print (f"Input: {xi} => Output: {predict(xi)}")
-
-`;
-
-
-        var text9 = `# 4 Implementation of Back Propagation Neural Network with 
-
-import numpy as np
-
-# -----------------------------
-# Activation and Derivative
-# -----------------------------
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
-
-def sigmoid_derivative(x):
-    return x * (1 - x)
-
-# -----------------------------
-# Input and Target (XOR Gate)
-# -----------------------------
-X = np.array([
-    [0, 0],
-    [0, 1],
-    [1, 0],
-    [1, 1]
-])
-y = np.array([[0], [1], [1], [0]])
-
-# -----------------------------
-# Initialize Parameters
-# -----------------------------
-np.random.seed(42)
-input_neurons = 2
-hidden_neurons = 2
-output_neurons = 1
-learning_rate = 0.5
-epochs = 10000
-
-# Random weights and biases
-W1 = np.random.uniform(size=(input_neurons, hidden_neurons))
-b1 = np.random.uniform(size=(1, hidden_neurons))
-W2 = np.random.uniform(size=(hidden_neurons, output_neurons))
-b2 = np.random.uniform(size=(1, output_neurons))
-
-# -----------------------------
-# Training Loop
-# -----------------------------
-for epoch in range(epochs):
-    # Forward pass
-    hidden_input = np.dot(X, W1) + b1
-    hidden_output = sigmoid(hidden_input)
-
-    final_input = np.dot(hidden_output, W2) + b2
-    final_output = sigmoid(final_input)
-
-    # Compute error
-    error = y - final_output
-
-    # Backpropagation
-    d_output = error * sigmoid_derivative(final_output)
-    d_hidden = d_output.dot(W2.T) * sigmoid_derivative(hidden_output)
-
-    # Update weights and biases
-    W2 += hidden_output.T.dot(d_output) * learning_rate
-    b2 += np.sum(d_output, axis=0, keepdims=True) * learning_rate
-
-    W1 += X.T.dot(d_hidden) * learning_rate
-    b1 += np.sum(d_hidden, axis=0, keepdims=True) * learning_rate
-
-    # Print loss every 1000 epochs
-    if epoch % 1000 == 0:
-        loss = np.mean(np.square(error))
-        print(f"Epoch {epoch}, Loss: {loss:.4f}")
-
-# -----------------------------
-#  Final Predictions
-# -----------------------------
-print("\nFinal Predictions:")
-for xi in X:
-    hidden_output = sigmoid(np.dot(xi, W1) + b1)
-    final_output = sigmoid(np.dot(hidden_output, W2) + b2)
-    print(f"Input: {xi} => Predicted: {np.round(final_output[0], 2)}")
-
-
-`;
-
-        var text10 = `#5(A) Auto-Associative Neural Network
-
-
-#Practical No.5-A : Auto-Associative Neural Network*
-import numpy as np
-# Step 1: Define bipolar input and target patterns
-X = np.array([
-    [-1, -1],
-    [-1,  1],
-    [ 1, -1],
-    [ 1,  1]
-])
-
-T = np.array([
-    [-1],
-    [-1],
-    [-1],
-    [ 1]
-])  # AND output in bipolar form
-
-# Step 2: Initialize weights and bias
-W = np.zeros((2, 1))
-b = 0
-
-# Step 3: Hebbian Learning Rule
-for i in range(len(X)):
-    W += X[i].reshape(2, 1) * T[i]   # Outer product update
-    b += T[i]                         # Bias update
-
-print("Weight matrix:\n", W)
-print("Bias:\n", b)
-
-# Step 4: Testing (Recall Phase)
-print("\nRecall Phase:")
-for i in range(len(X)):
-    y_in = np.dot(X[i], W) + b
-    y = np.sign(y_in)   # Activation function
-    print(f"Input: {X[i]} → Net: {y_in[0]:.2f} → Output: {y[0]} → Target: {T[i][0]}")
-
-`;
-
-
-        var text11 = `# 5 (B) Implementation of Hetero-Associative Neural Network.
-
-import numpy as np
-
-# Step 1: Define bipolar input patterns (4 inputs)
-X = np.array([
-    [ 1, -1, -1, -1],   # Input pattern 1
-    [-1,  1, -1, -1],   # Input pattern 2
-    [-1, -1,  1, -1],   # Input pattern 3
-    [-1, -1, -1,  1]    # Input pattern 4
-])
-
-# Step 2: Define bipolar output patterns (3 outputs)
-T = np.array([
-    [ 1, -1, -1],   # Output pattern for input 1
-    [-1,  1, -1],   # Output pattern for input 2
-    [-1, -1,  1],   # Output pattern for input 3
-    [ 1,  1, -1]    # Output pattern for input 4
-])
-
-# Step 3: Initialize weight matrix
-W = np.zeros((X.shape[1], T.shape[1]))  # 4x3 matrix
-
-# Step 4: Hebbian Learning Rule (Outer Product)
-for i in range(len(X)):
-    W += np.outer(X[i], T[i])
-
-print("Weight matrix (4x3):\n", W)
-
-# Step 5: Recall / Testing Phase
-print("\nRecall Phase:")
-for i in range(len(X)):
-    y_in = np.dot(X[i], W)
-    y = np.sign(y_in)
-    print(f"Input: {X[i]} → Net: {y_in} → Output: {y} → Target: {T[i]}")
-
-`;
-
-
-        var text12 = `# 6(A) Construct and test a BAM network to associate letters E and F with simple bipolar input–output vectors.
-The target output for E is (–1, 1) and for F is (1,1).The display matrix size is 5 × 3.
-
-import numpy as np
-
-# Step 1: Define input patterns for 'E' and 'F' (5x3)
-# '*' -> 1, blank -> -1
-E = np.array([
-    [1, 1, 1],
-    [1, -1, -1],
-    [1, 1, 1],
-    [1, -1, -1],
-    [1, 1, 1]
-])
-F = np.array([
-    [1, 1, 1],
-    [1, -1, -1],
-    [1, 1, 1],
-    [1, -1, -1],
-    [1, -1, -1]
-])
-# Flatten into vectors (15 elements)
-X_E = E.reshape(15)
-X_F = F.reshape(15)
-# Step 2: Define target output vectors
-Y_E = np.array([-1, 1])   # for letter E
-Y_F = np.array([1, 1])    # for letter F
-# Step 3: Combine patterns into arrays
-X = np.vstack((X_E, X_F))
-Y = np.vstack((Y_E, Y_F))
-# Step 4: Compute weight matrix (Hebbian learning rule)
-W = np.zeros((15, 2))
-for i in range(len(X)):
-    W += np.outer(X[i], Y[i])
-print("Weight matrix (15x2):\n", W)
-# Step 5: Recall phase
-def bam_recall(x, W):
-    """Recall output Y from input X using BAM."""
-    y_in = np.dot(x, W)
-    y = np.sign(y_in)
-    return y
-
-# Test recall
-print("\nRecall Phase:")
-
-for i, label in enumerate(["E", "F"]):
-    y_recalled = bam_recall(X[i], W)
-    print(f"Input: {label} → Recalled Output: {y_recalled}")
-
-
-`;
-
-
-
-        var text13 = `# 6(B) Construct and test a BAM network to associate letters T and O with simple bipolar input–output
-vectors. The target output for T is (1,-1) and for O is(1, 1).The display matrix size is 4 × 3
-
-import numpy as np
-# Step 1: Define input patterns for 'E' and 'F' (5x3)
-# '*' -> 1, blank -> -1
-T = np.array([
-    [1, 1, 1],
-    [-1, 1, -1],
-    [-1, 1, -1],
-    [-1, 1, -1]
-])
-O = np.array([
-    [1, 1, 1],
-    [1, -1, 1],
-    [1, -1, 1],
-    [1, 1, 1]
-])
-# Flatten into vectors (12 elements)
-X_T = T.reshape(12)
-X_O = O.reshape(12)
-# Step 2: Define target output vectors
-Y_T = np.array([1, -1])   # for letter E
-Y_O = np.array([1, 1])    # for letter F
-# Step 3: Combine patterns into arrays
-X = np.vstack((X_T, X_O))
-Y = np.vstack((Y_T, Y_O))
-# Step 4: Compute weight matrix (Hebbian learning rule)
-W = np.zeros((12, 2))
-for i in range(len(X)):
-    W += np.outer(X[i], Y[i])
-print("Weight matrix (12x2):\n", W)
-# Step 5: Recall phase
-def bam_recall(x, W):
-    """Recall output Y from input X using BAM."""
-    y_in = np.dot(x, W)
-    y = np.sign(y_in)
-    return y
-# Test recall
-print("\nRecall Phase:")
-for i, label in enumerate(["T", "O"]):
-    y_recalled = bam_recall(X[i], W)
-    print(f"Input: {label} → Recalled Output: {y_recalled}")
-`;
-
-
-        var text14 = `#7 Implement Radial Basis Function
-
-#7 Implement Radial Basis Function
-import numpy as np
-#1. Training data (input x, output y)
-x_train = np.array ([0, 1, 2, 3])
-y_train = np.array ([0, 0.8, 0.9, 0.1])# arbitrary target values
-print("X_train :")
-print(x_train)
-print("Y_train :")
-print(y_train)
-# 2. Define simple Gaussian RBF
-def rbf(x, c, sigma):
- return np.exp(- (x-c) *2 / (2 * sigma*2))
-#3. RBF centers and spread
-centers = np.array ([0, 1, 2, 3]) # same as training points for simplicity
-sigma = 1.0
-print("centers:",centers)
-print("sigma",sigma)
-#4. Build RBF design matrix
-G = np.zeros((len(x_train), len (centers)))
-print(G)
-for i, c in enumerate(centers):
- G[:,i] = rbf(x_train,c, sigma)
-print("G:",G)
-#5. Compute weights using pseudo-inverse
-weights = np.dot(np.linalg.pinv (G), y_train)
-print("Weights :")
-print(weights)
-# 6. Test on new data
-x_test = np.array ([0.5, 1.5, 2.5])
-G_test = np.zeros((len(x_test), len(centers)))
-for i, c in enumerate (centers):
- G_test[:, i] = rbf(x_test, c, sigma)
-y_pred= np.dot (G_test, weights)
-print("y_pred",y_pred)
-# 7. Output
-print("Test Inputs:", x_test)
-print("Predicted Outputs:", y_pred)
-`;
-
-
-        var text15 = `#8 Implement Support Vector Machine Algorithm
-
-import numpy as np
-# Step 1: Generate simple dataset (binary classification)
-X= np.array([[2, 3],
-[1, 1],
-[2, 1],
-[3,2],
-[4, 4],
-[5, 3]])
-y= np.array([1, -1, -1, 1, 1, 1])
-# Labels: +1 or -1
-print("X=",X)
-print("y=",y)
-# Step 2: Initialize weights and bias
-w= np.zeros(X.shape[1])
-b = 0
-learning_rate = 0.01
-epochs= 1000
-C=1 # Regularization parameter
-print("Initial Weights Bias Learning Rate etc")
-print("w=",w)
-print("b=",b)
-print("learning_rate=",learning_rate)
-print("epochs=",epochs)
-print("C=",C)
-for epoch in range(epochs):
-   for i, x_i in enumerate(X):
-    condition =y[i]* (np.dot(x_i, w) + b) >= 1
-    if condition:
-   # If correctly classified
-      w -= learning_rate *(2 *1/epochs *w) # L2 regularization gradient
-   else:
-      # If misclassified
-      w -= learning_rate *(2 *1/epochs * w - np.dot(x_i, y[i]))
-      b -= learning_rate *y[i]
-print("Final Weights and Bias")
-print("w=",w)
-print("b=",b)
-# Step 4: Test on training data
-predictions =np.sign(np.dot(X, w)+ b)
-print("Weights:", w)
-print("Bias:", b)
-print("Predictions:",predictions)
-print("Actual Labels:", y)
-
-`;
-
-
-        var text16 = `#9 Implement Least Mean Square Algorithm
-
-
-
-import numpy as np
-# Step 1: Training data (inputs X and desired outputs y)
-X= np.array([[0, 0],
-[0, 1],
-[1, 0],
-[1, 1]]) # Inputs for XOR (example)
-y = np.array([0, 1, 1, 0]) # Desired output
-print("x:",X)
-print("y:",y)
-# Step 2: Initialize weights and bias
-w = np.zeros(X.shape[1])
-b = 0
-learning_rate = 0.1
-epochs = 20
-print("W=",w)
-print("b=",b)
-print("learning_rate=",learning_rate)
-print("epochs=",epochs)
-# Step 3: LMS Training
-for epoch in range(epochs):
- for i in range(len(X)):
-     # Linear output
-   y_pred= np.dot (X[i], w) + b
-     # Error
-   e = y[i] -y_pred
-   # Update weights and bias
-   w += learning_rate* e* X[i]
-   b += learning_rate*e
-
-#Optional: Print error at each epoch
-mse = np.mean((y -(np.dot(X, w) + b))**2)
-print(f"Epoch {epoch+1}, MSE: {mse:.4f}")
-# Step 4: Test
-y_pred_final = np.dot (X, w) + b
-print("\nFinal Weights:", w)
-print("Final Bias:", b)
-print("Predicted Outputs:", y_pred_final)
-print("Actual Outputs:", y)
-`;
-
-
-        var text17 = `#10(A)Implementation of Crisp or Binary Logic(Logical Operations (AND, OR, NOT, XOR))
-
-
-
-# Input values (binary logic: 1 = True, 0 = False)
-A = 0
-B = 1
-# Logical operations
-AND = A and B          # Logical AND
-OR = A or B            # Logical OR
-NOT_A = not A          # Logical NOT
-XOR = (A and not B) or (not A and B)   # Logical XOR
 # Display results
-print("A =", A)
-print("B =", B)
-print("A AND B =", AND)
-print("A OR B =", OR)
-print("NOT A =", NOT_A)
-print("A XOR B =", XOR)
+cv2.imshow("Original Image", img)
+cv2.imshow("Gray Image", gray)
+cv2.imshow("Edge Detection", edges)
 
-`;
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 
-        var text18 = `#110(B)Implementation of Crisp or Binary Logic(Decision Making using IF condition)
-
-marks= 45
-has_certificate = True
-# Binary logic: admission only if marks >= 80 AND certificate is True
-if marks > 80 and has_certificate:
- print("Admission Granted")
-else:
- print("Admission Denied")
-
-`;
+            `;
 
 
-        var text19 = `10(c) Implementation of Fuzzy Logic(Only Fuzzy Membership Calculation)
+                    var text4 = ` # 1D_Face detection
 
-#Tells how much the temperature belongs to Cold, Warm, and Hot categories.
+cmd : pip install opencv-python
 
-temperature = int(input("Enter The temperature")) # degrees Celsius
-# Define fuzzy membership functions
-def cold(temp):
- if temp <= 10:
-  return 1
- elif 10 < temp < 20:
-  return (20 - temp) / 10
- else:
-  return 0
-def warm(temp):
- if 15 < temp < 25:
-  return (temp-15)/10
- elif 25 <= temp <= 35:
-  return (35 - temp) / 10
- else:
-  return 0
-def hot(temp):
- if temp <= 25:
-  return 0
- elif 25 < temp < 35:
-  return (temp - 25) / 10
- else:
-  return 1
-# Calculate fuzzy values
-coldness = cold(temperature)
-warmness = warm(temperature)
-hotness = hot(temperature)
-# Display fuzzy membership degrees
-print(f"Temperature = {temperature}°C")
-print(f"Cold = {coldness:.2f}")
-print(f"Warm = {warmness:.2f}")
-print(f"Hot = {hotness:.2f}")
+import cv2
 
-`;
+# Load image
+img = cv2.imread("single.jpg")
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# Load Haar cascade using OpenCV's built-in path
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+
+print("Cascade loaded:", face_cascade.empty())  # Should print False
+
+faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+for (x, y, w, h) in faces:
+    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+cv2.imshow("Face Detection", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
 
-        var text20 = `10(D) Implementation of Fuzzy Logic(fuzzy rules to decide the fan speed.)
+            `;
 
 
-def cold(temp):
-    if temp <= 15:
-        return 1
-    elif 15 < temp < 25:
-        return (25 - temp) / 10
-    else:
-        return 0
-def warm(temp):
-    if 15 < temp < 25:
-        return (temp - 15) / 10
-    elif 25 <= temp <= 35:
-        return (35 - temp) / 10
-    else:
-        return 0
-def hot(temp):
-    if temp <= 25:
-        return 0
-    elif 25 < temp < 35:
-        return (temp - 25) / 10
-    else:
-        return 1
-# Step 2: Fuzzy rules
-# IF temperature is cold THEN fan is OFF
-# IF temperature is warm THEN fan is MEDIUM
-# IF temperature is hot THEN fan is HIGH
-def fan_speed(temp):
-    cold_level = cold(temp)
-    warm_level = warm(temp)
-    hot_level = hot(temp)
-    # Crisp output using weighted average (defuzzification)
-    # Fan speed: 0 = off, 50 = medium, 100 = high
-    speed = (cold_level * 0 + warm_level * 50 + hot_level * 100) / (cold_level + warm_level + hot_level)
-    return speed
-# Step 3: Test
-temperature = float(input("Enter temperature (°C): "))
-speed = fan_speed(temperature)
-print(f"Temperature: {temperature}°C")
-print(f"Recommended Fan Speed: {speed:.2f}%")
 
-`;
+                    var text5 = `#1E_ImageCropping & Mouse Events
 
-function copyText(text) {
-    navigator.clipboard.writeText(text).then(function () {
-        document.getElementById('copiedMsg').innerHTML = "Text Copied"
-    }).catch(function (err) {
-        console.error('Unable to copy text', err);
-    });
+cmd: pip install opencv-python
+
+import cv2
+
+# Load image
+img = cv2.imread("single.jpg")
+
+# Function to crop on mouse click
+def crop(event, x, y, flags, param):
+    global pt1, pt2, cropped
+    if event == cv2.EVENT_LBUTTONDOWN:
+        pt1 = (x, y)
+    elif event == cv2.EVENT_LBUTTONUP:
+        pt2 = (x, y)
+        cropped = img[pt1[1]:pt2[1], pt1[0]:pt2[0]]
+        cv2.imshow("Cropped Image", cropped)
+
+# Initialize
+pt1 = pt2 = (0,0)
+cropped = None
+
+cv2.namedWindow("Image")
+cv2.setMouseCallback("Image", crop)
+
+cv2.imshow("Image", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+
+            `;
+
+
+                    var text6 = ` #1F_Save Cropped image
+
+cmd: install opencv-python
+
+import cv2
+# Load image
+img = cv2.imread("single.jpg")
+
+# Function to crop and save on mouse
+def crop(event, x, y, flags, param):
+    global pt1, pt2, cropped
+    if event == cv2.EVENT_LBUTTONDOWN:
+        pt1 = (x, y)
+    elif event == cv2.EVENT_LBUTTONUP:
+        pt2 = (x, y)
+        cropped = img[pt1[1]:pt2[1], pt1[0]:pt2[0]]
+        cv2.imshow("Cropped Image", cropped)
+        cv2.imwrite("cropped_image.png", cropped)  # Save automatically
+        print("Cropped image saved as 'cropped_image.png'")
+
+# Initialize
+pt1 = pt2 = (0,0)
+cropped = None
+
+cv2.namedWindow("Image")
+cv2.setMouseCallback("Image", crop)
+
+cv2.imshow("Image", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+                    
+
+            `;
+
+
+                    var text7 = `# 2_MulticlrObjectTracking
+
+cmd: pip install opencv-python
+
+import cv2
+import numpy as np
+
+# Load image
+img = cv2.imread("person.jpg")
+
+# Convert to HSV color space (better for color detection)
+hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+# Define color ranges in HSV
+# Example: Red, Green, Blue
+colors = {
+    "Red": ([0, 120, 70], [10, 255, 255]),
+    "Green": ([36, 50, 70], [89, 255, 255]),
+    "Blue": ([94, 80, 2], [126, 255, 255])
 }
-</script>
 
-</body>
+# Detect and mark each color
+for color_name, (lower, upper) in colors.items():
+    lower = np.array(lower)
+    upper = np.array(upper)
+    
+    # Create mask for this color
+    mask = cv2.inRange(hsv, lower, upper)
+    
+    # Find contours
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    for cnt in contours:
+        area = cv2.contourArea(cnt)
+        if area > 500:  # filter small areas
+            x, y, w, h = cv2.boundingRect(cnt)
+            cv2.rectangle(img, (x, y), (x+w, y+h), (0,255,0), 2)
+            cv2.putText(img, color_name, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
 
-</html>
+# Show result
+cv2.imshow("Multicolor Tracking", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+            `;
+
+
+                    var text8 = `# 3_RealTimeDocScanners
+
+cmd: pip install opencv-python 
+
+import cv2
+import numpy as np
+import os
+import datetime
+import time
+ 
+# Create save folder if it doesn't exist
+SAVE_DIR = "scanned_documents"
+os.makedirs(SAVE_DIR, exist_ok=True)
+ 
+# Camera setup
+cap = cv2.VideoCapture(0)
+cap.set(3, 640)
+cap.set(4, 480)
+ 
+print("Hold your book clearly in the frame")
+print("ESC to exit, 'm' to manually crop with mouse")
+ 
+drawing = False
+manual_pts = []
+last_auto_save_time = 0
+AUTO_SAVE_INTERVAL = 5  # seconds between auto-saves
+ 
+def reorder_points(pts):
+    pts = pts.reshape((4, 2))
+    new_pts = np.zeros((4, 2), dtype=np.float32)
+    add = pts.sum(1)
+    diff = np.diff(pts, axis=1)
+    new_pts[0] = pts[np.argmin(add)]
+    new_pts[2] = pts[np.argmax(add)]
+    new_pts[1] = pts[np.argmin(diff)]
+    new_pts[3] = pts[np.argmax(diff)]
+    return new_pts
+ 
+def get_warp(image, points, w=600, h=800):
+    points = reorder_points(points)
+    dest = np.array([[0, 0], [w, 0], [w, h], [0, h]], dtype=np.float32)
+    matrix = cv2.getPerspectiveTransform(points, dest)
+    warped = cv2.warpPerspective(image, matrix, (w, h))
+    return warped
+ 
+def draw_manual(event, x, y, flags, param):
+    global drawing, manual_pts
+    if event == cv2.EVENT_LBUTTONDOWN:
+        drawing = True
+        manual_pts = [(x, y)]
+    elif event == cv2.EVENT_LBUTTONUP:
+        drawing = False
+        manual_pts.append((x, y))
+ 
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+ 
+    original = frame.copy()
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    blur = cv2.GaussianBlur(gray, (5, 5), 1)
+ 
+    # More robust edge detection using adaptive threshold
+    thresh = cv2.adaptiveThreshold(
+        gray, 255,
+        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+        cv2.THRESH_BINARY,
+        11, 2)
+    edges = cv2.Canny(thresh, 50, 150)
+ 
+    contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = sorted(contours, key=cv2.contourArea, reverse=True)
+ 
+    doc_contour = None
+    for cnt in contours:
+        area = cv2.contourArea(cnt)
+        if area < 15000 or area > frame.shape[0] * frame.shape[1] * 0.9:
+            continue
+        peri = cv2.arcLength(cnt, True)
+        approx = cv2.approxPolyDP(cnt, 0.02 * peri, True)
+        if len(approx) == 4:
+            doc_contour = approx
+            break
+ 
+    debug = frame.copy()
+    for cnt in contours:
+        if cv2.contourArea(cnt) > 15000:
+            cv2.drawContours(debug, [cnt], -1, (255, 0, 0), 2)
+ 
+    if doc_contour is not None:
+        cv2.drawContours(debug, [doc_contour], -1, (0, 255, 0), 3)
+        warped = get_warp(original, doc_contour)
+ 
+        # Post-warp thresholding for cleaner scan
+        gray_warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
+        gray_warped = cv2.GaussianBlur(gray_warped, (5, 5), 0)
+        _, scanned = cv2.threshold(gray_warped, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+ 
+        cv2.imshow("Scanned", scanned)
+ 
+        # Auto-save if enough time has passed
+        current_time = time.time()
+        if current_time - last_auto_save_time > AUTO_SAVE_INTERVAL:
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            file_name = os.path.join(SAVE_DIR, f"auto_scan_{timestamp}.png")
+            cv2.imwrite(file_name, scanned)
+            print(f"[AUTO-SAVE] Document saved as {file_name}")
+            last_auto_save_time = current_time
+ 
+    cv2.imshow("Detected Contours", debug)
+ 
+    # Check for manual crop
+    if len(manual_pts) == 2:
+        x1, y1 = manual_pts[0]
+        x2, y2 = manual_pts[1]
+        x_start, x_end = sorted([x1, x2])
+        y_start, y_end = sorted([y1, y2])
+        manual_crop = original[y_start:y_end, x_start:x_end]
+        if manual_crop.shape[0] > 0 and manual_crop.shape[1] > 0:
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            manual_file = os.path.join(SAVE_DIR, f"manual_scan_{timestamp}.png")
+            cv2.imshow("Manual Crop", manual_crop)
+            cv2.imwrite(manual_file, manual_crop)
+            print(f"[MANUAL SAVE] Manual crop saved as {manual_file}")
+            manual_pts = []
+ 
+    key = cv2.waitKey(10) & 0xFF
+    if key == ord('m'):
+        print("Click and drag to draw cropping box manually...")
+        cv2.setMouseCallback("Detected Contours", draw_manual)
+    elif key == 27:
+        break
+ 
+    time.sleep(0.01)  # Slight delay to reduce CPU usage
+ 
+cap.release()
+cv2.destroyAllWindows()
+
+
+OR (Static code 2)
+
+cmd: py -m pip install pymupdf
+or pip install pymupdf
+     m pip install opencv-python
+
+
+import fitz  # PyMuPDF
+import cv2
+import numpy as np
+
+pdf = fitz.open("252611101100001.pdf")
+page = pdf[0]  # first page
+pix = page.get_pixmap()
+
+img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, 3)
+
+cv2.imshow("PDF Page", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+
+            `;
+
+
+                    var text9 = `# 4_Virtual Drawing using finger tracking 
+
+cmd:
+pip install opencv-python 
+pip install opencv-python mediapipe
+or
+pip install mediapipe --user
+
+import cv2
+import mediapipe as mp
+
+# Initialize MediaPipe Hand Detector
+mp_hands = mp.solutions.hands
+mp_draw = mp.solutions.drawing_utils
+
+hands = mp_hands.Hands(max_num_hands=1)
+cap = cv2.VideoCapture(0)
+
+# Canvas for drawing
+canvas = None
+
+while True:
+    success, frame = cap.read()
+    if not success:
+        break
+
+    frame = cv2.flip(frame, 1)
+
+    # Create canvas first time
+    if canvas is None:
+        canvas = frame.copy() * 0
+
+    rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    results = hands.process(rgb)
+
+    if results.multi_hand_landmarks:
+        hand = results.multi_hand_landmarks[0]
+
+        # Get index finger tip: landmark 8
+        h, w, c = frame.shape
+        x = int(hand.landmark[8].x * w)
+        y = int(hand.landmark[8].y * h)
+
+        # Draw circle on fingertip
+        cv2.circle(frame, (x, y), 8, (0, 0, 255), -1)
+
+        # Draw on canvas
+        cv2.circle(canvas, (x, y), 8, (0, 0, 255), -1)
+
+        mp_draw.draw_landmarks(frame, hand, mp_hands.HAND_CONNECTIONS)
+
+    # Combine drawing with camera
+    output = cv2.add(frame, canvas)
+
+    cv2.imshow("Virtual Drawing", output)
+
+    if cv2.waitKey(1) & 0xFF == 27:  # ESC to exit
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+
+
+OR (Static code)
+
+cmd install:-m pip install opencv-python 
+
+import cv2
+import numpy as np
+
+# Load image
+img = cv2.imread("C:/Users/Administrator/Downloads/input.png")
+canvas = np.zeros_like(img)
+
+# Convert to HSV
+hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+
+# Masks for green and blue
+green_mask = cv2.inRange(hsv, np.array([40,70,70]), np.array([80,255,255]))
+blue_mask = cv2.inRange(hsv, np.array([100,150,50]), np.array([140,255,255]))
+
+# Draw single dot for green
+green_points = np.column_stack(np.where(green_mask > 0))
+if len(green_points) > 0:
+    y, x = green_points[0]  # pick first point (tip)
+    cv2.circle(canvas, (x, y), 20, (0,255,0), -1)
+
+# Draw single dot for blue
+blue_points = np.column_stack(np.where(blue_mask > 0))
+if len(blue_points) > 0:
+    y, x = blue_points[0]
+    cv2.circle(canvas, (x, y), 20, (255,0,0), -1)
+
+# Merge and show
+output = cv2.addWeighted(img, 0.7, canvas, 0.7, 0)
+cv2.imshow("Virtual Drawing", output)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+
+            `;
+
+                    var text10 = `#5(A) 
+
+            `;
+
+
+                    var text11 = `# 5 (B) 
+
+            `;
+
+
+                    var text12 = `# 5 (C) 
+
+
+            `;
+
+
+
+                    var text13 = `# 6_Triangle-PYOpenGL & GLUT 
+
+#Write a program use PYOpenGL and GLUT TO draw simple triangle
+
+CMD: 
+pip install pygame
+pip install PyOpenGL
+pip install PyOpenGL_accelerate
+
+
+            `;
+
+
+                    var text14 = `#7_Square-PYOpenGL & GLUT 
+#Write a program use PYOpenGL and GLUT TO draw simple square
+
+CMD: 
+pip install pygame
+pip install PyOpenGL
+pip install PyOpenGL_accelerate
+
+from OpenGL.GL import *
+from OpenGL.GLUT import *
+from OpenGL.GLU import *
+
+w,h = (500,500)
+
+def square():
+    glBegin(GL_QUADS)
+    glVertex2f(100,100)
+    glVertex2f(200,100)
+    glVertex2f(200,200)
+    glVertex2f(100,200)
+    glEnd()
+
+def iterate():
+    glViewport(0,0,500,500)
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    glOrtho(0.0,500,0.0,500,0.0,1.0)
+    glMatrixMode(GL_MODELVIEW)
+    glLoadIdentity()
+
+def showscreen():
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT) #Clear Screen
+    glLoadIdentity()
+    iterate()
+    glColor(1.0,0.0,3.0)
+    square()
+    glutSwapBuffers()
+
+glutInit() #Initializing window
+glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE|GLUT_DEPTH) #RGB Mode
+glutInitWindowSize(400,400) #Window size
+glutInitWindowPosition(100,100) #Window position
+glutCreateWindow(b'PyOpen Example - Surabhi Maydeo') #window name
+glutDisplayFunc(showscreen) # set display call back
+glutMainLoop() # start event loop
+
+            `;
+
+
+                    var text15 = `#8_3DCube-PYOpenGl
+ 
+#Write a program with PYOpenGL to draw 3d cubes
+
+CMD: 
+pip install pygame
+pip install PyOpenGL
+pip install PyOpenGL_accelerate
+
+import pygame
+from pygame.locals import *
+from OpenGL.GL import *
+from OpenGL.GLU import *
+
+# Vertices
+v = (
+    (1, -1, -1),
+    (1, 1, -1),
+    (-1, 1, -1),
+    (-1, -1, -1),
+    (1, -1, 1),
+    (1, 1, 1),
+    (-1, -1, 1),
+    (-1, 1, 1)
+)
+
+# Edges
+E = (
+    (0, 1), (0, 3), (0, 4),
+    (2, 1), (2, 3), (2, 7),
+    (6, 3), (6, 4), (6, 7),
+    (5, 1), (5, 4), (5, 7)
+)
+
+def cube():
+    glBegin(GL_LINES)
+    for e1 in E:
+        for v1 in e1:  # FIXED
+            glVertex3fv(v[v1])
+    glEnd()
+def main():
+    pygame.init()
+    display = (800, 600)
+    pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
+    # Setup Projection
+    glMatrixMode(GL_PROJECTION)
+    gluPerspective(45, (display[0] / display[1]), 0.1, 50.0)
+    # Switch to ModelView
+    glMatrixMode(GL_MODELVIEW)
+    glLoadIdentity()
+    glTranslatef(0.0, 0.0, -5)
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:  # FIXED
+                pygame.quit()
+                quit()
+
+        # Rotate cube
+        glRotatef(1, 3, 1, 1)
+
+        # Clear screen and depth buffer
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        cube()
+
+        pygame.display.flip()
+        pygame.time.wait(20)
+main()
+
+            `;
+
+
+                   
+
+            function copyText(text) {
+                navigator.clipboard.writeText(text).then(function () {
+                    document.getElementById('copiedMsg').innerHTML = "Text Copied"
+                }).catch(function (err) {
+                    console.error('Unable to copy text', err);
+                });
+            }
+            </script>
+
+            </body>
+
+            </html>
