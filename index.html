@@ -828,10 +828,67 @@ cv2.destroyAllWindows()
 
 #Write a program use PYOpenGL and GLUT TO draw simple triangle
 
-CMD: 
-pip install pygame
-pip install PyOpenGL
-pip install PyOpenGL_accelerate
+First import package go to the idle right click properties copy path and paste in search bar(C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Scripts) go to script and open
+
+cmd and install 3 packages
+
+1) pip install pygame
+
+2) pip install PyOpenGL
+
+3) pip install PyOpenGL_accelerate
+
+ 
+
+ 
+
+from OpenGL.GL import *
+
+from OpenGL.GLUT import *
+
+from OpenGL.GLU import *
+
+ 
+
+def draw():
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)  # clear screen
+
+    glBegin(GL_TRIANGLES)  # start drawing triangle
+
+    glColor3f(1, 0, 0)  # Red
+
+    glVertex2f(-0.5, -0.5)  # Bottom left vertex
+
+    glColor3f(0, 1, 0)  # Green
+
+    glVertex2f(0.5, -0.5)  # Bottom right vertex
+
+    glColor3f(0, 0, 1)  # Blue
+
+    glVertex2f(0, 0.5)  # Top vertex
+
+    glEnd()  # end drawing
+
+    glutSwapBuffers()
+
+ 
+
+# Initialize GLUT
+
+glutInit()
+
+glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
+
+glutInitWindowSize(400, 400)  # window size
+
+glutInitWindowPosition(100, 100)  # window position
+
+glutCreateWindow(b'py Open GL Example--Sanjana Shahi-30')  # title
+
+glutDisplayFunc(draw)  # set display callback
+
+glutMainLoop()  # start event loop
 
 
             `;
