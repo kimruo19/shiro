@@ -536,19 +536,290 @@ cv2.destroyAllWindows()
 
             `;
 
-                    var text10 = `#5(A) 
+                    var text10 = `#5(A)  Multi-Face and object Detection(Group Photo-classify girls and boys ) 
+
+
+CMD: pip install opencv-python
+or install:-m pip install opencv-python
+#Download this image - https://www.gettyimages.in/detail/news-photo/actors-daniel-radcliffe-emma-watson-and-rupert-grant-on-the-news-photo/2178972456?adppopup=true
+
+import cv2
+import numpy as np
+
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+# Load the image
+image = cv2.imread('harry1.jpg')
+
+# Check if the image was loaded successfully
+if image is None:
+    print("Error: Could not load the image 'group_photo.jpg'. Check the filename and path.")
+    # You can also check if the cascade loaded, although it rarely fails if the path is correct.
+    if face_cascade.empty():
+        print("Error: Could not load the Haar Cascade XML file. Check path.")
+    exit()
+
+# It's good practice to resize large images for faster processing, uncomment if needed
+# scale_factor = 0.5
+# image = cv2.resize(image, (0, 0), fx=scale_factor, fy=scale_factor)
+
+# Add vertical padding (This is now less necessary since bounding boxes are drawn on the face)
+top_padding = 50
+padded_image = cv2.copyMakeBorder(image, top_padding, 0, 0, 0, cv2.BORDER_CONSTANT, value=(255, 255, 255))
+
+# Convert to grayscale (essential for Haar Cascade)
+gray = cv2.cvtColor(padded_image, cv2.COLOR_BGR2GRAY)
+
+# --- 2. Perform Face Detection ---
+# The detectMultiScale function is the core of face detection.
+faces = face_cascade.detectMultiScale(
+    gray,
+    scaleFactor=1.1,     # How much the image size is reduced at each image scale
+    minNeighbors=5,      # How many neighbors each candidate rectangle should have
+    minSize=(30, 30),    # Minimum possible object size. Objects smaller than this are ignored.
+    flags=cv2.CASCADE_SCALE_IMAGE
+)
+
+# --- 3. Labeling Logic ---
+# Note: Haar Cascades only detect faces; they DO NOT determine gender.
+# For demonstration, we will assign your predetermined tags based on the detection order.
+name_tags = ["Male", "Female", "Male"] # Increased the list size
+object_count = 0
+
+# The 'faces' variable now holds the list of detected bounding boxes (x, y, w, h)
+for (x, y, w, h) in faces:
+    
+    # 1. Draw the Bounding Box
+    cv2.rectangle(padded_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+    # 2. Assign Name Tag (Assumes faces are sorted and match the name_tags list)
+    tag = name_tags[object_count] if object_count < len(name_tags) else f"Object {object_count + 1}"
+
+    # 3. Calculate Text Position and Size
+    font_scale = 0.5
+    font_thickness = 2
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    (text_width, text_height), _ = cv2.getTextSize(tag, font, font_scale, font_thickness)
+    
+    # Position the text slightly above the bounding box
+    text_x = max(2, x)
+    text_y = max(20, y - 10) 
+
+    # 4. Draw Background for Text
+    cv2.rectangle(padded_image,
+                  (text_x - 2, text_y - text_height - 4),
+                  (text_x + text_width + 2, text_y),
+                  (255, 255, 255), -1)
+
+    # 5. Draw the Text
+    cv2.putText(padded_image, tag, (text_x, text_y), font, font_scale, (0, 100, 255), font_thickness)
+
+    object_count += 1
+
+print(f"Detected and labeled {object_count} faces.")
+print("--- DISPLAY AND SAVE ---")
+
+# 1. Save the result image
+cv2.imwrite('labeled_group_photo.jpg', padded_image)
+print("Result saved as 'labeled_group_photo.jpg'")
+
+# 2. Display the result image in a window
+cv2.imshow('Face Detector', padded_image)
+
+# Wait indefinitely until a key is pressed (0 means wait forever)
+cv2.waitKey(0)
+
+# Destroy all the windows created by OpenCV
+cv2.destroyAllWindows()
 
             `;
 
 
-                    var text11 = `# 5 (B) 
+                    var text11 = `# 5 (B)  Group Photo-with Person name Detection 
+
+
+CMD: pip install opencv-python
+or install:-m pip install opencv-python
+
+#Download this image - https://www.gettyimages.in/detail/news-photo/actors-daniel-radcliffe-emma-watson-and-rupert-grant-on-the-news-photo/2178972456?adppopup=true
+
+import cv2
+
+# Load image
+img = cv2.imread("harry2.jpg")  # image
+if img is None:
+    print("Error: Image not found!")
+    exit()
+
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# Use OpenCV's built-in Haar cascade for face detection
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+# Detect faces
+faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
+
+# Manually assign names for demonstration (order must match detected faces)
+names = ["Ron", "Hermione", "Harry"]  # Adjust according to your photo
+
+# Loop through faces
+for i, (x, y, w, h) in enumerate(faces):
+    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    
+    # Assign a name from the list, or "Unknown" if not enough names
+    name = names[i] if i < len(names) else "Unknown"
+    
+    cv2.putText(img, name, (x, y - 10),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+
+# Show result
+cv2.imshow("Group Photo Labeling", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 
             `;
 
 
-                    var text12 = `# 5 (C) 
+                    var text12 = `# 5 (C)  Detect and label common object(like eraser,scale,pencil) in a static image using opencv
+
+#download this image - https://www.shutterstock.com/image-vector/stationery-items-isolated-vector-illustration-on-754395457?trackingId=cad3cc57-ddd5-4184-b16d-c4e89953e419
+
+CMD: pip install opencv-python
+install:-m pip install opencv-python
+
+import cv2
+import numpy as np
+
+# Load the image
+image = cv2.imread('pen.jpeg')
+
+# Check if the image was loaded successfully
+if image is None:
+    print("Error: Could not load the image. Check the filename and path.")
+    exit()
+
+# Add vertical padding at the top (e.g., 50 pixels)
+top_padding = 50
+padded_image = cv2.copyMakeBorder(image, top_padding, 0, 0, 0, cv2.BORDER_CONSTANT, value=(255, 255, 255))
+
+# Convert to grayscale and blur
+gray = cv2.cvtColor(padded_image, cv2.COLOR_BGR2GRAY)
+blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+
+# Threshold (inverted binary)
+# The use of THRESH_OTSU helps automatically find the best threshold value.
+_, thresh = cv2.threshold(blurred, 50, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+
+# Find contours
+# RETR_EXTERNAL retrieves only the outermost contours (the objects themselves).
+contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+# Sort contours top-to-bottom then left-to-right
+def sort_contours(cnts):
+    # Get bounding boxes: (x, y, w, h)
+    bounding_boxes = [cv2.boundingRect(c) for c in cnts]
+    # Sort based on y-coordinate (for rows) then x-coordinate (for left-to-right order)
+    return [cnt for _, cnt in sorted(zip(bounding_boxes, cnts), key=lambda b: (b[0][1], b[0][0]))]
+
+contours = sort_contours(contours)
+
+# Define name tags (Ensure the number of tags matches the expected number of objects)
+#name_tags = ["Eraser", "Sharpener", "Scale", "Pencil"]
+name_tags = ["Scale", "Pencil", "Eraser"]
+min_area = 500  # Minimum contour area to filter out small noise/speckles
+object_count = 0
+
+for cnt in contours:
+    if cv2.contourArea(cnt) > min_area:
+        x, y, w, h = cv2.boundingRect(cnt)
+        
+        # 1. Draw the Bounding Box
+        cv2.rectangle(padded_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+        # 2. Assign Name Tag
+        tag = name_tags[object_count] if object_count < len(name_tags) else f"Object {object_count + 1}"
+
+        # 3. Calculate Text Position and Size
+        font_scale = 0.5
+        font_thickness = 2
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        (text_width, text_height), _ = cv2.getTextSize(tag, font, font_scale, font_thickness)
+        
+        # Position the text slightly above the bounding box (y - 10)
+        # We use max(2, ...) to ensure the text doesn't go off the left edge (x) or top edge (y)
+        text_x = max(2, x)
+        text_y = max(20, y - 10) 
+
+        # 4. Draw Background for Text (for better readability)
+        cv2.rectangle(padded_image,
+                      (text_x - 2, text_y - text_height - 4),
+                      (text_x + text_width + 2, text_y),
+                      (255, 255, 255), -1) # -1 means fill the rectangle
+
+        # 5. Draw the Text
+        # The color (0, 100, 255) is an orange/yellow hue (BGR)
+        cv2.putText(padded_image, tag, (text_x, text_y), font, font_scale, (0, 100, 255), font_thickness)
+
+        object_count += 1
+
+# --- DISPLAY AND SAVE FOR LOCAL ENVIRONMENT ---
+
+# 1. Save the result image
+cv2.imwrite('labeled_padded_stationery.jpg', padded_image)
+print("Result saved as 'labeled_padded_stationery.jpg'")
+
+# 2. Display the result image in a window
+# (This is the replacement for cv2_imshow)
+cv2.imshow('Labeled Stationery', padded_image)
+
+# Wait indefinitely until a key is pressed (0 means wait forever)
+# This is crucial for cv2.imshow to work and keep the window open.
+cv2.waitKey(0)
+
+# Destroy all the windows created by OpenCV
+cv2.destroyAllWindows()
 
 
+OR ---- CODE 2 (Static Code)
+# Note: make sure that your downloaded file name is pencil.jpg or eraser.jpg or scale.jpg
+
+import cv2
+import numpy as np
+
+# Load main image
+img = cv2.imread("pencil.jpg")
+if img is None:
+    print("Error: Main image not found!")
+    exit()
+img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+# List of templates and labels
+templates = {
+    "pencil": "pencil.jpg",
+    "eraser": "eraser.jpg",
+    "scale": "scale.jpg"
+}
+
+threshold = 0.7
+
+for label, template_file in templates.items():
+    template = cv2.imread(template_file, 0)
+    if template is None:
+        print(f"Error: Template '{template_file}' not found!")
+        continue
+
+    w, h = template.shape[::-1]
+    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
+    loc = np.where(res >= threshold)
+
+    for pt in zip(*loc[::-1]):
+        cv2.rectangle(img, pt, (pt[0]+w, pt[1]+h), (0,255,0), 2)
+        cv2.putText(img, label, (pt[0], pt[1]-5),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
+
+cv2.imshow("Detected Objects", img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
             `;
 
 
