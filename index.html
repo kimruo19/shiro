@@ -1,1030 +1,716 @@
-            <!DOCTYPE html>
-            <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Copy Text Buttons</title>
-                <style>
-                    button {
-                        margin: 5px;
-                    }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copy Text Buttons</title>
+<style>
+button {
+margin: 5px;
+}
 
-                    body {
-                        background-color: black;
-                        /* Light gray background */
-                        font-family: Arial, sans-serif;
-                        text-align: center;
-                    }
+body {
+background-color: black;
+/* Light gray background */
+font-family: Arial, sans-serif;
+text-align: center;
+}
 
-                    button {
-                        margin: 10px;
-                        padding: 10px;
-                        font-size: 16px;
-                        background-color: DimGray;
-                        /* Light gray button background */
-                        border: 1px solid #560b0b;
-                        /* Dark gray border */
-                        cursor: pointer;
-                    }
+button {
+margin: 10px;
+padding: 10px;
+font-size: 16px;
+background-color: DimGray;
+/* Light gray button background */
+border: 1px solid #560b0b;
+/* Dark gray border */
+cursor: pointer;
+}
 
-                    button:hover {
-                        background-color: #ccc;
-                    /* Slightly darker background on hover */
-                    }
+button:hover {
+background-color: #ccc;
+/* Slightly darker background on hover */
+}
 
-                </style>
-            </head>
+</style>
+</head>
 
-            <body>
+<body>
 
-                <button onclick="copyText(text1)"> 1(A)  Real-Time Processing and Object Detection</button>
-                <button onclick="copyText(text2)"> 1(B)	 Gray Scale Conversion</button>
-                <button onclick="copyText(text3)"> 1(C)  Edge detection</button>
-                <button onclick="copyText(text4)"> 1(D)	Face detection</button>
-                <button onclick="copyText(text5)"> 1(E)	Image Cropping and Mouse Events </button>
-                <button onclick="copyText(text6)"> 1(F)	Save the image</button>
-                <button onclick="copyText(text7)"> 2 - Multicolor Object Tracking </button>
-                <button onclick="copyText(text8)"> 3 - Real Time Doc Scanners</button>
-                <button onclick="copyText(text9)"> 4 - Virtual drawing using finger tracking (only green and blue)</button>
-                <button onclick="copyText(text10)">5 (A) Multi-Face and object Detection(Group Photo-classify girls and boys )</button>
-                <button onclick="copyText(text11)">5 (B) Group Photo-with Person name Detection</button>
-                <button onclick="copyText(text12)">5 (C)  Detect and label common object(like eraser,scale,pencil) in a static image using opencv</button>
-                <button onclick="copyText(text13)">6 - Write a program use PYOpenGL and GLUT TO draw simple triangle</button>
-                <button onclick="copyText(text14)">7 - Write a program use PYOpenGL and GLUT TO draw simple square</button>
-                <button onclick="copyText(text15)">8 - Write a program with PYOpenGL to draw 3d cubes</button>
-                
-                
-                <p id="copiedMsg"></p>
-                <script>
-                    var text1 = `#1A_Image Capture Real-Time Processing and Object Detection
-
-cmd- pip install opencv-python 
-
-import cv2
-
-img = cv2.imread("input.png")   
+<button onclick="copyText(text1)"> 1-A:Scalar Operations </button>
+<button onclick="copyText(text2)"> 1-B:Vector Operations </button>
+<button onclick="copyText(text3)"> 1-C:Matrix Operations </button>
+<button onclick="copyText(text4)"> 1-D:Tensors operations </button>
+<button onclick="copyText(text5)"> 2:Matrix multiplication & findings eigen vectors & eigen values using tensorflow </button>
+<button onclick="copyText(text6)"> 3:Matrix Operations </button>
+<button onclick="copyText(text7)"> 4:Solving XOR problem using deep feed forward network </button>
+<button onclick="copyText(text8)"> 5:Deep Neural network for performing Binary Classification. </button>
+<button onclick="copyText(text9)"> 6-A:Simple Ridge Regression (L2 Regularization) </button>
+<button onclick="copyText(text10)">6-B:Simple Ridge Regression (L1 Regularization)</button>
+<button onclick="copyText(text11)">7:PCA to reduce overfitting</button>
+<button onclick="copyText(text12)">8-A:Find the net input yin1 and yin2 appl bipolar activation function and display the output of y1 and y2.</button>
+<button onclick="copyText(text13)">8-B:Design a simple neural network with 1 input node and 1 output node. Calculate the net input (yin) and apply the binary activation function.</button>
+<button onclick="copyText(text14)">8-C:Implement a neural network using both binary and bipolar sigmoidal activation functions with 2 input and 1 output node. Also, include bias </button>
+<button onclick="copyText(text15)">9-A :Hebb network to implement logical AND function</button>
+<button onclick="copyText(text16)">9-B : Delta rule network to implement logical OR function with bipolar inputs and targets.</button>
+<button onclick="copyText(text17)">10-A:Gradient Descent Optimization</button>
+<button onclick="copyText(text18)">10-B:Multiclass classification and predicting the class</button>
 
 
-if img is None:
-    print("Image not found!")
+<p id="copiedMsg"></p>
+<script>
+var text1 = `#1-A:Scalar Operations
+
+#Implementation of Scalars with its various operations
+# Code:
+a = 10
+b = 3.33
+
+print("a = ",a)
+print("b = ",b)
+
+
+print("Type of a :",type(a))
+print("Type of b :",type(b))
+
+
+print("Addition =" ,(a + b))
+print("Subtraction =" ,(a - b))
+print("multiplication =" ,(a * b))
+print("Division =" ,(a / b))
+
+
+`;
+
+
+var text2 = `#1-B:Vector Operations
+
+#Implementation of Vectors with its various operations
+#Code:
+import numpy as np
+
+x = np.array([1,2,3])
+y = np.array([4,5,6])
+
+
+print("Vector x:", x)
+print("Vector y:", y)
+
+
+print("Addition of vectors:", np.add(x,y))
+print("Subtraction of vectors:", np.subtract(x,y))
+print("Multiplication of vectors:", np.multiply(x,y))
+print("Division of vectors:", np.divide(x,y))
+
+`;
+
+
+var text3 = ` #1-C:Matrix Operations
+
+#Implementation of Matrix with its various operations
+#Code:
+import numpy as np
+m1 = np.matrix([
+    [1,2,3],
+    [2,6,4],
+    [8,1,9]
+])
+m2 = np.matrix([
+    [11,2,6],
+    [21,6,4],
+    [3,12,9]
+])
+print("Matrix 1 :")
+print(m1)
+print("Shape of Matrix 1 :",m1.shape)
+
+print("Matrix 2 :")
+print(m2)
+print("Shape of Matrix 2 :",m2.shape)
+
+print("Addition of Matrix :\n",np.add(m1,m2))
+print("Subtraction of Matrix :\n",np.subtract(m1,m2))
+print("Multiplication of Matrix :\n",np.multiply(m1,m2))
+print("Division of Matrix :\n",np.divide(m1,m2))
+print("Sum of matrix m1 elements:", m1.sum())
+print("Sum of matrix m2 elements:", m2.sum())
+print("Max of matrix m1 elements:", m1.max())
+print("Max of matrix m2 elements:", m2.max())
+print("Min of matrix m1 elements:", m1.min())
+print("Min of matrix m2 elements:", m2.min())
+print("Transpose of matrix m1 :\n",m1.transpose())
+print("Transpose of matrix m2 :\n",m2.transpose())
+print("Inverse of matrix m1 :\n",np.linalg.inv(m1))
+print("Inverse of matrix m2 :\n",np.linalg.inv(m2))
+
+
+`;
+
+
+var text4 = ` #1-D:Tensors operations
+
+#Implementation of Tensors with its various operations
+#Code: 
+
+import torch as t
+a = t.tensor([26])
+print("Tensor a=", a)
+print("Shape of Tensor a:", a.shape)
+print("Type of Tensor a:", type(a))
+
+`;
+
+
+
+var text5 = `#2:Matrix multiplication & findings eigen vectors & eigen values using tensorflow
+
+#Perform Matrix multiplication and findings eigen vectors and eigen values using tensorflow
+#Code:
+import tensorflow as tf
+
+x = tf.constant([1,2,3,6,2,7], shape = [3,2])
+y = tf.constant([1,4,2,7,3,9], shape = [2,3])
+
+
+print("Matrix x", x)
+print("Matrix y", y)
+
+
+z = tf.matmul(x,y)
+print("Matrix multiplication of x and y", z)
+
+
+e_matrix = tf.random.uniform([2,2], minval=3, maxval=10, dtype=tf.float32, name= "matrixA")
+print("Matrix (e_matrix:)", e_matrix)
+eigen_values, eigen_vectors = tf.linalg.eigh(e_matrix)
+print("Eigen values", eigen_values)
+print("Eigen vectors", eigen_vectors)
+
+`;
+
+
+var text6 = ` #3:Matrix Operations
+
+#Implementation of Matrix Addition
+#Code:
+import numpy as np
+
+x = np.array([[1,2,3],[4,5,6],[7,8,9]])
+y = np.array([[9,8,7],[6,5,4],[3,2,2]])
+
+
+print("Matrix x: \n", x)
+print("Matrix y: \n", y)
+print("Shape of x: \n", x.shape)
+print("Shape of y: \n", y.shape)
+print("Matrix Scaler Addition: \n", x+2)
+print("Addition of 2 Matrix: \n", np.add(x,y))
+print("Sum of Matrix x Elements: \n", x.sum())
+print("Sum of Matrix y Elements: \n", y.sum())
+print("Matrix Vector Addition: \n")
+v = np.array([1,2,3])
+print(x+v)
+m1 = np.array([[1,2,3],[2,6,4],[8,1,9]])
+print("Matrix Scaler Multiplication:")
+s = 4
+mult = m1 * s
+print("Multiplication: \n",mult)
+print("Matrix-Matrix Multiplication")
+m11 = np.matrix([[1,2],[4,3]])
+print("Matrix m11", m11)
+print("Matrix m11 shape", m11.shape)
+m12 = np.matrix([[1,2,3], [4,5,6]])
+print("Matrix m12", m12)
+print("Matrix m12 shape", m12.shape)
+print("Matrix Multiplication Result: \n", np.matmul(m11,m12))
+print("Transpose of matrix m11 \n")
+m11t = m11.transpose()
+print(m11t)
+print("Shape of Transpose m11 \n", m11t.shape)
+print("Transpose of matrix m12 \n")
+m12t = m12.transpose()
+print(m12t)
+print("Shape of Transpose m12 \n", m12t.shape)
+print("Inverse of matrix m11 \n")
+m11i = np.linalg.inv(m11)
+print(m11i)
+print("Shape of Inverse m11 \n", m11i.shape)
+
+`;
+
+
+var text7 = `# 4:Solving XOR problem using deep feed forward network
+
+#Solving XOR problem using a deep feed-forward network.
+#Code:
+from ast import mod
+import numpy as np
+from keras.models import Sequential
+from keras.layers import Dense
+model = Sequential()
+model.add(Dense(units = 2, input_dim=2, activation='relu'))
+model.add(Dense(units = 1, activation='sigmoid'))
+model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['binary_accuracy'])
+print(model.summary())
+print(model.get_weights())
+X = np.array([[0,0], [0,1], [10,0.], [1.,1.]])
+Y = np.array([0., 1., 1.,0.])
+model.fit(X,Y, epochs=10, batch_size=4)
+X = np.array([[0,0], [0,1], [10,0.], [1.,1.]])
+Y = np.array([0., 1., 1.,0.])
+model.fit(X,Y, epochs=10, batch_size=4)
+
+
+`;
+
+
+var text8 = `# 5:Deep Neural network for performing Binary Classification.
+
+#Code:
+# Deep Neural Network for Binary Classification (No CSV required)
+
+from sklearn.datasets import load_diabetes
+from sklearn.preprocessing import StandardScaler
+from keras.models import Sequential
+from keras.layers import Dense
+import numpy as np
+
+# Load dataset directly
+data = load_diabetes()
+
+X = data.data
+Y = data.target
+
+# Convert regression target into binary (0 or 1)
+Y = (Y > Y.mean()).astype(int)
+
+print("Features:\n", X)
+print("Labels:\n", Y)
+
+# Normalize data (important for neural networks)
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+# Create model
+model = Sequential()
+model.add(Dense(12, input_dim=X.shape[1], activation='relu'))
+model.add(Dense(8, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
+
+# Compile model
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+# Train model
+model.fit(X, Y, epochs=50, batch_size=10)
+
+# Evaluate model
+loss, accuracy = model.evaluate(X, Y)
+print("Accuracy of model is:", accuracy * 100)
+
+# Predictions
+prediction = model.predict(X)
+print(prediction)
+
+`;
+
+
+var text9 = `# 6-A:Simple Ridge Regression (L2 Regularization)
+
+#Code:
+import numpy as np
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+
+print("all libraries imported")
+X = np.array([[1], [2], [3], [4], [5]])
+y = np.array([30000, 35000, 40000, 45000, 50000])
+
+print("Input :",X)
+print("Output :",y)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+print("X_train:",X_train)
+print("X_test: ",X_test)
+print("y_train:",y_train)
+print("y_test :",y_test)
+ridge = Ridge(alpha=1.0)
+# alpha = regularization strength
+ridge.fit(X_train, y_train)
+print("Model is tarined !!!")
+print(ridge)
+# Prediction
+#test_data = [[2]]
+y_pred = ridge.predict(X_test)
+
+print("Predicted Salary:", y_pred)
+print("MSE:", mean_squared_error(y_test, y_pred))
+print("Coefficient:", ridge.coef_)
+print("Intercept:", ridge.intercept_)
+
+`;
+
+var text10 = `#6-B:Simple Ridge Regression (L1 Regularization)
+
+#Code:
+from sklearn.linear_model import Lasso
+print("all libraries imported")
+#Lasso regression model (L1 regularization)
+lasso = Lasso(alpha=0.1)
+lasso.fit(X_train, y_train)
+#prediction
+y_pred_lasso = lasso.predict(X_test)
+#Output
+print("Predicted Salary:", y_pred_lasso)
+print("MSE:", mean_squared_error(y_test, y_pred_lasso))
+print("Coefficient:", lasso.coef_)
+print("Intercept:", lasso.intercept_)
+
+`;
+
+
+var text11 = `# 7:PCA to reduce overfitting
+
+#Implementation on PCA to reduce overfitting - Principal Component Analysis (PCA)
+#Code:
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+# Reading Dataset
+from sklearn.datasets import load_iris
+iris = load_iris()
+print(iris)
+import pandas as pd
+X = pd.DataFrame (iris.data, columns=iris.feature_names)
+y = pd.Series(iris.target, name="Target")
+print("Features :")
+print(X)
+print("Target :")
+print(y)
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+print("X_train :")
+print(X_train)
+print("X_test :")
+print(X_test)
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+# Display Training and Testing data
+print("DataSet before PCA ");
+print(X_train)
+print(X_test);
+# Creating PCA object
+pca = PCA()
+X_train = pca.fit_transform(X_train)
+X_test = pca.transform(X_test)
+# Giving a Principal feature to model
+pca = PCA(n_components=2)
+X_train = pca.fit_transform(X_train)
+X_test = pca.transform(X_test)
+print("DataSet After PCA ");
+print(X_train)
+print(X_test);
+
+`;
+
+
+var text12 = `# 8-A:Find the net input yin1 and yin2 appl bipolar activation function and display the output of y1 and y2.
+
+#Consider the following feed-forward neural network. Diagram here: x1= 0.2, x2=0.5,w11=0.3, w12= 0.2, w21=-0.1, w22=0.5y1=?, y2=?Find the net input yin1 and yin2 appl bipolar activation function and display the output of y1 and y2.
+#Code:
+# Given inputs
+x1 = 0.2
+x2 = 0.5
+# Given weights
+w11 = 0.2
+w21 = -0.1
+w12 = 0.2
+w22= 0.5
+# Calculate net inputs
+yin1 = x1 * w11 + x2 * w21
+yin2 = x1 * w12 + x2 * w22
+#Bipolar activation function
+def bipolar_activation(net):
+if net >= 0:
+return 1
 else:
-    cv2.imshow("Captured Image", img)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+return -1
+
+#Calculate Outputs
+y1=bipolar_activation(yin1)
+y2=bipolar_activation(yin2)
+
+# Display result
+print("Net input yin1 =", yin1)
+print("Net input yin2 =", yin2)
+print("Output y1 =", y1)
+print("Output y2=", y2)
+
+`;
 
 
-                `;
+
+var text13 = `# 8-B:Design a simple neural network with 1 input node and 1 output node. Calculate the net input (yin) and apply the binary activation function.
+
+#Code:
+# Given inputs
+x1 = 0.2
+x2 = 0.5
+# Given weights
+w11 = 0.2
+w21 = -0.1
+w12 = 0.2
+w22= 0.5
+# Calculate net inputs
+yin1 = x1 * w11 + x2 * w21
+yin2 = x1 * w12 + x2 * w22
+#Bipolar activation function
+def bipolar_activation(net):
+if net >= 0:
+return 1
+else:
+return -1
+
+#Calculate Outputs
+y1=bipolar_activation(yin1)
+y2=bipolar_activation(yin2)
+
+# Display result
+print("Net input yin1 =", yin1)
+print("Net input yin2 =", yin2)
+print("Output y1 =", y1)
+print("Output y2=", y2)
 
 
-                    var text2 = `# 1B_GrayScaleConversion
-
-cmd: pip install opencv-python 
-
-import cv2
-img = cv2.imread("input.png")
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-cv2.imshow("Original Image", img)
-cv2.imshow("Gray Image", gray)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-            `;
+`;
 
 
-                    var text3 = ` #1C_Edge detection
+var text14 = `#8-C:Implement a neural network using both binary and bipolar sigmoidal activation functions with 2 input and 1 output node. Also, include bias
 
-cmd: pip install opencv-python
-
-import cv2
-
-# Load image
-img = cv2.imread("input.png")
-
-# Convert to grayscale (edge detection works on gray images)
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-# Apply Canny Edge Detection
-edges = cv2.Canny(gray, 100, 200)
-
+#Code:
+import math
+# Inputs
+x1 = 0.6
+x2 = 0.4
+# Weights
+w1 = 0.8
+w2 = - 0.5
+# Bias
+b = 0.2
+# Net input calculation
+yin = x1 * w1 + x2 * w2 + b
+# Binary Sigmoid Activation
+def binary_sigmoid(net):
+    return 1 / (1 + math.exp(-net))
+# Bipolar Sigmoid Activation
+def bipolar_sigmoid(net):
+return (2 / (1 + math.exp(-net))) - 1
+# Outputs
+output_binary = binary_sigmoid(yin)
+output_bipolar = bipolar_sigmoid(yin)
 # Display results
-cv2.imshow("Original Image", img)
-cv2.imshow("Gray Image", gray)
-cv2.imshow("Edge Detection", edges)
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+print("Net Input (yin) =", yin)
+print("Output using Binary Sigmoid =", output_binary)
+print("Output using Bipolar Sigmoid =", output_bipolar)
 
 
-            `;
+`;
 
 
-                    var text4 = ` # 1D_Face detection
+var text15 = `# 9-A :Hebb network to implement logical AND function
 
-cmd : pip install opencv-python
-
-import cv2
-
-# Load image
-img = cv2.imread("single.jpg")
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-# Load Haar cascade using OpenCV's built-in path
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
-
-print("Cascade loaded:", face_cascade.empty())  # Should print False
-
-faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-
-for (x, y, w, h) in faces:
-    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
-
-cv2.imshow("Face Detection", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-
-            `;
-
-
-
-                    var text5 = `#1E_ImageCropping & Mouse Events
-
-cmd: pip install opencv-python
-
-import cv2
-
-# Load image
-img = cv2.imread("single.jpg")
-
-# Function to crop on mouse click
-def crop(event, x, y, flags, param):
-    global pt1, pt2, cropped
-    if event == cv2.EVENT_LBUTTONDOWN:
-        pt1 = (x, y)
-    elif event == cv2.EVENT_LBUTTONUP:
-        pt2 = (x, y)
-        cropped = img[pt1[1]:pt2[1], pt1[0]:pt2[0]]
-        cv2.imshow("Cropped Image", cropped)
-
-# Initialize
-pt1 = pt2 = (0,0)
-cropped = None
-
-cv2.namedWindow("Image")
-cv2.setMouseCallback("Image", crop)
-
-cv2.imshow("Image", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-
-
-            `;
-
-
-                    var text6 = ` #1F_Save Cropped image
-
-cmd: install opencv-python
-
-import cv2
-# Load image
-img = cv2.imread("single.jpg")
-
-# Function to crop and save on mouse
-def crop(event, x, y, flags, param):
-    global pt1, pt2, cropped
-    if event == cv2.EVENT_LBUTTONDOWN:
-        pt1 = (x, y)
-    elif event == cv2.EVENT_LBUTTONUP:
-        pt2 = (x, y)
-        cropped = img[pt1[1]:pt2[1], pt1[0]:pt2[0]]
-        cv2.imshow("Cropped Image", cropped)
-        cv2.imwrite("cropped_image.png", cropped)  # Save automatically
-        print("Cropped image saved as 'cropped_image.png'")
-
-# Initialize
-pt1 = pt2 = (0,0)
-cropped = None
-
-cv2.namedWindow("Image")
-cv2.setMouseCallback("Image", crop)
-
-cv2.imshow("Image", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-                    
-
-            `;
-
-
-                    var text7 = `# 2_MulticlrObjectTracking
-
-cmd: pip install opencv-python
-
-import cv2
+#Code:
 import numpy as np
 
-# Load image
-img = cv2.imread("person.jpg")
+# Training data for AND gate (bipolar form)
+X = np.array([[-1, -1],[-1,  1],[ 1, -1],[ 1,  1]])
 
-# Convert to HSV color space (better for color detection)
-hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+# Target outputs
+Y = np.array([-1, -1, -1, 1])
 
-# Define color ranges in HSV
-# Example: Red, Green, Blue
-colors = {
-    "Red": ([0, 120, 70], [10, 255, 255]),
-    "Green": ([36, 50, 70], [89, 255, 255]),
-    "Blue": ([94, 80, 2], [126, 255, 255])
+# Initialize weights and bias
+weights = np.zeros(2)
+bias = 0
+
+# Hebbian Learning Rule
+for i in range(len(X)):
+    weights = weights + X[i] * Y[i]
+    bias = bias + Y[i]
+
+print("Final Weights:", weights)
+print("Final Bias:", bias)
+
+# Testing Phase
+def activation(net):
+    return 1 if net >= 0 else -1
+
+# Test all inputs
+for i in range(len(X)):
+    net = np.dot(weights, X[i]) + bias
+    output = activation(net)
+    print("Input:", X[i], "Output:", output)
+
+
+`;
+
+var text16 = `#9-B : Delta rule network to implement logical OR function with bipolar inputs and targets.
+
+#Code:
+import numpy as np
+# Bipolar OR gate dataset
+X = np.array([
+[-1, -1],
+[-1, 1],
+[1, -1],
+[1, 1]
+])
+T = np.array([-1, 1, 1, 1]) # Target outputs
+# Initialize weights and bias
+weights = np.zeros(2)
+bias = 0
+learning_rate = 0.1
+epochs = 10
+# Training using Delta Rule
+for epoch in range(epochs):
+for i in range(len(X)):
+    net = np.dot (X[i], weights) + bias
+    error = T[i] - net
+    # Update weights and bias
+    weights = weights + learning_rate * error * X[i]
+    bias = bias + learning_rate * error
+print("Final Weights:", weights)
+print("Final Bias:", bias)
+# Testing Phase (Using Sign Activation)
+def activation(net):
+return 1 if net >= 0 else -1
+print("\nTesting OR Gate using Delta Rule Network")
+for i in range(len(X)):
+net = np.dot(X[i], weights) + bias
+output = activation(net)
+print(f"Input: {X[i]} Output: {output}")
+
+`;
+
+var text17 = `#10-A:Gradient Descent Optimization
+
+#Implementation of Gradient Descent Optimization.
+#Code:
+import numpy as np
+
+# OR Gate Dataset
+X = np.array([[0,0],
+[0,1],
+[1,0],
+[1,1]])
+
+T = np.array([0,1,1,1])
+
+# Initialize weights and bias
+np.random.seed(0)
+w = np.random.randn(2)
+b = np.random.randn()
+
+learning_rate = 0.5
+epochs = 1000
+
+# Sigmoid function
+def sigmoid(x):
+    return 1/(1 + np.exp(-x))
+
+# Training using Gradient Descent
+for epoch in range(epochs):
+    total_error = 0
+
+    for i in range(len(X)):
+
+        # Forward pass
+        yin = np.dot(X[i], w) + b
+        y = sigmoid(yin)
+
+        # Error
+        error = T[i] - y
+        total_error += 0.5 * error**2
+
+        # Gradient (delta)
+        delta = error * y * (1 - y)
+
+        # Update weights and bias
+        w = w + learning_rate * delta * X[i]
+        b = b + learning_rate * delta
+
+# Testing
+print("Trained Weights:", w)
+print("Trained Bias:", b)
+
+print("\nTesting OR Gate:")
+for i in range(len(X)):
+    y = sigmoid(np.dot(X[i], w) + b)
+    print(X[i], "->", round(y))
+
+
+`;
+
+var text18 = `#10-B:Multiclass classification and predicting the class
+
+#Deep feedforward network with 2 hidden layers for performing multiclass classification and predicting the class.
+
+#Code
+#Step1: Importing all libraries
+from keras.models import Sequential
+from keras.layers import Dense
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.datasets import make_blobs
+print("All libraries are imported !!!")
+
+#Step 2: Read dataset(make_blobs)
+X, Y = make_blobs(n_samples=100, n_features=2, centers=2, random_state=1)
+scalar = MinMaxScaler()
+scalar.fit(X)
+X = scalar.transform(X)
+print("X=")
+print(X)
+print("Y=")
+print(Y)
+
+#Step3: Model Creation (Sequential creation)
+model = Sequential()
+model.add(Dense(4, input_dim=2, activation='relu'))
+model.add(Dense(4, activation='relu'))
+model.add(Dense (1, activation='sigmoid'))
+print("model is created !!!")
+print(model)
+print("Model Summary")
+print(model.summary())
+
+#Step4: Model Compilation and training
+model.compile(loss='binary_crossentropy', optimizer='adam')
+model.fit(X, Y, epochs=500)
+print("Model is tarined !!!")
+
+#Step5: Model Testing
+Xnew, Yreal = make_blobs(n_samples=3, centers=2, n_features=2, random_state=1)
+Xnew = scalar.transform (Xnew)
+Ynew = (model.predict(Xnew) > 0.5).astype("int32")
+for i in range(len(Xnew)):
+print("X=%s, Predicted=%s, Desired=%s"%(Xnew[i], Ynew[i], Yreal[i]))
+
+
+`;
+
+
+
+function copyText(text) {
+navigator.clipboard.writeText(text).then(function () {
+document.getElementById('copiedMsg').innerHTML = "Text Copied"
+}).catch(function (err) {
+console.error('Unable to copy text', err);
+});
 }
+</script>
 
-# Detect and mark each color
-for color_name, (lower, upper) in colors.items():
-    lower = np.array(lower)
-    upper = np.array(upper)
-    
-    # Create mask for this color
-    mask = cv2.inRange(hsv, lower, upper)
-    
-    # Find contours
-    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    
-    for cnt in contours:
-        area = cv2.contourArea(cnt)
-        if area > 500:  # filter small areas
-            x, y, w, h = cv2.boundingRect(cnt)
-            cv2.rectangle(img, (x, y), (x+w, y+h), (0,255,0), 2)
-            cv2.putText(img, color_name, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
+</body>
 
-# Show result
-cv2.imshow("Multicolor Tracking", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-
-            `;
-
-
-                    var text8 = `# 3_RealTimeDocScanners
-
-cmd: pip install opencv-python 
-
-import cv2
-import numpy as np
-import os
-import datetime
-import time
- 
-# Create save folder if it doesn't exist
-SAVE_DIR = "scanned_documents"
-os.makedirs(SAVE_DIR, exist_ok=True)
- 
-# Camera setup
-cap = cv2.VideoCapture(0)
-cap.set(3, 640)
-cap.set(4, 480)
- 
-print("Hold your book clearly in the frame")
-print("ESC to exit, 'm' to manually crop with mouse")
- 
-drawing = False
-manual_pts = []
-last_auto_save_time = 0
-AUTO_SAVE_INTERVAL = 5  # seconds between auto-saves
- 
-def reorder_points(pts):
-    pts = pts.reshape((4, 2))
-    new_pts = np.zeros((4, 2), dtype=np.float32)
-    add = pts.sum(1)
-    diff = np.diff(pts, axis=1)
-    new_pts[0] = pts[np.argmin(add)]
-    new_pts[2] = pts[np.argmax(add)]
-    new_pts[1] = pts[np.argmin(diff)]
-    new_pts[3] = pts[np.argmax(diff)]
-    return new_pts
- 
-def get_warp(image, points, w=600, h=800):
-    points = reorder_points(points)
-    dest = np.array([[0, 0], [w, 0], [w, h], [0, h]], dtype=np.float32)
-    matrix = cv2.getPerspectiveTransform(points, dest)
-    warped = cv2.warpPerspective(image, matrix, (w, h))
-    return warped
- 
-def draw_manual(event, x, y, flags, param):
-    global drawing, manual_pts
-    if event == cv2.EVENT_LBUTTONDOWN:
-        drawing = True
-        manual_pts = [(x, y)]
-    elif event == cv2.EVENT_LBUTTONUP:
-        drawing = False
-        manual_pts.append((x, y))
- 
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        break
- 
-    original = frame.copy()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    blur = cv2.GaussianBlur(gray, (5, 5), 1)
- 
-    # More robust edge detection using adaptive threshold
-    thresh = cv2.adaptiveThreshold(
-        gray, 255,
-        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-        cv2.THRESH_BINARY,
-        11, 2)
-    edges = cv2.Canny(thresh, 50, 150)
- 
-    contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    contours = sorted(contours, key=cv2.contourArea, reverse=True)
- 
-    doc_contour = None
-    for cnt in contours:
-        area = cv2.contourArea(cnt)
-        if area < 15000 or area > frame.shape[0] * frame.shape[1] * 0.9:
-            continue
-        peri = cv2.arcLength(cnt, True)
-        approx = cv2.approxPolyDP(cnt, 0.02 * peri, True)
-        if len(approx) == 4:
-            doc_contour = approx
-            break
- 
-    debug = frame.copy()
-    for cnt in contours:
-        if cv2.contourArea(cnt) > 15000:
-            cv2.drawContours(debug, [cnt], -1, (255, 0, 0), 2)
- 
-    if doc_contour is not None:
-        cv2.drawContours(debug, [doc_contour], -1, (0, 255, 0), 3)
-        warped = get_warp(original, doc_contour)
- 
-        # Post-warp thresholding for cleaner scan
-        gray_warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
-        gray_warped = cv2.GaussianBlur(gray_warped, (5, 5), 0)
-        _, scanned = cv2.threshold(gray_warped, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
- 
-        cv2.imshow("Scanned", scanned)
- 
-        # Auto-save if enough time has passed
-        current_time = time.time()
-        if current_time - last_auto_save_time > AUTO_SAVE_INTERVAL:
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            file_name = os.path.join(SAVE_DIR, f"auto_scan_{timestamp}.png")
-            cv2.imwrite(file_name, scanned)
-            print(f"[AUTO-SAVE] Document saved as {file_name}")
-            last_auto_save_time = current_time
- 
-    cv2.imshow("Detected Contours", debug)
- 
-    # Check for manual crop
-    if len(manual_pts) == 2:
-        x1, y1 = manual_pts[0]
-        x2, y2 = manual_pts[1]
-        x_start, x_end = sorted([x1, x2])
-        y_start, y_end = sorted([y1, y2])
-        manual_crop = original[y_start:y_end, x_start:x_end]
-        if manual_crop.shape[0] > 0 and manual_crop.shape[1] > 0:
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            manual_file = os.path.join(SAVE_DIR, f"manual_scan_{timestamp}.png")
-            cv2.imshow("Manual Crop", manual_crop)
-            cv2.imwrite(manual_file, manual_crop)
-            print(f"[MANUAL SAVE] Manual crop saved as {manual_file}")
-            manual_pts = []
- 
-    key = cv2.waitKey(10) & 0xFF
-    if key == ord('m'):
-        print("Click and drag to draw cropping box manually...")
-        cv2.setMouseCallback("Detected Contours", draw_manual)
-    elif key == 27:
-        break
- 
-    time.sleep(0.01)  # Slight delay to reduce CPU usage
- 
-cap.release()
-cv2.destroyAllWindows()
-
-
-OR (Static code 2)
-
-cmd: py -m pip install pymupdf
-or pip install pymupdf
-     m pip install opencv-python
-
-
-import fitz  # PyMuPDF
-import cv2
-import numpy as np
-
-pdf = fitz.open("252611101100001.pdf")
-page = pdf[0]  # first page
-pix = page.get_pixmap()
-
-img = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, 3)
-
-cv2.imshow("PDF Page", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-
-
-            `;
-
-
-                    var text9 = `# 4_Virtual Drawing using finger tracking 
-
-cmd:
-pip install opencv-python 
-pip install opencv-python mediapipe
-or
-pip install mediapipe --user
-
-import cv2
-import mediapipe as mp
-
-# Initialize MediaPipe Hand Detector
-mp_hands = mp.solutions.hands
-mp_draw = mp.solutions.drawing_utils
-
-hands = mp_hands.Hands(max_num_hands=1)
-cap = cv2.VideoCapture(0)
-
-# Canvas for drawing
-canvas = None
-
-while True:
-    success, frame = cap.read()
-    if not success:
-        break
-
-    frame = cv2.flip(frame, 1)
-
-    # Create canvas first time
-    if canvas is None:
-        canvas = frame.copy() * 0
-
-    rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    results = hands.process(rgb)
-
-    if results.multi_hand_landmarks:
-        hand = results.multi_hand_landmarks[0]
-
-        # Get index finger tip: landmark 8
-        h, w, c = frame.shape
-        x = int(hand.landmark[8].x * w)
-        y = int(hand.landmark[8].y * h)
-
-        # Draw circle on fingertip
-        cv2.circle(frame, (x, y), 8, (0, 0, 255), -1)
-
-        # Draw on canvas
-        cv2.circle(canvas, (x, y), 8, (0, 0, 255), -1)
-
-        mp_draw.draw_landmarks(frame, hand, mp_hands.HAND_CONNECTIONS)
-
-    # Combine drawing with camera
-    output = cv2.add(frame, canvas)
-
-    cv2.imshow("Virtual Drawing", output)
-
-    if cv2.waitKey(1) & 0xFF == 27:  # ESC to exit
-        break
-
-cap.release()
-cv2.destroyAllWindows()
-
-
-OR (Static code)
-
-cmd install:-m pip install opencv-python 
-
-import cv2
-import numpy as np
-
-# Load image
-img = cv2.imread("C:/Users/Administrator/Downloads/input.png")
-canvas = np.zeros_like(img)
-
-# Convert to HSV
-hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-
-# Masks for green and blue
-green_mask = cv2.inRange(hsv, np.array([40,70,70]), np.array([80,255,255]))
-blue_mask = cv2.inRange(hsv, np.array([100,150,50]), np.array([140,255,255]))
-
-# Draw single dot for green
-green_points = np.column_stack(np.where(green_mask > 0))
-if len(green_points) > 0:
-    y, x = green_points[0]  # pick first point (tip)
-    cv2.circle(canvas, (x, y), 20, (0,255,0), -1)
-
-# Draw single dot for blue
-blue_points = np.column_stack(np.where(blue_mask > 0))
-if len(blue_points) > 0:
-    y, x = blue_points[0]
-    cv2.circle(canvas, (x, y), 20, (255,0,0), -1)
-
-# Merge and show
-output = cv2.addWeighted(img, 0.7, canvas, 0.7, 0)
-cv2.imshow("Virtual Drawing", output)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-
-
-            `;
-
-                    var text10 = `#5(A)  Multi-Face and object Detection(Group Photo-classify girls and boys ) 
-
-
-CMD: pip install opencv-python
-or install:-m pip install opencv-python
-#Download this image - https://www.gettyimages.in/detail/news-photo/actors-daniel-radcliffe-emma-watson-and-rupert-grant-on-the-news-photo/2178972456?adppopup=true
-
-import cv2
-import numpy as np
-
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-
-# Load the image
-image = cv2.imread('harry1.jpg')
-
-# Check if the image was loaded successfully
-if image is None:
-    print("Error: Could not load the image 'group_photo.jpg'. Check the filename and path.")
-    # You can also check if the cascade loaded, although it rarely fails if the path is correct.
-    if face_cascade.empty():
-        print("Error: Could not load the Haar Cascade XML file. Check path.")
-    exit()
-
-# It's good practice to resize large images for faster processing, uncomment if needed
-# scale_factor = 0.5
-# image = cv2.resize(image, (0, 0), fx=scale_factor, fy=scale_factor)
-
-# Add vertical padding (This is now less necessary since bounding boxes are drawn on the face)
-top_padding = 50
-padded_image = cv2.copyMakeBorder(image, top_padding, 0, 0, 0, cv2.BORDER_CONSTANT, value=(255, 255, 255))
-
-# Convert to grayscale (essential for Haar Cascade)
-gray = cv2.cvtColor(padded_image, cv2.COLOR_BGR2GRAY)
-
-# --- 2. Perform Face Detection ---
-# The detectMultiScale function is the core of face detection.
-faces = face_cascade.detectMultiScale(
-    gray,
-    scaleFactor=1.1,     # How much the image size is reduced at each image scale
-    minNeighbors=5,      # How many neighbors each candidate rectangle should have
-    minSize=(30, 30),    # Minimum possible object size. Objects smaller than this are ignored.
-    flags=cv2.CASCADE_SCALE_IMAGE
-)
-
-# --- 3. Labeling Logic ---
-# Note: Haar Cascades only detect faces; they DO NOT determine gender.
-# For demonstration, we will assign your predetermined tags based on the detection order.
-name_tags = ["Male", "Female", "Male"] # Increased the list size
-object_count = 0
-
-# The 'faces' variable now holds the list of detected bounding boxes (x, y, w, h)
-for (x, y, w, h) in faces:
-    
-    # 1. Draw the Bounding Box
-    cv2.rectangle(padded_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
-
-    # 2. Assign Name Tag (Assumes faces are sorted and match the name_tags list)
-    tag = name_tags[object_count] if object_count < len(name_tags) else f"Object {object_count + 1}"
-
-    # 3. Calculate Text Position and Size
-    font_scale = 0.5
-    font_thickness = 2
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    (text_width, text_height), _ = cv2.getTextSize(tag, font, font_scale, font_thickness)
-    
-    # Position the text slightly above the bounding box
-    text_x = max(2, x)
-    text_y = max(20, y - 10) 
-
-    # 4. Draw Background for Text
-    cv2.rectangle(padded_image,
-                  (text_x - 2, text_y - text_height - 4),
-                  (text_x + text_width + 2, text_y),
-                  (255, 255, 255), -1)
-
-    # 5. Draw the Text
-    cv2.putText(padded_image, tag, (text_x, text_y), font, font_scale, (0, 100, 255), font_thickness)
-
-    object_count += 1
-
-print(f"Detected and labeled {object_count} faces.")
-print("--- DISPLAY AND SAVE ---")
-
-# 1. Save the result image
-cv2.imwrite('labeled_group_photo.jpg', padded_image)
-print("Result saved as 'labeled_group_photo.jpg'")
-
-# 2. Display the result image in a window
-cv2.imshow('Face Detector', padded_image)
-
-# Wait indefinitely until a key is pressed (0 means wait forever)
-cv2.waitKey(0)
-
-# Destroy all the windows created by OpenCV
-cv2.destroyAllWindows()
-
-            `;
-
-
-                    var text11 = `# 5 (B)  Group Photo-with Person name Detection 
-
-
-CMD: pip install opencv-python
-or install:-m pip install opencv-python
-
-#Download this image - https://www.gettyimages.in/detail/news-photo/actors-daniel-radcliffe-emma-watson-and-rupert-grant-on-the-news-photo/2178972456?adppopup=true
-
-import cv2
-
-# Load image
-img = cv2.imread("harry2.jpg")  # image
-if img is None:
-    print("Error: Image not found!")
-    exit()
-
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-# Use OpenCV's built-in Haar cascade for face detection
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-
-# Detect faces
-faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
-
-# Manually assign names for demonstration (order must match detected faces)
-names = ["Ron", "Hermione", "Harry"]  # Adjust according to your photo
-
-# Loop through faces
-for i, (x, y, w, h) in enumerate(faces):
-    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
-    
-    # Assign a name from the list, or "Unknown" if not enough names
-    name = names[i] if i < len(names) else "Unknown"
-    
-    cv2.putText(img, name, (x, y - 10),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
-
-# Show result
-cv2.imshow("Group Photo Labeling", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-            `;
-
-
-                    var text12 = `# 5 (C)  Detect and label common object(like eraser,scale,pencil) in a static image using opencv
-
-#download this image - https://www.shutterstock.com/image-vector/stationery-items-isolated-vector-illustration-on-754395457?trackingId=cad3cc57-ddd5-4184-b16d-c4e89953e419
-
-CMD: pip install opencv-python
-install:-m pip install opencv-python
-
-import cv2
-import numpy as np
-
-# Load the image
-image = cv2.imread('pen.jpeg')
-
-# Check if the image was loaded successfully
-if image is None:
-    print("Error: Could not load the image. Check the filename and path.")
-    exit()
-
-# Add vertical padding at the top (e.g., 50 pixels)
-top_padding = 50
-padded_image = cv2.copyMakeBorder(image, top_padding, 0, 0, 0, cv2.BORDER_CONSTANT, value=(255, 255, 255))
-
-# Convert to grayscale and blur
-gray = cv2.cvtColor(padded_image, cv2.COLOR_BGR2GRAY)
-blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-
-# Threshold (inverted binary)
-# The use of THRESH_OTSU helps automatically find the best threshold value.
-_, thresh = cv2.threshold(blurred, 50, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-
-# Find contours
-# RETR_EXTERNAL retrieves only the outermost contours (the objects themselves).
-contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-# Sort contours top-to-bottom then left-to-right
-def sort_contours(cnts):
-    # Get bounding boxes: (x, y, w, h)
-    bounding_boxes = [cv2.boundingRect(c) for c in cnts]
-    # Sort based on y-coordinate (for rows) then x-coordinate (for left-to-right order)
-    return [cnt for _, cnt in sorted(zip(bounding_boxes, cnts), key=lambda b: (b[0][1], b[0][0]))]
-
-contours = sort_contours(contours)
-
-# Define name tags (Ensure the number of tags matches the expected number of objects)
-#name_tags = ["Eraser", "Sharpener", "Scale", "Pencil"]
-name_tags = ["Scale", "Pencil", "Eraser"]
-min_area = 500  # Minimum contour area to filter out small noise/speckles
-object_count = 0
-
-for cnt in contours:
-    if cv2.contourArea(cnt) > min_area:
-        x, y, w, h = cv2.boundingRect(cnt)
-        
-        # 1. Draw the Bounding Box
-        cv2.rectangle(padded_image, (x, y), (x + w, y + h), (0, 255, 0), 2)
-
-        # 2. Assign Name Tag
-        tag = name_tags[object_count] if object_count < len(name_tags) else f"Object {object_count + 1}"
-
-        # 3. Calculate Text Position and Size
-        font_scale = 0.5
-        font_thickness = 2
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        (text_width, text_height), _ = cv2.getTextSize(tag, font, font_scale, font_thickness)
-        
-        # Position the text slightly above the bounding box (y - 10)
-        # We use max(2, ...) to ensure the text doesn't go off the left edge (x) or top edge (y)
-        text_x = max(2, x)
-        text_y = max(20, y - 10) 
-
-        # 4. Draw Background for Text (for better readability)
-        cv2.rectangle(padded_image,
-                      (text_x - 2, text_y - text_height - 4),
-                      (text_x + text_width + 2, text_y),
-                      (255, 255, 255), -1) # -1 means fill the rectangle
-
-        # 5. Draw the Text
-        # The color (0, 100, 255) is an orange/yellow hue (BGR)
-        cv2.putText(padded_image, tag, (text_x, text_y), font, font_scale, (0, 100, 255), font_thickness)
-
-        object_count += 1
-
-# --- DISPLAY AND SAVE FOR LOCAL ENVIRONMENT ---
-
-# 1. Save the result image
-cv2.imwrite('labeled_padded_stationery.jpg', padded_image)
-print("Result saved as 'labeled_padded_stationery.jpg'")
-
-# 2. Display the result image in a window
-# (This is the replacement for cv2_imshow)
-cv2.imshow('Labeled Stationery', padded_image)
-
-# Wait indefinitely until a key is pressed (0 means wait forever)
-# This is crucial for cv2.imshow to work and keep the window open.
-cv2.waitKey(0)
-
-# Destroy all the windows created by OpenCV
-cv2.destroyAllWindows()
-
-
-OR ---- CODE 2 (Static Code)
-# Note: make sure that your downloaded file name is pencil.jpg or eraser.jpg or scale.jpg
-
-import cv2
-import numpy as np
-
-# Load main image
-img = cv2.imread("pencil.jpg")
-if img is None:
-    print("Error: Main image not found!")
-    exit()
-img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-# List of templates and labels
-templates = {
-    "pencil": "pencil.jpg",
-    "eraser": "eraser.jpg",
-    "scale": "scale.jpg"
-}
-
-threshold = 0.7
-
-for label, template_file in templates.items():
-    template = cv2.imread(template_file, 0)
-    if template is None:
-        print(f"Error: Template '{template_file}' not found!")
-        continue
-
-    w, h = template.shape[::-1]
-    res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
-    loc = np.where(res >= threshold)
-
-    for pt in zip(*loc[::-1]):
-        cv2.rectangle(img, pt, (pt[0]+w, pt[1]+h), (0,255,0), 2)
-        cv2.putText(img, label, (pt[0], pt[1]-5),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
-
-cv2.imshow("Detected Objects", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-            `;
-
-
-
-                    var text13 = `# 6_Triangle-PYOpenGL & GLUT 
-
-#Write a program use PYOpenGL and GLUT TO draw simple triangle
-
-First import package go to the idle right click properties copy path and paste in search bar(C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Scripts) go to script and open
-
-cmd and install 3 packages
-
-1) pip install pygame
-
-2) pip install PyOpenGL
-
-3) pip install PyOpenGL_accelerate
-
- 
-
- 
-
-from OpenGL.GL import *
-
-from OpenGL.GLUT import *
-
-from OpenGL.GLU import *
-
- 
-
-def draw():
-
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)  # clear screen
-
-    glBegin(GL_TRIANGLES)  # start drawing triangle
-
-    glColor3f(1, 0, 0)  # Red
-
-    glVertex2f(-0.5, -0.5)  # Bottom left vertex
-
-    glColor3f(0, 1, 0)  # Green
-
-    glVertex2f(0.5, -0.5)  # Bottom right vertex
-
-    glColor3f(0, 0, 1)  # Blue
-
-    glVertex2f(0, 0.5)  # Top vertex
-
-    glEnd()  # end drawing
-
-    glutSwapBuffers()
-
- 
-
-# Initialize GLUT
-
-glutInit()
-
-glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
-
-glutInitWindowSize(400, 400)  # window size
-
-glutInitWindowPosition(100, 100)  # window position
-
-glutCreateWindow(b'py Open GL Example--Sanjana Shahi-30')  # title
-
-glutDisplayFunc(draw)  # set display callback
-
-glutMainLoop()  # start event loop
-
-
-            `;
-
-
-                    var text14 = `#7_Square-PYOpenGL & GLUT 
-#Write a program use PYOpenGL and GLUT TO draw simple square
-
-CMD: 
-pip install pygame
-pip install PyOpenGL
-pip install PyOpenGL_accelerate
-
-from OpenGL.GL import *
-from OpenGL.GLUT import *
-from OpenGL.GLU import *
-
-w,h = (500,500)
-
-def square():
-    glBegin(GL_QUADS)
-    glVertex2f(100,100)
-    glVertex2f(200,100)
-    glVertex2f(200,200)
-    glVertex2f(100,200)
-    glEnd()
-
-def iterate():
-    glViewport(0,0,500,500)
-    glMatrixMode(GL_PROJECTION)
-    glLoadIdentity()
-    glOrtho(0.0,500,0.0,500,0.0,1.0)
-    glMatrixMode(GL_MODELVIEW)
-    glLoadIdentity()
-
-def showscreen():
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT) #Clear Screen
-    glLoadIdentity()
-    iterate()
-    glColor(1.0,0.0,3.0)
-    square()
-    glutSwapBuffers()
-
-glutInit() #Initializing window
-glutInitDisplayMode(GLUT_RGBA|GLUT_DOUBLE|GLUT_DEPTH) #RGB Mode
-glutInitWindowSize(400,400) #Window size
-glutInitWindowPosition(100,100) #Window position
-glutCreateWindow(b'PyOpen Example - Surabhi Maydeo') #window name
-glutDisplayFunc(showscreen) # set display call back
-glutMainLoop() # start event loop
-
-            `;
-
-
-                    var text15 = `#8_3DCube-PYOpenGl
- 
-#Write a program with PYOpenGL to draw 3d cubes
-
-CMD: 
-pip install pygame
-pip install PyOpenGL
-pip install PyOpenGL_accelerate
-
-import pygame
-from pygame.locals import *
-from OpenGL.GL import *
-from OpenGL.GLU import *
-
-# Vertices
-v = (
-    (1, -1, -1),
-    (1, 1, -1),
-    (-1, 1, -1),
-    (-1, -1, -1),
-    (1, -1, 1),
-    (1, 1, 1),
-    (-1, -1, 1),
-    (-1, 1, 1)
-)
-
-# Edges
-E = (
-    (0, 1), (0, 3), (0, 4),
-    (2, 1), (2, 3), (2, 7),
-    (6, 3), (6, 4), (6, 7),
-    (5, 1), (5, 4), (5, 7)
-)
-
-def cube():
-    glBegin(GL_LINES)
-    for e1 in E:
-        for v1 in e1:  # FIXED
-            glVertex3fv(v[v1])
-    glEnd()
-def main():
-    pygame.init()
-    display = (800, 600)
-    pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
-    # Setup Projection
-    glMatrixMode(GL_PROJECTION)
-    gluPerspective(45, (display[0] / display[1]), 0.1, 50.0)
-    # Switch to ModelView
-    glMatrixMode(GL_MODELVIEW)
-    glLoadIdentity()
-    glTranslatef(0.0, 0.0, -5)
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:  # FIXED
-                pygame.quit()
-                quit()
-
-        # Rotate cube
-        glRotatef(1, 3, 1, 1)
-
-        # Clear screen and depth buffer
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-        cube()
-
-        pygame.display.flip()
-        pygame.time.wait(20)
-main()
-
-            `;
-
-
-                   
-
-            function copyText(text) {
-                navigator.clipboard.writeText(text).then(function () {
-                    document.getElementById('copiedMsg').innerHTML = "Text Copied"
-                }).catch(function (err) {
-                    console.error('Unable to copy text', err);
-                });
-            }
-            </script>
-
-            </body>
-
-            </html>
+</html>
