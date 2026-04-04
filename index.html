@@ -38,671 +38,582 @@ background-color: #ccc;
 
 <body>
 
-<button onclick="copyText(text1)"> 1-A:Scalar Operations </button>
-<button onclick="copyText(text2)"> 1-B:Vector Operations </button>
-<button onclick="copyText(text3)"> 1-C:Matrix Operations </button>
-<button onclick="copyText(text4)"> 1-D:Tensors operations </button>
-<button onclick="copyText(text5)"> 2:Matrix multiplication & findings eigen vectors & eigen values using tensorflow </button>
-<button onclick="copyText(text6)"> 3:Matrix Operations </button>
-<button onclick="copyText(text7)"> 4:Solving XOR problem using deep feed forward network </button>
-<button onclick="copyText(text8)"> 5:Deep Neural network for performing Binary Classification. </button>
-<button onclick="copyText(text9)"> 6-A:Simple Ridge Regression (L2 Regularization) </button>
-<button onclick="copyText(text10)">6-B:Simple Ridge Regression (L1 Regularization)</button>
-<button onclick="copyText(text11)">7:PCA to reduce overfitting</button>
-<button onclick="copyText(text12)">8-A:Find the net input yin1 and yin2 appl bipolar activation function and display the output of y1 and y2.</button>
-<button onclick="copyText(text13)">8-B:Design a simple neural network with 1 input node and 1 output node. Calculate the net input (yin) and apply the binary activation function.</button>
-<button onclick="copyText(text14)">8-C:Implement a neural network using both binary and bipolar sigmoidal activation functions with 2 input and 1 output node. Also, include bias </button>
-<button onclick="copyText(text15)">9-A :Hebb network to implement logical AND function</button>
-<button onclick="copyText(text16)">9-B : Delta rule network to implement logical OR function with bipolar inputs and targets.</button>
-<button onclick="copyText(text17)">10-A:Gradient Descent Optimization</button>
-<button onclick="copyText(text18)">10-B:Multiclass classification and predicting the class</button>
+<button onclick="copyText(text1)"> 1-Data Pre-processing and cleaning using python </button>
+<button onclick="copyText(text2)"> 2-Basic DNA sequence analysis using python</button>
+<button onclick="copyText(text3)"> 3-Disease Prediction using Gene Expression Data with Python </button>
+<button onclick="copyText(text4)"> 4-DNA Sequence Classification using CNN, RNN & LSTM (CNN: Convolutional Neural Network, RNN: Recurrent Neural Network, LSTM: Long Short-Term Memory) </button>
+<button onclick="copyText(text5)"> 5:Biological Network Analysis using Python </button>
+<button onclick="copyText(text6)"> 6:Systems Biology - Modelling a Gene Regulatory System using Python  </button>
+<button onclick="copyText(text7)"> 7:Text Mining of Biological Text Data Using Python </button>
+<button onclick="copyText(text8)"> 8:Literature Analysis of Biomedical Research Abstracts with Gene and Disease Tagging using Python </button>
+<button onclick="copyText(text9)"> 9-Visualization of Sequence Statistics Derived from DDBJ Data using Python </button>
 
 
 <p id="copiedMsg"></p>
 <script>
-var text1 = `#1-A:Scalar Operations
+var text1 = `# 1:Data Pre-processing and cleaning using python
 
-#Implementation of Scalars with its various operations
-# Code:
-a = 10
-b = 3.33
+#Data Pre-processing and Cleaning using Python
+#(Without CSV - Using Inbuilt Dataset)
+#Sample_ID,Chromosome,Position,Reference,Alternate,Quality
+#S1,1,34567,A,G,99
+#S2,1,34567,A,G,.
+#S3,1,34567,A,T,85
+#S4,1,?,A,G,90
+#S5,1,34567,A,G,high
+#S6,1,34567,A,G,92
 
-print("a = ",a)
-print("b = ",b)
-
-
-print("Type of a :",type(a))
-print("Type of b :",type(b))
-
-
-print("Addition =" ,(a + b))
-print("Subtraction =" ,(a - b))
-print("multiplication =" ,(a * b))
-print("Division =" ,(a / b))
-
-
-`;
-
-
-var text2 = `#1-B:Vector Operations
-#CMD: py -m pip install numpy
-#Implementation of Vectors with its various operations
-#Code:
+#code
+import pandas as pd
 import numpy as np
 
-x = np.array([1,2,3])
-y = np.array([4,5,6])
+# Step 1: Create dataset manually
+data = {
+    "Gene_ID": ["Gene1", "Gene2", "Gene3", "Gene2", "Gene4"],
+    "Sample_1": [5.2, "?", 7.1, 6.5, 5.8],
+    "Sample_2": [3.1, 4.2, "?", 4.8, 3.9],
+    "Sample_3": [2.5, 3.6, 4.1, "?", 2.8]
+}
 
+df = pd.DataFrame(data)
 
-print("Vector x:", x)
-print("Vector y:", y)
+print("\n--- Raw Dataset ---")
+print(df)
 
+print("\n--- Dataset Info ---")
+print(df.info())
 
-print("Addition of vectors:", np.add(x,y))
-print("Subtraction of vectors:", np.subtract(x,y))
-print("Multiplication of vectors:", np.multiply(x,y))
-print("Division of vectors:", np.divide(x,y))
+# Replace invalid symbols with NaN
+df.replace("?", np.nan, inplace=True)
+print("\n--- After Replacing '?' with NaN ---")
+print(df)
+
+# Convert expression columns to numeric
+expression_cols = ["Sample_1", "Sample_2", "Sample_3"]
+
+df[expression_cols] = df[expression_cols].apply(
+    pd.to_numeric, errors="coerce"
+)
+
+print("\n--- After Converting to Numeric ---")
+print(df)
+
+# Handle missing values (Mean Imputation)
+df[expression_cols] = df[expression_cols].fillna(
+    df[expression_cols].mean()
+)
+
+print("\n--- After Filling Missing Values ---")
+print(df)
+
+# Remove duplicate genes
+
+df_clean = df.drop_duplicates(subset="Gene_ID")
+
+print("\n--- After Removing Duplicate Genes ---")
+print(df_clean)
+
+df_clean[expression_cols] = (
+    df_clean[expression_cols] - df_clean[expression_cols].mean()
+) / df_clean[expression_cols].std()
+
+print("\n--- After Normalization ---")
+print(df_clean)
+
 
 `;
 
 
-var text3 = ` #1-C:Matrix Operations
-#CMD: py -m pip install numpy
-#Implementation of Matrix with its various operations
+var text2 = `#2:Basic DNA sequence analysis using python
+
+# --------------------------------------------
+# Step 1: Define DNA sequences
+# --------------------------------------------
+dna_sequences = {
+    "Human": "ATGCTAGCTAGCTACGATCGATCGATCGATCG",
+    "Mouse": "ATGCTAGCTAGATACGATCGATCGATCGATCA",
+    "Fish":  "ATGCCAGCTAGCTACGATGGATCGATCGATCG"
+}
+
+# --------------------------------------------
+# Step 2: Base composition analysis
+# --------------------------------------------
+def base_composition(sequence):
+    return {
+        "A": sequence.count("A"),
+        "T": sequence.count("T"),
+        "G": sequence.count("G"),
+        "C": sequence.count("C")
+    }
+
+print("\n--- Base Composition ---")
+for species, seq in dna_sequences.items():
+    print(f"{species}: {base_composition(seq)}")
+
+# --------------------------------------------
+# Step 3: GC content calculation
+# --------------------------------------------
+def gc_content(sequence):
+    gc = sequence.count("G") + sequence.count("C")
+    return (gc / len(sequence)) * 100
+
+print("\n--- GC Content (%) ---")
+for species, seq in dna_sequences.items():
+    print(f"{species}: {gc_content(seq):.2f}%")
+
+# --------------------------------------------
+# Step 4: Motif (pattern) finding
+# --------------------------------------------
+motif = "ATCG"
+
+print("\n--- Motif Search ---")
+for species, seq in dna_sequences.items():
+    positions = []
+    for i in range(len(seq) - len(motif) + 1):
+        if seq[i:i+len(motif)] == motif:
+            positions.append(i)
+    print(f"{species}: motif found at positions {positions}")
+
+# --------------------------------------------
+# Step 5: Pairwise sequence similarity
+# --------------------------------------------
+def pairwise_similarity(seq1, seq2):
+    matches = 0
+    length = min(len(seq1), len(seq2))
+    for i in range(length):
+        if seq1[i] == seq2[i]:
+            matches += 1
+    return (matches / length) * 100
+
+print("\n--- Pairwise Similarity (%) ---")
+species = list(dna_sequences.keys())
+
+for i in range(len(species)):
+    for j in range(i+1, len(species)):
+        s1, s2 = species[i], species[j]
+        similarity = pairwise_similarity(
+            dna_sequences[s1],
+            dna_sequences[s2]
+        )
+        print(f"{s1} vs {s2}: {similarity:.2f}%")
+
+`;
+
+
+var text3 = ` #3:Disease Prediction using Gene Expression Data with Python
+
 #Code:
-import numpy as np
-m1 = np.matrix([
-    [1,2,3],
-    [2,6,4],
-    [8,1,9]
-])
-m2 = np.matrix([
-    [11,2,6],
-    [21,6,4],
-    [3,12,9]
-])
-print("Matrix 1 :")
-print(m1)
-print("Shape of Matrix 1 :",m1.shape)
 
-print("Matrix 2 :")
-print(m2)
-print("Shape of Matrix 2 :",m2.shape)
-
-print("Addition of Matrix :\n",np.add(m1,m2))
-print("Subtraction of Matrix :\n",np.subtract(m1,m2))
-print("Multiplication of Matrix :\n",np.multiply(m1,m2))
-print("Division of Matrix :\n",np.divide(m1,m2))
-print("Sum of matrix m1 elements:", m1.sum())
-print("Sum of matrix m2 elements:", m2.sum())
-print("Max of matrix m1 elements:", m1.max())
-print("Max of matrix m2 elements:", m2.max())
-print("Min of matrix m1 elements:", m1.min())
-print("Min of matrix m2 elements:", m2.min())
-print("Transpose of matrix m1 :\n",m1.transpose())
-print("Transpose of matrix m2 :\n",m2.transpose())
-print("Inverse of matrix m1 :\n",np.linalg.inv(m1))
-print("Inverse of matrix m2 :\n",np.linalg.inv(m2))
-
-
-`;
-
-
-var text4 = ` #1-D:Tensors operations
-#Command in CMD - pip install torch torchvision torchaudio
-#Implementation of Tensors with its various operations
-#Code: 
-
-import torch as t
-a = t.tensor([26])
-print("Tensor a=", a)
-print("Shape of Tensor a:", a.shape)
-print("Type of Tensor a:", type(a))
-
-`;
-
-
-
-var text5 = `#2:Matrix multiplication & findings eigen vectors & eigen values using tensorflow
-
-#Perform Matrix multiplication and findings eigen vectors and eigen values using tensorflow
-#CMD: py -m pip install tensorflow
-#Code:
-import tensorflow as tf
-
-x = tf.constant([1,2,3,6,2,7], shape = [3,2])
-y = tf.constant([1,4,2,7,3,9], shape = [2,3])
-
-
-print("Matrix x", x)
-print("Matrix y", y)
-
-
-z = tf.matmul(x,y)
-print("Matrix multiplication of x and y", z)
-
-
-e_matrix = tf.random.uniform([2,2], minval=3, maxval=10, dtype=tf.float32, name= "matrixA")
-print("Matrix (e_matrix:)", e_matrix)
-eigen_values, eigen_vectors = tf.linalg.eigh(e_matrix)
-print("Eigen values", eigen_values)
-print("Eigen vectors", eigen_vectors)
-
-`;
-
-
-var text6 = ` #3:Matrix Operations
-
-#CMD: py -m pip install numpy
-
-#Implementation of Matrix Addition
-#Code:
-import numpy as np
-
-x = np.array([[1,2,3],[4,5,6],[7,8,9]])
-y = np.array([[9,8,7],[6,5,4],[3,2,2]])
-
-
-print("Matrix x: \n", x)
-print("Matrix y: \n", y)
-print("Shape of x: \n", x.shape)
-print("Shape of y: \n", y.shape)
-print("Matrix Scaler Addition: \n", x+2)
-print("Addition of 2 Matrix: \n", np.add(x,y))
-print("Sum of Matrix x Elements: \n", x.sum())
-print("Sum of Matrix y Elements: \n", y.sum())
-print("Matrix Vector Addition: \n")
-v = np.array([1,2,3])
-print(x+v)
-m1 = np.array([[1,2,3],[2,6,4],[8,1,9]])
-print("Matrix Scaler Multiplication:")
-s = 4
-mult = m1 * s
-print("Multiplication: \n",mult)
-print("Matrix-Matrix Multiplication")
-m11 = np.matrix([[1,2],[4,3]])
-print("Matrix m11", m11)
-print("Matrix m11 shape", m11.shape)
-m12 = np.matrix([[1,2,3], [4,5,6]])
-print("Matrix m12", m12)
-print("Matrix m12 shape", m12.shape)
-print("Matrix Multiplication Result: \n", np.matmul(m11,m12))
-print("Transpose of matrix m11 \n")
-m11t = m11.transpose()
-print(m11t)
-print("Shape of Transpose m11 \n", m11t.shape)
-print("Transpose of matrix m12 \n")
-m12t = m12.transpose()
-print(m12t)
-print("Shape of Transpose m12 \n", m12t.shape)
-print("Inverse of matrix m11 \n")
-m11i = np.linalg.inv(m11)
-print(m11i)
-print("Shape of Inverse m11 \n", m11i.shape)
-
-`;
-
-
-var text7 = `# 4:Solving XOR problem using deep feed forward network
-#CMD: py -m pip install tensorflow numpy
-#Solving XOR problem using a deep feed-forward network.
-#Code:
-from ast import mod
-import numpy as np
-from keras.models import Sequential
-from keras.layers import Dense
-model = Sequential()
-model.add(Dense(units = 2, input_dim=2, activation='relu'))
-model.add(Dense(units = 1, activation='sigmoid'))
-model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['binary_accuracy'])
-print(model.summary())
-print(model.get_weights())
-X = np.array([[0,0], [0,1], [10,0.], [1.,1.]])
-Y = np.array([0., 1., 1.,0.])
-model.fit(X,Y, epochs=10, batch_size=4)
-X = np.array([[0,0], [0,1], [10,0.], [1.,1.]])
-Y = np.array([0., 1., 1.,0.])
-model.fit(X,Y, epochs=10, batch_size=4)
-
-
-`;
-
-
-var text8 = `# 5:Deep Neural network for performing Binary Classification.
-#CMD: py -m pip install tensorflow scikit-learn numpy
-#Code:
-# Deep Neural Network for Binary Classification (No CSV required)
-
-from sklearn.datasets import load_diabetes
-from sklearn.preprocessing import StandardScaler
-from keras.models import Sequential
-from keras.layers import Dense
-import numpy as np
-
-# Load dataset directly
-data = load_diabetes()
-
-X = data.data
-Y = data.target
-
-# Convert regression target into binary (0 or 1)
-Y = (Y > Y.mean()).astype(int)
-
-print("Features:\n", X)
-print("Labels:\n", Y)
-
-# Normalize data (important for neural networks)
-scaler = StandardScaler()
-X = scaler.fit_transform(X)
-
-# Create model
-model = Sequential()
-model.add(Dense(12, input_dim=X.shape[1], activation='relu'))
-model.add(Dense(8, activation='relu'))
-model.add(Dense(1, activation='sigmoid'))
-
-# Compile model
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-# Train model
-model.fit(X, Y, epochs=50, batch_size=10)
-
-# Evaluate model
-loss, accuracy = model.evaluate(X, Y)
-print("Accuracy of model is:", accuracy * 100)
-
-# Predictions
-prediction = model.predict(X)
-print(prediction)
-
-`;
-
-
-var text9 = `# 6-A:Simple Ridge Regression (L2 Regularization)
-#CMD: py -m pip install numpy scikit-learn
-#Code:
-import numpy as np
-from sklearn.linear_model import Ridge
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-
-print("all libraries imported")
-X = np.array([[1], [2], [3], [4], [5]])
-y = np.array([30000, 35000, 40000, 45000, 50000])
-
-print("Input :",X)
-print("Output :",y)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-
-print("X_train:",X_train)
-print("X_test: ",X_test)
-print("y_train:",y_train)
-print("y_test :",y_test)
-ridge = Ridge(alpha=1.0)
-# alpha = regularization strength
-ridge.fit(X_train, y_train)
-print("Model is tarined !!!")
-print(ridge)
-# Prediction
-#test_data = [[2]]
-y_pred = ridge.predict(X_test)
-
-print("Predicted Salary:", y_pred)
-print("MSE:", mean_squared_error(y_test, y_pred))
-print("Coefficient:", ridge.coef_)
-print("Intercept:", ridge.intercept_)
-
-`;
-
-var text10 = `#6-B:Simple Ridge Regression (L1 Regularization)
-#CMD: py -m pip install scikit-learn numpy
-#Code:
-from sklearn.linear_model import Lasso
-print("all libraries imported")
-#Lasso regression model (L1 regularization)
-lasso = Lasso(alpha=0.1)
-lasso.fit(X_train, y_train)
-#prediction
-y_pred_lasso = lasso.predict(X_test)
-#Output
-print("Predicted Salary:", y_pred_lasso)
-print("MSE:", mean_squared_error(y_test, y_pred_lasso))
-print("Coefficient:", lasso.coef_)
-print("Intercept:", lasso.intercept_)
-
-`;
-
-
-var text11 = `# 7:PCA to reduce overfitting
-#CMD: py -m pip install pandas
-py -m pip install pandas scikit-learn
-Or py -m pip install numpy pandas scikit-learn
-
-#Implementation on PCA to reduce overfitting - Principal Component Analysis (PCA)
-#Code:
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
-# Reading Dataset
-from sklearn.datasets import load_iris
-iris = load_iris()
-print(iris)
+from sklearn.linear_model import LogisticRegression
+
+data = {
+    "Gene1":[2.5,3.0,2.8,3.2,6.5,7.1,6.8,7.3],
+    "Gene2":[3.1,3.8,3.5,3.9,7.2,6.9,7.0,7.4],
+    "Gene3":[1.2,1.5,1.3,1.6,5.9,6.3,6.0,6.5],
+    "Gene4":[4.0,4.5,4.2,4.6,6.8,7.0,6.9,7.2],
+    "Class":[0,0,0,0,1,1,1,1]
+}
+
+df = pd.DataFrame(data)
+
+X= df.drop("Class",axis=1)
+y= df["Class"]
+
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.25,random_state=42)
+
+model = LogisticRegression()
+model.fit(X_train,y_train)
+
+print("\nEnter gene expression values:")
+
+g1 = float(input("Gene 1: "))
+g2 = float(input("Gene 2: "))
+g3 = float(input("Gene 3: "))
+g4 = float(input("Gene 4: "))
+
+new_sample = [[g1,g2,g3,g4]]
+
+prediction = model.predict(new_sample)
+
+if prediction[0] ==  1:
+  print("\n Prediction: Diseased")
+else:
+  print("\n Prediction: Normal")
+
+`;
+
+
+var text4 = ` #4:DNA Sequence Classification using CNN, RNN & LSTM (CNN: Convolutional Neural Network, RNN: Recurrent Neural Network, LSTM: Long Short-Term Memory)
+
+#Code:
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, SimpleRNN, LSTM
+from tensorflow.keras.utils import to_categorical
+
+sequences = [
+    "ATGCTAGCTA",
+    "ATGCTAGCTT",
+    "ATGCTAGCAA",
+    "GCGTACGTGC",
+    "GCGTACGTGG",
+    "GCGTACGTGA"
+]
+
+labels = [0,0,0,1,1,1]
+
+encoding = {'A':0,'T':1,'G':2,'C':3}
+
+encoded_sequences = []
+for seq in sequences:
+  encoded_sequences.append([encoding[n] for n in seq])
+
+X = np.array(encoded_sequences)
+y = to_categorical(labels)
+
+X = X.reshape(X.shape[0],X.shape[1],1)
+
+cnn = Sequential()
+cnn.add(Conv1D(16,3,activation='relu',input_shape=(X.shape[1],1)))
+cnn.add(MaxPooling1D(2))
+cnn.add(Flatten())
+cnn.add(Dense(8,activation='relu'))
+cnn.add(Dense(2,activation='softmax'))
+
+cnn.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+cnn.fit(X,y,epochs=20,verbose=0)
+cnn_acc = cnn.evaluate(X,y,verbose=0)[1]
+
+rnn = Sequential()
+rnn.add(SimpleRNN(16,activation='relu',input_shape=(X.shape[1],1)))
+rnn.add(Dense(2,activation='softmax'))
+
+rnn.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+rnn.fit(X,y,epochs=25,verbose=0)
+rnn_acc = rnn.evaluate(X,y,verbose=0)[1]
+
+lstm = Sequential()
+lstm.add(LSTM(16,activation='relu',input_shape=(X.shape[1],1)))
+lstm.add(Dense(2,activation='softmax'))
+
+lstm.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+lstm.fit(X,y,epochs=30,verbose=0)
+lstm_acc = lstm.evaluate(X,y,verbose=0)[1]
+
+print("\nModel Accuracy Comparison")
+print("----------------------------")
+print(f"CNN Accuracy: {cnn_acc:.2f}")
+print(f"RNN Accuracy: {rnn_acc:.2f}")
+print(f"LSTM Accuracy: {lstm_acc:.2f}")
+
+print("\nEnter a DNA sequence of lenght 10: ")
+new_seq = input().upper()
+
+encoded_new = np.array([encoding[n] for n in new_seq])
+encoded_new = encoded_new.reshape(1,encoded_new.shape[0],1)
+
+cnn_pred = np.argmax(cnn.predict(encoded_new))
+rnn_pred = np.argmax(rnn.predict(encoded_new))
+lstm_pred = np.argmax(lstm.predict(encoded_new))
+
+print("\nPredictions:")
+print("----------------------------")
+print("CNN: ", "Diseased" if cnn_pred==1 else "Normal")
+print("RNN: ", "Diseased" if rnn_pred==1 else "Normal")
+print("LSTM: ", "Diseased" if lstm_pred==1 else "Normal")
+
+`;
+
+
+
+var text5 = `# 5:Biological Network Analysis using Python
+
+#Code:
+import numpy as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, SimpleRNN, LSTM
+from tensorflow.keras.utils import to_categorical
+
+sequences = [
+    "ATGCTAGCTA",
+    "ATGCTAGCTT",
+    "ATGCTAGCAA",
+    "GCGTACGTGC",
+    "GCGTACGTGG",
+    "GCGTACGTGA"
+]
+
+labels = [0,0,0,1,1,1]
+
+encoding = {'A':0,'T':1,'G':2,'C':3}
+
+encoded_sequences = []
+for seq in sequences:
+  encoded_sequences.append([encoding[n] for n in seq])
+
+X = np.array(encoded_sequences)
+y = to_categorical(labels)
+
+X = X.reshape(X.shape[0],X.shape[1],1)
+
+cnn = Sequential()
+cnn.add(Conv1D(16,3,activation='relu',input_shape=(X.shape[1],1)))
+cnn.add(MaxPooling1D(2))
+cnn.add(Flatten())
+cnn.add(Dense(8,activation='relu'))
+cnn.add(Dense(2,activation='softmax'))
+
+cnn.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+cnn.fit(X,y,epochs=20,verbose=0)
+cnn_acc = cnn.evaluate(X,y,verbose=0)[1]
+
+rnn = Sequential()
+rnn.add(SimpleRNN(16,activation='relu',input_shape=(X.shape[1],1)))
+rnn.add(Dense(2,activation='softmax'))
+
+rnn.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+rnn.fit(X,y,epochs=25,verbose=0)
+rnn_acc = rnn.evaluate(X,y,verbose=0)[1]
+
+lstm = Sequential()
+lstm.add(LSTM(16,activation='relu',input_shape=(X.shape[1],1)))
+lstm.add(Dense(2,activation='softmax'))
+
+lstm.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+lstm.fit(X,y,epochs=30,verbose=0)
+lstm_acc = lstm.evaluate(X,y,verbose=0)[1]
+
+print("\nModel Accuracy Comparison")
+print("----------------------------")
+print(f"CNN Accuracy: {cnn_acc:.2f}")
+print(f"RNN Accuracy: {rnn_acc:.2f}")
+print(f"LSTM Accuracy: {lstm_acc:.2f}")
+
+print("\nEnter a DNA sequence of lenght 10: ")
+new_seq = input().upper()
+
+encoded_new = np.array([encoding[n] for n in new_seq])
+encoded_new = encoded_new.reshape(1,encoded_new.shape[0],1)
+
+cnn_pred = np.argmax(cnn.predict(encoded_new))
+rnn_pred = np.argmax(rnn.predict(encoded_new))
+lstm_pred = np.argmax(lstm.predict(encoded_new))
+
+print("\nPredictions:")
+print("----------------------------")
+print("CNN: ", "Diseased" if cnn_pred==1 else "Normal")
+print("RNN: ", "Diseased" if rnn_pred==1 else "Normal")
+print("LSTM: ", "Diseased" if lstm_pred==1 else "Normal")
+
+`;
+
+
+var text6 = ` #6:Systems Biology - Modelling a Gene Regulatory System using Python
+
+#Code:
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+def gene_expression(P, t, k_synthesis, k_degradation):
+  dPdt = k_synthesis - k_degradation * P
+  return dPdt
+
+P0 = 0
+k_synthesis = 5
+k_degradation = 0.5
+
+t = np.linspace(0, 20, 100)
+
+P = odeint(
+    gene_expression,
+    P0,
+    t,
+    args=(k_synthesis, k_degradation)
+)
+
+plt.figure()
+plt.plot(t, P, label='Gene Expression')
+plt.xlabel('Time')
+plt.ylabel('Protein Concentration')
+plt.title("Gene Expression Dynamics")
+plt.show()
+
+`;
+
+
+var text7 = `# 7:Text Mining of Biological Text Data Using Python
+
+#Code:
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from collections import Counter
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
+resources =['punkt', 'punkt_tab', 'stopwords']
+for r in resources:
+  try:
+    nltk.data.find(r)
+  except LookupError:
+    nltk.download(r)
+
+text = """
+DNA sequencing is a technique used to determine the precise order of nucleotides within a DNA molecule. It plays a crucial role in bioinformatics and genomics. Bioinformatics helps in analysis of biological data using computational tools."""
+
+tokens = word_tokenize(text.lower())
+stop_words = set(stopwords.words('english'))
+filtered_tokens = [word for word in tokens if word.isalpha() and word not in stop_words]
+
+word_freq = Counter(filtered_tokens)
+
+print("Filtered words:")
+print(filtered_tokens)
+
+print("Word Frequencies: ")
+for word, freq in word_freq.items():
+  print(f"{word}: {freq}")
+
+plt.figure()
+plt.bar(word_freq.keys(),word_freq.values())
+plt.xlabel("Words")
+plt.ylabel("Frequency")
+plt.title("Word Frequency analysis of biological text")
+plt.show()
+
+wordcloud = WordCloud(width=800,height=400,background_color='white').generate_from_frequencies(word_freq)
+
+plt.figure(figsize=(10,5))
+plt.imshow(wordcloud)
+plt.axis('off')
+plt.show()
+`;
+
+
+var text8 = `# 8:Literature Analysis of Biomedical Research Abstracts with Gene and Disease Tagging using Python
+
+#Code:
+import nltk
+import re
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import matplotlib.pyplot as plt
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+resources = ['punkt', 'punkt_tab', 'stopwords']
+for r in resources:
+  try:
+    nltk.data.find(r)
+  except LookupError:
+    nltk.download(r)
+
+literature_text = """
+Breast cancer is one of the leading causes of cancer-related mortality worldwide.
+Mutations in the BRCA1 and BRCA2 genes significantly increase the risk of hereditary
+breast cancer. TP53 mutations are also frequently observed in cancer patients.
+Early genetic screening and personalized treatment strategies improve pateint outcomes.
+Bioinformatics tools play a crucial role in analyzing genomic data.
+"""
+
+gene_pattern = r'\b[A-Z]{2,}[0-9]*\b'
+
+disease_list = [
+    'breast cancer',
+    'cancer',
+    'hereditary cancer'
+]
+
+genes_found = re.findall(gene_pattern,literature_text)
+
+disease_found = []
+for disease in disease_list:
+  if disease in literature_text.lower():
+    disease_found.append(disease)
+
+print("Tagged genes:")
+print(set(genes_found))
+
+print("\nTagged Diseases:")
+print(set(disease_found))
+
+clean_text = literature_text.lower()
+
+stop_words = stopwords.words('english')
+
+vectorizer = TfidfVectorizer(stop_words=stop_words)
+tfidf_matrix = vectorizer.fit_transform([clean_text])
+
+terms = vectorizer.get_feature_names_out()
+scores = tfidf_matrix.toarray()[0]
+
+tfidf_scores = dict(zip(terms,scores))
+
+sorted_terms = sorted(tfidf_scores.items(),key=lambda x:x[1],reverse=True)
+
+print("\n Top 10 important terms:")
+for term,score in sorted_terms[:10]:
+  print(f"{term}: {round(score,4)}")
+
+plt.figure()
+plt.bar(terms, scores)
+plt.xlabel("Important Biological Terms")
+plt.ylabel("TF-IDF Scores")
+plt.title("Key Concepts in Biomedical Literature")
+plt.xticks(rotation=45)
+plt.show()
+
+
+
+`;
+
+
+var text9 = `# 9:Visualization of Sequence Statistics Derived from DDBJ Data using Python
+
+#DNA Data Bank of Japan (DDBJ)
+#Code:
 import pandas as pd
-X = pd.DataFrame (iris.data, columns=iris.feature_names)
-y = pd.Series(iris.target, name="Target")
-print("Features :")
-print(X)
-print("Target :")
-print(y)
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-print("X_train :")
-print(X_train)
-print("X_test :")
-print(X_test)
-sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
-# Display Training and Testing data
-print("DataSet before PCA ");
-print(X_train)
-print(X_test);
-# Creating PCA object
-pca = PCA()
-X_train = pca.fit_transform(X_train)
-X_test = pca.transform(X_test)
-# Giving a Principal feature to model
-pca = PCA(n_components=2)
-X_train = pca.fit_transform(X_train)
-X_test = pca.transform(X_test)
-print("DataSet After PCA ");
-print(X_train)
-print(X_test);
+import matplotlib.pyplot as plt
 
-`;
+sequences = {
+    "DDBJ_Seq1": "ATGCGTACGTTAGCTAGCTAGCTAGCTAGCTA",
+    "DDBJ_Seq2": "ATGGGCCCTTTAAACCCGGGTTTAAACCC",
+    "DDBJ_Seq3": "ATGCGCGCGCGCGCTATATATATATATATA",
+    "DDBJ_Seq4": "ATGAAATTTGGGCCCAAATTTGGGCCC"
+}
 
+def gc_content(sequence):
+  g = sequence.count('G')
+  c = sequence.count('C')
+  return ((g+c)/len(sequence))*100
 
-var text12 = `# 8-A:Find the net input yin1 and yin2 appl bipolar activation function and display the output of y1 and y2.
+data =[]
+for seq_id, seq in sequences.items():
+  data.append({
+      "Sequence_ID": seq_id,
+      "Sequence Length": len(seq),
+      "GC Content (%)": round(gc_content(seq),2)
+  })
 
-#Consider the following feed-forward neural network. Diagram here: x1= 0.2, x2=0.5,w11=0.3, w12= 0.2, w21=-0.1, w22=0.5y1=?, y2=?Find the net input yin1 and yin2 appl bipolar activation function and display the output of y1 and y2.
-#Code:
-# Given inputs
-x1 = 0.2
-x2 = 0.5
-# Given weights
-w11 = 0.2
-w21 = -0.1
-w12 = 0.2
-w22= 0.5
-# Calculate net inputs
-yin1 = x1 * w11 + x2 * w21
-yin2 = x1 * w12 + x2 * w22
-#Bipolar activation function
-def bipolar_activation(net):
-if net >= 0:
-return 1
-else:
-return -1
+df = pd.DataFrame(data)
+print("DDBJ-derived Sequence Statistics:")
+print(df)
 
-#Calculate Outputs
-y1=bipolar_activation(yin1)
-y2=bipolar_activation(yin2)
+plt.figure()
+plt.bar(df["Sequence_ID"], df["Sequence Length"])
+plt.xlabel("DDBJ Sequence ID")
+plt.ylabel("Sequence Length (bp)")
+plt.title("Sequence Length Distribution (DDBJ-derived)")
+plt.show()
 
-# Display result
-print("Net input yin1 =", yin1)
-print("Net input yin2 =", yin2)
-print("Output y1 =", y1)
-print("Output y2=", y2)
-
-`;
-
-
-
-var text13 = `# 8-B:Design a simple neural network with 1 input node and 1 output node. Calculate the net input (yin) and apply the binary activation function.
-
-#Code:
-# Given inputs
-x1 = 0.2
-x2 = 0.5
-# Given weights
-w11 = 0.2
-w21 = -0.1
-w12 = 0.2
-w22= 0.5
-# Calculate net inputs
-yin1 = x1 * w11 + x2 * w21
-yin2 = x1 * w12 + x2 * w22
-#Bipolar activation function
-def bipolar_activation(net):
-if net >= 0:
-return 1
-else:
-return -1
-
-#Calculate Outputs
-y1=bipolar_activation(yin1)
-y2=bipolar_activation(yin2)
-
-# Display result
-print("Net input yin1 =", yin1)
-print("Net input yin2 =", yin2)
-print("Output y1 =", y1)
-print("Output y2=", y2)
-
-
-`;
-
-
-var text14 = `#8-C:Implement a neural network using both binary and bipolar sigmoidal activation functions with 2 input and 1 output node. Also, include bias
-
-#Code:
-import math
-# Inputs
-x1 = 0.6
-x2 = 0.4
-# Weights
-w1 = 0.8
-w2 = - 0.5
-# Bias
-b = 0.2
-# Net input calculation
-yin = x1 * w1 + x2 * w2 + b
-# Binary Sigmoid Activation
-def binary_sigmoid(net):
-    return 1 / (1 + math.exp(-net))
-# Bipolar Sigmoid Activation
-def bipolar_sigmoid(net):
-return (2 / (1 + math.exp(-net))) - 1
-# Outputs
-output_binary = binary_sigmoid(yin)
-output_bipolar = bipolar_sigmoid(yin)
-# Display results
-print("Net Input (yin) =", yin)
-print("Output using Binary Sigmoid =", output_binary)
-print("Output using Bipolar Sigmoid =", output_bipolar)
-
-
-`;
-
-
-var text15 = `# 9-A :Hebb network to implement logical AND function
-#CMD: py -m pip install numpy
-#Code:
-import numpy as np
-
-# Training data for AND gate (bipolar form)
-X = np.array([[-1, -1],[-1,  1],[ 1, -1],[ 1,  1]])
-
-# Target outputs
-Y = np.array([-1, -1, -1, 1])
-
-# Initialize weights and bias
-weights = np.zeros(2)
-bias = 0
-
-# Hebbian Learning Rule
-for i in range(len(X)):
-    weights = weights + X[i] * Y[i]
-    bias = bias + Y[i]
-
-print("Final Weights:", weights)
-print("Final Bias:", bias)
-
-# Testing Phase
-def activation(net):
-    return 1 if net >= 0 else -1
-
-# Test all inputs
-for i in range(len(X)):
-    net = np.dot(weights, X[i]) + bias
-    output = activation(net)
-    print("Input:", X[i], "Output:", output)
-
-
-`;
-
-var text16 = `#9-B : Delta rule network to implement logical OR function with bipolar inputs and targets.
-#CMD: py -m pip install numpy
-#Code:
-import numpy as np
-# Bipolar OR gate dataset
-X = np.array([
-[-1, -1],
-[-1, 1],
-[1, -1],
-[1, 1]
-])
-T = np.array([-1, 1, 1, 1]) # Target outputs
-# Initialize weights and bias
-weights = np.zeros(2)
-bias = 0
-learning_rate = 0.1
-epochs = 10
-# Training using Delta Rule
-for epoch in range(epochs):
-for i in range(len(X)):
-    net = np.dot (X[i], weights) + bias
-    error = T[i] - net
-    # Update weights and bias
-    weights = weights + learning_rate * error * X[i]
-    bias = bias + learning_rate * error
-print("Final Weights:", weights)
-print("Final Bias:", bias)
-# Testing Phase (Using Sign Activation)
-def activation(net):
-return 1 if net >= 0 else -1
-print("\nTesting OR Gate using Delta Rule Network")
-for i in range(len(X)):
-net = np.dot(X[i], weights) + bias
-output = activation(net)
-print(f"Input: {X[i]} Output: {output}")
-
-`;
-
-var text17 = `#10-A:Gradient Descent Optimization
-#CMD: py -m pip install numpy
-#Implementation of Gradient Descent Optimization.
-#Code:
-import numpy as np
-
-# OR Gate Dataset
-X = np.array([[0,0],
-[0,1],
-[1,0],
-[1,1]])
-
-T = np.array([0,1,1,1])
-
-# Initialize weights and bias
-np.random.seed(0)
-w = np.random.randn(2)
-b = np.random.randn()
-
-learning_rate = 0.5
-epochs = 1000
-
-# Sigmoid function
-def sigmoid(x):
-    return 1/(1 + np.exp(-x))
-
-# Training using Gradient Descent
-for epoch in range(epochs):
-    total_error = 0
-
-    for i in range(len(X)):
-
-        # Forward pass
-        yin = np.dot(X[i], w) + b
-        y = sigmoid(yin)
-
-        # Error
-        error = T[i] - y
-        total_error += 0.5 * error**2
-
-        # Gradient (delta)
-        delta = error * y * (1 - y)
-
-        # Update weights and bias
-        w = w + learning_rate * delta * X[i]
-        b = b + learning_rate * delta
-
-# Testing
-print("Trained Weights:", w)
-print("Trained Bias:", b)
-
-print("\nTesting OR Gate:")
-for i in range(len(X)):
-    y = sigmoid(np.dot(X[i], w) + b)
-    print(X[i], "->", round(y))
-
-
-`;
-
-var text18 = `#10-B:Multiclass classification and predicting the class
-#CMD: py -m pip install tensorflow scikit-learn numpy
-#Deep feedforward network with 2 hidden layers for performing multiclass classification and predicting the class.
-
-#Code
-#Step1: Importing all libraries
-from keras.models import Sequential
-from keras.layers import Dense
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.datasets import make_blobs
-print("All libraries are imported !!!")
-
-#Step 2: Read dataset(make_blobs)
-X, Y = make_blobs(n_samples=100, n_features=2, centers=2, random_state=1)
-scalar = MinMaxScaler()
-scalar.fit(X)
-X = scalar.transform(X)
-print("X=")
-print(X)
-print("Y=")
-print(Y)
-
-#Step3: Model Creation (Sequential creation)
-model = Sequential()
-model.add(Dense(4, input_dim=2, activation='relu'))
-model.add(Dense(4, activation='relu'))
-model.add(Dense (1, activation='sigmoid'))
-print("model is created !!!")
-print(model)
-print("Model Summary")
-print(model.summary())
-
-#Step4: Model Compilation and training
-model.compile(loss='binary_crossentropy', optimizer='adam')
-model.fit(X, Y, epochs=500)
-print("Model is tarined !!!")
-
-#Step5: Model Testing
-Xnew, Yreal = make_blobs(n_samples=3, centers=2, n_features=2, random_state=1)
-Xnew = scalar.transform (Xnew)
-Ynew = (model.predict(Xnew) > 0.5).astype("int32")
-for i in range(len(Xnew)):
-print("X=%s, Predicted=%s, Desired=%s"%(Xnew[i], Ynew[i], Yreal[i]))
-
+plt.figure()
+plt.bar(df["Sequence_ID"], df["GC Content (%)"])
+plt.xlabel("DDBJ Sequence ID")
+plt.ylabel("GC Content (%)")
+plt.title("GC Content Distribution (DDBJ-derived)")
+plt.show()
 
 `;
 
