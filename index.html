@@ -85,7 +85,7 @@ print("Division =" ,(a / b))
 
 
 var text2 = `#1-B:Vector Operations
-
+#CMD: py -m pip install numpy
 #Implementation of Vectors with its various operations
 #Code:
 import numpy as np
@@ -107,7 +107,7 @@ print("Division of vectors:", np.divide(x,y))
 
 
 var text3 = ` #1-C:Matrix Operations
-
+#CMD: py -m pip install numpy
 #Implementation of Matrix with its various operations
 #Code:
 import numpy as np
@@ -149,7 +149,7 @@ print("Inverse of matrix m2 :\n",np.linalg.inv(m2))
 
 
 var text4 = ` #1-D:Tensors operations
-
+#Command in CMD - pip install torch torchvision torchaudio
 #Implementation of Tensors with its various operations
 #Code: 
 
@@ -166,6 +166,7 @@ print("Type of Tensor a:", type(a))
 var text5 = `#2:Matrix multiplication & findings eigen vectors & eigen values using tensorflow
 
 #Perform Matrix multiplication and findings eigen vectors and eigen values using tensorflow
+#CMD: py -m pip install tensorflow
 #Code:
 import tensorflow as tf
 
@@ -191,6 +192,8 @@ print("Eigen vectors", eigen_vectors)
 
 
 var text6 = ` #3:Matrix Operations
+
+#CMD: py -m pip install numpy
 
 #Implementation of Matrix Addition
 #Code:
@@ -241,7 +244,7 @@ print("Shape of Inverse m11 \n", m11i.shape)
 
 
 var text7 = `# 4:Solving XOR problem using deep feed forward network
-
+#CMD: py -m pip install tensorflow numpy
 #Solving XOR problem using a deep feed-forward network.
 #Code:
 from ast import mod
@@ -266,7 +269,7 @@ model.fit(X,Y, epochs=10, batch_size=4)
 
 
 var text8 = `# 5:Deep Neural network for performing Binary Classification.
-
+#CMD: py -m pip install tensorflow scikit-learn numpy
 #Code:
 # Deep Neural Network for Binary Classification (No CSV required)
 
@@ -316,7 +319,7 @@ print(prediction)
 
 
 var text9 = `# 6-A:Simple Ridge Regression (L2 Regularization)
-
+#CMD: py -m pip install numpy scikit-learn
 #Code:
 import numpy as np
 from sklearn.linear_model import Ridge
@@ -352,7 +355,7 @@ print("Intercept:", ridge.intercept_)
 `;
 
 var text10 = `#6-B:Simple Ridge Regression (L1 Regularization)
-
+#CMD: py -m pip install scikit-learn numpy
 #Code:
 from sklearn.linear_model import Lasso
 print("all libraries imported")
@@ -371,6 +374,9 @@ print("Intercept:", lasso.intercept_)
 
 
 var text11 = `# 7:PCA to reduce overfitting
+#CMD: py -m pip install pandas
+py -m pip install pandas scikit-learn
+Or py -m pip install numpy pandas scikit-learn
 
 #Implementation on PCA to reduce overfitting - Principal Component Analysis (PCA)
 #Code:
@@ -521,7 +527,7 @@ print("Output using Bipolar Sigmoid =", output_bipolar)
 
 
 var text15 = `# 9-A :Hebb network to implement logical AND function
-
+#CMD: py -m pip install numpy
 #Code:
 import numpy as np
 
@@ -557,7 +563,7 @@ for i in range(len(X)):
 `;
 
 var text16 = `#9-B : Delta rule network to implement logical OR function with bipolar inputs and targets.
-
+#CMD: py -m pip install numpy
 #Code:
 import numpy as np
 # Bipolar OR gate dataset
@@ -595,7 +601,7 @@ print(f"Input: {X[i]} Output: {output}")
 `;
 
 var text17 = `#10-A:Gradient Descent Optimization
-
+#CMD: py -m pip install numpy
 #Implementation of Gradient Descent Optimization.
 #Code:
 import numpy as np
@@ -654,7 +660,7 @@ for i in range(len(X)):
 `;
 
 var text18 = `#10-B:Multiclass classification and predicting the class
-
+#CMD: py -m pip install tensorflow scikit-learn numpy
 #Deep feedforward network with 2 hidden layers for performing multiclass classification and predicting the class.
 
 #Code
