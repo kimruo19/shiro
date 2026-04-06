@@ -39,583 +39,246 @@ background-color: #ccc;
 <body>
 
 <button onclick="copyText(text1)"> 1-Data Pre-processing and cleaning using python </button>
-<button onclick="copyText(text2)"> 2-Basic DNA sequence analysis using python</button>
-<button onclick="copyText(text3)"> 3-Disease Prediction using Gene Expression Data with Python </button>
-<button onclick="copyText(text4)"> 4-DNA Sequence Classification using CNN, RNN & LSTM (CNN: Convolutional Neural Network, RNN: Recurrent Neural Network, LSTM: Long Short-Term Memory) </button>
-<button onclick="copyText(text5)"> 5:Biological Network Analysis using Python </button>
-<button onclick="copyText(text6)"> 6:Systems Biology - Modelling a Gene Regulatory System using Python  </button>
-<button onclick="copyText(text7)"> 7:Text Mining of Biological Text Data Using Python </button>
-<button onclick="copyText(text8)"> 8:Literature Analysis of Biomedical Research Abstracts with Gene and Disease Tagging using Python </button>
-<button onclick="copyText(text9)"> 9-Visualization of Sequence Statistics Derived from DDBJ Data using Python </button>
+<button onclick="copyText(text2)"> 2-Perform Notepad Recording </button>
+<button onclick="copyText(text3)"> 3-APPEND TEXT TO EXCEL </button>
+<button onclick="copyText(text4)"> 4-Even odd checker </button>
+<button onclick="copyText(text5)"> 5:GenAI activities to summarize text and translate. </button>
+<button onclick="copyText(text6)"> 6:Automate the process to launch an assistant bot on a keyboard event  </button>
+<button onclick="copyText(text7)"> 7:Word(Using While Workflow) </button>
+<button onclick="copyText(text8)"> 8:Send EMAIL - Using SMTP Connection (Mail plug-in) </button>
 
 
 <p id="copiedMsg"></p>
 <script>
-var text1 = `# 1:Data Pre-processing and cleaning using python
+var text1 = `# Calculator in Uipath Studio
 
-#Data Pre-processing and Cleaning using Python
-#(Without CSV - Using Inbuilt Dataset)
-#Sample_ID,Chromosome,Position,Reference,Alternate,Quality
-#S1,1,34567,A,G,99
-#S2,1,34567,A,G,.
-#S3,1,34567,A,T,85
-#S4,1,?,A,G,90
-#S5,1,34567,A,G,high
-#S6,1,34567,A,G,92
+Steps:
+1.Click on Process, Name the blank process: games and click on Create
+2.From the ribbon, click on New dropdown & Select Flowchart
+3.From Activities drag and drop 2  input dialog boxes one below other
+4.Double click on 1st dialog box - 
+Dialog Title= “Number 1”, Input label = “Enter no 1”
+Input type = text box, Value entered = num1 (set variable using CTRL+K) & set data type as INT32 from data manager 
 
-#code
-import pandas as pd
-import numpy as np
+Double click on 2nd dialog box - 
+Dialog Title= “Number 2”, Input label = “Enter no 2”
+Input type = text box, Value entered = num2 (set variable using CTRL+K) & set data type as INT32 from data manager 
 
-# Step 1: Create dataset manually
-data = {
-    "Gene_ID": ["Gene1", "Gene2", "Gene3", "Gene2", "Gene4"],
-    "Sample_1": [5.2, "?", 7.1, 6.5, 5.8],
-    "Sample_2": [3.1, 4.2, "?", 4.8, 3.9],
-    "Sample_3": [2.5, 3.6, 4.1, "?", 2.8]
-}
+Note: Input dialog box > Properties > Enter options - new String() {}
+5.Drag Assign and place it under the 2nd input dialog box
+Click on Assign & enter below details
+To variable = Add (set variable using ctrl + k) & assign Int32 ,  Set value = num1+num2
+6.Now add message box to the left of assign box 
+Double click message box and enter text- "The addition of 2 nos " +Add.ToString
+7.Add another assign below message box 
+Click on Assign & enter below details
+To variable = Subtract (set variable using ctrl + k) & assign Int32 ,  Set value = num1-num2
+8.Drag message box below that assign
+Double click message box and enter text- "The Subtraction of 2 nos " +Subtract.ToString
+9.Add 3rd assign next to the 2nd message box
+Click on Assign & enter below details
+To variable = Multiply(set variable using ctrl + k) & assign Int32 ,  Set value = num1*num2
+10.Drag 3rd message box next to that assign
+Double click message box and enter text- "The multiplication of 2 nos " +Multiply.ToString
 
-df = pd.DataFrame(data)
-
-print("\n--- Raw Dataset ---")
-print(df)
-
-print("\n--- Dataset Info ---")
-print(df.info())
-
-# Replace invalid symbols with NaN
-df.replace("?", np.nan, inplace=True)
-print("\n--- After Replacing '?' with NaN ---")
-print(df)
-
-# Convert expression columns to numeric
-expression_cols = ["Sample_1", "Sample_2", "Sample_3"]
-
-df[expression_cols] = df[expression_cols].apply(
-    pd.to_numeric, errors="coerce"
-)
-
-print("\n--- After Converting to Numeric ---")
-print(df)
-
-# Handle missing values (Mean Imputation)
-df[expression_cols] = df[expression_cols].fillna(
-    df[expression_cols].mean()
-)
-
-print("\n--- After Filling Missing Values ---")
-print(df)
-
-# Remove duplicate genes
-
-df_clean = df.drop_duplicates(subset="Gene_ID")
-
-print("\n--- After Removing Duplicate Genes ---")
-print(df_clean)
-
-df_clean[expression_cols] = (
-    df_clean[expression_cols] - df_clean[expression_cols].mean()
-) / df_clean[expression_cols].std()
-
-print("\n--- After Normalization ---")
-print(df_clean)
 
 
 `;
 
 
-var text2 = `#2:Basic DNA sequence analysis using python
-
-# --------------------------------------------
-# Step 1: Define DNA sequences
-# --------------------------------------------
-dna_sequences = {
-    "Human": "ATGCTAGCTAGCTACGATCGATCGATCGATCG",
-    "Mouse": "ATGCTAGCTAGATACGATCGATCGATCGATCA",
-    "Fish":  "ATGCCAGCTAGCTACGATGGATCGATCGATCG"
-}
-
-# --------------------------------------------
-# Step 2: Base composition analysis
-# --------------------------------------------
-def base_composition(sequence):
-    return {
-        "A": sequence.count("A"),
-        "T": sequence.count("T"),
-        "G": sequence.count("G"),
-        "C": sequence.count("C")
-    }
-
-print("\n--- Base Composition ---")
-for species, seq in dna_sequences.items():
-    print(f"{species}: {base_composition(seq)}")
-
-# --------------------------------------------
-# Step 3: GC content calculation
-# --------------------------------------------
-def gc_content(sequence):
-    gc = sequence.count("G") + sequence.count("C")
-    return (gc / len(sequence)) * 100
-
-print("\n--- GC Content (%) ---")
-for species, seq in dna_sequences.items():
-    print(f"{species}: {gc_content(seq):.2f}%")
-
-# --------------------------------------------
-# Step 4: Motif (pattern) finding
-# --------------------------------------------
-motif = "ATCG"
-
-print("\n--- Motif Search ---")
-for species, seq in dna_sequences.items():
-    positions = []
-    for i in range(len(seq) - len(motif) + 1):
-        if seq[i:i+len(motif)] == motif:
-            positions.append(i)
-    print(f"{species}: motif found at positions {positions}")
-
-# --------------------------------------------
-# Step 5: Pairwise sequence similarity
-# --------------------------------------------
-def pairwise_similarity(seq1, seq2):
-    matches = 0
-    length = min(len(seq1), len(seq2))
-    for i in range(length):
-        if seq1[i] == seq2[i]:
-            matches += 1
-    return (matches / length) * 100
-
-print("\n--- Pairwise Similarity (%) ---")
-species = list(dna_sequences.keys())
-
-for i in range(len(species)):
-    for j in range(i+1, len(species)):
-        s1, s2 = species[i], species[j]
-        similarity = pairwise_similarity(
-            dna_sequences[s1],
-            dna_sequences[s2]
-        )
-        print(f"{s1} vs {s2}: {similarity:.2f}%")
-
-`;
-
-
-var text3 = ` #3:Disease Prediction using Gene Expression Data with Python
-
-#Code:
-
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-
-data = {
-    "Gene1":[2.5,3.0,2.8,3.2,6.5,7.1,6.8,7.3],
-    "Gene2":[3.1,3.8,3.5,3.9,7.2,6.9,7.0,7.4],
-    "Gene3":[1.2,1.5,1.3,1.6,5.9,6.3,6.0,6.5],
-    "Gene4":[4.0,4.5,4.2,4.6,6.8,7.0,6.9,7.2],
-    "Class":[0,0,0,0,1,1,1,1]
-}
-
-df = pd.DataFrame(data)
-
-X= df.drop("Class",axis=1)
-y= df["Class"]
-
-X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.25,random_state=42)
-
-model = LogisticRegression()
-model.fit(X_train,y_train)
-
-print("\nEnter gene expression values:")
-
-g1 = float(input("Gene 1: "))
-g2 = float(input("Gene 2: "))
-g3 = float(input("Gene 3: "))
-g4 = float(input("Gene 4: "))
-
-new_sample = [[g1,g2,g3,g4]]
-
-prediction = model.predict(new_sample)
-
-if prediction[0] ==  1:
-  print("\n Prediction: Diseased")
-else:
-  print("\n Prediction: Normal")
-
-`;
-
-
-var text4 = ` #4:DNA Sequence Classification using CNN, RNN & LSTM (CNN: Convolutional Neural Network, RNN: Recurrent Neural Network, LSTM: Long Short-Term Memory)
-
-#Code:
-import numpy as np
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, SimpleRNN, LSTM
-from tensorflow.keras.utils import to_categorical
-
-sequences = [
-    "ATGCTAGCTA",
-    "ATGCTAGCTT",
-    "ATGCTAGCAA",
-    "GCGTACGTGC",
-    "GCGTACGTGG",
-    "GCGTACGTGA"
-]
-
-labels = [0,0,0,1,1,1]
-
-encoding = {'A':0,'T':1,'G':2,'C':3}
-
-encoded_sequences = []
-for seq in sequences:
-  encoded_sequences.append([encoding[n] for n in seq])
-
-X = np.array(encoded_sequences)
-y = to_categorical(labels)
-
-X = X.reshape(X.shape[0],X.shape[1],1)
-
-cnn = Sequential()
-cnn.add(Conv1D(16,3,activation='relu',input_shape=(X.shape[1],1)))
-cnn.add(MaxPooling1D(2))
-cnn.add(Flatten())
-cnn.add(Dense(8,activation='relu'))
-cnn.add(Dense(2,activation='softmax'))
-
-cnn.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
-cnn.fit(X,y,epochs=20,verbose=0)
-cnn_acc = cnn.evaluate(X,y,verbose=0)[1]
-
-rnn = Sequential()
-rnn.add(SimpleRNN(16,activation='relu',input_shape=(X.shape[1],1)))
-rnn.add(Dense(2,activation='softmax'))
-
-rnn.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
-rnn.fit(X,y,epochs=25,verbose=0)
-rnn_acc = rnn.evaluate(X,y,verbose=0)[1]
-
-lstm = Sequential()
-lstm.add(LSTM(16,activation='relu',input_shape=(X.shape[1],1)))
-lstm.add(Dense(2,activation='softmax'))
-
-lstm.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
-lstm.fit(X,y,epochs=30,verbose=0)
-lstm_acc = lstm.evaluate(X,y,verbose=0)[1]
-
-print("\nModel Accuracy Comparison")
-print("----------------------------")
-print(f"CNN Accuracy: {cnn_acc:.2f}")
-print(f"RNN Accuracy: {rnn_acc:.2f}")
-print(f"LSTM Accuracy: {lstm_acc:.2f}")
-
-print("\nEnter a DNA sequence of lenght 10: ")
-new_seq = input().upper()
-
-encoded_new = np.array([encoding[n] for n in new_seq])
-encoded_new = encoded_new.reshape(1,encoded_new.shape[0],1)
-
-cnn_pred = np.argmax(cnn.predict(encoded_new))
-rnn_pred = np.argmax(rnn.predict(encoded_new))
-lstm_pred = np.argmax(lstm.predict(encoded_new))
-
-print("\nPredictions:")
-print("----------------------------")
-print("CNN: ", "Diseased" if cnn_pred==1 else "Normal")
-print("RNN: ", "Diseased" if rnn_pred==1 else "Normal")
-print("LSTM: ", "Diseased" if lstm_pred==1 else "Normal")
-
-`;
-
-
-
-var text5 = `# 5:Biological Network Analysis using Python
-
-#Code:
-import numpy as np
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense, SimpleRNN, LSTM
-from tensorflow.keras.utils import to_categorical
-
-sequences = [
-    "ATGCTAGCTA",
-    "ATGCTAGCTT",
-    "ATGCTAGCAA",
-    "GCGTACGTGC",
-    "GCGTACGTGG",
-    "GCGTACGTGA"
-]
-
-labels = [0,0,0,1,1,1]
-
-encoding = {'A':0,'T':1,'G':2,'C':3}
-
-encoded_sequences = []
-for seq in sequences:
-  encoded_sequences.append([encoding[n] for n in seq])
-
-X = np.array(encoded_sequences)
-y = to_categorical(labels)
-
-X = X.reshape(X.shape[0],X.shape[1],1)
-
-cnn = Sequential()
-cnn.add(Conv1D(16,3,activation='relu',input_shape=(X.shape[1],1)))
-cnn.add(MaxPooling1D(2))
-cnn.add(Flatten())
-cnn.add(Dense(8,activation='relu'))
-cnn.add(Dense(2,activation='softmax'))
-
-cnn.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
-cnn.fit(X,y,epochs=20,verbose=0)
-cnn_acc = cnn.evaluate(X,y,verbose=0)[1]
-
-rnn = Sequential()
-rnn.add(SimpleRNN(16,activation='relu',input_shape=(X.shape[1],1)))
-rnn.add(Dense(2,activation='softmax'))
-
-rnn.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
-rnn.fit(X,y,epochs=25,verbose=0)
-rnn_acc = rnn.evaluate(X,y,verbose=0)[1]
-
-lstm = Sequential()
-lstm.add(LSTM(16,activation='relu',input_shape=(X.shape[1],1)))
-lstm.add(Dense(2,activation='softmax'))
-
-lstm.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
-lstm.fit(X,y,epochs=30,verbose=0)
-lstm_acc = lstm.evaluate(X,y,verbose=0)[1]
-
-print("\nModel Accuracy Comparison")
-print("----------------------------")
-print(f"CNN Accuracy: {cnn_acc:.2f}")
-print(f"RNN Accuracy: {rnn_acc:.2f}")
-print(f"LSTM Accuracy: {lstm_acc:.2f}")
-
-print("\nEnter a DNA sequence of lenght 10: ")
-new_seq = input().upper()
-
-encoded_new = np.array([encoding[n] for n in new_seq])
-encoded_new = encoded_new.reshape(1,encoded_new.shape[0],1)
-
-cnn_pred = np.argmax(cnn.predict(encoded_new))
-rnn_pred = np.argmax(rnn.predict(encoded_new))
-lstm_pred = np.argmax(lstm.predict(encoded_new))
-
-print("\nPredictions:")
-print("----------------------------")
-print("CNN: ", "Diseased" if cnn_pred==1 else "Normal")
-print("RNN: ", "Diseased" if rnn_pred==1 else "Normal")
-print("LSTM: ", "Diseased" if lstm_pred==1 else "Normal")
-
-`;
-
-
-var text6 = ` #6:Systems Biology - Modelling a Gene Regulatory System using Python
-
-#Code:
-import numpy as np
-from scipy.integrate import odeint
-import matplotlib.pyplot as plt
-
-def gene_expression(P, t, k_synthesis, k_degradation):
-  dPdt = k_synthesis - k_degradation * P
-  return dPdt
-
-P0 = 0
-k_synthesis = 5
-k_degradation = 0.5
-
-t = np.linspace(0, 20, 100)
-
-P = odeint(
-    gene_expression,
-    P0,
-    t,
-    args=(k_synthesis, k_degradation)
-)
-
-plt.figure()
-plt.plot(t, P, label='Gene Expression')
-plt.xlabel('Time')
-plt.ylabel('Protein Concentration')
-plt.title("Gene Expression Dynamics")
-plt.show()
-
-`;
-
-
-var text7 = `# 7:Text Mining of Biological Text Data Using Python
-
-#Code:
-import nltk
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-from collections import Counter
-import matplotlib.pyplot as plt
-from wordcloud import WordCloud
-
-resources =['punkt', 'punkt_tab', 'stopwords']
-for r in resources:
-  try:
-    nltk.data.find(r)
-  except LookupError:
-    nltk.download(r)
-
-text = """
-DNA sequencing is a technique used to determine the precise order of nucleotides within a DNA molecule. It plays a crucial role in bioinformatics and genomics. Bioinformatics helps in analysis of biological data using computational tools."""
-
-tokens = word_tokenize(text.lower())
-stop_words = set(stopwords.words('english'))
-filtered_tokens = [word for word in tokens if word.isalpha() and word not in stop_words]
-
-word_freq = Counter(filtered_tokens)
-
-print("Filtered words:")
-print(filtered_tokens)
-
-print("Word Frequencies: ")
-for word, freq in word_freq.items():
-  print(f"{word}: {freq}")
-
-plt.figure()
-plt.bar(word_freq.keys(),word_freq.values())
-plt.xlabel("Words")
-plt.ylabel("Frequency")
-plt.title("Word Frequency analysis of biological text")
-plt.show()
-
-wordcloud = WordCloud(width=800,height=400,background_color='white').generate_from_frequencies(word_freq)
-
-plt.figure(figsize=(10,5))
-plt.imshow(wordcloud)
-plt.axis('off')
-plt.show()
-`;
-
-
-var text8 = `# 8:Literature Analysis of Biomedical Research Abstracts with Gene and Disease Tagging using Python
-
-#Code:
-import nltk
-import re
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-import matplotlib.pyplot as plt
-from sklearn.feature_extraction.text import TfidfVectorizer
-
-resources = ['punkt', 'punkt_tab', 'stopwords']
-for r in resources:
-  try:
-    nltk.data.find(r)
-  except LookupError:
-    nltk.download(r)
-
-literature_text = """
-Breast cancer is one of the leading causes of cancer-related mortality worldwide.
-Mutations in the BRCA1 and BRCA2 genes significantly increase the risk of hereditary
-breast cancer. TP53 mutations are also frequently observed in cancer patients.
-Early genetic screening and personalized treatment strategies improve pateint outcomes.
-Bioinformatics tools play a crucial role in analyzing genomic data.
-"""
-
-gene_pattern = r'\b[A-Z]{2,}[0-9]*\b'
-
-disease_list = [
-    'breast cancer',
-    'cancer',
-    'hereditary cancer'
-]
-
-genes_found = re.findall(gene_pattern,literature_text)
-
-disease_found = []
-for disease in disease_list:
-  if disease in literature_text.lower():
-    disease_found.append(disease)
-
-print("Tagged genes:")
-print(set(genes_found))
-
-print("\nTagged Diseases:")
-print(set(disease_found))
-
-clean_text = literature_text.lower()
-
-stop_words = stopwords.words('english')
-
-vectorizer = TfidfVectorizer(stop_words=stop_words)
-tfidf_matrix = vectorizer.fit_transform([clean_text])
-
-terms = vectorizer.get_feature_names_out()
-scores = tfidf_matrix.toarray()[0]
-
-tfidf_scores = dict(zip(terms,scores))
-
-sorted_terms = sorted(tfidf_scores.items(),key=lambda x:x[1],reverse=True)
-
-print("\n Top 10 important terms:")
-for term,score in sorted_terms[:10]:
-  print(f"{term}: {round(score,4)}")
-
-plt.figure()
-plt.bar(terms, scores)
-plt.xlabel("Important Biological Terms")
-plt.ylabel("TF-IDF Scores")
-plt.title("Key Concepts in Biomedical Literature")
-plt.xticks(rotation=45)
-plt.show()
-
+var text2 = `# Perform Notepad Recording
+(This can also be used for any sequence based proj)
+Steps
+1.Click on process, give Name (notepad) of the process and click on create
+2.On search bar, search for use application/Browser and click on it - UiPath.UTAutomation.Activties
+
+3.Go to the blank notepad
+4.Go back to the uipath studio and click on Indicate target on screen and it will redirect to the notepad
+5.Click on App/web Recorder and it will redirect to the notepad
+6.Select the whole notepad and there will option to Type a value or use another source for the data, in plain text write anything like Surabhi Maydeo and click on confirm, text will appear on notepad
+7.Now press CTRL+SHIFT+S on your keyboard (This short cut is captured by UIPath)
+8.Then click on Save button then click on Desktop or any location you want to save file click on Filename, change the name of the file you want to save as type and confirm it and then click on save. Then save the recording.
+9.Click on Add Activity, On search bar, search for Message box
+10.In Text write "Notepad Recording Completed" and run the application
 
 
 `;
 
 
-var text9 = `# 9:Visualization of Sequence Statistics Derived from DDBJ Data using Python
+var text3 = ` # APPEND TEXT TO EXCEL
+Steps:
+1.Create new process > ExcelAppend
+2.Click on add activity > search for Excel Process Scope & add it
+3.In DO add activity ->
+4.Add activity > Build Data Table 
+5.Click on Datatable button >
+Edit > Column1 - Column Name = SrNo,
+Data Type = Int32
+Auto Increment = check
+Allow Null = uncheck
+Edit > Column 2 - Column Name = Student Name 
+Data Type = String 
+Allow Null = uncheck
+Now add data for both columns in Build Data Table 
+6.Create new data table from data manager 
+Variable = dataTable 
+Datatype = DataTable
+Scope = Excel Process Scope
+7.Now click on Build Data Table 
+Properties > Output> Data table = dataTable
+8.Add activity below Build Data Table > Search & Add Append Range Workbook
+Click on + > It should be kept - Use Local File option
+File (Local Path) = Add path of existing excel - "C:\Users\ketan\Downloads\rpa.xlsx"
+SheetName = “Sheet1”
+DataTable = dataTable
+9.Now add message box below the Append Range Workbook
+Add text - “text appended”
+10.Run
 
-#DNA Data Bank of Japan (DDBJ)
-#Code:
-import pandas as pd
-import matplotlib.pyplot as plt
-
-sequences = {
-    "DDBJ_Seq1": "ATGCGTACGTTAGCTAGCTAGCTAGCTAGCTA",
-    "DDBJ_Seq2": "ATGGGCCCTTTAAACCCGGGTTTAAACCC",
-    "DDBJ_Seq3": "ATGCGCGCGCGCGCTATATATATATATATA",
-    "DDBJ_Seq4": "ATGAAATTTGGGCCCAAATTTGGGCCC"
-}
-
-def gc_content(sequence):
-  g = sequence.count('G')
-  c = sequence.count('C')
-  return ((g+c)/len(sequence))*100
-
-data =[]
-for seq_id, seq in sequences.items():
-  data.append({
-      "Sequence_ID": seq_id,
-      "Sequence Length": len(seq),
-      "GC Content (%)": round(gc_content(seq),2)
-  })
-
-df = pd.DataFrame(data)
-print("DDBJ-derived Sequence Statistics:")
-print(df)
-
-plt.figure()
-plt.bar(df["Sequence_ID"], df["Sequence Length"])
-plt.xlabel("DDBJ Sequence ID")
-plt.ylabel("Sequence Length (bp)")
-plt.title("Sequence Length Distribution (DDBJ-derived)")
-plt.show()
-
-plt.figure()
-plt.bar(df["Sequence_ID"], df["GC Content (%)"])
-plt.xlabel("DDBJ Sequence ID")
-plt.ylabel("GC Content (%)")
-plt.title("GC Content Distribution (DDBJ-derived)")
-plt.show()
 
 `;
+
+
+var text4 = ` # Even odd checker
+Steps
+1.Click on New Process > Choose new > Flowchart >  create Evenodd process, click on create
+2.Click on Add Activity, search for Input Dialog add it.
+3.Write on Dialog Title as "ODD OR EVEN CHECKER", Input Label as "Enter the Number:" , for value entered press ctrl + k set the variable as num & Change the datatype as Int32 and scope as Main of Data Manager
+Note: Input dialog > Properties > Options - new String() {}
+4.Click on Add Activity and search for Switch and add it.
+5.In expression write:- num Mod 2
+6.Click on Add case
+7.Click on Add Activity, Search for Message Box and add it and write “The number ” +num.ToString + “Is Even” (Add this message box - in BODY of the Switch)
+8.On DEFAULT (of Switch activity), add another activity, search for Message Box Add it and write in Text "The number" +num.ToString +"is Odd."
+9.Run the program.
+
+
+`;
+
+
+
+var text5 = `# GenAI activities to summarize text and translate.
+You need:
+✔ UiPath.IntegrationService.Activities (for connectors)
+✔ UiPath.GenAI.Activities (if using GenAI)
+Steps:
+1.Create new process - GenAI_Activities
+2.Go to Manage Packages > All Packages > 
+Install UiPath.IntegrationService.Activities    (for connectors) > Install & Save
+UiPath.GenAI.Activities    (For gen ai) - Add to project & Save 
+3.Click on Add Activity > Add Summarize Text
+4.Click on Add new connection > Add the account - click on Connect
+5.Enter details in Summarize text
+UIPath GenAI Activities = Default (UIPath GenAI Activities)
+Model name will be auto added
+Text to summarize (enter the text you want to summarize) = “In today’s world AI is taking the ability of humans to think”
+Number of summary words = 10
+Summary format = Bulleted list
+6.Now Create 2 variables 
+Name = result, data type = string, scope = main
+Name = transtext, data type = string, scope = main
+7.Now click on Summarize text > Properties - > Output > Summary = result
+8.Now add a Message Box below the Summarize test 
+Text = result 
+9.Now add a Translate below the message box
+UIPath GenAI Activities = Default (UIPath GenAI Activities)
+Model name will be auto added
+Text = result 
+Choose Language 
+10.Click on Translate > Properties -> Output >  Translated Text= transtext
+11.Add another Message box below Translate 
+Text = transtext
+12.Run the practical
+
+
+`;
+
+
+var text6 = ` # Automate the process to launch an assistant bot on a keyboard event
+1) Create a New Process Click on Add Activity and search Trigger Scope and add it.
+2) On Triggers inside Drop Trigger Activity Here - click on + and search Hotkey Trigger and add it.
+3) Inside Hotkey Trigger makes a combination anything of it for example win + esc on click of it we open Notepad.
+Choose = Win & Give Key = Esc
+If Hotkey Trigger is not available Add Keypress Event Trigger all dependencies will be downloaded then delete Keypress Event Trigger -> and now add Hotkey Trigger
+In triggers keep Actions blank
+4)  Inside Sequence click on Add Activity and search Use Application/Browser and add it. 
+5) Indicate Target = Indicate to the Notepad.
+6) Inside Do add a Message box and Write Text on it.
+Text = “Notepad opened successfully”
+7) After Message box click on + & Add Click Event and indicate to the cross sign(Image region selection from selection Helper in Indicate target)
+8) Run the application
+Click on Win & Give Key = Esc
+
+
+`;
+
+
+var text7 = `# Word(Using While Workflow)
+Steps 
+1.Create new Sequence name as Word
+2.Click on add activity -
+3.Search for While in the searchbox
+4.Create variables in Data Manger
+             Name = wordText
+             Data type = String
+             Scope = Main
+
+             Name = i
+Data type = Int32
+ Scope = Main
+5.In condition Write i<=500
+6.Click on Add activity in the BODY of while 
+Add Assign 
+To variable = wordText
+Set value = wordText + i.ToString + Environment.NewLine
+7.Add another assign the below the 1st assign in Body of while
+To variable = i
+Set Value = i +2
+8.Now add a Write Text File below the 2nd assign
+Write to File - Add you file path = LocalResource.FromPath("C:\...")
+Eg = LocalResource.FromPath("C:\Users\ketan\Downloads\Surabhi.txt")
+Text = wordText
+9.Finally Add message box (below the while activity)
+Click on + below While > Add a message box
+Text = “text is written in the file”
+10.Run the program
+
+
+`;
+
+
+var text8 = `# Send EMAIL - Using SMTP Connection (Mail plug-in)
+
+Steps:
+1.Click on Process, Name the blank process: SMTP_Connection and click on Create
+2.From Activities drag and drop input dialog:
+3.Double click on Input dialog: enter dialog title and input label in double quotes, press ctrl + k to set the variable
+
+Dialog Title= “Email”, Input label = “Email ID: ”
+Input type = text box, Value entered = userin (set variable using CTRL+K) & set data type as INT32 from data manager 
+Note: Input dialog box > Properties > Enter options - new String() {}
+4.Search and add - Send SMTP Email
+To - userin , Subject - “Test Email”, Body = “testing body”
+5.Click on Add new connect on the Send SMTP Email
+Continue with google > select google email id & enter password >
+Folder > My workspace , server address - smtp.gmail.com , Port - 587 , 
+Enter email & password (Which you get in next step) , check False, Secure connection - Start TLS &
+6.Before clicking on Connect > Go to Google gmail account > Click on manage your gmail account > Search for App Passwords
+Create a new test app > You will get a password 
+Enter this password in step 5
+7.Click on Connect
+8.Connection will be established.
+9.In Send SMTP Email
+To = “surabhi.maydeokc@gmail.com”
+Subject = “Test Subject”
+Body = “Sample body”
+10.Go back to UI path studio & Add activity > Add a message box - Text - “Email sent successfully”
+11.Run the program
+12.Enter valid email
+
+
+`;
+
 
 
 
